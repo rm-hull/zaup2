@@ -1,7 +1,9 @@
 {
   "name": "zaup2",
   "version": "2.0.0",
-  "private": true,
+  "private": false,
+  "license": "MIT",
+  "homepage": "https://destructuring-bind.org/zaup2",
   "dependencies": {
     "@chakra-ui/react": "^1.7.2",
     "@emotion/react": "^11.0.0",
