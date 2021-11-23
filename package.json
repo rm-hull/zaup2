@@ -1,7 +1,6 @@
 {
   "name": "zaup2",
   "version": "2.0.0",
-  "private": false,
   "license": "MIT",
   "homepage": "https://destructuring-bind.org/zaup2",
   "dependencies": {
@@ -22,6 +21,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "eslint-config-react-app": "^6.0.0",
     "react-scripts": "4.0.3",
     "typescript": "^4.3.5"
   },
@@ -45,5 +45,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "packageManager": "yarn@3.1.0"
 }
