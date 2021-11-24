@@ -1,0 +1,127 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018
+  },
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "version": "detect"
+    },
+    "propWrapperFunctions": [
+      "forbidExtraProps",
+      { "property": "freeze", "object": "Object" },
+      { "property": "myFavoriteWrapper" }
+    ],
+    "linkComponents": ["Hyperlink", { "name": "Link", "linkAttribute": "to" }]
+  },
+  "plugins": [
+    "promise",
+    "import",
+    "@typescript-eslint",
+    "prettier",
+    "jest",
+    "node",
+    "react",
+    "react-hooks",
+    "testing-library",
+    "jsx-a11y"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:promise/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "plugin:testing-library/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "overrides": [
+    {
+      "files": ["*.spec.ts"],
+      "rules": {
+        "jest/valid-expect": 0,
+        "jest/expect-expect": 0
+      }
+    },
+    {
+      "files": ["tests/*.spec.ts"],
+      "rules": {
+        "jest/no-done-callback": 0
+      }
+    }
+  ],
+  "rules": {
+    "react-redux/prefer-separate-component-file": "off",
+    "prettier/prettier": "warn",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/naming-convention": [
+      "warn",
+      {
+        "selector": "enumMember",
+        "format": ["UPPER_CASE", "camelCase"]
+      }
+    ],
+    "@typescript-eslint/member-ordering": [
+      "error",
+      {
+        "default": [
+          "public-static-field",
+          "protected-static-field",
+          "private-static-field",
+          "public-instance-field",
+          "protected-instance-field",
+          "private-instance-field",
+          "public-constructor",
+          "protected-constructor",
+          "private-constructor",
+          "public-static-method",
+          "public-instance-method",
+          "protected-static-method",
+          "protected-instance-method",
+          "private-static-method",
+          "private-instance-method"
+        ]
+      }
+    ],
+    "react/prop-types": [2, { "ignore": ["children"] }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "complexity": ["warn", { "max": 10 }],
+    "no-console": "warn",
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ],
+    "quotes": ["error", "double", { "avoidEscape": false, "allowTemplateLiterals": true }],
+    "semi": ["error", "always"],
+    "no-unused-vars": "warn",
+    "no-dupe-else-if": "off"
+  }
+}
