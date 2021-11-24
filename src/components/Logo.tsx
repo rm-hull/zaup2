@@ -1,6 +1,6 @@
 import { chakra, forwardRef, ImageProps, keyframes, usePrefersReducedMotion } from "@chakra-ui/react";
-import * as React from "react";
-import logo from "./logo.svg";
+import React from "react";
+import logo from "../assets/logo.svg";
 
 const spin = keyframes`
   from { transform: rotate(0deg); }
