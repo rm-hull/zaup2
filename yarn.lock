@@ -3515,6 +3515,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/google-protobuf@npm:^3.15.5":
+  version: 3.15.5
+  resolution: "@types/google-protobuf@npm:3.15.5"
+  checksum: 43f52df3b56fe858ffca6a560cd83bb5b0d4441d11634dcf1f6838fda91629027687650389b9fd8960c18fcf3f530c11f74699b3d11e4fa9db1df4048c76ac40
+  languageName: node
+  linkType: hard
+
 "@types/graceful-fs@npm:^4.1.2":
   version: 4.1.5
   resolution: "@types/graceful-fs@npm:4.1.5"
@@ -8700,6 +8707,13 @@ __metadata:
     pify: ^2.0.0
     pinkie-promise: ^2.0.0
   checksum: 18109d6b9d55643d2b98b59c3cfae7073ccfe39829632f353d516cc124d836c2ddebe48a23f04af63d66a621b6d86dd4cbd7e6af906f2458a7fe510ffc4bd424
+  languageName: node
+  linkType: hard
+
+"google-protobuf@npm:^3.19.1":
+  version: 3.19.1
+  resolution: "google-protobuf@npm:3.19.1"
+  checksum: 9ec57e1bdff76f9aec0f855376c1e0aa07de5c1b856b490d5c72b9e69a9e6e6ad24879a14e148a1542dbf27444575ad88b0a96c779f0d11b94211d78e1e5c924
   languageName: node
   linkType: hard
 
@@ -17216,6 +17230,7 @@ __metadata:
     "@testing-library/jest-dom": ^5.15.1
     "@testing-library/react": ^12.1.2
     "@testing-library/user-event": ^13.5.0
+    "@types/google-protobuf": ^3.15.5
     "@types/jest": ^27.0.3
     "@types/node": ^16.11.10
     "@types/react": ^17.0.36
@@ -17236,6 +17251,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.3.0
     eslint-plugin-testing-library: ^5.0.0
     framer-motion: ^4.1.17
+    google-protobuf: ^3.19.1
     prettier: ^2.4.1
     react: ^17.0.2
     react-dom: ^17.0.2
