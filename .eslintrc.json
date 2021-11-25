@@ -46,7 +46,6 @@
     "plugin:import/typescript",
     "plugin:jest/recommended",
     "plugin:jest/style",
-    "plugin:testing-library/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended"
   ],
