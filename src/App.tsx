@@ -9,7 +9,7 @@ import Sidebar from "./components/Sidebar";
 export const App = (): JSX.Element => {
   const toast = useToast();
   const navigate = useNavigate();
-  const [value, setValue] = useLocalStorage("otp-parameters");
+  const [, setValue] = useLocalStorage("otp-parameters");
 
   return (
     <Sidebar>
@@ -22,7 +22,6 @@ export const App = (): JSX.Element => {
             <ImportURL
               onSubmit={(otp_parameters) => {
                 const params = otp_parameters.map((param) => param.toObject());
-                console.table(params);
                 setValue(params);
                 toast({
                   title: "OTP Codes Imported.",

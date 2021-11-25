@@ -45,9 +45,13 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
       const payload = MigrationPayload.deserialize(new BinaryReader(data));
       onSubmit(payload.otp_parameters);
     } catch (err) {
+      if (err instanceof Error) {
+        actions.setFieldError("url", `Unable to parse URL: ${err.message}`);
+      } else {
+        actions.setFieldError("url", `Unable to parse URL: Unknown error`);
+      }
       // eslint-disable-next-line no-console
       console.error(err);
-      actions.setFieldError("url", `Unable to parse URL: ${(err as any).message}`);
     } finally {
       actions.setSubmitting(false);
     }
