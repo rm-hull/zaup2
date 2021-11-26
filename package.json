@@ -8,6 +8,7 @@
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
     "base32-encode": "^2.0.0",
+    "format-duration": "^1.4.0",
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "google-protobuf": "^3.19.1",

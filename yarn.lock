@@ -4336,6 +4336,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"add-zero@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "add-zero@npm:1.0.0"
+  checksum: 15d6af55e0f233b4bd5e904b8c3cf2be9cf9e93c802404dc6248b0183bc51b5b61125bf129653709dadcf6d959fbf6aca8016e5aaffbb1b11c72a92d1b48d8ef
+  languageName: node
+  linkType: hard
+
 "address@npm:1.1.2, address@npm:^1.0.1":
   version: 1.1.2
   resolution: "address@npm:1.1.2"
@@ -8387,6 +8394,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"format-duration@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "format-duration@npm:1.4.0"
+  dependencies:
+    add-zero: ^1.0.0
+    parse-ms: ^1.0.1
+  checksum: c83044087f9a230dc55d24b8aad50039928246868135c57e239dd7de7153ede4bbbfb9b00d39a256aba19c4c921eaef7eefc816cb4c447c83261b003e652b15f
+  languageName: node
+  linkType: hard
+
 "formik@npm:^2.2.9":
   version: 2.2.9
   resolution: "formik@npm:2.2.9"
@@ -12406,6 +12423,13 @@ __metadata:
     json-parse-even-better-errors: ^2.3.0
     lines-and-columns: ^1.1.6
   checksum: 62085b17d64da57f40f6afc2ac1f4d95def18c4323577e1eced571db75d9ab59b297d1d10582920f84b15985cbfc6b6d450ccbf317644cfa176f3ed982ad87e2
+  languageName: node
+  linkType: hard
+
+"parse-ms@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "parse-ms@npm:1.0.1"
+  checksum: 93fa7921554fe16bc73272a94bf812d1db6a144964fb57692f6de4fccf14bd771a232e8dcdcd4bbaa4aa477796cd3f35374d65596cca12323f2664bc023b4b4c
   languageName: node
   linkType: hard
 
@@ -17561,6 +17585,7 @@ __metadata:
     eslint-plugin-react: ^7.27.1
     eslint-plugin-react-hooks: ^4.3.0
     eslint-plugin-testing-library: ^5.0.0
+    format-duration: ^1.4.0
     formik: ^2.2.9
     framer-motion: ^4.1.17
     google-protobuf: ^3.19.1
