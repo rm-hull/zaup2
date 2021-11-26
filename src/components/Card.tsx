@@ -22,7 +22,7 @@ import { OTP } from "../types";
 
 type CardProps = {
   otp: OTP;
-  tick: number;
+  refresh?: number;
 };
 
 const getAlgorithm = (alg?: MigrationPayload.Algorithm) => {
@@ -51,7 +51,7 @@ const getDigits = (digits?: MigrationPayload.DigitCount) => {
   }
 };
 
-export default function Card({ otp }: CardProps): JSX.Element {
+const Card = React.memo(({ otp }: CardProps): JSX.Element => {
   const encodedSecret = React.useMemo(
     () => otp.secret && base32Encode(Uint8Array.from(Object.values(otp.secret)), "RFC4648"),
     [otp.secret]
@@ -133,4 +133,8 @@ export default function Card({ otp }: CardProps): JSX.Element {
       </Box>
     </Center>
   );
-}
+});
+
+Card.displayName = "Card";
+
+export default Card;
