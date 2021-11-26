@@ -3,7 +3,6 @@ import React from "react";
 import { IconType } from "react-icons";
 import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag } from "react-icons/fi";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import { Logo } from "./Logo";
 import NavItem from "./NavItem";
 
 interface LinkItemProps {
@@ -36,9 +35,8 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <HStack spacing={0}>
-          <Logo h="6" pointerEvents="none" animation={undefined} />
           <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-            AUP2
+            ZAUP2
           </Text>
         </HStack>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />

@@ -22,7 +22,7 @@ export default function MobileNav({ onOpen, ...rest }: MobileProps): JSX.Element
       <IconButton variant="outline" onClick={onOpen} aria-label="open menu" icon={<FiMenu />} />
 
       <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
-        Logo
+        ZAUP2
       </Text>
     </Flex>
   );
