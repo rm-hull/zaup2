@@ -5084,6 +5084,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"base32-encode@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "base32-encode@npm:2.0.0"
+  dependencies:
+    to-data-view: ^2.0.0
+  checksum: 2adb7213c21670ac64f778e7fdc6e4ce77f06ebd70f9b5be4b542da011ea032982bc0d5258be684cfdfc1e34047e8538bf5ff5d02ad013f6ef0be483759d2db9
+  languageName: node
+  linkType: hard
+
 "base64-js@npm:^1.0.2":
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
@@ -10786,6 +10795,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jssha@npm:~3.2.0":
+  version: 3.2.0
+  resolution: "jssha@npm:3.2.0"
+  checksum: 2adb8a9a57a79360379e843c0548e240d072c2ef12aef39ef6a784315686bd6f65501e9353fdd2f3a604f64af07e7eab04a0ed92b221cdfea97d671d7b8e14f4
+  languageName: node
+  linkType: hard
+
 "jsx-ast-utils@npm:^2.4.1 || ^3.0.0, jsx-ast-utils@npm:^3.2.1":
   version: 3.2.1
   resolution: "jsx-ast-utils@npm:3.2.1"
@@ -12193,6 +12209,15 @@ __metadata:
   version: 0.3.0
   resolution: "os-browserify@npm:0.3.0"
   checksum: 16e37ba3c0e6a4c63443c7b55799ce4066d59104143cb637ecb9fce586d5da319cdca786ba1c867abbe3890d2cbf37953f2d51eea85e20dd6c4570d6c54bfebf
+  languageName: node
+  linkType: hard
+
+"otpauth@npm:^7.0.7":
+  version: 7.0.7
+  resolution: "otpauth@npm:7.0.7"
+  dependencies:
+    jssha: ~3.2.0
+  checksum: f65333ce08657d07cbbb09578ff2c78686fcbe34737a7f8413a61158df422ab7ef90de5dc5a5e5bc21e120b7de7beff8daf42d18b9c4ec1467653c8a19d7d987
   languageName: node
   linkType: hard
 
@@ -13713,6 +13738,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qr.js@npm:0.0.0":
+  version: 0.0.0
+  resolution: "qr.js@npm:0.0.0"
+  checksum: 5ac6c393967bdeaa660e7fd3a501a25eb538c1f6008a4d30ab2b97bbe520e5c236530090773f1578aa0a523cdaa6923c866615e21143f9e7cd22abd41c789b69
+  languageName: node
+  linkType: hard
+
 "qs@npm:6.7.0":
   version: 6.7.0
   resolution: "qs@npm:6.7.0"
@@ -13939,6 +13971,19 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
+  languageName: node
+  linkType: hard
+
+"react-qr-code@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "react-qr-code@npm:2.0.3"
+  dependencies:
+    prop-types: ^15.7.2
+    qr.js: 0.0.0
+  peerDependencies:
+    react: ^16.x || ^17.x
+    react-native-svg: "*"
+  checksum: d82d3c2e8929bc40fdcbab714d088890744bc67aa5de5a998c14352f1fe56ca10032613abb49ea649bd9b8363ed5f482a942e5ed5e676a6f5e0b00a7e9960cb0
   languageName: node
   linkType: hard
 
@@ -16082,6 +16127,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"to-data-view@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "to-data-view@npm:2.0.0"
+  checksum: 61d7979b0a040fb21cdd62a182c5c9f359e2f268304613fb6a5b778008aa2cf3e1eef05c0565bf0d1d7146809260ed547e91debfc18bf52aa26b0cdec6ab79f6
+  languageName: node
+  linkType: hard
+
 "to-fast-properties@npm:^2.0.0":
   version: 2.0.0
   resolution: "to-fast-properties@npm:2.0.0"
@@ -17485,6 +17537,7 @@ __metadata:
     "@types/react-dom": ^17.0.11
     "@typescript-eslint/eslint-plugin": ^5.4.0
     "@typescript-eslint/parser": ^5.4.0
+    base32-encode: ^2.0.0
     eslint: 7.32.0
     eslint-config-prettier: ^8.3.0
     eslint-config-react-app: ^6.0.0
@@ -17502,10 +17555,12 @@ __metadata:
     framer-motion: ^4.1.17
     google-protobuf: ^3.19.1
     object-hash: ^2.2.0
+    otpauth: ^7.0.7
     prettier: ^2.4.1
     react: ^17.0.2
     react-dom: ^17.0.2
     react-icons: ^4.3.1
+    react-qr-code: ^2.0.3
     react-router-dom: ^6.0.2
     react-scripts: 4.0.3
     react-use: ^17.3.1

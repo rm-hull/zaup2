@@ -1,7 +1,7 @@
 import { Box, BoxProps, CloseButton, Flex, HStack, Text, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import { IconType } from "react-icons";
-import { FiCompass, FiHome, FiLogIn, FiSettings, FiTrendingUp } from "react-icons/fi";
+import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag } from "react-icons/fi";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { Logo } from "./Logo";
 import NavItem from "./NavItem";
@@ -13,8 +13,8 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
   { name: "Home", path: "/", icon: FiHome },
-  { name: "Trending", path: "/trending", icon: FiTrendingUp },
-  { name: "Explore", path: "/explore", icon: FiCompass },
+  { name: "Tags", path: "/tags/trending", icon: FiTag },
+  { name: "Issuers", path: "/issuers", icon: FiCompass },
   { name: "Import", path: "/import", icon: FiLogIn },
   { name: "Settings", path: "/settings", icon: FiSettings },
 ];
