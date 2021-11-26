@@ -20,7 +20,7 @@ const calcTimeLeft = (duration: number) => {
 
 export default function CountdownTimer({ duration }: CountdownTimerProps): JSX.Element {
   const [timeLeft, setTimeLeft] = useState<number>(calcTimeLeft(duration));
-  useHarmonicIntervalFn(() => setTimeLeft(calcTimeLeft(duration)), 1000);
+  useHarmonicIntervalFn(() => setTimeLeft(calcTimeLeft(duration)), 500);
 
   return (
     <CircularProgress value={(timeLeft * 100) / duration} color={getColor(timeLeft)} size="70px" thickness="12px">

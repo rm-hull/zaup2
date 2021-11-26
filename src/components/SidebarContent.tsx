@@ -1,6 +1,8 @@
 import { Box, BoxProps, CloseButton, Flex, HStack, Text, useColorModeValue, VStack } from "@chakra-ui/react";
+import * as R from "ramda";
 import React from "react";
 import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag } from "react-icons/fi";
+import useOtpParameters from "../hooks/useOtpParameters";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import CountdownTimer from "./CountdownTimer";
 import NavItem from "./NavItem";
@@ -10,6 +12,13 @@ interface SidebarProps extends BoxProps {
 }
 
 export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.Element {
+  const [otpParameters] = useOtpParameters();
+
+  const issuers: string[] = R.sortBy(
+    (a) => a.toLowerCase(),
+    R.uniq((otpParameters ?? []).map((otp) => otp.issuer ?? "Unknown"))
+  );
+
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}
@@ -33,16 +42,18 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
           </Flex>
           <NavItem label="Home" icon={FiHome} path="/" />
           <NavItem label="Tags" icon={FiTag}>
-            <VStack ml={8} alignItems="flex-start">
-              <NavItem label="Personal" path="/tags/personal" py={1} />
-              <NavItem label="Work" path="/tags/work" py={1} />
-            </VStack>
+            <Box w="full">
+              <VStack ml={8} alignItems="flex-start">
+                <NavItem label="Personal" path="/tags/personal" py={1} />
+                <NavItem label="Work" path="/tags/work" py={1} />
+              </VStack>
+            </Box>
           </NavItem>
           <NavItem label="Issuers" icon={FiCompass}>
-            <VStack ml={8} alignItems="flex-start">
-              <NavItem label="Google" path="/issuers/Google" py={1} />
-              <NavItem label="Amazon Web Services" path="/issuers/amazon+web+services" py={1} />
-              <NavItem label="1Password.com" path="/issuers/1password.com" py={1} />
+            <VStack ml={8} alignItems="flex-start" w="full">
+              {issuers.map((issuer) => (
+                <NavItem key={issuer} label={issuer} path={`/issuers/${encodeURIComponent(issuer)}`} py={1} />
+              ))}
             </VStack>
           </NavItem>
           <NavItem label="Import" icon={FiLogIn} path="/import" />

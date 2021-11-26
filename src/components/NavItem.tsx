@@ -1,4 +1,4 @@
-import { Collapse, Flex, FlexProps, Icon, Link, Text, useDisclosure } from "@chakra-ui/react";
+import { Collapse, Flex, FlexProps, Icon, Link, Tag, Text, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import { IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
@@ -7,8 +7,10 @@ interface NavItemProps extends React.PropsWithChildren<FlexProps> {
   label: string;
   icon?: IconType;
   path?: string;
+  count?: number;
 }
-export default function NavItem({ label, icon, path, children, ...rest }: NavItemProps): JSX.Element {
+
+export default function NavItem({ label, icon, path, count, children, ...rest }: NavItemProps): JSX.Element {
   const { isOpen, onToggle } = useDisclosure();
   return (
     <React.Fragment>
@@ -25,6 +27,11 @@ export default function NavItem({ label, icon, path, children, ...rest }: NavIte
         >
           {icon && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
           <Text isTruncated>{label}</Text>
+          {count !== undefined && (
+            <Tag size="sm" variant="solid" colorScheme="teal">
+              {count}
+            </Tag>
+          )}
         </Flex>
       </Link>
       <Collapse in={isOpen} animateOpacity>

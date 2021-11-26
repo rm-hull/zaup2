@@ -1,10 +1,11 @@
 import { Text, useToast } from "@chakra-ui/react";
 import React from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { useLocalStorage } from "react-use";
-import Group from "./components/Group";
 import ImportURL from "./components/ImportURL";
 import Sidebar from "./components/Sidebar";
+import useOtpParameters from "./hooks/useOtpParameters";
+import Home from "./pages/Home";
+import Issuer from "./pages/Issuer";
 import { MigrationPayload } from "./proto/migration_payload";
 import { OTP } from "./types";
 
@@ -20,20 +21,20 @@ const normalize = (otp: OTP): OTP => {
 export const App = (): JSX.Element => {
   const toast = useToast();
   const navigate = useNavigate();
-  const [otpParameters, setOtpParameters] = useLocalStorage<OTP[]>("otp-parameters");
+  const [otpParameters, setOtpParameters] = useOtpParameters();
 
   const storeOTPParameters = (otp_parameters: MigrationPayload.OtpParameters[]) => {
     const params = otp_parameters.map((param) => normalize(param.toObject()));
 
-    setOtpParameters((prev) =>
-      params.reduce((acc: OTP[], curr: OTP) => {
-        if (acc?.find((otp) => otp.issuer === curr.issuer && otp.name === curr.name)) {
-          return acc;
-        } else {
-          return [...acc, curr];
-        }
-      }, prev ?? [])
-    );
+    const updatedSet = params.reduce((acc: OTP[], curr: OTP) => {
+      if (acc?.find((otp) => otp.issuer === curr.issuer && otp.name === curr.name)) {
+        return acc;
+      } else {
+        return [...acc, curr];
+      }
+    }, otpParameters ?? []);
+
+    setOtpParameters(updatedSet);
 
     toast({
       title: "OTP Codes Imported.",
@@ -52,7 +53,8 @@ export const App = (): JSX.Element => {
         <Route path="/settings" element={<Text>Settings page</Text>} />
         <Route path="/import" element={<ImportURL onSubmit={storeOTPParameters} />} />
 
-        <Route index element={<Group otpParameters={otpParameters} />} />
+        <Route path="/issuers/:issuer" element={<Issuer />} />
+        <Route index element={<Home />} />
       </Routes>
     </Sidebar>
   );

@@ -2612,9 +2612,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:^11.6.0":
-  version: 11.6.0
-  resolution: "@emotion/react@npm:11.6.0"
+"@emotion/react@npm:^11.7.0":
+  version: 11.7.0
+  resolution: "@emotion/react@npm:11.7.0"
   dependencies:
     "@babel/runtime": ^7.13.10
     "@emotion/cache": ^11.6.0
@@ -2631,7 +2631,7 @@ __metadata:
       optional: true
     "@types/react":
       optional: true
-  checksum: 4fb2d108dc32716d1f162026ac5fdbd0662e3b435a34fb324629d72bb6bff61b18ac8975b51457c16ffa41543bade5d07558566ab76420b3926fbb9159441232
+  checksum: 8b50d61caabe04ae413ae23b98c170da643754ec89f25eb001464095685686585d0f88988bc36432f231e6de6abdbee73308c42ba427de9eaaf5a54d7f2f6ae5
   languageName: node
   linkType: hard
 
@@ -3668,6 +3668,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/ramda@npm:^0.27.52":
+  version: 0.27.52
+  resolution: "@types/ramda@npm:0.27.52"
+  dependencies:
+    ts-toolbelt: ^6.15.1
+  checksum: 67e2df83b8ca5c4c85797cad215e89c18274a1222a9daad3ea5563ccd3cb81a2749898cc2387f3eef16ecaf35936a1fcbc72b25a9205d232763960fa3c900bbe
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:^17.0.11":
   version: 17.0.11
   resolution: "@types/react-dom@npm:17.0.11"
@@ -3677,14 +3686,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^17.0.36":
-  version: 17.0.36
-  resolution: "@types/react@npm:17.0.36"
+"@types/react@npm:*, @types/react@npm:^17.0.37":
+  version: 17.0.37
+  resolution: "@types/react@npm:17.0.37"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: feeaa484d5d7e354ba6830b06342dec6fd1a2ac87f73d21d3d4f2a3d311459de4090330a1e8af7275c8d1e7737b655a7550c8dd3dbc74ccf34ffd3fc824bbd12
+  checksum: e68b0d59aa69577fc6a6d654b25d5d8408625498f4c483f160b557fac21e840f6e8807cbde93e9f039949b6d624a019b1990d18499c1d65aecf3605c25e30242
   languageName: node
   linkType: hard
 
@@ -5607,9 +5616,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30000981, caniuse-lite@npm:^1.0.30001109, caniuse-lite@npm:^1.0.30001125, caniuse-lite@npm:^1.0.30001280":
-  version: 1.0.30001282
-  resolution: "caniuse-lite@npm:1.0.30001282"
-  checksum: 62797fd756e88bfa01f0f983bea9de7814293b209456e8f0b20596b03d2880246f63dc90f947a1fa63f92806ebefbb86fc7811dbecb7839927886d07996938be
+  version: 1.0.30001283
+  resolution: "caniuse-lite@npm:1.0.30001283"
+  checksum: a13916f1b5ea0d75fe34d1ac8b8b841f88da69f98b1fd5178fd350291fdc1794daebcaaf57c3d3bc60f33aa27ecdf8e0909dc1a013475754c5416515f9bc32c2
   languageName: node
   linkType: hard
 
@@ -5879,12 +5888,12 @@ __metadata:
   linkType: hard
 
 "color-string@npm:^1.6.0":
-  version: 1.6.0
-  resolution: "color-string@npm:1.6.0"
+  version: 1.7.4
+  resolution: "color-string@npm:1.7.4"
   dependencies:
     color-name: ^1.0.0
     simple-swizzle: ^0.2.2
-  checksum: 33466a65277dd3d4ce24ef1991b47069292f75d1a43b0d2e7ea43076ba793728e965d50deed2b523f35519f4995a908253fcbcc774baceae8e439bc78c02e850
+  checksum: 7fd872f0105b574c1a931c2cda63a89192eb8740edadbc6a519494f2152ebc3ecea629deeab7b849c4d72942b66355f027d143ea7ac59dc58be2d8a99c6ccee9
   languageName: node
   linkType: hard
 
@@ -7143,9 +7152,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.564, electron-to-chromium@npm:^1.3.896":
-  version: 1.3.907
-  resolution: "electron-to-chromium@npm:1.3.907"
-  checksum: 789c60aa75a83d412254e88f60b9280e4627c655851b663e88f9f57c44429e7c0994cdd448c7aa6162170aaa535ac322fd86dd30db4c8d073107f47afab5e7b2
+  version: 1.4.4
+  resolution: "electron-to-chromium@npm:1.4.4"
+  checksum: df54c523cf40cb3d790ffa5c6c8f7c166ce11a85e8d1207f1bcec3d917b49c3a43acb7927d07c075e8372c72261eb18ea0b381ebf2cb0854b861445a1ce8b653
   languageName: node
   linkType: hard
 
@@ -9181,9 +9190,9 @@ __metadata:
   linkType: hard
 
 "http-parser-js@npm:>=0.5.1":
-  version: 0.5.3
-  resolution: "http-parser-js@npm:0.5.3"
-  checksum: 6f3142c5f60ad995a6895a1dc4f70f8cef0910745366e97cbcb99caa604590dbcc11006b00989ad306837d6b820e9bfc6e801c4060ed19a0e4df83caa8577cb5
+  version: 0.5.4
+  resolution: "http-parser-js@npm:0.5.4"
+  checksum: 8951b7c6ba173caa482d27c5d389154780f59d65ebe96dd45aa09ec9e84f2e62fefaac9d5540eccea209f9e4b97b8bb73a89b5dfed54da8470fca4c5ecf0bc00
   languageName: node
   linkType: hard
 
@@ -10645,6 +10654,43 @@ __metadata:
   bin:
     jest: bin/jest.js
   checksum: e0d3efff0dc2a31c453a3f7d87586e5d6c0f008c9b827bb9204edde09288f922ddfb3a8917480bf68f4ac0298be28637daef98ebaaac65ea23d3cb754a6620c4
+  languageName: node
+  linkType: hard
+
+"jotai@npm:^1.4.5":
+  version: 1.4.5
+  resolution: "jotai@npm:1.4.5"
+  peerDependencies:
+    "@babel/core": "*"
+    "@babel/template": "*"
+    "@urql/core": "*"
+    immer: "*"
+    optics-ts: "*"
+    react: ">=16.8"
+    react-query: "*"
+    valtio: "*"
+    wonka: "*"
+    xstate: "*"
+  peerDependenciesMeta:
+    "@babel/core":
+      optional: true
+    "@babel/template":
+      optional: true
+    "@urql/core":
+      optional: true
+    immer:
+      optional: true
+    optics-ts:
+      optional: true
+    react-query:
+      optional: true
+    valtio:
+      optional: true
+    wonka:
+      optional: true
+    xstate:
+      optional: true
+  checksum: 96b7c0d73f73587dcb14c6a23c9adb0c6674d15ba02772b3ba8df8035a4e0988924922bb1b4e102a12dd462fe7c6a1d42a034153e45a578adb024e8c1380f8f3
   languageName: node
   linkType: hard
 
@@ -13506,13 +13552,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.1.0":
-  version: 8.3.11
-  resolution: "postcss@npm:8.3.11"
+  version: 8.4.3
+  resolution: "postcss@npm:8.4.3"
   dependencies:
     nanoid: ^3.1.30
     picocolors: ^1.0.0
-    source-map-js: ^0.6.2
-  checksum: 1a230553d74c66aa9585c90781ed8ea75f19cefea405d2117b67fbeb24b5b5e0e17be2e0c5a07db31dd085643a13394127ab2222e940771b70498331bf20f35e
+    source-map-js: ^1.0.1
+  checksum: fbc0d43380c2d7ee905081577c79b18a341a3445d34211385c33d57cc38f3abe6859b2ad94b96f41bb4107133a1cd5f317d82bb3f603280433f1dcf5dc62acb5
   languageName: node
   linkType: hard
 
@@ -13546,12 +13592,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.4.1":
-  version: 2.4.1
-  resolution: "prettier@npm:2.4.1"
+"prettier@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "prettier@npm:2.5.0"
   bin:
     prettier: bin-prettier.js
-  checksum: cc6830588b401b0d742862fe9c46bc9118204fb307c3abe0e49e95b35ed23629573807ffdf9cdd65289c252a0bb51fc0171437f6626ee36378dea80f0ee80b91
+  checksum: aad1b35b73e7c14596d389d90977a83dad0db689ba5802a0ef319c357b7867f55b885db197972aa6a56c30f53088c9f8e0d7f7930ae074c275a4e9cbe091d21d
   languageName: node
   linkType: hard
 
@@ -13849,6 +13895,13 @@ __metadata:
   dependencies:
     performance-now: ^2.1.0
   checksum: 50ba284e481c8185dbcf45fc4618ba3aec580bb50c9121385d5698cb6012fe516d2015b1df6dd407a7b7c58d44be8086108236affbce1861edd6b44637c8cd52
+  languageName: node
+  linkType: hard
+
+"ramda@npm:^0.27.1":
+  version: 0.27.1
+  resolution: "ramda@npm:0.27.1"
+  checksum: 31a0c0ef739b2525d7615f84cbb5d3cb89ee0c795469b711f729ea1d8df0dccc3cd75d3717a1e9742d42315ce86435680b7c87743eb7618111c60c144a5b8059
   languageName: node
   linkType: hard
 
@@ -15325,10 +15378,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-js@npm:^0.6.2":
-  version: 0.6.2
-  resolution: "source-map-js@npm:0.6.2"
-  checksum: 9c8151a29e00fd8d3ba87709fdf9a9ce48313d653f4a29a39b4ae53d346ac79e005de624796ff42eff55cbaf26d2e87f4466001ca87831d400d818c5cf146a0e
+"source-map-js@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "source-map-js@npm:1.0.1"
+  checksum: 22606113d62bbd468712b0cb0c46e9a8629de7eb081049c62a04d977a211abafd7d61455617f8b78daba0b6c0c7e7c88f8c6b5aaeacffac0a6676ecf5caac5ce
   languageName: node
   linkType: hard
 
@@ -16305,6 +16358,13 @@ __metadata:
     typescript:
       optional: true
   checksum: c2a698b85d521298fe6f2435fbf2d3dc5834b423ea25abd321805ead3f399dbeedce7ca09492d7eb005b9d2c009c6b9587055bc3ab273dc6b9e40eefd7edb5b2
+  languageName: node
+  linkType: hard
+
+"ts-toolbelt@npm:^6.15.1":
+  version: 6.15.5
+  resolution: "ts-toolbelt@npm:6.15.5"
+  checksum: 24ad00cfd9ce735c76c873a9b1347eac475b94e39ebbdf100c9019dce88dd5f4babed52884cf82bb456a38c28edd0099ab6f704b84b2e5e034852b618472c1f3
   languageName: node
   linkType: hard
 
@@ -17558,7 +17618,7 @@ __metadata:
   resolution: "zaup2@workspace:."
   dependencies:
     "@chakra-ui/react": ^1.7.2
-    "@emotion/react": ^11.6.0
+    "@emotion/react": ^11.7.0
     "@emotion/styled": ^11.6.0
     "@testing-library/jest-dom": ^5.15.1
     "@testing-library/react": ^12.1.2
@@ -17567,7 +17627,8 @@ __metadata:
     "@types/jest": ^27.0.3
     "@types/node": ^16.11.10
     "@types/qrcode.react": ^1.0.2
-    "@types/react": ^17.0.36
+    "@types/ramda": ^0.27.52
+    "@types/react": ^17.0.37
     "@types/react-dom": ^17.0.11
     "@typescript-eslint/eslint-plugin": ^5.4.0
     "@typescript-eslint/parser": ^5.4.0
@@ -17589,10 +17650,12 @@ __metadata:
     formik: ^2.2.9
     framer-motion: ^4.1.17
     google-protobuf: ^3.19.1
+    jotai: ^1.4.5
     object-hash: ^2.2.0
     otpauth: ^7.0.7
-    prettier: ^2.4.1
+    prettier: ^2.5.0
     qrcode.react: ^1.0.1
+    ramda: ^0.27.1
     react: ^17.0.2
     react-dom: ^17.0.2
     react-icons: ^4.3.1
