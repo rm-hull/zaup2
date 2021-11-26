@@ -27,7 +27,8 @@ const useLocalStorage = <T>(key: string): [T | undefined, (value: T | undefined)
       setStoredValue((prev) => ({ ...prev, [key]: value }));
       window.dispatchEvent(new Event("local-storage"));
     } catch (error) {
-      console.warn(`Error setting localStorage key “${key}”:`, error);
+      // eslint-disable-next-line no-console
+      console.error(`Error setting localStorage key “${key}”:`, error);
     }
   };
 
