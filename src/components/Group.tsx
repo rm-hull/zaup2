@@ -21,9 +21,12 @@ export default function Group({ filter = () => true }: GroupProps): JSX.Element 
   return (
     <Box textAlign="center" fontSize="xl">
       <SimpleGrid minChildWidth="320px" spacing="10px" alignItems="start">
-        {otpParameters?.filter(filter).map((otp, index) => (
-          <Card key={index} otp={otp} refresh={refresh} />
-        ))}
+        {otpParameters
+          ?.filter(filter)
+          .filter((otp) => !otp.archived)
+          .map((otp, index) => (
+            <Card key={index} otp={otp} refresh={refresh} />
+          ))}
       </SimpleGrid>
     </Box>
   );
