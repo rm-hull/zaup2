@@ -3659,6 +3659,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/qrcode.react@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@types/qrcode.react@npm:1.0.2"
+  dependencies:
+    "@types/react": "*"
+  checksum: be256f0192366b4c0822da43c732bf3e29beb954c89d739aa770f09e5160842a3ca4d6814cb57bbcbbf8997cf7af0b998de318dab957f0820f267bb746c9a329
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:^17.0.11":
   version: 17.0.11
   resolution: "@types/react-dom@npm:17.0.11"
@@ -13630,7 +13639,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
   version: 15.7.2
   resolution: "prop-types@npm:15.7.2"
   dependencies:
@@ -13742,6 +13751,19 @@ __metadata:
   version: 0.0.0
   resolution: "qr.js@npm:0.0.0"
   checksum: 5ac6c393967bdeaa660e7fd3a501a25eb538c1f6008a4d30ab2b97bbe520e5c236530090773f1578aa0a523cdaa6923c866615e21143f9e7cd22abd41c789b69
+  languageName: node
+  linkType: hard
+
+"qrcode.react@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "qrcode.react@npm:1.0.1"
+  dependencies:
+    loose-envify: ^1.4.0
+    prop-types: ^15.6.0
+    qr.js: 0.0.0
+  peerDependencies:
+    react: ^15.5.3 || ^16.0.0 || ^17.0.0
+  checksum: 154a9557d103fa776cd99bc0d2600b862be74872ff965052533bc38ea0606c4d0965b4dd6df93e53f1db86699517a25db2718bbbc08c5d535a90c0d335552e9a
   languageName: node
   linkType: hard
 
@@ -13971,19 +13993,6 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
-  languageName: node
-  linkType: hard
-
-"react-qr-code@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "react-qr-code@npm:2.0.3"
-  dependencies:
-    prop-types: ^15.7.2
-    qr.js: 0.0.0
-  peerDependencies:
-    react: ^16.x || ^17.x
-    react-native-svg: "*"
-  checksum: d82d3c2e8929bc40fdcbab714d088890744bc67aa5de5a998c14352f1fe56ca10032613abb49ea649bd9b8363ed5f482a942e5ed5e676a6f5e0b00a7e9960cb0
   languageName: node
   linkType: hard
 
@@ -17533,6 +17542,7 @@ __metadata:
     "@types/google-protobuf": ^3.15.5
     "@types/jest": ^27.0.3
     "@types/node": ^16.11.10
+    "@types/qrcode.react": ^1.0.2
     "@types/react": ^17.0.36
     "@types/react-dom": ^17.0.11
     "@typescript-eslint/eslint-plugin": ^5.4.0
@@ -17557,10 +17567,10 @@ __metadata:
     object-hash: ^2.2.0
     otpauth: ^7.0.7
     prettier: ^2.4.1
+    qrcode.react: ^1.0.1
     react: ^17.0.2
     react-dom: ^17.0.2
     react-icons: ^4.3.1
-    react-qr-code: ^2.0.3
     react-router-dom: ^6.0.2
     react-scripts: 4.0.3
     react-use: ^17.3.1

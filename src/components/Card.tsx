@@ -13,9 +13,9 @@ import {
 } from "@chakra-ui/react";
 import base32Encode from "base32-encode";
 import * as OTPAuth from "otpauth";
+import QRCode from "qrcode.react";
 import React from "react";
 import { FiCheck, FiClipboard } from "react-icons/fi";
-import QRCode from "react-qr-code";
 import { getFavicon } from "../favicons";
 import { MigrationPayload } from "../proto/migration_payload";
 import { OTP } from "../types";
@@ -95,6 +95,8 @@ const Card = React.memo(({ otp }: CardProps): JSX.Element => {
 
         <Stack align="center" justify="center" direction="row" mt={4}>
           <QRCode
+            renderAs="canvas"
+            size={256}
             value={`otpauth://totp/${otp.name}?secret=${encodedSecret}&issuer=${otp.issuer}`}
             fgColor={color}
             bgColor={bg}
