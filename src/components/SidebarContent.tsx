@@ -1,23 +1,9 @@
 import { Box, BoxProps, CloseButton, Flex, HStack, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import React from "react";
-import { IconType } from "react-icons";
 import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag } from "react-icons/fi";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import CountdownTimer from "./CountdownTimer";
 import NavItem from "./NavItem";
-
-interface LinkItemProps {
-  name: string;
-  path: string;
-  icon: IconType;
-}
-const LinkItems: Array<LinkItemProps> = [
-  { name: "Home", path: "/", icon: FiHome },
-  { name: "Tags", path: "/tags/trending", icon: FiTag },
-  { name: "Issuers", path: "/issuers", icon: FiCompass },
-  { name: "Import", path: "/import", icon: FiLogIn },
-  { name: "Settings", path: "/settings", icon: FiSettings },
-];
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
@@ -45,11 +31,22 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
               <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
             </HStack>
           </Flex>
-          {LinkItems.map((link) => (
-            <NavItem key={link.name} icon={link.icon} path={link.path}>
-              {link.name}
-            </NavItem>
-          ))}
+          <NavItem label="Home" icon={FiHome} path="/" />
+          <NavItem label="Tags" icon={FiTag}>
+            <VStack ml={8} alignItems="flex-start">
+              <NavItem label="Personal" path="/tags/personal" py={1} />
+              <NavItem label="Work" path="/tags/work" py={1} />
+            </VStack>
+          </NavItem>
+          <NavItem label="Issuers" icon={FiCompass}>
+            <VStack ml={8} alignItems="flex-start">
+              <NavItem label="Google" path="/issuers/Google" py={1} />
+              <NavItem label="Amazon Web Services" path="/issuers/amazon+web+services" py={1} />
+              <NavItem label="1Password.com" path="/issuers/1password.com" py={1} />
+            </VStack>
+          </NavItem>
+          <NavItem label="Import" icon={FiLogIn} path="/import" />
+          <NavItem label="Settings" icon={FiSettings} path="/settings" />
         </Box>
         <Box pb={12}>
           <CountdownTimer duration={30} />
