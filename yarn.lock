@@ -3631,6 +3631,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/object-hash@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@types/object-hash@npm:2.2.1"
+  checksum: bbcbf076903e11fa6d61dd5cc365bce2b080b18502ef52672a427443262e465d7b46b8f2821e8cea0307de66aee2eb92ad6e2bed2346acd7c8de118d4123fe3a
+  languageName: node
+  linkType: hard
+
 "@types/parse-json@npm:^4.0.0":
   version: 4.0.0
   resolution: "@types/parse-json@npm:4.0.0"
@@ -17626,6 +17633,7 @@ __metadata:
     "@types/google-protobuf": ^3.15.5
     "@types/jest": ^27.0.3
     "@types/node": ^16.11.10
+    "@types/object-hash": ^2.2.1
     "@types/qrcode.react": ^1.0.2
     "@types/ramda": ^0.27.52
     "@types/react": ^17.0.37
