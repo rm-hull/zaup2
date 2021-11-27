@@ -16,7 +16,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
 
   const issuers: string[] = R.sortBy(
     (a) => a.toLowerCase(),
-    R.uniq((otpParameters ?? []).map((otp) => otp.issuer ?? "Unknown"))
+    R.uniq((otpParameters ?? []).filter((otp) => !otp.archived).map((otp) => otp.issuer ?? "Unknown"))
   );
 
   return (
