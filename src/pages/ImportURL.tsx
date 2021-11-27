@@ -17,13 +17,12 @@ import google_authenticator from "../assets/google_authenticator.svg";
 import { MigrationPayload } from "../proto/migration_payload";
 
 function validateURL(value: string) {
-  let error;
   if (!value) {
-    error = "Value is required";
+    return "Value is required";
   } else if (!value.startsWith("otpauth-migration://offline?data=")) {
-    error = "Must be a Google Authenticator Migration URL";
+    return "Must be a Google Authenticator Migration URL";
   }
-  return error;
+  return undefined;
 }
 
 type ImportForm = {
@@ -59,7 +58,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
 
   return (
     <Flex minH="100vh" align="center" justify="center" py={12}>
-      <Stack boxShadow="2xl" bg={useColorModeValue("white", "gray.700")} rounded="xl" p={10} spacing={8} align="center">
+      <Stack boxShadow="2xl" bg={useColorModeValue("white", "gray.800")} rounded="xl" p={10} spacing={8} align="center">
         <chakra.img src={google_authenticator} h={24} w={24} />
         <Stack align="center" spacing={2}>
           <Heading textTransform="uppercase" fontSize="3xl" color={useColorModeValue("gray.800", "gray.200")}>
@@ -83,7 +82,6 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                         placeholder="otpauth-migration://offline?data=CjkKCjpG..."
                         color={color}
                         bg={bg}
-                        rounded="full"
                         border={0}
                         _focus={{
                           bg: focusBg,
@@ -98,8 +96,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                 <Button
                   isLoading={isSubmitting}
                   type="submit"
-                  bg={"blue.400"}
-                  rounded="full"
+                  bg="blue.400"
                   color="white"
                   flex="1 0 auto"
                   _hover={{ bg: "blue.500" }}
