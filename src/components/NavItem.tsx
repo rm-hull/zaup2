@@ -14,7 +14,13 @@ export default function NavItem({ label, icon, path, count, children, ...rest }:
   const { isOpen, onToggle } = useDisclosure();
   return (
     <React.Fragment>
-      <Link as={RouterLink} to={path ?? "#"} style={{ textDecoration: "none" }} onClick={path ? undefined : onToggle}>
+      <Link
+        as={RouterLink}
+        to={path ?? "#"}
+        style={{ textDecoration: "none" }}
+        _focus={{ outline: "none" }}
+        onClick={path ? undefined : onToggle}
+      >
         <Flex
           align="center"
           p={3}
