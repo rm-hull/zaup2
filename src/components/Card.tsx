@@ -80,7 +80,7 @@ const Card = React.memo(({ otp }: CardProps): JSX.Element => {
       <Box
         maxW="320px"
         w="full"
-        bg={useColorModeValue("white", "gray.900")}
+        bg={useColorModeValue("white", "gray.800")}
         boxShadow="2xl"
         rounded="lg"
         p={4}
