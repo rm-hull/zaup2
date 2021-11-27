@@ -6,6 +6,8 @@ import Sidebar from "./components/Sidebar";
 import useOtpParameters from "./hooks/useOtpParameters";
 import Home from "./pages/Home";
 import Issuer from "./pages/Issuer";
+import NotFound from "./pages/NotFound";
+import Settings from "./pages/Settings";
 import { MigrationPayload } from "./proto/migration_payload";
 import { OTP } from "./types";
 
@@ -50,11 +52,11 @@ export const App = (): JSX.Element => {
     <Sidebar>
       <Routes>
         <Route path="/about" element={<Text>About page</Text>} />
-        <Route path="/settings" element={<Text>Settings page</Text>} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="/import" element={<ImportURL onSubmit={storeOTPParameters} />} />
-
         <Route path="/issuers/:issuer" element={<Issuer />} />
-        <Route index element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Sidebar>
   );
