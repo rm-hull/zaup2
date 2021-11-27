@@ -3,6 +3,7 @@ import hash from "object-hash";
 import React, { useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
 import useOtpParameters from "../hooks/useOtpParameters";
+import { sort } from "../otp";
 import { OTP } from "../types";
 import Card from "./Card";
 
@@ -22,7 +23,7 @@ export default function Group({ filter = () => true }: GroupProps): JSX.Element 
   return (
     <Box textAlign="center" fontSize="xl">
       <SimpleGrid minChildWidth="320px" spacing="10px" alignItems="start">
-        {otpParameters
+        {sort(otpParameters)
           ?.filter(filter)
           .filter((otp) => !otp.archived)
           .map((otp) => (

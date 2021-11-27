@@ -74,6 +74,7 @@ const Card = React.memo(({ otp }: CardProps): JSX.Element => {
 
   const bg = useColorModeValue("white", "var(--chakra-colors-gray-900)");
   const color = useColorModeValue("black", "white");
+  const tagBg = useColorModeValue("gray.50", "gray.800");
 
   return (
     <Center py={6}>
@@ -122,15 +123,11 @@ const Card = React.memo(({ otp }: CardProps): JSX.Element => {
         </Tooltip>
 
         <Stack align="center" justify="center" direction="row" mt={4}>
-          <Badge px={2} py={1} bg={useColorModeValue("gray.50", "gray.800")} fontWeight="400">
-            #art
-          </Badge>
-          <Badge px={2} py={1} bg={useColorModeValue("gray.50", "gray.800")} fontWeight="400">
-            #photography
-          </Badge>
-          <Badge px={2} py={1} bg={useColorModeValue("gray.50", "gray.800")} fontWeight="400">
-            #music
-          </Badge>
+          {otp.tags?.map((tag) => (
+            <Badge key={tag} px={2} py={1} bg={tagBg} fontWeight="400">
+              #{tag}
+            </Badge>
+          ))}
         </Stack>
       </Box>
     </Center>
