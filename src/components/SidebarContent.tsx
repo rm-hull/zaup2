@@ -15,9 +15,11 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
   const [otpParameters] = useOtpParameters();
 
   const issuers: string[] = R.sortBy(
-    (a) => a.toLowerCase(),
+    R.toLower,
     R.uniq((otpParameters ?? []).filter((otp) => !otp.archived).map((otp) => otp.issuer ?? "Unknown"))
   );
+
+  const tags: string[] = R.sortBy(R.toLower, R.uniq(otpParameters.flatMap((otp) => otp.tags ?? [])));
 
   return (
     <Box
@@ -43,9 +45,10 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
           <NavItem label="Home" icon={FiHome} path="/" />
           <NavItem label="Tags" icon={FiTag}>
             <Box w="full">
-              <VStack ml={8} alignItems="flex-start">
-                <NavItem label="Personal" path="/tags/personal" py={1} />
-                <NavItem label="Work" path="/tags/work" py={1} />
+              <VStack ml={8} alignItems="flex-start" w="full">
+                {tags.map((tag) => (
+                  <NavItem key={tag} label={`#${tag.toUpperCase()}`} path={`/tags/${encodeURIComponent(tag)}`} py={1} />
+                ))}
               </VStack>
             </Box>
           </NavItem>

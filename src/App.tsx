@@ -9,6 +9,7 @@ import ImportURL from "./pages/ImportURL";
 import Issuer from "./pages/Issuer";
 import NotFound from "./pages/NotFound";
 import Settings from "./pages/Settings";
+import Tag from "./pages/Tag";
 import { MigrationPayload } from "./proto/migration_payload";
 
 export const App = (): JSX.Element => {
@@ -35,6 +36,7 @@ export const App = (): JSX.Element => {
         <Route path="/about" element={<Text>About page</Text>} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/import" element={<ImportURL onSubmit={storeOTPParameters} />} />
+        <Route path="/tags/:tag" element={<Tag />} />
         <Route path="/issuers/:issuer" element={<Issuer />} />
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
