@@ -24,16 +24,23 @@ import hash from "object-hash";
 import * as R from "ramda";
 import React, { useState } from "react";
 import { FiPlus } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 import { AddTagModal } from "../components/AddTagModal";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sort } from "../otp";
 import { OTP } from "../types";
 
-export default function Settings(): JSX.Element {
+export default function Settings(): JSX.Element | null {
   const [otpParameters, update] = useOtpParameters();
   const [current, setCurrent] = useState<OTP | undefined>(undefined);
   const tagBg = useColorModeValue("gray.50", "gray.800");
+  const stackBg = useColorModeValue("white", "gray.800");
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate();
+  if (otpParameters.length === 0) {
+    navigate("/import");
+    return null;
+  }
 
   const handleAddTag = (otp: OTP) => () => {
     onOpen();
@@ -68,7 +75,7 @@ export default function Settings(): JSX.Element {
 
   return (
     <Flex minH="90vh" align="stretch" justify="center" py={6}>
-      <Stack boxShadow="2xl" bg={useColorModeValue("white", "gray.800")} rounded="xl" p={10} spacing={8} align="center">
+      <Stack boxShadow="2xl" bg={stackBg} rounded="xl" p={10} spacing={8} align="center">
         <AddTagModal isOpen={isOpen} onAdd={handleConfirmAddTag} onCancel={onClose} />
         <Table variant="simple">
           <Thead>
