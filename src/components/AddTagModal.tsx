@@ -85,7 +85,7 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
                 )}
                 <Field name="tag" validate={validateTag}>
                   {({ field, form }: FieldProps) => (
-                    <FormControl isInvalid={form.errors.url !== undefined && !!form.touched.url}>
+                    <FormControl isInvalid={form.errors.tag !== undefined && !!form.touched.tag}>
                       <Input
                         {...field}
                         id="tag"
