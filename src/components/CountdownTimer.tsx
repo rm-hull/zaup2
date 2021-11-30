@@ -1,4 +1,4 @@
-import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
+import { CircularProgress, CircularProgressLabel, useColorModeValue } from "@chakra-ui/react";
 import format from "format-duration";
 import React, { useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
@@ -23,7 +23,14 @@ export default function CountdownTimer({ duration }: CountdownTimerProps): JSX.E
   useHarmonicIntervalFn(() => setTimeLeft(calcTimeLeft(duration)), 500);
 
   return (
-    <CircularProgress value={(timeLeft * 100) / duration} color={getColor(timeLeft)} size="70px" thickness="12px">
+    <CircularProgress
+      value={timeLeft}
+      trackColor={useColorModeValue("gray.100", "gray.600")}
+      max={duration}
+      color={getColor(timeLeft)}
+      size="70px"
+      thickness="12px"
+    >
       <CircularProgressLabel>{format(timeLeft * 1000)}</CircularProgressLabel>
     </CircularProgress>
   );
