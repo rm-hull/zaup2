@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
+import * as OTPAuth from "otpauth";
 import React from "react";
 import google_authenticator from "../assets/google_authenticator.svg";
 import { MigrationPayload } from "../proto/migration_payload";
@@ -19,8 +20,19 @@ import { MigrationPayload } from "../proto/migration_payload";
 function validateURL(value: string) {
   if (!value) {
     return "Value is required";
-  } else if (!value.startsWith("otpauth-migration://offline?data=")) {
-    return "Must be a Google Authenticator Migration URL";
+  }
+
+  try {
+    OTPAuth.URI.parse(value);
+  } catch (err) {
+    if (err instanceof URIError) {
+      if (!value.startsWith("otpauth-migration://offline?data=")) {
+        return "Must be a Google Authenticator URL";
+      }
+      return undefined;
+    } else {
+      return `Unknown error: ${err}`;
+    }
   }
   return undefined;
 }
@@ -33,6 +45,21 @@ type ImportURLProps = {
   onSubmit: (otp_parameters: MigrationPayload.OtpParameters[]) => void;
 };
 
+const getAlgorithm = (alg?: string): MigrationPayload.Algorithm => {
+  switch (alg) {
+    case "MD5":
+      return MigrationPayload.Algorithm.ALGORITHM_MD5;
+    case "SHA1":
+      return MigrationPayload.Algorithm.ALGORITHM_SHA1;
+    case "SHA256":
+      return MigrationPayload.Algorithm.ALGORITHM_SHA256;
+    case "SHA512":
+      return MigrationPayload.Algorithm.ALGORITHM_SHA512;
+    default:
+      return MigrationPayload.Algorithm.ALGORITHM_UNSPECIFIED;
+  }
+};
+
 export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
@@ -40,17 +67,39 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
 
   const handleImport = (values: ImportForm, actions: FormikHelpers<ImportForm>) => {
     try {
-      const data = values.url.slice(33);
-      const payload = MigrationPayload.deserialize(new BinaryReader(data));
-      onSubmit(payload.otp_parameters);
+      const parsed = OTPAuth.URI.parse(values.url);
+      onSubmit([
+        new MigrationPayload.OtpParameters({
+          name: parsed.label,
+          issuer: parsed.issuer,
+          secret: new Uint8Array(parsed.secret.buffer),
+          algorithm: getAlgorithm(parsed.algorithm),
+          digits:
+            parsed.digits === 6
+              ? MigrationPayload.DigitCount.DIGIT_COUNT_SIX
+              : MigrationPayload.DigitCount.DIGIT_COUNT_EIGHT,
+          type:
+            parsed instanceof OTPAuth.TOTP
+              ? MigrationPayload.OtpType.OTP_TYPE_TOTP
+              : MigrationPayload.OtpType.OTP_TYPE_HOTP,
+        }),
+      ]);
     } catch (err) {
-      if (err instanceof Error) {
-        actions.setFieldError("url", `Unable to parse URL: ${err.message}`);
-      } else {
-        actions.setFieldError("url", `Unable to parse URL: Unknown error`);
+      if (err instanceof URIError) {
+        try {
+          const data = values.url.slice(33);
+          const payload = MigrationPayload.deserialize(new BinaryReader(data));
+          onSubmit(payload.otp_parameters);
+        } catch (err) {
+          if (err instanceof Error) {
+            actions.setFieldError("url", `Unable to parse URL: ${err.message}`);
+            return;
+          }
+        }
       }
       // eslint-disable-next-line no-console
       console.error(err);
+      actions.setFieldError("url", `Unable to parse URL: Unknown error`);
     } finally {
       actions.setSubmitting(false);
     }
