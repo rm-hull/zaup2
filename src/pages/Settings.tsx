@@ -13,6 +13,7 @@ import {
   Text,
   Th,
   Thead,
+  Tooltip,
   Tr,
   useColorModeValue,
   useDisclosure,
@@ -115,13 +116,15 @@ export default function Settings(): JSX.Element | null {
                 </Td>
                 <Td w="200px">
                   <HStack alignItems="start">
-                    <IconButton
-                      aria-label="Add tag"
-                      disabled={(otp.tags ?? []).length >= 3}
-                      size="sm"
-                      onClick={handleAddTag(otp)}
-                      icon={<FiPlus />}
-                    />
+                    <Tooltip label="Add tag">
+                      <IconButton
+                        aria-label="Add tag"
+                        disabled={(otp.tags ?? []).length >= 3}
+                        size="sm"
+                        onClick={handleAddTag(otp)}
+                        icon={<FiPlus />}
+                      />
+                    </Tooltip>
                     <Wrap>
                       {otp.tags?.map((tag) => (
                         <WrapItem key={tag}>
@@ -138,7 +141,9 @@ export default function Settings(): JSX.Element | null {
                   <Switch isChecked={otp.archived} onChange={handleToggleArchived(otp)} />
                 </Td>
                 <Td align="center">
-                  <IconButton aria-label="Delete" size="sm" onClick={handleDelete(otp)} icon={<FiTrash2 />} />
+                  <Tooltip label="Delete OTP">
+                    <IconButton aria-label="Delete" size="sm" onClick={handleDelete(otp)} icon={<FiTrash2 />} />
+                  </Tooltip>
                 </Td>
               </Tr>
             ))}
