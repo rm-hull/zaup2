@@ -28,7 +28,7 @@ import { sort } from "../otp";
 import { OTP } from "../types";
 
 export default function Settings(): JSX.Element | null {
-  const { data, update } = useOtpParameters({ includeArchived: true });
+  const { data, update, remove } = useOtpParameters({ includeArchived: true });
   const tagBg = useColorModeValue("gray.50", "gray.800");
   const stackBg = useColorModeValue("white", "gray.800");
   const navigate = useNavigate();
@@ -76,7 +76,7 @@ export default function Settings(): JSX.Element | null {
                 </Td>
                 <Td w="200px">
                   <HStack alignItems="start">
-                    <AddTagButton otp={otp} />
+                    <AddTagButton otp={otp} onAddRequested={update} />
                     <Wrap>
                       {otp.tags?.map((tag) => (
                         <WrapItem key={tag}>
@@ -93,7 +93,7 @@ export default function Settings(): JSX.Element | null {
                   <Switch isChecked={otp.archived} onChange={handleToggleArchived(otp)} />
                 </Td>
                 <Td align="center">
-                  <DeleteButton otp={otp} />
+                  <DeleteButton otp={otp} onDeleteRequested={remove} />
                 </Td>
               </Tr>
             ))}

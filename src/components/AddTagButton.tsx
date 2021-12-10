@@ -2,32 +2,31 @@ import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
 import * as R from "ramda";
 import React, { useCallback } from "react";
 import { FiPlus } from "react-icons/fi";
-import useOtpParameters from "../hooks/useOtpParameters";
 import { OTP } from "../types";
 import { AddTagModal } from "./AddTagModal";
 
 type AddTagButtonProps = {
   otp: OTP;
+  onAddRequested: (otp: OTP) => void;
 };
 
-export default function AddTagButton({ otp }: AddTagButtonProps): JSX.Element {
+export default function AddTagButton({ otp, onAddRequested }: AddTagButtonProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { update } = useOtpParameters();
 
   const handleConfirmAddTag = useCallback(
     (tag: string) => {
-      update({
+      onAddRequested({
         ...otp,
         tags: R.sortBy(R.toLower, R.uniq([...(otp.tags ?? []), tag])),
       });
       onClose();
     },
-    [otp, onClose, update]
+    [otp, onClose, onAddRequested]
   );
 
   return (
     <React.Fragment>
-      <AddTagModal isOpen={isOpen} onAdd={handleConfirmAddTag} onCancel={onClose} />
+      {isOpen && <AddTagModal isOpen={isOpen} onAdd={handleConfirmAddTag} onCancel={onClose} />}
 
       <Tooltip label="Add tag">
         <IconButton
