@@ -11,4 +11,4 @@ export const normalize = (otp: OTP): OTP => {
   };
 };
 
-export const sort = R.sortBy<OTP>((otp) => (otp.issuer ?? "Unknown").toLowerCase());
+export const sort = R.sortBy<OTP>((otp) => (otp.label ?? otp.issuer ?? "Unknown").toLowerCase());
