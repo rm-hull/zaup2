@@ -12,7 +12,7 @@ type GroupProps = {
 };
 
 export default function Group({ filter = () => true }: GroupProps): JSX.Element {
-  const [otpParameters] = useOtpParameters();
+  const { data } = useOtpParameters();
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
   useHarmonicIntervalFn(() => {
     const seconds = Math.floor(Date.now() / 1000) % 60;
@@ -23,7 +23,7 @@ export default function Group({ filter = () => true }: GroupProps): JSX.Element 
   return (
     <Box textAlign="center" fontSize="xl">
       <SimpleGrid minChildWidth="320px" spacing="10px" alignItems="start">
-        {sort(otpParameters)
+        {sort(data)
           ?.filter(filter)
           .filter((otp) => !otp.archived)
           .map((otp) => (

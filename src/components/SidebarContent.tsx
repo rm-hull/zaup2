@@ -12,14 +12,14 @@ interface SidebarProps extends BoxProps {
 }
 
 export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.Element {
-  const [otpParameters] = useOtpParameters();
+  const { data } = useOtpParameters();
 
   const issuers: string[] = R.sortBy(
     R.toLower,
-    R.uniq((otpParameters ?? []).filter((otp) => !otp.archived).map((otp) => otp.issuer ?? "Unknown"))
+    R.uniq(data.filter((otp) => !otp.archived).map((otp) => otp.issuer ?? "Unknown"))
   );
 
-  const tags: string[] = R.sortBy(R.toLower, R.uniq(otpParameters.flatMap((otp) => otp.tags ?? [])));
+  const tags: string[] = R.sortBy(R.toLower, R.uniq(data.flatMap((otp) => otp.tags ?? [])));
 
   return (
     <Box

@@ -15,7 +15,7 @@ import { MigrationPayload } from "./proto/migration_payload";
 export const App = (): JSX.Element => {
   const toast = useToast();
   const navigate = useNavigate();
-  const [, update] = useOtpParameters();
+  const { update } = useOtpParameters();
 
   const storeOTPParameters = (imported: MigrationPayload.OtpParameters[]) => {
     update(...imported.map((param) => normalize(param.toObject())));

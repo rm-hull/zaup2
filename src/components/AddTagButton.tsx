@@ -12,7 +12,7 @@ type AddTagButtonProps = {
 
 export default function AddTagButton({ otp }: AddTagButtonProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [, update] = useOtpParameters();
+  const { update } = useOtpParameters();
 
   const handleConfirmAddTag = useCallback(
     (tag: string) => {

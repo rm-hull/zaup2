@@ -11,7 +11,7 @@ type DeleteButtonProps = {
 
 export default function DeleteButton({ otp }: DeleteButtonProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [, , remove] = useOtpParameters();
+  const { remove } = useOtpParameters();
 
   const handleConfirmDelete = () => {
     remove(otp);

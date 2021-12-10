@@ -1,7 +1,13 @@
 import { OTP } from "../types";
 import useLocalStorage from "./useLocalStorage";
 
-export default function useOtpParameters(): [OTP[], (...updates: OTP[]) => void, (toRemove: OTP) => void] {
+type UseOTPParametersReturnType = {
+  data: OTP[];
+  update: (...updates: OTP[]) => void;
+  remove: (toRemove: OTP) => void;
+};
+
+export default function useOtpParameters(): UseOTPParametersReturnType {
   const [otpParams, setOtpParams] = useLocalStorage<OTP[]>("otp-parameters");
 
   const update = (...updates: OTP[]) => {
@@ -21,5 +27,9 @@ export default function useOtpParameters(): [OTP[], (...updates: OTP[]) => void,
     setOtpParams(otpParams?.filter((curr) => curr.issuer !== toRemove.issuer && curr.name !== toRemove.name));
   };
 
-  return [otpParams ?? [], update, remove];
+  return {
+    data: otpParams ?? [],
+    update,
+    remove,
+  };
 }

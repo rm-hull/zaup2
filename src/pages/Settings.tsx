@@ -28,11 +28,11 @@ import { sort } from "../otp";
 import { OTP } from "../types";
 
 export default function Settings(): JSX.Element | null {
-  const [otpParameters, update] = useOtpParameters();
+  const { data, update } = useOtpParameters();
   const tagBg = useColorModeValue("gray.50", "gray.800");
   const stackBg = useColorModeValue("white", "gray.800");
   const navigate = useNavigate();
-  if (otpParameters.length === 0) {
+  if (data.length === 0) {
     navigate("/import");
     return null;
   }
@@ -64,7 +64,7 @@ export default function Settings(): JSX.Element | null {
             </Tr>
           </Thead>
           <Tbody>
-            {sort(otpParameters ?? []).map((otp) => (
+            {sort(data).map((otp) => (
               <Tr key={hash(otp)}>
                 <Td w="200px" valign="top">
                   <VStack align="left">
