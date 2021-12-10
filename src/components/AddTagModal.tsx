@@ -6,7 +6,6 @@ import {
   Input,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -59,7 +58,6 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Add tag</ModalHeader>
-        <ModalCloseButton />
         <Formik initialValues={{ tag: "" }} onSubmit={handleAdd}>
           {() => (
             <Form>
