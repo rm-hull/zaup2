@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/zaup2/static/js/main.c9a7a04e.chunk.js",
-    "main.js.map": "/zaup2/static/js/main.c9a7a04e.chunk.js.map",
+    "main.js": "/zaup2/static/js/main.62701409.chunk.js",
+    "main.js.map": "/zaup2/static/js/main.62701409.chunk.js.map",
     "runtime-main.js": "/zaup2/static/js/runtime-main.34cb88c1.js",
     "runtime-main.js.map": "/zaup2/static/js/runtime-main.34cb88c1.js.map",
-    "static/js/2.8c075ce0.chunk.js": "/zaup2/static/js/2.8c075ce0.chunk.js",
-    "static/js/2.8c075ce0.chunk.js.map": "/zaup2/static/js/2.8c075ce0.chunk.js.map",
+    "static/js/2.86d14197.chunk.js": "/zaup2/static/js/2.86d14197.chunk.js",
+    "static/js/2.86d14197.chunk.js.map": "/zaup2/static/js/2.86d14197.chunk.js.map",
     "static/js/3.7f0b958e.chunk.js": "/zaup2/static/js/3.7f0b958e.chunk.js",
     "static/js/3.7f0b958e.chunk.js.map": "/zaup2/static/js/3.7f0b958e.chunk.js.map",
     "index.html": "/zaup2/index.html",
-    "static/js/2.8c075ce0.chunk.js.LICENSE.txt": "/zaup2/static/js/2.8c075ce0.chunk.js.LICENSE.txt",
+    "static/js/2.86d14197.chunk.js.LICENSE.txt": "/zaup2/static/js/2.86d14197.chunk.js.LICENSE.txt",
     "static/media/google_authenticator.e0f5459e.svg": "/zaup2/static/media/google_authenticator.e0f5459e.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.34cb88c1.js",
-    "static/js/2.8c075ce0.chunk.js",
-    "static/js/main.c9a7a04e.chunk.js"
+    "static/js/2.86d14197.chunk.js",
+    "static/js/main.62701409.chunk.js"
   ]
 }
