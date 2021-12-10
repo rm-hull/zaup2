@@ -90,7 +90,7 @@ const Card = React.memo(({ otp }: CardProps): JSX.Element => {
         <Stack align="center" justify="center" direction="row" mt={4}>
           <Image src={getFavicon(otp)} h={5} />
           <Text fontWeight={600} color="gray.500" mb={4}>
-            {otp.issuer}
+            {otp.label ?? otp.issuer}
           </Text>
         </Stack>
 

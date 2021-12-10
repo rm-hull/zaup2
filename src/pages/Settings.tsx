@@ -22,6 +22,7 @@ import hash from "object-hash";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import AddTagButton from "../components/AddTagButton";
+import CustomLabelButton from "../components/CustomLabelButton";
 import DeleteButton from "../components/DeleteButton";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sort } from "../otp";
@@ -68,7 +69,9 @@ export default function Settings(): JSX.Element | null {
               <Tr key={hash(otp)}>
                 <Td w="200px" valign="top">
                   <VStack align="left">
-                    <Text fontWeight={600}>{otp.issuer ?? "Unknown"}</Text>
+                    <Text fontWeight={600}>
+                      {otp.issuer ?? "Unknown"} {otp.label && `(${otp.label})`}
+                    </Text>
                     <Text fontWeight={400} color="gray.500" isTruncated>
                       {otp.name}
                     </Text>
@@ -93,7 +96,10 @@ export default function Settings(): JSX.Element | null {
                   <Switch isChecked={otp.archived} onChange={handleToggleArchived(otp)} />
                 </Td>
                 <Td align="center">
-                  <DeleteButton otp={otp} onDeleteRequested={remove} />
+                  <HStack>
+                    <DeleteButton otp={otp} onDeleteRequested={remove} />
+                    <CustomLabelButton otp={otp} onUpdateRequested={update} />
+                  </HStack>
                 </Td>
               </Tr>
             ))}

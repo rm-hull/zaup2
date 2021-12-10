@@ -13,7 +13,10 @@ interface SidebarProps extends BoxProps {
 
 export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.Element {
   const { data } = useOtpParameters();
-  const issuers = useMemo(() => R.sortBy(R.toLower, R.uniq(data.map((otp) => otp.issuer ?? "Unknown"))), [data]);
+  const issuers = useMemo(
+    () => R.sortBy(R.toLower, R.uniq(data.map((otp) => otp.label ?? otp.issuer ?? "Unknown"))),
+    [data]
+  );
   const tags = useMemo(() => R.sortBy(R.toLower, R.uniq(data.flatMap((otp) => otp.tags ?? []))), [data]);
 
   return (

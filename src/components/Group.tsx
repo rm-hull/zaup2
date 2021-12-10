@@ -1,6 +1,6 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import hash from "object-hash";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sort } from "../otp";
@@ -20,14 +20,14 @@ export default function Group({ filter = () => true }: GroupProps): JSX.Element 
     setRefresh(timeLeft === 0 ? Date.now() : undefined);
   }, 1000);
 
+  const filtered = useMemo(() => sort(data)?.filter(filter), [data, filter]);
+
   return (
     <Box textAlign="center" fontSize="xl">
       <SimpleGrid minChildWidth="320px" spacing="10px" alignItems="start">
-        {sort(data)
-          ?.filter(filter)
-          .map((otp) => (
-            <Card key={hash(otp)} otp={otp} refresh={refresh} />
-          ))}
+        {filtered.map((otp) => (
+          <Card key={hash(otp)} otp={otp} refresh={refresh} />
+        ))}
       </SimpleGrid>
     </Box>
   );
