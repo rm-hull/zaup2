@@ -1,6 +1,6 @@
 import { Box, BoxProps, CloseButton, Flex, HStack, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import * as R from "ramda";
-import React from "react";
+import React, { useMemo } from "react";
 import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag } from "react-icons/fi";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
@@ -13,13 +13,8 @@ interface SidebarProps extends BoxProps {
 
 export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.Element {
   const { data } = useOtpParameters();
-
-  const issuers: string[] = R.sortBy(
-    R.toLower,
-    R.uniq(data.filter((otp) => !otp.archived).map((otp) => otp.issuer ?? "Unknown"))
-  );
-
-  const tags: string[] = R.sortBy(R.toLower, R.uniq(data.flatMap((otp) => otp.tags ?? [])));
+  const issuers = useMemo(() => R.sortBy(R.toLower, R.uniq(data.map((otp) => otp.issuer ?? "Unknown"))), [data]);
+  const tags = useMemo(() => R.sortBy(R.toLower, R.uniq(data.flatMap((otp) => otp.tags ?? []))), [data]);
 
   return (
     <Box

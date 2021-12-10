@@ -1,5 +1,10 @@
+import { useCallback, useMemo } from "react";
 import { OTP } from "../types";
 import useLocalStorage from "./useLocalStorage";
+
+type Options = {
+  includeArchived?: boolean;
+};
 
 type UseOTPParametersReturnType = {
   data: OTP[];
@@ -7,28 +12,36 @@ type UseOTPParametersReturnType = {
   remove: (toRemove: OTP) => void;
 };
 
-export default function useOtpParameters(): UseOTPParametersReturnType {
+export default function useOtpParameters(options?: Options): UseOTPParametersReturnType {
   const [otpParams, setOtpParams] = useLocalStorage<OTP[]>("otp-parameters");
 
-  const update = (...updates: OTP[]) => {
-    setOtpParams(
-      updates.reduce((acc: OTP[], curr: OTP) => {
-        const found = acc?.findIndex((otp) => otp.issuer === curr.issuer && otp.name === curr.name);
-        if (found >= 0) {
-          acc[found] = { ...acc[found], ...curr };
-          return acc;
-        }
-        return [...acc, curr];
-      }, otpParams ?? [])
-    );
-  };
+  const data = useMemo(() => otpParams || [], [otpParams]);
 
-  const remove = (toRemove: OTP) => {
-    setOtpParams(otpParams?.filter((curr) => curr.issuer !== toRemove.issuer && curr.name !== toRemove.name));
-  };
+  const update = useCallback(
+    (...updates: OTP[]) => {
+      setOtpParams(
+        updates.reduce((acc: OTP[], curr: OTP) => {
+          const found = acc?.findIndex((otp) => otp.issuer === curr.issuer && otp.name === curr.name);
+          if (found >= 0) {
+            acc[found] = { ...acc[found], ...curr };
+            return acc;
+          }
+          return [...acc, curr];
+        }, data)
+      );
+    },
+    [data, setOtpParams]
+  );
+
+  const remove = useCallback(
+    (toRemove: OTP) => {
+      setOtpParams(data?.filter((curr) => curr.issuer !== toRemove.issuer && curr.name !== toRemove.name));
+    },
+    [data, setOtpParams]
+  );
 
   return {
-    data: otpParams ?? [],
+    data: options?.includeArchived ? data : data.filter((otp) => !otp.archived),
     update,
     remove,
   };

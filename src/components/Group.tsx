@@ -25,7 +25,6 @@ export default function Group({ filter = () => true }: GroupProps): JSX.Element 
       <SimpleGrid minChildWidth="320px" spacing="10px" alignItems="start">
         {sort(data)
           ?.filter(filter)
-          .filter((otp) => !otp.archived)
           .map((otp) => (
             <Card key={hash(otp)} otp={otp} refresh={refresh} />
           ))}

@@ -28,7 +28,7 @@ import { sort } from "../otp";
 import { OTP } from "../types";
 
 export default function Settings(): JSX.Element | null {
-  const { data, update } = useOtpParameters();
+  const { data, update } = useOtpParameters({ includeArchived: true });
   const tagBg = useColorModeValue("gray.50", "gray.800");
   const stackBg = useColorModeValue("white", "gray.800");
   const navigate = useNavigate();
