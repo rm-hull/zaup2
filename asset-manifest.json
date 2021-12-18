@@ -1,20 +1,13 @@
 {
   "files": {
-    "main.js": "/zaup2/static/js/main.e4fa1c79.chunk.js",
-    "main.js.map": "/zaup2/static/js/main.e4fa1c79.chunk.js.map",
-    "runtime-main.js": "/zaup2/static/js/runtime-main.34cb88c1.js",
-    "runtime-main.js.map": "/zaup2/static/js/runtime-main.34cb88c1.js.map",
-    "static/js/2.0d3b4303.chunk.js": "/zaup2/static/js/2.0d3b4303.chunk.js",
-    "static/js/2.0d3b4303.chunk.js.map": "/zaup2/static/js/2.0d3b4303.chunk.js.map",
-    "static/js/3.7f0b958e.chunk.js": "/zaup2/static/js/3.7f0b958e.chunk.js",
-    "static/js/3.7f0b958e.chunk.js.map": "/zaup2/static/js/3.7f0b958e.chunk.js.map",
+    "main.js": "/zaup2/static/js/main.1c82cd15.js",
+    "static/js/787.d53ad0b0.chunk.js": "/zaup2/static/js/787.d53ad0b0.chunk.js",
+    "static/media/google_authenticator.svg": "/zaup2/static/media/google_authenticator.e0f5459eeea498aefda9f01fef4967b6.svg",
     "index.html": "/zaup2/index.html",
-    "static/js/2.0d3b4303.chunk.js.LICENSE.txt": "/zaup2/static/js/2.0d3b4303.chunk.js.LICENSE.txt",
-    "static/media/google_authenticator.e0f5459e.svg": "/zaup2/static/media/google_authenticator.e0f5459e.svg"
+    "main.1c82cd15.js.map": "/zaup2/static/js/main.1c82cd15.js.map",
+    "787.d53ad0b0.chunk.js.map": "/zaup2/static/js/787.d53ad0b0.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.34cb88c1.js",
-    "static/js/2.0d3b4303.chunk.js",
-    "static/js/main.e4fa1c79.chunk.js"
+    "static/js/main.1c82cd15.js"
   ]
 }
