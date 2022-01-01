@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/zaup2/static/js/main.1c82cd15.js",
+    "main.js": "/zaup2/static/js/main.0fc5ca9b.js",
     "static/js/787.d53ad0b0.chunk.js": "/zaup2/static/js/787.d53ad0b0.chunk.js",
     "static/media/google_authenticator.svg": "/zaup2/static/media/google_authenticator.e0f5459eeea498aefda9f01fef4967b6.svg",
     "index.html": "/zaup2/index.html",
-    "main.1c82cd15.js.map": "/zaup2/static/js/main.1c82cd15.js.map",
+    "main.0fc5ca9b.js.map": "/zaup2/static/js/main.0fc5ca9b.js.map",
     "787.d53ad0b0.chunk.js.map": "/zaup2/static/js/787.d53ad0b0.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.1c82cd15.js"
+    "static/js/main.0fc5ca9b.js"
   ]
 }
