@@ -1,4 +1,4 @@
-import { Collapse, Flex, FlexProps, Icon, Link, Tag, Text, useDisclosure } from "@chakra-ui/react";
+import { Collapse, Flex, FlexProps, Icon, Link, Tag, Text, useDisclosure, useOutsideClick } from "@chakra-ui/react";
 import React from "react";
 import { IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
@@ -11,15 +11,19 @@ interface NavItemProps extends React.PropsWithChildren<FlexProps> {
 }
 
 export default function NavItem({ label, icon, path, count, children, ...rest }: NavItemProps): JSX.Element {
-  const { isOpen, onToggle } = useDisclosure();
+  const ref = React.useRef<HTMLDivElement>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useOutsideClick({ ref, handler: onClose });
+
   return (
-    <React.Fragment>
+    <div ref={ref}>
       <Link
         as={RouterLink}
         to={path ?? "#"}
         style={{ textDecoration: "none" }}
         _focus={{ outline: "none" }}
-        onClick={path ? undefined : onToggle}
+        onClick={path ? undefined : onOpen}
       >
         <Flex
           align="center"
@@ -43,6 +47,6 @@ export default function NavItem({ label, icon, path, count, children, ...rest }:
       <Collapse in={isOpen} animateOpacity>
         {children}
       </Collapse>
-    </React.Fragment>
+    </div>
   );
 }
