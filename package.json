@@ -4,7 +4,7 @@
   "license": "MIT",
   "homepage": "https://destructuring-bind.org/zaup2",
   "dependencies": {
-    "@chakra-ui/react": "^1.7.3",
+    "@chakra-ui/react": "^1.8.1",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "base32-encode": "^2.0.0",
