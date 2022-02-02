@@ -50,7 +50,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "eslint-plugin-testing-library": "^5.0.4",
+    "eslint-plugin-testing-library": "^5.0.5",
     "prettier": "^2.5.1",
     "react-scripts": "5.0.0",
     "ts-node": "^10.4.0",
