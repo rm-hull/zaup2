@@ -23,6 +23,7 @@ import { OTP } from "../types";
 type CardProps = {
   otp: OTP;
   refresh?: number;
+  showQRCode?: boolean;
 };
 
 const getAlgorithm = (alg?: MigrationPayload.Algorithm) => {
@@ -51,7 +52,7 @@ const getDigits = (digits?: MigrationPayload.DigitCount) => {
   }
 };
 
-const Card = React.memo(({ otp }: CardProps): JSX.Element => {
+const Card = React.memo(({ otp, showQRCode }: CardProps): JSX.Element => {
   const encodedSecret = React.useMemo(
     () => otp.secret && base32Encode(Uint8Array.from(Object.values(otp.secret)), "RFC4648"),
     [otp.secret]
@@ -94,16 +95,19 @@ const Card = React.memo(({ otp }: CardProps): JSX.Element => {
           </Text>
         </Stack>
 
-        <Stack align="center" justify="center" direction="row" mt={4}>
-          <QRCode
-            renderAs="canvas"
-            size={256}
-            value={`otpauth://totp/${otp.name}?secret=${encodedSecret}&issuer=${otp.issuer}`}
-            fgColor={color}
-            bgColor={bg}
-          />
-        </Stack>
-        <Stack align="center" justify="center" direction="row" mt={4}>
+        {showQRCode && (
+          <Stack align="center" justify="center" direction="row" mt={4}>
+            <QRCode
+              renderAs="canvas"
+              size={256}
+              value={`otpauth://totp/${otp.name}?secret=${encodedSecret}&issuer=${otp.issuer}`}
+              fgColor={color}
+              bgColor={bg}
+            />
+          </Stack>
+        )}
+
+        <Stack align="center" justify="center" direction="row" mt={showQRCode ? 4 : 0}>
           <Heading fontSize="5xl" fontFamily="body">
             {code}
           </Heading>

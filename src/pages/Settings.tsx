@@ -1,5 +1,8 @@
 import {
   Flex,
+  FormControl,
+  FormLabel,
+  Heading,
   HStack,
   Stack,
   Switch,
@@ -24,12 +27,15 @@ import { useNavigate } from "react-router-dom";
 import AddTagButton from "../components/AddTagButton";
 import CustomLabelButton from "../components/CustomLabelButton";
 import DeleteButton from "../components/DeleteButton";
+import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sort } from "../otp";
 import { OTP } from "../types";
 
 export default function Settings(): JSX.Element | null {
   const { data, update, remove } = useOtpParameters({ includeArchived: true });
+  const [settings, updateSettings] = useGeneralSettings();
+
   const tagBg = useColorModeValue("gray.50", "gray.800");
   const stackBg = useColorModeValue("white", "gray.800");
   const navigate = useNavigate();
@@ -52,9 +58,24 @@ export default function Settings(): JSX.Element | null {
     });
   };
 
+  const handleToggleShowQRCode = () => {
+    updateSettings({ ...settings, showQRCode: !settings?.showQRCode });
+  };
+
   return (
-    <Flex minH="90vh" align="stretch" justify="center" py={6}>
-      <Stack boxShadow="2xl" bg={stackBg} rounded="xl" p={10} spacing={8} align="center">
+    <Flex minH="90vh" justify="center" py={6} direction="column" align="center">
+      <Stack boxShadow="2xl" bg={stackBg} rounded="xl" p={10} spacing={8} mb={8} align="center" minWidth={1024}>
+        <Heading size="md">General Settings</Heading>
+
+        <FormControl display="flex" alignItems="center">
+          <FormLabel htmlFor="show-qr-codes" mb="0">
+            Show QR codes?
+          </FormLabel>
+          <Switch id="show-qr-codes" isChecked={settings?.showQRCode} onChange={handleToggleShowQRCode} />
+        </FormControl>
+      </Stack>
+
+      <Stack boxShadow="2xl" bg={stackBg} rounded="xl" p={10} spacing={8} align="center" minWidth={1024}>
         <Table variant="simple">
           <Thead>
             <Tr>

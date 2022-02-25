@@ -2,6 +2,7 @@ import { Box, SimpleGrid } from "@chakra-ui/react";
 import hash from "object-hash";
 import React, { useMemo, useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
+import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sort } from "../otp";
 import { OTP } from "../types";
@@ -13,6 +14,7 @@ type GroupProps = {
 
 export default function Group({ filter = () => true }: GroupProps): JSX.Element {
   const { data } = useOtpParameters();
+  const [settings] = useGeneralSettings();
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
   useHarmonicIntervalFn(() => {
     const now = Date.now();
@@ -28,7 +30,7 @@ export default function Group({ filter = () => true }: GroupProps): JSX.Element 
     <Box textAlign="center" fontSize="xl">
       <SimpleGrid minChildWidth="320px" spacing="10px" alignItems="start">
         {filtered.map((otp) => (
-          <Card key={hash(otp)} otp={otp} refresh={refresh} />
+          <Card key={hash(otp)} otp={otp} refresh={refresh} showQRCode={settings?.showQRCode} />
         ))}
       </SimpleGrid>
     </Box>
