@@ -1,12 +1,19 @@
 import { ChakraProvider, ColorModeScript, theme } from "@chakra-ui/react";
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(
+const container = document.getElementById("root");
+if (!container) {
+  throw new Error("The element #portal wasn't found");
+}
+
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <ColorModeScript />
     <ChakraProvider theme={theme}>
@@ -14,8 +21,7 @@ ReactDOM.render(
         <App />
       </Router>
     </ChakraProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
