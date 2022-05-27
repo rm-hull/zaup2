@@ -36,7 +36,7 @@ export default function NavItem({ label, icon, path, count, children, ...rest }:
           {...rest}
         >
           {icon && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
-          <Text isTruncated>{label}</Text>
+          <Text noOfLines={1}>{label}</Text>
           {count !== undefined && (
             <Tag size="sm" variant="solid" colorScheme="teal">
               {count}

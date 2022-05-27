@@ -93,7 +93,7 @@ export default function Settings(): JSX.Element | null {
                     <Text fontWeight={600}>
                       {otp.issuer ?? "Unknown"} {otp.label && `(${otp.label})`}
                     </Text>
-                    <Text fontWeight={400} color="gray.500" isTruncated>
+                    <Text fontWeight={400} color="gray.500" noOfLines={1}>
                       {otp.name}
                     </Text>
                   </VStack>

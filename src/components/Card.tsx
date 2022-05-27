@@ -121,7 +121,7 @@ const Card = React.memo(({ otp, showQRCode }: CardProps): JSX.Element => {
         </Stack>
 
         <Tooltip label={otp.name}>
-          <Text fontWeight={600} color="gray.500" mb={4} isTruncated>
+          <Text fontWeight={600} color="gray.500" mb={4} noOfLines={1}>
             {otp.name}
           </Text>
         </Tooltip>
