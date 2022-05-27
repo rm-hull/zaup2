@@ -19,6 +19,7 @@ import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 import * as R from "ramda";
 import React from "react";
 import useOtpParameters from "../hooks/useOtpParameters";
+import HashTag from "./HashTag";
 
 type AddTagModalProps = {
   isOpen: boolean;
@@ -69,9 +70,7 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
                       <Wrap>
                         {tags.map((tag) => (
                           <WrapItem key={tag}>
-                            <Button size="sm" px={2} py={1} bg={tagBg} fontWeight="400" onClick={() => onAdd(tag)}>
-                              #{tag.toUpperCase()}
-                            </Button>
+                            <HashTag label={tag} bg={tagBg} onClick={() => onAdd(tag)} />
                           </WrapItem>
                         ))}
                       </Wrap>

@@ -1,5 +1,4 @@
 import {
-  Badge,
   Box,
   Center,
   Heading,
@@ -10,6 +9,7 @@ import {
   Tooltip,
   useClipboard,
   useColorModeValue,
+  WrapItem,
 } from "@chakra-ui/react";
 import base32Encode from "base32-encode";
 import * as OTPAuth from "otpauth";
@@ -19,6 +19,7 @@ import { FiCheck, FiClipboard } from "react-icons/fi";
 import { getFavicon } from "../favicons";
 import { MigrationPayload } from "../proto/migration_payload";
 import { OTP } from "../types";
+import HashTag from "./HashTag";
 
 type CardProps = {
   otp: OTP;
@@ -128,9 +129,9 @@ const Card = React.memo(({ otp, showQRCode }: CardProps): JSX.Element => {
 
         <Stack align="center" justify="center" direction="row" mt={4}>
           {otp.tags?.map((tag) => (
-            <Badge key={tag} px={2} py={1} bg={tagBg} fontWeight="400">
-              #{tag}
-            </Badge>
+            <WrapItem key={tag}>
+              <HashTag label={tag} bg={tagBg} />
+            </WrapItem>
           ))}
         </Stack>
       </Box>

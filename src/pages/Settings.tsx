@@ -7,9 +7,6 @@ import {
   Stack,
   Switch,
   Table,
-  Tag,
-  TagCloseButton,
-  TagLabel,
   Tbody,
   Td,
   Text,
@@ -27,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import AddTagButton from "../components/AddTagButton";
 import CustomLabelButton from "../components/CustomLabelButton";
 import DeleteButton from "../components/DeleteButton";
+import HashTag from "../components/HashTag";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sort } from "../otp";
@@ -104,10 +102,7 @@ export default function Settings(): JSX.Element | null {
                     <Wrap>
                       {otp.tags?.map((tag) => (
                         <WrapItem key={tag}>
-                          <Tag size="sm" px={2} py={1} bg={tagBg} fontWeight="400">
-                            <TagLabel>#{tag.toUpperCase()}</TagLabel>
-                            <TagCloseButton onClick={handleDeleteTag(otp, tag)} />
-                          </Tag>
+                          <HashTag label={tag} bg={tagBg} onClose={handleDeleteTag(otp, tag)} />
                         </WrapItem>
                       ))}
                     </Wrap>
