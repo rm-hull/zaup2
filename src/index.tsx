@@ -8,7 +8,7 @@ import * as serviceWorker from "./serviceWorker";
 
 const container = document.getElementById("root");
 if (!container) {
-  throw new Error("The element #portal wasn't found");
+  throw new Error("The #root element wasn't found");
 }
 
 const root = createRoot(container);
