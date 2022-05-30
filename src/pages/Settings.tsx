@@ -15,12 +15,13 @@ import {
   Thead,
   Tr,
   useColorModeValue,
+  useToast,
   VStack,
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
 import hash from "object-hash";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AddTagButton from "../components/AddTagButton";
 import CustomLabelButton from "../components/CustomLabelButton";
@@ -39,6 +40,29 @@ export default function Settings(): JSX.Element | null {
   const tagBg = useColorModeValue("gray.50", "gray.800");
   const stackBg = useColorModeValue("white", "gray.800");
   const navigate = useNavigate();
+  const toast = useToast();
+
+  const enableNotifications = useCallback(async () => {
+    if (settings?.enableNotifications && Notification.permission !== "granted") {
+      const reason = await Notification.requestPermission();
+      if (reason !== "granted") {
+        toast({
+          title: "Requested permission for notications was not granted",
+          description: `In order to use this functionality you must allow the browser to post notifications.`,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        updateSettings({ ...settings, enableNotifications: false });
+      }
+    }
+  }, [toast, settings, updateSettings]);
+
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    enableNotifications().catch(console.error);
+  }, [enableNotifications]);
+
   if (data.length === 0) {
     navigate("/import");
     return null;
@@ -62,6 +86,10 @@ export default function Settings(): JSX.Element | null {
     updateSettings({ ...settings, showQRCode: !settings?.showQRCode });
   };
 
+  const handleToggleEnableNotifications = () => {
+    updateSettings({ ...settings, enableNotifications: !settings?.enableNotifications });
+  };
+
   return (
     <Flex minH="90vh" justify="center" py={6} direction="column" align="center">
       <Stack boxShadow="2xl" bg={stackBg} rounded="xl" p={10} spacing={8} mb={8} align="center" minWidth={1024}>
@@ -72,6 +100,17 @@ export default function Settings(): JSX.Element | null {
             Show QR codes?
           </FormLabel>
           <Switch id="show-qr-codes" isChecked={settings?.showQRCode} onChange={handleToggleShowQRCode} />
+        </FormControl>
+
+        <FormControl display="flex" alignItems="center">
+          <FormLabel htmlFor="show-qr-codes" mb="0">
+            Enable Notifications (WIP)?
+          </FormLabel>
+          <Switch
+            id="enable-notifications"
+            isChecked={settings?.enableNotifications}
+            onChange={handleToggleEnableNotifications}
+          />
         </FormControl>
       </Stack>
 
