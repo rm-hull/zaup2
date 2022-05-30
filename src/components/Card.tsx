@@ -9,6 +9,7 @@ import {
   Tooltip,
   useClipboard,
   useColorModeValue,
+  Wrap,
   WrapItem,
 } from "@chakra-ui/react";
 import base32Encode from "base32-encode";
@@ -128,11 +129,13 @@ const Card = React.memo(({ otp, showQRCode }: CardProps): JSX.Element => {
         </Tooltip>
 
         <Stack align="center" justify="center" direction="row" mt={4}>
-          {otp.tags?.map((tag) => (
-            <WrapItem key={tag}>
-              <HashTag label={tag} bg={tagBg} />
-            </WrapItem>
-          ))}
+          <Wrap>
+            {otp.tags?.map((tag) => (
+              <WrapItem key={tag}>
+                <HashTag label={tag} bg={tagBg} />
+              </WrapItem>
+            ))}
+          </Wrap>
         </Stack>
       </Box>
     </Center>
