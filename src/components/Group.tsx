@@ -16,6 +16,7 @@ export default function Group({ filter = () => true }: GroupProps): JSX.Element 
   const { data } = useOtpParameters();
   const [settings] = useGeneralSettings();
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
+
   useHarmonicIntervalFn(() => {
     const now = Date.now();
     const seconds = Math.floor(now / 1000) % 60;

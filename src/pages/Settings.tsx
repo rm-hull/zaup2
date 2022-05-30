@@ -39,6 +39,7 @@ export default function Settings(): JSX.Element | null {
   const tagBg = useColorModeValue("gray.50", "gray.800");
   const stackBg = useColorModeValue("white", "gray.800");
   const navigate = useNavigate();
+
   if (data.length === 0) {
     navigate("/import");
     return null;

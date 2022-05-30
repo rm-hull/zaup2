@@ -12,13 +12,11 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import base32Encode from "base32-encode";
-import * as OTPAuth from "otpauth";
 import QRCode from "qrcode.react";
-import React from "react";
+import React, { useMemo } from "react";
 import { FiCheck, FiClipboard } from "react-icons/fi";
 import { getFavicon } from "../favicons";
-import { MigrationPayload } from "../proto/migration_payload";
+import { getEncodedSecret, getTotp } from "../otp";
 import { OTP } from "../types";
 import HashTag from "./HashTag";
 
@@ -28,51 +26,11 @@ type CardProps = {
   showQRCode?: boolean;
 };
 
-const getAlgorithm = (alg?: MigrationPayload.Algorithm) => {
-  switch (alg) {
-    case MigrationPayload.Algorithm.ALGORITHM_MD5:
-      return "MD5";
-    case MigrationPayload.Algorithm.ALGORITHM_SHA1:
-      return "SHA1";
-    case MigrationPayload.Algorithm.ALGORITHM_SHA256:
-      return "SHA256";
-    case MigrationPayload.Algorithm.ALGORITHM_SHA512:
-      return "SHA512";
-    default:
-      return undefined;
-  }
-};
-
-const getDigits = (digits?: MigrationPayload.DigitCount) => {
-  switch (digits) {
-    case MigrationPayload.DigitCount.DIGIT_COUNT_SIX:
-      return 6;
-    case MigrationPayload.DigitCount.DIGIT_COUNT_EIGHT:
-      return 8;
-    default:
-      return undefined;
-  }
-};
-
 const Card = React.memo(({ otp, showQRCode }: CardProps): JSX.Element => {
-  const encodedSecret = React.useMemo(
-    () => otp.secret && base32Encode(Uint8Array.from(Object.values(otp.secret)), "RFC4648"),
-    [otp.secret]
-  );
-  const totp = React.useMemo(
-    () =>
-      new OTPAuth.TOTP({
-        issuer: otp.issuer,
-        label: otp.name,
-        algorithm: getAlgorithm(otp.algorithm),
-        digits: getDigits(otp.digits),
-        period: 30,
-        secret: encodedSecret,
-      }),
-    [otp, encodedSecret]
-  );
+  const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
+  const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
 
-  const code = totp.generate();
+  const code = totp!.generate();
   const { hasCopied, onCopy } = useClipboard(code);
 
   const bg = useColorModeValue("white", "var(--chakra-colors-gray-900)");
