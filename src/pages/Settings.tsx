@@ -21,7 +21,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 import hash from "object-hash";
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AddTagButton from "../components/AddTagButton";
 import CustomLabelButton from "../components/CustomLabelButton";

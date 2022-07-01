@@ -1,7 +1,7 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import format from "format-duration";
 import hash from "object-hash";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
 import { getFavicon } from "../favicons";
 import useGeneralSettings from "../hooks/useGeneralSettings";
@@ -19,8 +19,8 @@ export default function Group({ filter = () => true }: GroupProps): JSX.Element 
   const [settings] = useGeneralSettings();
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
   const [otp, setOtp] = useState<OTP | undefined>(undefined);
-  const encodedSecret = React.useMemo(() => getEncodedSecret(otp), [otp]);
-  const totp = React.useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
+  const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
+  const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
 
   useHarmonicIntervalFn(() => {
     const now = Date.now();

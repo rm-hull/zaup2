@@ -1,6 +1,6 @@
 import { Box, BoxProps, CloseButton, Flex, HStack, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import * as R from "ramda";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag } from "react-icons/fi";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";

@@ -1,5 +1,4 @@
 import { Text, useToast } from "@chakra-ui/react";
-import React from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import useOtpParameters from "./hooks/useOtpParameters";

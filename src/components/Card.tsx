@@ -13,7 +13,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 import QRCode from "qrcode.react";
-import React from "react";
+import { memo, useMemo } from "react";
 import { FiActivity, FiCheck, FiClipboard } from "react-icons/fi";
 import { getFavicon } from "../favicons";
 import { getEncodedSecret, getTotp } from "../otp";
@@ -28,9 +28,9 @@ type CardProps = {
   onNotify?: () => void;
 };
 
-const Card = React.memo(({ otp, showQRCode, enableNotifications, onNotify }: CardProps): JSX.Element => {
-  const encodedSecret = React.useMemo(() => getEncodedSecret(otp), [otp]);
-  const totp = React.useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
+const Card = memo(({ otp, showQRCode, enableNotifications, onNotify }: CardProps): JSX.Element => {
+  const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
+  const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
 
   const code = totp!.generate();
   const { hasCopied, onCopy } = useClipboard(code);

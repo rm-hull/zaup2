@@ -1,6 +1,6 @@
 import { CircularProgress, CircularProgressLabel, useColorModeValue } from "@chakra-ui/react";
 import format from "format-duration";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
 
 type CountdownTimerProps = {

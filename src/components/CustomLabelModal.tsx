@@ -13,7 +13,6 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
-import React from "react";
 
 type CustomLabelModalProps = {
   label?: string;
