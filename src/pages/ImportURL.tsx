@@ -23,7 +23,7 @@ function validateURL(value: string) {
   }
 
   try {
-    OTPAuth.URI.parse(value);
+    OTPAuth.URI.parse(decodeURIComponent(value));
   } catch (err) {
     if (err instanceof URIError) {
       if (!value.startsWith("otpauth-migration://offline?data=")) {
@@ -67,7 +67,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
 
   const handleImport = (values: ImportForm, actions: FormikHelpers<ImportForm>) => {
     try {
-      const parsed = OTPAuth.URI.parse(values.url);
+      const parsed = OTPAuth.URI.parse(decodeURIComponent(values.url));
       onSubmit([
         new MigrationPayload.OtpParameters({
           name: parsed.label,
@@ -87,7 +87,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
     } catch (err) {
       if (err instanceof URIError) {
         try {
-          const data = values.url.slice(33);
+          const data = decodeURIComponent(values.url).slice(33);
           const payload = MigrationPayload.deserialize(new BinaryReader(data));
           onSubmit(payload.otp_parameters);
         } catch (err) {
