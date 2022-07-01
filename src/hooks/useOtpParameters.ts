@@ -23,10 +23,10 @@ export default function useOtpParameters(options?: Options): UseOTPParametersRet
         updates.reduce((acc: OTP[], curr: OTP) => {
           const found = acc?.findIndex((otp) => otp.issuer === curr.issuer && otp.name === curr.name);
           if (found >= 0) {
-            acc[found] = { ...acc[found], ...curr };
+            acc[found] = { ...acc[found], ...curr, lastUpdated: Date.now() };
             return acc;
           }
-          return [...acc, curr];
+          return [...acc, { ...curr, created: Date.now() }];
         }, data)
       );
     },
