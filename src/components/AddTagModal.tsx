@@ -17,7 +17,6 @@ import {
 } from "@chakra-ui/react";
 import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 import * as R from "ramda";
-import React from "react";
 import useOtpParameters from "../hooks/useOtpParameters";
 import HashTag from "./HashTag";
 
@@ -64,7 +63,7 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
             <Form>
               <ModalBody>
                 {tags.length > 0 ? (
-                  <React.Fragment>
+                  <>
                     <Text py={2}>Pick an existing tag:</Text>
                     <Box bg={bg} borderRadius={10} p={2}>
                       <Wrap>
@@ -76,7 +75,7 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
                       </Wrap>
                     </Box>
                     <Text py={2}>Or create a new one:</Text>
-                  </React.Fragment>
+                  </>
                 ) : (
                   <Text py={2}>Create a new tag:</Text>
                 )}

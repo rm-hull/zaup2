@@ -1,6 +1,6 @@
 import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
 import * as R from "ramda";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { FiPlus } from "react-icons/fi";
 import { OTP } from "../types";
 import { AddTagModal } from "./AddTagModal";
@@ -25,7 +25,7 @@ export default function AddTagButton({ otp, onAddRequested }: AddTagButtonProps)
   );
 
   return (
-    <React.Fragment>
+    <>
       {isOpen && <AddTagModal isOpen={isOpen} onAdd={handleConfirmAddTag} onCancel={onClose} />}
 
       <Tooltip label="Add tag">
@@ -37,6 +37,6 @@ export default function AddTagButton({ otp, onAddRequested }: AddTagButtonProps)
           icon={<FiPlus />}
         />
       </Tooltip>
-    </React.Fragment>
+    </>
   );
 }

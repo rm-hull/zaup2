@@ -13,7 +13,6 @@ import {
 import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
-import React from "react";
 import google_authenticator from "../assets/google_authenticator.svg";
 import { MigrationPayload } from "../proto/migration_payload";
 

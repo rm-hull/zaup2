@@ -1,5 +1,5 @@
 import { Collapse, Flex, FlexProps, Icon, Link, Tag, Text, useDisclosure, useOutsideClick } from "@chakra-ui/react";
-import React from "react";
+import React, { useRef } from "react";
 import { IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -11,7 +11,7 @@ interface NavItemProps extends React.PropsWithChildren<FlexProps> {
 }
 
 export default function NavItem({ label, icon, path, count, children, ...rest }: NavItemProps): JSX.Element {
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useOutsideClick({ ref, handler: onClose });

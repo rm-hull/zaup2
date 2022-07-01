@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import Group from "../components/Group";
 import useOtpParameters from "../hooks/useOtpParameters";

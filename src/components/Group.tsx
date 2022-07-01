@@ -1,6 +1,6 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import hash from "object-hash";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
