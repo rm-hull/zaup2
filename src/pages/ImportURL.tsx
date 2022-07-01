@@ -5,10 +5,10 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
-  Input,
   Stack,
   Text,
-  useColorModeValue,
+  Textarea,
+  useColorModeValue
 } from "@chakra-ui/react";
 import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
@@ -124,10 +124,10 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                 <Field name="url" validate={validateURL}>
                   {({ field, form }: FieldProps) => (
                     <FormControl isInvalid={form.errors.url !== undefined && !!form.touched.url}>
-                      <Input
+                      <Textarea
                         {...field}
                         id="url"
-                        type="text"
+                        resize="vertical"
                         placeholder="otpauth-migration://offline?data=CjkKCjpG..."
                         color={color}
                         bg={bg}
