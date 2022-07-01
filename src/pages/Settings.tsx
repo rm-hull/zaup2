@@ -4,6 +4,7 @@ import {
   FormLabel,
   Heading,
   HStack,
+  Image,
   Stack,
   Switch,
   Table,
@@ -25,6 +26,7 @@ import AddTagButton from "../components/AddTagButton";
 import CustomLabelButton from "../components/CustomLabelButton";
 import DeleteButton from "../components/DeleteButton";
 import HashTag from "../components/HashTag";
+import { getFavicon } from "../favicons";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sort } from "../otp";
@@ -87,14 +89,17 @@ export default function Settings(): JSX.Element | null {
             {sort(data).map((otp) => (
               <Tr key={hash(otp)}>
                 <Td w="200px" valign="top">
-                  <VStack align="left">
-                    <Text fontWeight={600}>
-                      {otp.issuer ?? "Unknown"} {otp.label && `(${otp.label})`}
-                    </Text>
-                    <Text fontWeight={400} color="gray.500" noOfLines={1}>
-                      {otp.name}
-                    </Text>
-                  </VStack>
+                  <HStack alignItems="flex-start">
+                    <Image src={getFavicon(otp)} h={5} />
+                    <VStack align="left">
+                      <Text fontWeight={600}>
+                        {otp.issuer ?? "Unknown"} {otp.label && `(${otp.label})`}
+                      </Text>
+                      <Text fontWeight={400} color="gray.500" noOfLines={1}>
+                        {otp.name}
+                      </Text>
+                    </VStack>
+                  </HStack>
                 </Td>
                 <Td w="200px">
                   <HStack alignItems="start">
