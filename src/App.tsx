@@ -17,7 +17,7 @@ export const App = (): JSX.Element => {
   const { update } = useOtpParameters();
 
   const storeOTPParameters = (imported: MigrationPayload.OtpParameters[]) => {
-    update(...imported.map((param) => normalize(param.toObject())));
+    update(...imported.map((param) => ({ ...normalize(param.toObject()), archived: false })));
 
     toast({
       title: "OTP Codes Imported.",
