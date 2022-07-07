@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import QRCode from "qrcode.react";
 import { memo, useMemo } from "react";
-import { FiCheck, FiClipboard } from "react-icons/fi";
+import { FiActivity, FiCheck, FiClipboard } from "react-icons/fi";
 import { getFavicon } from "../favicons";
 import { getEncodedSecret, getTotp } from "../otp";
 import { OTP } from "../types";
@@ -24,9 +24,11 @@ type CardProps = {
   otp: OTP;
   refresh?: number;
   showQRCode?: boolean;
+  enableNotifications?: boolean;
+  onNotify?: () => void;
 };
 
-const Card = memo(({ otp, showQRCode }: CardProps): JSX.Element => {
+const Card = memo(({ otp, showQRCode, enableNotifications, onNotify }: CardProps): JSX.Element => {
   const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
   const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
 
@@ -68,6 +70,11 @@ const Card = memo(({ otp, showQRCode }: CardProps): JSX.Element => {
         )}
 
         <Stack align="center" justify="center" direction="row" mt={showQRCode ? 4 : 0}>
+          {enableNotifications && (
+            <Tooltip label="Notify">
+              <IconButton aria-label="Notify" onClick={onNotify} icon={<FiActivity />} />
+            </Tooltip>
+          )}
           <Heading fontSize="5xl" fontFamily="body">
             {code}
           </Heading>

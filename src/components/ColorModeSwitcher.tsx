@@ -1,5 +1,4 @@
 import { IconButton, IconButtonProps, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import React from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 
 type ColorModeSwitcherProps = Omit<IconButtonProps, "aria-label">;

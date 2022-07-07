@@ -2,6 +2,7 @@ import useLocalStorage from "./useLocalStorage";
 
 type GeneralSettings = {
   showQRCode?: boolean;
+  enableNotifications?: boolean;
 };
 
 export default function useGeneralSettings(): [
