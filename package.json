@@ -33,7 +33,7 @@
     "@testing-library/user-event": "^14.2.5",
     "@types/google-protobuf": "^3.15.6",
     "@types/jest": "^27.5.2",
-    "@types/node": "^17.0.45",
+    "@types/node": "^18.0.5",
     "@types/object-hash": "^2.2.1",
     "@types/qrcode.react": "^1.0.2",
     "@types/ramda": "^0.28.15",
