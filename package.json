@@ -4,7 +4,7 @@
   "license": "MIT",
   "homepage": "https://destructuring-bind.org/zaup2",
   "resolutions": {
-    "@types/react": "17.0.30"
+    "@types/react": "18.0.16"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.4",
@@ -37,7 +37,7 @@
     "@types/object-hash": "^2.2.1",
     "@types/qrcode.react": "^1.0.2",
     "@types/ramda": "^0.28.15",
-    "@types/react": "^18.0.15",
+    "@types/react": "^18.0.16",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
