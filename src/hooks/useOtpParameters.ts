@@ -13,7 +13,7 @@ type UseOTPParametersReturnType = {
 };
 
 export default function useOtpParameters(options?: Options): UseOTPParametersReturnType {
-  const [otpParams, setOtpParams] = useLocalStorage<OTP[]>("otp-parameters");
+  const [otpParams, setOtpParams] = useLocalStorage<OTP[]>("zaup2.otp-parameters");
 
   const data = useMemo(() => otpParams || [], [otpParams]);
 

@@ -1,4 +1,4 @@
-import { ChakraProvider, ColorModeScript, theme } from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript, createLocalStorageManager, theme } from "@chakra-ui/react";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -12,11 +12,12 @@ if (!container) {
 }
 
 const root = createRoot(container);
+const manager = createLocalStorageManager("zaup2.color-mode");
 
 root.render(
   <React.StrictMode>
-    <ColorModeScript />
-    <ChakraProvider theme={theme}>
+    <ColorModeScript storageKey="zaup2.color-mode" />
+    <ChakraProvider theme={theme} colorModeManager={manager}>
       <Router basename="/zaup2">
         <App />
       </Router>
