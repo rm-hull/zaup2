@@ -10,9 +10,10 @@ import Card from "./Card";
 
 type GroupProps = {
   filter?: (otp: OTP) => boolean;
+  noData?: JSX.Element;
 };
 
-export default function Group({ filter = () => true }: GroupProps): JSX.Element {
+export default function Group({ filter = () => true, noData }: GroupProps): JSX.Element {
   const { data } = useOtpParameters();
   const [settings] = useGeneralSettings();
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
@@ -26,6 +27,10 @@ export default function Group({ filter = () => true }: GroupProps): JSX.Element 
   }, 1000);
 
   const filtered = useMemo(() => sort(data)?.filter(filter), [data, filter]);
+
+  if (filtered.length === 0 && noData) {
+    return noData;
+  }
 
   return (
     <Box textAlign="center" fontSize="xl">
