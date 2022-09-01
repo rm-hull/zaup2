@@ -1,8 +1,10 @@
 import { ChakraProvider, ColorModeScript, createLocalStorageManager, theme } from "@chakra-ui/react";
 import React from "react";
 import { createRoot } from "react-dom/client";
+import { ErrorBoundary } from "react-error-boundary";
 import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
+import ErrorFallback from "./components/ErrorFallback";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
 
@@ -19,7 +21,9 @@ root.render(
     <ColorModeScript storageKey="zaup2.color-mode" />
     <ChakraProvider theme={theme} colorModeManager={manager}>
       <Router basename="/zaup2">
-        <App />
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <App />
+        </ErrorBoundary>
       </Router>
     </ChakraProvider>
   </React.StrictMode>
