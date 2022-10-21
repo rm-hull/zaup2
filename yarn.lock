@@ -7260,7 +7260,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-testing-library@npm:^5.0.1, eslint-plugin-testing-library@npm:^5.6.3":
+"eslint-plugin-testing-library@npm:^5.0.1":
   version: 5.6.3
   resolution: "eslint-plugin-testing-library@npm:5.6.3"
   dependencies:
@@ -7268,6 +7268,17 @@ __metadata:
   peerDependencies:
     eslint: ^7.5.0 || ^8.0.0
   checksum: 4076cc83918a68126d2b278133fda3a8604e3f426a881541f5e931487cf02514ae2171081186d5f97f188f0ca373ebee00cee1b0cb56ab89bab9a2abec3baa4a
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-testing-library@npm:^5.9.0":
+  version: 5.9.0
+  resolution: "eslint-plugin-testing-library@npm:5.9.0"
+  dependencies:
+    "@typescript-eslint/utils": ^5.13.0
+  peerDependencies:
+    eslint: ^7.5.0 || ^8.0.0
+  checksum: c7afd417215241869ceafb5a8122fe8919838aceb9fba779df91e1df2e3bcd4f34bcd4fee3b450932a858ec31b4ccd54ccab1b55eed7331e3a03a47f95a66a08
   languageName: node
   linkType: hard
 
@@ -15167,7 +15178,7 @@ __metadata:
     eslint-plugin-promise: ^6.0.1
     eslint-plugin-react: ^7.31.8
     eslint-plugin-react-hooks: ^4.6.0
-    eslint-plugin-testing-library: ^5.6.3
+    eslint-plugin-testing-library: ^5.9.0
     format-duration: ^2.0.0
     formik: ^2.2.9
     framer-motion: ^7.3.2
