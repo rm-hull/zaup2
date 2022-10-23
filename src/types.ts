@@ -6,6 +6,7 @@ type CustomAttributes = {
   tags: string[];
   lastUpdated: number;
   created: number;
+  favicon: string;
 };
 
 export type OTP = ReturnType<typeof MigrationPayload.OtpParameters.prototype.toObject> & Partial<CustomAttributes>;

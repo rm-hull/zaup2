@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import AddTagButton from "../components/AddTagButton";
 import CustomLabelButton from "../components/CustomLabelButton";
 import DeleteButton from "../components/DeleteButton";
+import FaviconButton from "../components/FaviconButton";
 import HashTag from "../components/HashTag";
 import { getFavicon } from "../favicons";
 import useGeneralSettings from "../hooks/useGeneralSettings";
@@ -120,6 +121,7 @@ export default function Settings(): JSX.Element | null {
                   <HStack>
                     <DeleteButton otp={otp} onDeleteRequested={remove} />
                     <CustomLabelButton otp={otp} onUpdateRequested={update} />
+                    <FaviconButton otp={otp} onUpdateRequested={update} />
                   </HStack>
                 </Td>
               </Tr>
