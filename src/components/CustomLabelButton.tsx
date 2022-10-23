@@ -20,14 +20,15 @@ export default function CustomLabelButton({ otp, onUpdateRequested }: CustomLabe
     [otp, onClose, onUpdateRequested]
   );
 
+  const label = otp.label ? "Update custom label" : "Add custom label";
   return (
     <>
       {isOpen && (
         <CustomLabelModal isOpen={isOpen} onUpdate={handleConfirmCustomLabel} onCancel={onClose} label={otp.label} />
       )}
 
-      <Tooltip label="Add custom label">
-        <IconButton aria-label="Add custom label" size="sm" onClick={onOpen} icon={<FiEdit />} />
+      <Tooltip label={label}>
+        <IconButton aria-label={label} size="sm" onClick={onOpen} icon={<FiEdit />} />
       </Tooltip>
     </>
   );

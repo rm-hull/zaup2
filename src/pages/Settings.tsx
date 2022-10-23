@@ -89,12 +89,12 @@ export default function Settings(): JSX.Element | null {
           <Tbody>
             {sort(data).map((otp) => (
               <Tr key={hash(otp)}>
-                <Td w="200px" valign="top">
+                <Td valign="top">
                   <HStack alignItems="flex-start">
                     <Image src={getFavicon(otp)} h={5} />
                     <VStack align="left">
                       <Text fontWeight={600}>
-                        {otp.issuer ?? "Unknown"} {otp.label && `(${otp.label})`}
+                        {otp.label ?? otp.issuer ?? "Unknown"} {otp.label && `(${otp.issuer})`}
                       </Text>
                       <Text fontWeight={400} color="gray.500" noOfLines={1}>
                         {otp.name}
@@ -114,7 +114,7 @@ export default function Settings(): JSX.Element | null {
                     </Wrap>
                   </HStack>
                 </Td>
-                <Td align="center">
+                <Td align="center" w={50}>
                   <Switch isChecked={otp.archived} onChange={handleToggleArchived(otp)} />
                 </Td>
                 <Td align="center">
