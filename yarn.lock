@@ -10070,10 +10070,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jssha@npm:~3.2.0":
-  version: 3.2.0
-  resolution: "jssha@npm:3.2.0"
-  checksum: 2adb8a9a57a79360379e843c0548e240d072c2ef12aef39ef6a784315686bd6f65501e9353fdd2f3a604f64af07e7eab04a0ed92b221cdfea97d671d7b8e14f4
+"jssha@npm:~3.3.0":
+  version: 3.3.0
+  resolution: "jssha@npm:3.3.0"
+  checksum: 82aeb4cd55149e3293f82c701fce7a276a61164fd2d989b82f963c9544b2b7792b78b4382c7d695fa0049f84e49e516f501073f3a80cb0cabb12f3bde1713a58
   languageName: node
   linkType: hard
 
@@ -11022,12 +11022,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"otpauth@npm:^8.0.3":
-  version: 8.0.3
-  resolution: "otpauth@npm:8.0.3"
+"otpauth@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "otpauth@npm:9.0.1"
   dependencies:
-    jssha: ~3.2.0
-  checksum: bc5f95194c7c942eb1d17fa0d515934803ef7db951a2e89bc31b75dfff03c47403346147b54664861720bdff82e0849ad48914e47fd84776b014d5f7ed73763c
+    jssha: ~3.3.0
+  checksum: df09fc32ce31a1b029ce8cb125b75cfd66c8bd75430f35bc4979d8bc29b4d5bcd74ca97429d94c2150b11692977bcef837266330e591c3add7a54189a5ce7ed2
   languageName: node
   linkType: hard
 
@@ -15373,7 +15373,7 @@ __metadata:
     google-protobuf: ^3.21.2
     jotai: ^1.8.6
     object-hash: ^3.0.0
-    otpauth: ^8.0.3
+    otpauth: ^9.0.1
     prettier: ^2.7.1
     qrcode.react: ^3.1.0
     ramda: ^0.28.0
