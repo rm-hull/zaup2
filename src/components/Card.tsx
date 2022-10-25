@@ -13,7 +13,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 import QRCode from "qrcode.react";
-import { memo, useMemo } from "react";
+import { memo, useEffect, useMemo } from "react";
 import { FiCheck, FiClipboard } from "react-icons/fi";
 import { getFavicon } from "../favicons";
 import { getEncodedSecret, getTotp } from "../otp";
@@ -31,7 +31,8 @@ const Card = memo(({ otp, showQRCode }: CardProps): JSX.Element => {
   const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
 
   const code = totp!.generate();
-  const { hasCopied, onCopy } = useClipboard(code);
+  const { hasCopied, onCopy, setValue } = useClipboard("");
+  useEffect(() => setValue(code), [setValue, code]);
 
   const bg = useColorModeValue("white", "var(--chakra-colors-gray-900)");
   const color = useColorModeValue("black", "white");
