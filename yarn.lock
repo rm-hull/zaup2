@@ -4188,10 +4188,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.11.3":
+"@types/node@npm:*":
   version: 18.11.3
   resolution: "@types/node@npm:18.11.3"
   checksum: 3a2a9142d891a90a195c296149bf64a69cc0abcc42f543be911ab22b2e0ead85ff077f90af92f0f13f6e3e5e72501469200fd753dfd1101825d4646a89d3ee47
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.11.8":
+  version: 18.11.8
+  resolution: "@types/node@npm:18.11.8"
+  checksum: 60b358f97c1a029722dc785811b217615ef20249c3fbde60a65869cfd7a5cd5b1872ee95c79c187ef70e5a078f4ac7670d2129803985268b1f021ad6e8040af8
   languageName: node
   linkType: hard
 
@@ -15345,7 +15352,7 @@ __metadata:
     "@testing-library/user-event": ^14.4.3
     "@types/google-protobuf": ^3.15.6
     "@types/jest": ^29.2.0
-    "@types/node": ^18.11.3
+    "@types/node": ^18.11.8
     "@types/object-hash": ^2.2.1
     "@types/qrcode.react": ^1.0.2
     "@types/ramda": ^0.28.18
