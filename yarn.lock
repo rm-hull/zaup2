@@ -9866,9 +9866,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^1.9.1":
-  version: 1.9.1
-  resolution: "jotai@npm:1.9.1"
+"jotai@npm:^1.9.2":
+  version: 1.9.2
+  resolution: "jotai@npm:1.9.2"
   peerDependencies:
     "@babel/core": "*"
     "@babel/template": "*"
@@ -9896,7 +9896,7 @@ __metadata:
       optional: true
     xstate:
       optional: true
-  checksum: 5923e252b8b0e7c102a9a5c7cad137b412bbef51d9deb54fff9ab466d391853c04b1f1609eedad4a9eba635fd84177758454328b818b67b976a47989b11f763a
+  checksum: b8a632eb95822d4037200861f55b08c8ee21d5c9d622b2c015812016730d952a43c0385125fd626c61b77d82b332428fba4618b2691f589ff13fa2f3a39dcfb5
   languageName: node
   linkType: hard
 
@@ -15376,7 +15376,7 @@ __metadata:
     formik: ^2.2.9
     framer-motion: ^7.6.5
     google-protobuf: ^3.21.2
-    jotai: ^1.9.1
+    jotai: ^1.9.2
     object-hash: ^3.0.0
     otpauth: ^9.0.1
     prettier: ^2.7.1
