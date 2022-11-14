@@ -11027,12 +11027,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"otpauth@npm:^9.0.1":
-  version: 9.0.1
-  resolution: "otpauth@npm:9.0.1"
+"otpauth@npm:^9.0.2":
+  version: 9.0.2
+  resolution: "otpauth@npm:9.0.2"
   dependencies:
     jssha: ~3.3.0
-  checksum: df09fc32ce31a1b029ce8cb125b75cfd66c8bd75430f35bc4979d8bc29b4d5bcd74ca97429d94c2150b11692977bcef837266330e591c3add7a54189a5ce7ed2
+  checksum: 674ea8e224c9cf43fe4e337fefdbff6cf03efb7f4e8a09c2ed812d06451dd6586804964bfa1906a5404bfaba78602af6b1b2e60d01f3be08181a2c1a9981a2cb
   languageName: node
   linkType: hard
 
@@ -15378,7 +15378,7 @@ __metadata:
     google-protobuf: ^3.21.2
     jotai: ^1.9.1
     object-hash: ^3.0.0
-    otpauth: ^9.0.1
+    otpauth: ^9.0.2
     prettier: ^2.7.1
     qrcode.react: ^3.1.0
     ramda: ^0.28.0
