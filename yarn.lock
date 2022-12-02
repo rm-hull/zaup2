@@ -9879,37 +9879,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^1.9.2":
-  version: 1.9.2
-  resolution: "jotai@npm:1.9.2"
+"jotai@npm:^1.11.0":
+  version: 1.11.0
+  resolution: "jotai@npm:1.11.0"
   peerDependencies:
     "@babel/core": "*"
     "@babel/template": "*"
-    immer: "*"
+    jotai-immer: "*"
+    jotai-optics: "*"
+    jotai-redux: "*"
     jotai-tanstack-query: "*"
     jotai-urql: "*"
-    optics-ts: "*"
+    jotai-valtio: "*"
+    jotai-xstate: "*"
+    jotai-zustand: "*"
     react: ">=16.8"
-    valtio: "*"
-    xstate: "*"
   peerDependenciesMeta:
     "@babel/core":
       optional: true
     "@babel/template":
       optional: true
-    immer:
+    jotai-immer:
+      optional: true
+    jotai-optics:
+      optional: true
+    jotai-redux:
       optional: true
     jotai-tanstack-query:
       optional: true
     jotai-urql:
       optional: true
-    optics-ts:
+    jotai-valtio:
       optional: true
-    valtio:
+    jotai-xstate:
       optional: true
-    xstate:
+    jotai-zustand:
       optional: true
-  checksum: b8a632eb95822d4037200861f55b08c8ee21d5c9d622b2c015812016730d952a43c0385125fd626c61b77d82b332428fba4618b2691f589ff13fa2f3a39dcfb5
+  checksum: 9cac4074d8eded12bfcbb20bf9d3038c69060e4a56db398954351e41fb49a5ceb5fd178fb8f29d23a58d4e49ccc592bd7fc82dcce3387618b196ff32bb937634
   languageName: node
   linkType: hard
 
@@ -15389,7 +15395,7 @@ __metadata:
     formik: ^2.2.9
     framer-motion: ^7.6.7
     google-protobuf: ^3.21.2
-    jotai: ^1.9.2
+    jotai: ^1.11.0
     object-hash: ^3.0.0
     otpauth: ^9.0.2
     prettier: ^2.7.1
