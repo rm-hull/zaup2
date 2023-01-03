@@ -14,7 +14,7 @@
     "base32-encode": "^2.0.0",
     "format-duration": "^3.0.1",
     "formik": "^2.2.9",
-    "framer-motion": "^7.10.3",
+    "framer-motion": "^8.1.3",
     "google-protobuf": "^3.21.2",
     "jotai": "^1.12.0",
     "object-hash": "^3.0.0",
