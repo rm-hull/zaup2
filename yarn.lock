@@ -8045,21 +8045,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^7.10.3":
-  version: 7.10.3
-  resolution: "framer-motion@npm:7.10.3"
+"framer-motion@npm:^8.1.5":
+  version: 8.1.5
+  resolution: "framer-motion@npm:8.1.5"
   dependencies:
     "@emotion/is-prop-valid": ^0.8.2
     "@motionone/dom": ^10.15.3
     hey-listen: ^1.0.8
-    tslib: 2.4.0
+    tslib: ^2.4.0
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
   dependenciesMeta:
     "@emotion/is-prop-valid":
       optional: true
-  checksum: 20ce8459e7e3c631af5261215acd2217f57f15d64448e2bd64eecf74d3406552523082c182211af086e01b44daad7a0c216d5135a3f8ae56fb63e152e54233aa
+  checksum: ec12f7cec3b368a990d899b73743482db6fc5500336d8e6ea41335fae8fc12981123d36e733442f17d5a5b1d2b66913ae9d74f73a57166a302cc20b8e637617e
   languageName: node
   linkType: hard
 
@@ -14351,13 +14351,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:2.4.0":
-  version: 2.4.0
-  resolution: "tslib@npm:2.4.0"
-  checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
-  languageName: node
-  linkType: hard
-
 "tslib@npm:^1.10.0, tslib@npm:^1.8.1":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
@@ -14365,7 +14358,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.1":
+"tslib@npm:^2.0.0, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0":
   version: 2.4.1
   resolution: "tslib@npm:2.4.1"
   checksum: 19480d6e0313292bd6505d4efe096a6b31c70e21cf08b5febf4da62e95c265c8f571f7b36fcc3d1a17e068032f59c269fab3459d6cd3ed6949eafecf64315fca
@@ -15440,7 +15433,7 @@ __metadata:
     eslint-plugin-testing-library: ^5.9.1
     format-duration: ^3.0.1
     formik: ^2.2.9
-    framer-motion: ^7.10.3
+    framer-motion: ^8.1.5
     google-protobuf: ^3.21.2
     jotai: ^1.12.0
     object-hash: ^3.0.0
