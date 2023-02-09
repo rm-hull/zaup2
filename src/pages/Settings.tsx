@@ -22,6 +22,7 @@ import {
 import hash from "object-hash";
 import { useNavigate } from "react-router-dom";
 import AddTagButton from "../components/AddTagButton";
+import CopyEncodedSecretButton from "../components/CopyEncodedSecretButton";
 import CustomLabelButton from "../components/CustomLabelButton";
 import DeleteButton from "../components/DeleteButton";
 import FaviconButton from "../components/FaviconButton";
@@ -122,6 +123,7 @@ export default function Settings(): JSX.Element | null {
                     <DeleteButton otp={otp} onDeleteRequested={remove} />
                     <CustomLabelButton otp={otp} onUpdateRequested={update} />
                     <FaviconButton otp={otp} onUpdateRequested={update} />
+                    <CopyEncodedSecretButton otp={otp} />
                   </HStack>
                 </Td>
               </Tr>
