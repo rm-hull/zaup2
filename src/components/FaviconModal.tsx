@@ -43,7 +43,7 @@ export function FaviconModal({ url, isOpen, onUpdate, onCancel }: FaviconModalPr
     <Modal isOpen={isOpen} onClose={onCancel}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Set a favicon</ModalHeader>
+        <ModalHeader>Add custom favicon</ModalHeader>
         <Formik initialValues={{ favicon: url ?? "" }} onSubmit={handleSubmit}>
           {() => (
             <Form>
