@@ -6,7 +6,7 @@ type GeneralSettings = {
 
 export default function useGeneralSettings(): [
   GeneralSettings | undefined,
-  (value: GeneralSettings | undefined) => void
+  (value: GeneralSettings | undefined) => void,
 ] {
   return useLocalStorage<GeneralSettings>("zaup2.general-settings");
 }
