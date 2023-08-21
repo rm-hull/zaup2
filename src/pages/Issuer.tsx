@@ -6,7 +6,7 @@ export default function Issuer(): JSX.Element {
   const { issuer } = useParams();
   return (
     <Group
-      filter={(otp) => (otp.label ?? otp.issuer ?? "Unknown").toLowerCase() === issuer?.toLowerCase()}
+      filter={(otp) => (otp.label || otp.issuer || "«Unknown»").toLowerCase() === issuer?.toLowerCase()}
       noData={
         <Alert status="warning">
           <AlertIcon />

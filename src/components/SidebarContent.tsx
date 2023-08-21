@@ -53,7 +53,12 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
           <NavItem label="Issuers" icon={FiCompass}>
             <VStack ml={8} alignItems="flex-start" w="full">
               {issuers.map((issuer) => (
-                <NavItem key={issuer} label={issuer} path={`/issuers/${encodeURIComponent(issuer)}`} py={1} />
+                <NavItem
+                  key={issuer}
+                  label={issuer || "«Unknown»"}
+                  path={`/issuers/${encodeURIComponent(issuer || "«Unknown»")}`}
+                  py={1}
+                />
               ))}
             </VStack>
           </NavItem>

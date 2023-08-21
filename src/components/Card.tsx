@@ -52,7 +52,7 @@ const Card = memo(({ otp, showQRCode }: CardProps): JSX.Element => {
         <Stack align="center" justify="center" direction="row" mt={4}>
           <Image src={getFavicon(otp)} h={5} />
           <Text fontWeight={600} color="gray.500" mb={4}>
-            {otp.label ?? otp.issuer}
+            {otp.label || otp.issuer || "«Unknown»"}
           </Text>
         </Stack>
 

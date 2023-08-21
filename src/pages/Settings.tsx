@@ -95,7 +95,7 @@ export default function Settings(): JSX.Element | null {
                     <Image src={getFavicon(otp)} h={5} />
                     <VStack align="left">
                       <Text fontWeight={600}>
-                        {otp.label ?? otp.issuer ?? "Unknown"} {otp.label && `(${otp.issuer})`}
+                        {otp.label || otp.issuer || "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}
                       </Text>
                       <Text fontWeight={400} color="gray.500" noOfLines={1}>
                         {otp.name}
