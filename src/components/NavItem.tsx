@@ -52,7 +52,7 @@ export default function NavItem({ label, icon, path, count, children, color, ...
           <Text noOfLines={1}>{label}</Text>
           <Spacer />
           {count !== undefined && (
-            <Tag size="sm" variant="solid" colorScheme="teal">
+            <Tag size="sm" variant="solid" colorScheme="blue">
               {count}
             </Tag>
           )}

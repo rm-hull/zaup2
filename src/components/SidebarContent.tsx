@@ -6,6 +6,7 @@ import useOtpParameters from "../hooks/useOtpParameters";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import CountdownTimer from "./CountdownTimer";
 import NavItem from "./NavItem";
+import useGeneralSettings from "../hooks/useGeneralSettings";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
@@ -13,6 +14,8 @@ interface SidebarProps extends BoxProps {
 
 export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.Element {
   const { data } = useOtpParameters();
+  const [settings] = useGeneralSettings();
+
   const issuers = useMemo(
     () => R.sortBy(R.toLower, R.uniq(data.map((otp) => otp.label ?? otp.issuer ?? "Unknown"))),
     [data]
@@ -43,7 +46,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
             </HStack>
           </Flex>
           <NavItem label="Home" icon={FiHome} path="/" />
-          <NavItem label="Tags" icon={FiTag}>
+          <NavItem label="Tags" icon={FiTag} count={settings?.showCounts ? tags.length : undefined}>
             <Box w="full">
               <VStack ml={8} alignItems="flex-start" w="full" maxHeight="45vh" overflowY="scroll" gap={0}>
                 {tags.map((tag) => (
@@ -58,7 +61,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
               </VStack>
             </Box>
           </NavItem>
-          <NavItem label="Issuers" icon={FiCompass}>
+          <NavItem label="Issuers" icon={FiCompass} count={settings?.showCounts ? issuers.length : undefined}>
             <VStack ml={8} alignItems="flex-start" w="full" maxHeight="45vh" overflowY="scroll" gap={0}>
               {issuers.map((issuer) => (
                 <NavItem

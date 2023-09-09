@@ -64,16 +64,27 @@ export default function Settings(): JSX.Element | null {
     updateSettings({ ...settings, showQRCode: !settings?.showQRCode });
   };
 
+  const handleToggleShowCounts = () => {
+    updateSettings({ ...settings, showCounts: !settings?.showCounts });
+  };
+
   return (
     <Flex minH="90vh" justify="center" py={6} direction="column" align="center">
       <Stack boxShadow="2xl" bg={stackBg} rounded="xl" p={10} spacing={8} mb={8} align="center" minWidth={1024}>
         <Heading size="md">General Settings</Heading>
 
         <FormControl display="flex" alignItems="center">
-          <FormLabel htmlFor="show-qr-codes" mb="0">
-            Show QR codes?
-          </FormLabel>
           <Switch id="show-qr-codes" isChecked={settings?.showQRCode} onChange={handleToggleShowQRCode} />
+          <FormLabel htmlFor="show-qr-codes" mb={0} ml={2}>
+            Show QR codes
+          </FormLabel>
+        </FormControl>
+
+        <FormControl display="flex" alignItems="center">
+          <Switch id="show-counts" isChecked={settings?.showCounts} onChange={handleToggleShowCounts} />
+          <FormLabel htmlFor="show-counts" mb={0} ml={2}>
+            Show counts in menu
+          </FormLabel>
         </FormControl>
       </Stack>
 
