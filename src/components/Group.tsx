@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
-import { sort } from "../otp";
+import { sortBy } from "../otp";
 import { OTP } from "../types";
 import Card from "./Card";
 
@@ -26,7 +26,9 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
     setRefresh(timeLeft === 0 || overdue ? now : undefined);
   }, 1000);
 
-  const filtered = useMemo(() => sort(data)?.filter(filter), [data, filter]);
+  const sortFn = sortBy[settings?.sortOrder ?? "name"];
+
+  const filtered = useMemo(() => sortFn(data)?.filter(filter), [data, filter, sortFn]);
 
   if (filtered.length === 0 && noData) {
     return noData;

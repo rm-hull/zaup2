@@ -1,8 +1,10 @@
 import useLocalStorage from "./useLocalStorage";
+import { sortBy } from "../otp";
 
 type GeneralSettings = {
   showQRCode?: boolean;
   showCounts?: boolean;
+  sortOrder?: keyof typeof sortBy;
 };
 
 export default function useGeneralSettings(): [

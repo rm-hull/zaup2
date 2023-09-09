@@ -15,7 +15,11 @@ export const normalize = (otp: OTP): OTP => {
   };
 };
 
-export const sort = R.sortBy<OTP>((otp) => (otp.label ?? otp.issuer ?? "Unknown").toLowerCase());
+export const sortBy = {
+  name: R.sortBy<OTP>((otp) => (otp.label ?? otp.issuer ?? "Unknown").toLowerCase()),
+  lastUsed: R.sort<OTP>(R.descend((otp) => otp.lastUpdated || 0)),
+  mostUsed: R.sort<OTP>(R.descend((otp) => otp.copyCount || 0)),
+};
 
 export const getAlgorithm = (alg?: MigrationPayload.Algorithm) => {
   switch (alg) {

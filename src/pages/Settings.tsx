@@ -5,6 +5,8 @@ import {
   Heading,
   HStack,
   Image,
+  Radio,
+  RadioGroup,
   Stack,
   Switch,
   Table,
@@ -30,7 +32,7 @@ import HashTag from "../components/HashTag";
 import { getFavicon } from "../favicons";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
-import { sort } from "../otp";
+import { sortBy } from "../otp";
 import { OTP } from "../types";
 
 export default function Settings(): JSX.Element | null {
@@ -68,6 +70,10 @@ export default function Settings(): JSX.Element | null {
     updateSettings({ ...settings, showCounts: !settings?.showCounts });
   };
 
+  const handleUpdateSortOrder = (sortOrder: keyof typeof sortBy) => {
+    updateSettings({ ...settings, sortOrder });
+  };
+
   return (
     <Flex minH="90vh" justify="center" py={6} direction="column" align="center">
       <Stack boxShadow="2xl" bg={stackBg} rounded="xl" p={10} spacing={8} mb={8} align="center" minWidth={1024}>
@@ -86,6 +92,19 @@ export default function Settings(): JSX.Element | null {
             Show counts in menu
           </FormLabel>
         </FormControl>
+
+        <FormControl display="flex" alignItems="center">
+          <FormLabel htmlFor="sort-order" mb={0}>
+            Sort by:
+          </FormLabel>
+          <RadioGroup id="sort-order" onChange={handleUpdateSortOrder} value={settings?.sortOrder}>
+            <Stack direction="row">
+              <Radio value="name">name</Radio>
+              <Radio value="lastUsed">last used</Radio>
+              <Radio value="mostUsed">most used</Radio>
+            </Stack>
+          </RadioGroup>
+        </FormControl>
       </Stack>
 
       <Stack boxShadow="2xl" bg={stackBg} rounded="xl" p={10} spacing={8} align="center" minWidth={1024}>
@@ -99,7 +118,7 @@ export default function Settings(): JSX.Element | null {
             </Tr>
           </Thead>
           <Tbody>
-            {sort(data).map((otp) => (
+            {sortBy.name(data).map((otp) => (
               <Tr key={hash(otp)}>
                 <Td valign="top">
                   <HStack alignItems="flex-start">
