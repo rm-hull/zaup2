@@ -1,4 +1,15 @@
-import { Collapse, Flex, FlexProps, Icon, Link, Tag, Text, useDisclosure, useOutsideClick } from "@chakra-ui/react";
+import {
+  Collapse,
+  Flex,
+  FlexProps,
+  Icon,
+  Link,
+  Spacer,
+  Tag,
+  Text,
+  useDisclosure,
+  useOutsideClick,
+} from "@chakra-ui/react";
 import React, { useRef } from "react";
 import { IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
@@ -37,6 +48,7 @@ export default function NavItem({ label, icon, path, count, children, ...rest }:
         >
           {icon && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
           <Text noOfLines={1}>{label}</Text>
+          <Spacer />
           {count !== undefined && (
             <Tag size="sm" variant="solid" colorScheme="teal">
               {count}
