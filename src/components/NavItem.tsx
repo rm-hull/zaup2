@@ -19,9 +19,10 @@ interface NavItemProps extends React.PropsWithChildren<FlexProps> {
   icon?: IconType;
   path?: string;
   count?: number;
+  color?: string;
 }
 
-export default function NavItem({ label, icon, path, count, children, ...rest }: NavItemProps): JSX.Element {
+export default function NavItem({ label, icon, path, count, children, color, ...rest }: NavItemProps): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -35,6 +36,7 @@ export default function NavItem({ label, icon, path, count, children, ...rest }:
         style={{ textDecoration: "none" }}
         _focus={{ outline: "none" }}
         onClick={path ? undefined : onOpen}
+        color={color}
       >
         <Flex
           align="center"

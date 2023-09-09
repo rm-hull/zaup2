@@ -19,6 +19,8 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
   );
   const tags = useMemo(() => R.sortBy(R.toLower, R.uniq(data.flatMap((otp) => otp.tags ?? []))), [data]);
 
+  const subMenuColor = useColorModeValue("blue.600", "blue.200");
+
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}
@@ -43,19 +45,26 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
           <NavItem label="Home" icon={FiHome} path="/" />
           <NavItem label="Tags" icon={FiTag}>
             <Box w="full">
-              <VStack ml={8} alignItems="flex-start" w="full">
+              <VStack ml={8} alignItems="flex-start" w="full" maxHeight="45vh" overflowY="scroll" gap={0}>
                 {tags.map((tag) => (
-                  <NavItem key={tag} label={`#${tag.toUpperCase()}`} path={`/tags/${encodeURIComponent(tag)}`} py={1} />
+                  <NavItem
+                    key={tag}
+                    label={`#${tag.toUpperCase()}`}
+                    color={subMenuColor}
+                    path={`/tags/${encodeURIComponent(tag)}`}
+                    py={1}
+                  />
                 ))}
               </VStack>
             </Box>
           </NavItem>
           <NavItem label="Issuers" icon={FiCompass}>
-            <VStack ml={8} alignItems="flex-start" w="full">
+            <VStack ml={8} alignItems="flex-start" w="full" maxHeight="45vh" overflowY="scroll" gap={0}>
               {issuers.map((issuer) => (
                 <NavItem
                   key={issuer}
                   label={issuer || "«Unknown»"}
+                  color={subMenuColor}
                   path={`/issuers/${encodeURIComponent(issuer || "«Unknown»")}`}
                   py={1}
                 />
