@@ -19,6 +19,7 @@ import { getFavicon } from "../favicons";
 import { getEncodedSecret, getTotp } from "../otp";
 import { OTP } from "../types";
 import HashTag from "./HashTag";
+import useOtpParameters from "../hooks/useOtpParameters";
 
 type CardProps = {
   otp: OTP;
@@ -29,10 +30,16 @@ type CardProps = {
 const Card = memo(({ otp, showQRCode }: CardProps): JSX.Element => {
   const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
   const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
+  const { update } = useOtpParameters();
 
   const code = totp!.generate();
   const { hasCopied, onCopy, setValue } = useClipboard("");
   useEffect(() => setValue(code), [setValue, code]);
+
+  const onCopyClicked = () => {
+    update({ ...otp, copyCount: (otp.copyCount ?? 0) + 1 });
+    onCopy();
+  };
 
   const bg = useColorModeValue("white", "var(--chakra-colors-gray-900)");
   const color = useColorModeValue("black", "white");
@@ -75,7 +82,7 @@ const Card = memo(({ otp, showQRCode }: CardProps): JSX.Element => {
           <Tooltip label="Copy to Clipboard">
             <IconButton
               aria-label="Copy to clipboard"
-              onClick={onCopy}
+              onClick={onCopyClicked}
               icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
             />
           </Tooltip>
