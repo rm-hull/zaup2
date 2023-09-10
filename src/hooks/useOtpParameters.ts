@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { OTP } from "../types";
 import useLocalStorage from "./useLocalStorage";
+import usePassword from "./usePassword";
 
 type Options = {
   includeArchived?: boolean;
@@ -13,7 +14,8 @@ type UseOTPParametersReturnType = {
 };
 
 export default function useOtpParameters(options?: Options): UseOTPParametersReturnType {
-  const [otpParams, setOtpParams] = useLocalStorage<OTP[]>("zaup2.otp-parameters");
+  const [password] = usePassword();
+  const [otpParams, setOtpParams] = useLocalStorage<OTP[]>("zaup2.otp-parameters", password);
 
   const data = useMemo(() => otpParams || [], [otpParams]);
 

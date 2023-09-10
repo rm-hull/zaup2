@@ -5,6 +5,7 @@ type GeneralSettings = {
   showQRCode?: boolean;
   showCounts?: boolean;
   sortOrder?: keyof typeof sortBy;
+  encrypted?: boolean;
 };
 
 export default function useGeneralSettings(): [

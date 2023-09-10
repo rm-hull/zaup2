@@ -7,6 +7,7 @@ import { App } from "./App";
 import ErrorFallback from "./components/ErrorFallback";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
+import PasswordProtection from "./components/PasswordProtection";
 
 const container = document.getElementById("root");
 if (!container) {
@@ -22,7 +23,9 @@ root.render(
     <ChakraProvider theme={theme} colorModeManager={manager}>
       <Router basename="/zaup2">
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <App />
+          <PasswordProtection>
+            <App />
+          </PasswordProtection>
         </ErrorBoundary>
       </Router>
     </ChakraProvider>
