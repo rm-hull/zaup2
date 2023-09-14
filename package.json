@@ -40,7 +40,7 @@
     "@types/node": "^20.6.0",
     "@types/object-hash": "^3.0.4",
     "@types/qrcode.react": "^1.0.3",
-    "@types/ramda": "^0.29.3",
+    "@types/ramda": "^0.29.4",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
