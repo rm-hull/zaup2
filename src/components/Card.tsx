@@ -37,8 +37,8 @@ const Card = memo(({ otp, showQRCode }: CardProps): JSX.Element => {
   useEffect(() => setValue(code), [setValue, code]);
 
   const onCopyClicked = () => {
-    update({ ...otp, copyCount: (otp.copyCount ?? 0) + 1 });
-    onCopy();
+    setTimeout(() => update({ ...otp, copyCount: (otp.copyCount ?? 0) + 1 }), 2000);
+    return onCopy();
   };
 
   const bg = useColorModeValue("white", "var(--chakra-colors-gray-900)");
