@@ -6,7 +6,9 @@ import isJson from "../utils/isJson";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const localStorage = atom<Record<string, any> | undefined>(undefined);
 
-const useLocalStorage = <T>(key: string, secretKey?: string): [T | undefined, (value: T | undefined) => void] => {
+type UseLocalStorageReturnType<T> = [T | undefined, (value: T | undefined) => void];
+
+const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageReturnType<T> => {
   const decryptData = () => {
     if (!secretKey) {
       const item = window.localStorage.getItem(key);
