@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  FormErrorIcon,
   FormErrorMessage,
   HStack,
   Image,
@@ -14,7 +15,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 
 type FaviconModalProps = {
   url?: string;
@@ -64,7 +65,10 @@ export function FaviconModal({ url, isOpen, onUpdate, onCancel }: FaviconModalPr
                           outline: "none",
                         }}
                       />
-                      <FormErrorMessage>{form.errors.favicon}</FormErrorMessage>
+                      <FormErrorMessage>
+                        <FormErrorIcon />
+                        <ErrorMessage name="favicon" />
+                      </FormErrorMessage>
                       <HStack mt={1}>
                         <Text size="xs" color="gray.500">
                           Preview:

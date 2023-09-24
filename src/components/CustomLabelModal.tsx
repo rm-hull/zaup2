@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  FormErrorIcon,
   FormErrorMessage,
   Input,
   Modal,
@@ -12,7 +13,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 
 type CustomLabelModalProps = {
   label?: string;
@@ -61,7 +62,10 @@ export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLa
                           outline: "none",
                         }}
                       />
-                      <FormErrorMessage>{form.errors.label}</FormErrorMessage>
+                      <FormErrorMessage>
+                        <FormErrorIcon />
+                        <ErrorMessage name="label" />
+                      </FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>

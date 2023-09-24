@@ -3,6 +3,7 @@ import {
   chakra,
   Flex,
   FormControl,
+  FormErrorIcon,
   FormErrorMessage,
   Heading,
   Stack,
@@ -10,7 +11,7 @@ import {
   Textarea,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
 import google_authenticator from "../assets/google_authenticator.svg";
@@ -136,7 +137,10 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                           outline: "none",
                         }}
                       />
-                      <FormErrorMessage>{form.errors.url}</FormErrorMessage>
+                      <FormErrorMessage>
+                        <FormErrorIcon />
+                        <ErrorMessage name="url" />
+                      </FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>

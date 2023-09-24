@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  FormErrorIcon,
   FormErrorMessage,
   Input,
   Modal,
@@ -11,7 +12,7 @@ import {
   ModalOverlay,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 
 type PasswordModalProps = {
   isOpen: boolean;
@@ -82,7 +83,10 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
                           outline: "none",
                         }}
                       />
-                      <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+                      <FormErrorMessage>
+                        <FormErrorIcon />
+                        <ErrorMessage name="password" />
+                      </FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
@@ -106,7 +110,10 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
                             outline: "none",
                           }}
                         />
-                        <FormErrorMessage>{form.errors.confirmedPassword}</FormErrorMessage>
+                        <FormErrorMessage>
+                          <FormErrorIcon />
+                          <ErrorMessage name="confirmedPassword" />
+                        </FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>

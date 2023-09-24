@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   FormControl,
+  FormErrorIcon,
   FormErrorMessage,
   Input,
   Modal,
@@ -15,7 +16,7 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 import * as R from "ramda";
 import useOtpParameters from "../hooks/useOtpParameters";
 import HashTag from "./HashTag";
@@ -94,7 +95,10 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
                           outline: "none",
                         }}
                       />
-                      <FormErrorMessage>{form.errors.tag}</FormErrorMessage>
+                      <FormErrorMessage>
+                        <FormErrorIcon />
+                        <ErrorMessage name="tag" />
+                      </FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>

@@ -3,9 +3,6 @@
   "version": "2.0.0",
   "license": "MIT",
   "homepage": "https://destructuring-bind.org/zaup2",
-  "resolutions": {
-    "@types/react": "17.0.30"
-  },
   "dependencies": {
     "@chakra-ui/react": "^2.8.1",
     "@chakra-ui/styled-system": "^2.9.1",
