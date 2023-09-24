@@ -1,7 +1,7 @@
 import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
 import CryptoJS from "crypto-js";
-import isJson from "../isJson";
+import isJson from "../utils/isJson";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const localStorage = atom<Record<string, any> | undefined>(undefined);
