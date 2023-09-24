@@ -20,16 +20,15 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
   const parent = useRef(null);
 
-  useEffect(() => {
-    parent.current && autoAnimate(parent.current);
-  }, [parent]);
+  // useEffect(() => {
+  //   parent.current && autoAnimate(parent.current);
+  // }, [parent]);
 
   useHarmonicIntervalFn(() => {
     const now = Date.now();
     const seconds = Math.floor(now / 1000) % 60;
     const timeLeft = 29 - (seconds % 30);
-    const overdue = now - (refresh ?? 0) > 40000;
-    setRefresh(timeLeft === 0 || overdue ? now : undefined);
+    setRefresh(timeLeft === 0 ? now : undefined);
   }, 1000);
 
   const sortFn = sortBy[settings?.sortOrder ?? "name"];
