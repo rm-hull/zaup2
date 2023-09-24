@@ -20,9 +20,16 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
   const parent = useRef(null);
 
-  // useEffect(() => {
-  //   parent.current && autoAnimate(parent.current);
-  // }, [parent]);
+  const sortOrder = settings?.sortOrder ?? "name";
+  const sortFn = sortBy[sortOrder];
+  const filtered = useMemo(() => sortFn(data)?.filter(filter), [data, filter, sortFn]);
+
+  useEffect(() => {
+    if (parent.current) {
+      const { enable, disable } = autoAnimate(parent.current);
+      sortOrder == "name" ? disable() : enable();
+    }
+  }, [parent, sortOrder]);
 
   useHarmonicIntervalFn(() => {
     const now = Date.now();
@@ -30,10 +37,6 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
     const timeLeft = 29 - (seconds % 30);
     setRefresh(timeLeft === 0 ? now : undefined);
   }, 1000);
-
-  const sortFn = sortBy[settings?.sortOrder ?? "name"];
-
-  const filtered = useMemo(() => sortFn(data)?.filter(filter), [data, filter, sortFn]);
 
   if (filtered.length === 0 && noData) {
     return noData;
