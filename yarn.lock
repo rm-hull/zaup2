@@ -4398,10 +4398,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.6.4":
+"@types/node@npm:*":
   version: 20.6.4
   resolution: "@types/node@npm:20.6.4"
   checksum: 5fdf81c8760b620a3f3b2cdac1688008f0c73a00af98e067b4621a572d39b831eaeee8fbd7300cd06667dec31d8b032fbb8e1bbedae56ec6ff1230a338b4e8a5
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.7.0":
+  version: 20.7.0
+  resolution: "@types/node@npm:20.7.0"
+  checksum: 1b2919925c213f4d2039ada7a8354c998e144f7291db8d719ef58ea9924ab636c113690073b0ec3b82ba62907385f7e0f51e9d1583c1a818776daa5156d3a590
   languageName: node
   linkType: hard
 
@@ -16459,7 +16466,7 @@ __metadata:
     "@types/crypto-js": ^4.1.2
     "@types/google-protobuf": ^3.15.7
     "@types/jest": ^29.5.5
-    "@types/node": ^20.6.4
+    "@types/node": ^20.7.0
     "@types/object-hash": ^3.0.4
     "@types/qrcode.react": ^1.0.3
     "@types/ramda": ^0.29.4
