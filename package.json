@@ -39,7 +39,7 @@
     "@types/object-hash": "^3.0.4",
     "@types/qrcode.react": "^1.0.3",
     "@types/ramda": "^0.29.4",
-    "@types/react": "^18.2.22",
+    "@types/react": "^18.2.29",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
