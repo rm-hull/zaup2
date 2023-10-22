@@ -2,6 +2,7 @@ import {
   Box,
   Center,
   Heading,
+  Highlight,
   IconButton,
   Image,
   Stack,
@@ -25,9 +26,10 @@ type CardProps = {
   otp: OTP;
   refresh?: number;
   showQRCode?: boolean;
+  highlight?: string;
 };
 
-const Card = memo(({ otp, showQRCode }: CardProps): JSX.Element => {
+const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
   const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
   const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
   const { update } = useOtpParameters();
@@ -44,6 +46,7 @@ const Card = memo(({ otp, showQRCode }: CardProps): JSX.Element => {
   const bg = useColorModeValue("white", "var(--chakra-colors-gray-900)");
   const color = useColorModeValue("black", "white");
   const tagBg = useColorModeValue("gray.50", "gray.800");
+  const highlightBg = useColorModeValue("orange.100", "orange.500");
 
   return (
     <Center py={6}>
@@ -59,7 +62,9 @@ const Card = memo(({ otp, showQRCode }: CardProps): JSX.Element => {
         <Stack align="center" justify="center" direction="row" mt={4}>
           <Image src={getFavicon(otp)} h={5} />
           <Text fontWeight={600} color="gray.500">
-            {otp.label || otp.issuer || "«Unknown»"}
+            <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
+              {otp.label || otp.issuer || "«Unknown»"}
+            </Highlight>
           </Text>
         </Stack>
 
@@ -88,11 +93,15 @@ const Card = memo(({ otp, showQRCode }: CardProps): JSX.Element => {
           </Tooltip>
         </Stack>
 
-        <Tooltip label={otp.name}>
-          <Text fontWeight={600} color="gray.500" mb={4} noOfLines={1}>
-            {otp.name}
-          </Text>
-        </Tooltip>
+        {otp.name && (
+          <Tooltip label={otp.name}>
+            <Text fontWeight={600} color="gray.500" mb={4} noOfLines={1}>
+              <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
+                {otp.name}
+              </Highlight>
+            </Text>
+          </Tooltip>
+        )}
 
         <Stack align="center" justify="center" direction="row" mt={4}>
           <Wrap>

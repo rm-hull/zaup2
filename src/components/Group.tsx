@@ -1,6 +1,6 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import hash from "object-hash";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
 import autoAnimate from "@formkit/auto-animate";
 import useGeneralSettings from "../hooks/useGeneralSettings";
@@ -8,21 +8,34 @@ import useOtpParameters from "../hooks/useOtpParameters";
 import { sortBy } from "../otp";
 import { OTP } from "../types";
 import Card from "./Card";
+import Search from "./Search";
 
 type GroupProps = {
   filter?: (otp: OTP) => boolean;
   noData?: JSX.Element;
 };
 
+function matches(otp: OTP, searchTerm?: string): boolean {
+  if (!searchTerm) {
+    return true;
+  }
+
+  const searchTermLC = searchTerm.toLowerCase();
+  const fieldsToSearch = [otp.name, otp.label, otp.issuer];
+  return fieldsToSearch.some((field) => field?.toLowerCase().includes(searchTermLC));
+}
+
 export default function Group({ filter = () => true, noData }: GroupProps): JSX.Element {
   const { data } = useOtpParameters();
   const [settings] = useGeneralSettings();
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
   const parent = useRef(null);
+  const [search, setSearch] = useState<string | undefined>();
 
   const sortOrder = settings?.sortOrder ?? "name";
   const sortFn = sortBy[sortOrder];
-  const filtered = useMemo(() => sortFn(data)?.filter(filter), [data, filter, sortFn]);
+  const filterPred = useCallback((otp: OTP) => filter(otp) && matches(otp, search), [filter, search]);
+  const filtered = useMemo(() => sortFn(data)?.filter(filterPred), [data, filterPred, sortFn]);
 
   useEffect(() => {
     if (parent.current) {
@@ -44,9 +57,10 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
 
   return (
     <Box textAlign="center" fontSize="xl">
+      <Search onChange={setSearch} />
       <SimpleGrid minChildWidth="320px" spacing="10px" alignItems="start" ref={parent}>
-        {filtered.map((otp) => (
-          <Card key={hash(otp)} otp={otp} refresh={refresh} showQRCode={settings?.showQRCode} />
+        {filtered.map((otp: OTP) => (
+          <Card key={hash(otp)} otp={otp} refresh={refresh} showQRCode={settings?.showQRCode} highlight={search} />
         ))}
       </SimpleGrid>
     </Box>
