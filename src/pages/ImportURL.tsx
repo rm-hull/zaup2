@@ -134,6 +134,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
     setFieldValue("url", "otpauth-migration://offline?data=" + b64);
 
     onClose();
+    toast.closeAll();
     toast({
       title: "Ok, I just created some dummy OTP Codes.",
       description: `Now just hit the Import button...`,
