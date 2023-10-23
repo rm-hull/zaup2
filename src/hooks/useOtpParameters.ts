@@ -37,7 +37,7 @@ export default function useOtpParameters(options?: Options): UseOTPParametersRet
 
   const remove = useCallback(
     (toRemove: OTP) => {
-      setOtpParams(data?.filter((curr) => curr.issuer !== toRemove.issuer && curr.name !== toRemove.name));
+      setOtpParams(data?.filter((curr) => curr.issuer !== toRemove.issuer || curr.name !== toRemove.name));
     },
     [data, setOtpParams]
   );
