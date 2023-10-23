@@ -1,17 +1,25 @@
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
   Button,
   chakra,
+  Collapse,
   Flex,
   FormControl,
   FormErrorIcon,
   FormErrorMessage,
   Heading,
+  Link,
   Stack,
   Text,
   Textarea,
   useColorModeValue,
+  useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, FieldProps, Form, Formik, FormikErrors, FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
 import google_authenticator from "../assets/google_authenticator.svg";
@@ -45,6 +53,12 @@ type ImportURLProps = {
   onSubmit: (otp_parameters: MigrationPayload.OtpParameters[]) => void;
 };
 
+type SetFieldValueType<Values> = (
+  field: string,
+  value: unknown,
+  shouldValidate?: boolean
+) => Promise<void | FormikErrors<Values>>;
+
 const getAlgorithm = (alg?: string): MigrationPayload.Algorithm => {
   switch (alg) {
     case "MD5":
@@ -61,6 +75,8 @@ const getAlgorithm = (alg?: string): MigrationPayload.Algorithm => {
 };
 
 export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
+  const toast = useToast();
+  const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
   const focusBg = useColorModeValue("gray.200", "gray.800");
@@ -105,6 +121,28 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
     }
   };
 
+  const addDummyOtpCodes = (setFieldValue: SetFieldValueType<ImportForm>) => () => {
+    const payload = MigrationPayload.fromObject({
+      otp_parameters: [
+        { name: "github.com/dummy1", issuer: "GitHub", type: MigrationPayload.OtpType.OTP_TYPE_TOTP },
+        { name: "dummy2@example.com", issuer: "Google", type: MigrationPayload.OtpType.OTP_TYPE_TOTP },
+        { name: "dummy3@example.com", issuer: "microsoft.com", type: MigrationPayload.OtpType.OTP_TYPE_TOTP },
+      ],
+    }).serialize();
+    const decoder = new TextDecoder("utf8");
+    const b64 = btoa(decoder.decode(payload));
+    setFieldValue("url", "otpauth-migration://offline?data=" + b64);
+
+    onClose();
+    toast({
+      title: "Ok, I just created some dummy OTP Codes.",
+      description: `Now just hit the Import button...`,
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+  };
+
   return (
     <Flex minH="100vh" align="center" justify="center" py={12}>
       <Stack boxShadow="2xl" bg={useColorModeValue("white", "gray.800")} rounded="xl" p={10} spacing={8} align="center">
@@ -118,46 +156,61 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
           </Text>
         </Stack>
         <Formik initialValues={{ url: "" }} onSubmit={handleImport}>
-          {({ isSubmitting }) => (
-            <Form>
-              <Stack spacing={4} direction={{ base: "column", md: "row" }} w="500px">
-                <Field name="url" validate={validateURL}>
-                  {({ field, form }: FieldProps) => (
-                    <FormControl isInvalid={form.errors.url !== undefined && !!form.touched.url}>
-                      <Textarea
-                        {...field}
-                        id="url"
-                        resize="vertical"
-                        placeholder="otpauth-migration://offline?data=CjkKCjpG..."
-                        color={color}
-                        bg={bg}
-                        border={0}
-                        _focus={{
-                          bg: focusBg,
-                          outline: "none",
-                        }}
-                      />
-                      <FormErrorMessage>
-                        <FormErrorIcon />
-                        <ErrorMessage name="url" />
-                      </FormErrorMessage>
-                    </FormControl>
-                  )}
-                </Field>
+          {({ isSubmitting, values, setFieldValue }) => (
+            <>
+              <Form>
+                <Stack spacing={4} direction={{ base: "column", md: "row" }} w="500px">
+                  <Field name="url" validate={validateURL}>
+                    {({ field, form }: FieldProps) => (
+                      <FormControl isInvalid={form.errors.url !== undefined && !!form.touched.url}>
+                        <Textarea
+                          {...field}
+                          id="url"
+                          resize="vertical"
+                          placeholder="otpauth-migration://offline?data=CjkKCjpG..."
+                          color={color}
+                          bg={bg}
+                          border={0}
+                          _focus={{
+                            bg: focusBg,
+                            outline: "none",
+                          }}
+                        />
+                        <FormErrorMessage>
+                          <FormErrorIcon />
+                          <ErrorMessage name="url" />
+                        </FormErrorMessage>
+                      </FormControl>
+                    )}
+                  </Field>
 
-                <Button
-                  isLoading={isSubmitting}
-                  type="submit"
-                  bg="blue.400"
-                  color="white"
-                  flex="1 0 auto"
-                  _hover={{ bg: "blue.500" }}
-                  _focus={{ bg: "blue.500" }}
-                >
-                  Import
-                </Button>
-              </Stack>
-            </Form>
+                  <Button
+                    isLoading={isSubmitting}
+                    type="submit"
+                    bg="blue.400"
+                    color="white"
+                    flex="1 0 auto"
+                    _hover={{ bg: "blue.500" }}
+                    _focus={{ bg: "blue.500" }}
+                  >
+                    Import
+                  </Button>
+                </Stack>
+              </Form>
+              <Collapse in={isOpen || values.url.trim().length === 0} animateOpacity>
+                <Alert status="info">
+                  <AlertIcon />
+                  <AlertTitle>Just want to try it out?</AlertTitle>
+                  <AlertDescription>
+                    Add some dummy{" "}
+                    <Link onClick={addDummyOtpCodes(setFieldValue)} color="blue.400">
+                      test OTP codes
+                    </Link>
+                    .
+                  </AlertDescription>
+                </Alert>
+              </Collapse>
+            </>
           )}
         </Formik>
       </Stack>
