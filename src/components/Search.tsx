@@ -33,6 +33,10 @@ export default function Search({ onChange }: SearchProps): JSX.Element {
     onClose();
   };
 
+  const handleBlur = () => {
+    setTimeout(onClose, 300);
+  };
+
   useKeyPressEvent("/", onOpen);
   useKeyPressEvent("Enter", onClose);
   useKeyPressEvent("Escape", handleCancel);
@@ -54,9 +58,9 @@ export default function Search({ onChange }: SearchProps): JSX.Element {
             ref={inputRef}
             placeholder="Search"
             bgColor={bg}
-            onBlur={onClose}
             value={value}
             onChange={handleSearch}
+            onBlur={handleBlur}
           />
         </InputGroup>
       </Box>
