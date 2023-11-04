@@ -64,7 +64,7 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
           validate={formValidator}
           validateOnChange
         >
-          {({ errors }) => (
+          {({ isValid }) => (
             <Form>
               <ModalBody>
                 <Field name="password" validate={requiredValidator}>
@@ -121,14 +121,7 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
               </ModalBody>
 
               <ModalFooter>
-                <Button
-                  type="submit"
-                  bg="blue.400"
-                  color="white"
-                  _hover={{ bg: "blue.500" }}
-                  _focus={{ bg: "blue.500" }}
-                  disabled={!!errors}
-                >
+                <Button type="submit" colorScheme="blue" disabled={!isValid}>
                   Ok
                 </Button>
               </ModalFooter>

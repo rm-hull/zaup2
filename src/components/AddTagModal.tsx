@@ -60,7 +60,7 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
       <ModalContent>
         <ModalHeader>Add tag</ModalHeader>
         <Formik initialValues={{ tag: "" }} onSubmit={handleAdd}>
-          {() => (
+          {({ isValid }) => (
             <Form>
               <ModalBody>
                 {tags.length > 0 ? (
@@ -105,14 +105,7 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
               </ModalBody>
 
               <ModalFooter>
-                <Button
-                  type="submit"
-                  bg="blue.400"
-                  color="white"
-                  _hover={{ bg: "blue.500" }}
-                  _focus={{ bg: "blue.500" }}
-                  mr={3}
-                >
+                <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
                   Add
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>

@@ -157,7 +157,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
           </Text>
         </Stack>
         <Formik initialValues={{ url: "" }} onSubmit={handleImport}>
-          {({ isSubmitting, values, setFieldValue }) => (
+          {({ isSubmitting, values, setFieldValue, isValid }) => (
             <>
               <Form>
                 <Stack spacing={4} direction={{ base: "column", md: "row" }} w="500px">
@@ -185,15 +185,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                     )}
                   </Field>
 
-                  <Button
-                    isLoading={isSubmitting}
-                    type="submit"
-                    bg="blue.400"
-                    color="white"
-                    flex="1 0 auto"
-                    _hover={{ bg: "blue.500" }}
-                    _focus={{ bg: "blue.500" }}
-                  >
+                  <Button isLoading={isSubmitting} type="submit" colorScheme="blue" flex="1 0 auto" disabled={!isValid}>
                     Import
                   </Button>
                 </Stack>

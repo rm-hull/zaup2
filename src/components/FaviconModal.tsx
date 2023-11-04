@@ -46,7 +46,7 @@ export function FaviconModal({ url, isOpen, onUpdate, onCancel }: FaviconModalPr
       <ModalContent>
         <ModalHeader>Add custom favicon</ModalHeader>
         <Formik initialValues={{ favicon: url ?? "" }} onSubmit={handleSubmit}>
-          {() => (
+          {({ isValid }) => (
             <Form>
               <ModalBody>
                 <Field name="favicon">
@@ -81,14 +81,7 @@ export function FaviconModal({ url, isOpen, onUpdate, onCancel }: FaviconModalPr
               </ModalBody>
 
               <ModalFooter>
-                <Button
-                  type="submit"
-                  bg="blue.400"
-                  color="white"
-                  _hover={{ bg: "blue.500" }}
-                  _focus={{ bg: "blue.500" }}
-                  mr={3}
-                >
+                <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
                   {url ? "Update" : "Add"}
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>

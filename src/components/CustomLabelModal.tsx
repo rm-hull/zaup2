@@ -44,7 +44,7 @@ export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLa
       <ModalContent>
         <ModalHeader>Set a custom label</ModalHeader>
         <Formik initialValues={{ label: label ?? "" }} onSubmit={handleAdd}>
-          {() => (
+          {({ isValid }) => (
             <Form>
               <ModalBody>
                 <Field name="label">
@@ -75,14 +75,7 @@ export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLa
               </ModalBody>
 
               <ModalFooter>
-                <Button
-                  type="submit"
-                  bg="blue.400"
-                  color="white"
-                  _hover={{ bg: "blue.500" }}
-                  _focus={{ bg: "blue.500" }}
-                  mr={3}
-                >
+                <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
                   {label ? "Update" : "Add"}
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>
