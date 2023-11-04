@@ -1,4 +1,7 @@
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
   Button,
   FormControl,
   FormErrorIcon,
@@ -54,10 +57,10 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={() => {}}>
+    <Modal isOpen={isOpen} size="lg" onClose={() => {}}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Enter your password</ModalHeader>
+        <ModalHeader>{confirm ? "Create a new password" : "Enter your password"}</ModalHeader>
         <Formik
           initialValues={{ password: "", confirmedPassword: "" }}
           onSubmit={handleAdd}
@@ -117,6 +120,19 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
                       </FormControl>
                     )}
                   </Field>
+                )}
+                {confirm && (
+                  <Alert mt={5} status="info" variant="left-accent" flexDirection="column" alignItems="start">
+                    <AlertTitle mb={1} fontSize="lg">
+                      Data Safety
+                    </AlertTitle>
+                    <AlertDescription>
+                      The password you choose above will be used to store data securely using AES encryption. If you
+                      loose or forget the password, any saved data will <strong>not</strong> be recoverable. Data is
+                      never uploaded and stays on your machine in local storage only; note also that the password is
+                      never stored.
+                    </AlertDescription>
+                  </Alert>
                 )}
               </ModalBody>
 
