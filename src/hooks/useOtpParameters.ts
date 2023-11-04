@@ -11,6 +11,7 @@ type UseOTPParametersReturnType = {
   data: OTP[];
   update: (...updates: OTP[]) => void;
   remove: (toRemove: OTP) => void;
+  removeAll: () => void;
 };
 
 export default function useOtpParameters(options?: Options): UseOTPParametersReturnType {
@@ -42,9 +43,12 @@ export default function useOtpParameters(options?: Options): UseOTPParametersRet
     [data, setOtpParams]
   );
 
+  const removeAll = useCallback(() => setOtpParams(undefined), [setOtpParams]);
+
   return {
     data: options?.includeArchived ? data : data.filter((otp) => !otp.archived),
     update,
     remove,
+    removeAll,
   };
 }

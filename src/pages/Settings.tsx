@@ -1,4 +1,7 @@
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
   Flex,
   FormControl,
   FormLabel,
@@ -34,10 +37,13 @@ import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sortBy } from "../otp";
 import { OTP } from "../types";
+import ResetDataButton from "../components/ResetDataButton";
+import usePassword from "../hooks/usePassword";
 
 export default function Settings(): JSX.Element | null {
-  const { data, update, remove } = useOtpParameters({ includeArchived: true });
+  const { data, update, remove, removeAll } = useOtpParameters({ includeArchived: true });
   const [settings, updateSettings] = useGeneralSettings();
+  const [, setPassword] = usePassword();
 
   const tagBg = useColorModeValue("gray.50", "gray.800");
   const stackBg = useColorModeValue("white", "gray.800");
@@ -74,6 +80,12 @@ export default function Settings(): JSX.Element | null {
     updateSettings({ ...settings, sortOrder });
   };
 
+  const handleResetData = () => {
+    removeAll();
+    updateSettings(undefined);
+    setPassword(undefined);
+  };
+
   return (
     <Flex minH="90vh" justify="center" py={6} direction="column" align="center">
       <Stack boxShadow="2xl" bg={stackBg} rounded="xl" p={10} spacing={8} mb={8} align="center" minWidth={1024}>
@@ -105,6 +117,17 @@ export default function Settings(): JSX.Element | null {
             </Stack>
           </RadioGroup>
         </FormControl>
+
+        <Alert status="error" variant="left-accent" flexDirection="column" alignItems="start">
+          <AlertTitle mb={1} fontSize="lg">
+            Danger Zone
+          </AlertTitle>
+          <AlertDescription mb={3}>
+            The operations below are destructive and not recoverable. Ensure that you definitely want proceed, as there
+            is no way to revert any completed operations.
+          </AlertDescription>
+          <ResetDataButton onResetRequested={handleResetData} />
+        </Alert>
       </Stack>
 
       <Stack boxShadow="2xl" bg={stackBg} rounded="xl" p={10} spacing={8} align="center" minWidth={1024}>
