@@ -14,15 +14,7 @@ export function DeleteModal({ isOpen, onDelete, onCancel }: DeleteModalProps): J
         <ModalHeader>Confirm delete?</ModalHeader>
 
         <ModalFooter>
-          <Button
-            type="submit"
-            onClick={onDelete}
-            bg="red.400"
-            color="white"
-            _hover={{ bg: "red.500" }}
-            _focus={{ bg: "red.500" }}
-            mr={3}
-          >
+          <Button type="submit" onClick={onDelete} colorScheme="red" mr={3}>
             Delete
           </Button>
           <Button variant="ghost" onClick={onCancel}>
