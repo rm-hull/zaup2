@@ -40,7 +40,6 @@ function validateTag(value: string) {
 export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
-  const focusBg = useColorModeValue("gray.200", "gray.800");
   const tagBg = useColorModeValue("gray.50", "gray.800");
 
   const { data } = useOtpParameters();
@@ -83,18 +82,7 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
                 <Field name="tag" validate={validateTag}>
                   {({ field, form }: FieldProps) => (
                     <FormControl isInvalid={form.errors.tag !== undefined && !!form.touched.tag}>
-                      <Input
-                        {...field}
-                        id="tag"
-                        type="text"
-                        color={color}
-                        bg={bg}
-                        border={0}
-                        _focus={{
-                          bg: focusBg,
-                          outline: "none",
-                        }}
-                      />
+                      <Input {...field} id="tag" type="text" color={color} bg={bg} />
                       <FormErrorMessage>
                         <FormErrorIcon />
                         <ErrorMessage name="tag" />

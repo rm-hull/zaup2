@@ -79,7 +79,6 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
   const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
-  const focusBg = useColorModeValue("gray.200", "gray.800");
 
   const handleImport = (values: ImportForm, actions: FormikHelpers<ImportForm>) => {
     try {
@@ -171,11 +170,6 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                           placeholder="otpauth-migration://offline?data=CjkKCjpG..."
                           color={color}
                           bg={bg}
-                          border={0}
-                          _focus={{
-                            bg: focusBg,
-                            outline: "none",
-                          }}
                         />
                         <FormErrorMessage>
                           <FormErrorIcon />

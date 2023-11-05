@@ -28,7 +28,6 @@ type CustomLabelForm = {
 export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLabelModalProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
-  const focusBg = useColorModeValue("gray.200", "gray.800");
 
   const handleAdd = (values: CustomLabelForm, actions: FormikHelpers<CustomLabelForm>) => {
     try {
@@ -50,18 +49,7 @@ export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLa
                 <Field name="label">
                   {({ field, form }: FieldProps) => (
                     <FormControl isInvalid={form.errors.label !== undefined && !!form.touched.label}>
-                      <Input
-                        {...field}
-                        id="label"
-                        type="text"
-                        color={color}
-                        bg={bg}
-                        border={0}
-                        _focus={{
-                          bg: focusBg,
-                          outline: "none",
-                        }}
-                      />
+                      <Input {...field} id="label" type="text" color={color} bg={bg} />
                       <FormErrorMessage>
                         <FormErrorIcon />
                         <ErrorMessage name="label" />

@@ -30,7 +30,6 @@ type FaviconForm = {
 export function FaviconModal({ url, isOpen, onUpdate, onCancel }: FaviconModalProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
-  const focusBg = useColorModeValue("gray.200", "gray.800");
 
   const handleSubmit = (values: FaviconForm, actions: FormikHelpers<FaviconForm>) => {
     try {
@@ -52,19 +51,7 @@ export function FaviconModal({ url, isOpen, onUpdate, onCancel }: FaviconModalPr
                 <Field name="favicon">
                   {({ field, form }: FieldProps) => (
                     <FormControl isInvalid={form.errors.favicon !== undefined && !!form.touched.favicon}>
-                      <Input
-                        {...field}
-                        id="favicon"
-                        type="text"
-                        color={color}
-                        bg={bg}
-                        border={0}
-                        placeholder="Favicon URL"
-                        _focus={{
-                          bg: focusBg,
-                          outline: "none",
-                        }}
-                      />
+                      <Input {...field} id="favicon" type="text" color={color} bg={bg} />
                       <FormErrorMessage>
                         <FormErrorIcon />
                         <ErrorMessage name="favicon" />
