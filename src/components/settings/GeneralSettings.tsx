@@ -75,8 +75,8 @@ export default function GeneralSettings(): JSX.Element {
           Danger Zone
         </AlertTitle>
         <AlertDescription mb={3}>
-          The operations below are destructive and not recoverable. Ensure that you definitely want proceed, as there is
-          no way to revert any completed operations.
+          The operations in this section are destructive and not recoverable. Ensure that you definitely want proceed,
+          as there is no way to subsequently revert any completed operations.
         </AlertDescription>
         <ResetDataButton onResetRequested={handleResetData} />
       </Alert>
