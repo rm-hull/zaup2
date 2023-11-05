@@ -1,5 +1,6 @@
 import {
   HStack,
+  Heading,
   Image,
   Switch,
   Table,
@@ -53,57 +54,61 @@ export default function OTPSettings(): JSX.Element | null {
   };
 
   return (
-    <Table variant="simple">
-      <Thead>
-        <Tr>
-          <Th>Issuer / Name</Th>
-          <Th>Tags</Th>
-          <Th align="center">Archived</Th>
-          <Th align="center">Actions</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {sortBy.name(data).map((otp) => (
-          <Tr key={hash(otp)}>
-            <Td valign="top">
-              <HStack alignItems="flex-start">
-                <Image src={getFavicon(otp)} h={5} />
-                <VStack align="left">
-                  <Text fontWeight={600}>
-                    {otp.label || otp.issuer || "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}
-                  </Text>
-                  <Text fontWeight={400} color="gray.500" noOfLines={1}>
-                    {otp.name}
-                  </Text>
-                </VStack>
-              </HStack>
-            </Td>
-            <Td w="200px">
-              <HStack alignItems="start">
-                <AddTagButton otp={otp} onAddRequested={update} />
-                <Wrap>
-                  {otp.tags?.map((tag) => (
-                    <WrapItem key={tag}>
-                      <HashTag label={tag} bg={tagBg} onClose={handleDeleteTag(otp, tag)} />
-                    </WrapItem>
-                  ))}
-                </Wrap>
-              </HStack>
-            </Td>
-            <Td align="center" w={50}>
-              <Switch isChecked={otp.archived} onChange={handleToggleArchived(otp)} />
-            </Td>
-            <Td align="center">
-              <HStack>
-                <DeleteButton otp={otp} onDeleteRequested={remove} />
-                <CustomLabelButton otp={otp} onUpdateRequested={update} />
-                <FaviconButton otp={otp} onUpdateRequested={update} />
-                <CopyEncodedSecretButton otp={otp} />
-              </HStack>
-            </Td>
+    <>
+      <Heading size="md">OTP Settings</Heading>
+
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Issuer / Name</Th>
+            <Th>Tags</Th>
+            <Th align="center">Archived</Th>
+            <Th align="center">Actions</Th>
           </Tr>
-        ))}
-      </Tbody>
-    </Table>
+        </Thead>
+        <Tbody>
+          {sortBy.name(data).map((otp) => (
+            <Tr key={hash(otp)}>
+              <Td valign="top">
+                <HStack alignItems="flex-start">
+                  <Image src={getFavicon(otp)} h={5} />
+                  <VStack align="left">
+                    <Text fontWeight={600}>
+                      {otp.label || otp.issuer || "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}
+                    </Text>
+                    <Text fontWeight={400} color="gray.500" noOfLines={1} maxWidth="dw">
+                      {otp.name}
+                    </Text>
+                  </VStack>
+                </HStack>
+              </Td>
+              <Td w={200}>
+                <HStack alignItems="start">
+                  <AddTagButton otp={otp} onAddRequested={update} />
+                  <Wrap>
+                    {otp.tags?.map((tag) => (
+                      <WrapItem key={tag}>
+                        <HashTag label={tag} bg={tagBg} onClose={handleDeleteTag(otp, tag)} />
+                      </WrapItem>
+                    ))}
+                  </Wrap>
+                </HStack>
+              </Td>
+              <Td align="center" w={50}>
+                <Switch isChecked={otp.archived} onChange={handleToggleArchived(otp)} />
+              </Td>
+              <Td align="center">
+                <HStack>
+                  <DeleteButton otp={otp} onDeleteRequested={remove} />
+                  <CustomLabelButton otp={otp} onUpdateRequested={update} />
+                  <FaviconButton otp={otp} onUpdateRequested={update} />
+                  <CopyEncodedSecretButton otp={otp} />
+                </HStack>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </>
   );
 }
