@@ -8,9 +8,9 @@ import {
   useControllableState,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useKeyPressEvent } from "react-use";
-import { FiSearch } from "react-icons/fi";
 import { ChangeEvent, useEffect } from "react";
+import { FiSearch } from "react-icons/fi";
+import { useKeyPressEvent } from "react-use";
 import useFocus from "../hooks/useFocus";
 
 type SearchProps = {

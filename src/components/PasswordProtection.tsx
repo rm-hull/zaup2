@@ -1,6 +1,6 @@
 import useGeneralSettings from "../hooks/useGeneralSettings";
-import { PasswordModal } from "./PasswordModal";
 import usePassword from "../hooks/usePassword";
+import { PasswordModal } from "./PasswordModal";
 
 type PasswordProtectionProps = object;
 

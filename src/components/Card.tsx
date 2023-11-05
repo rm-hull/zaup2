@@ -17,10 +17,10 @@ import QRCode from "qrcode.react";
 import { memo, useEffect, useMemo } from "react";
 import { FiCheck, FiClipboard } from "react-icons/fi";
 import { getFavicon } from "../favicons";
+import useOtpParameters from "../hooks/useOtpParameters";
 import { getEncodedSecret, getTotp } from "../otp";
 import { OTP } from "../types";
 import HashTag from "./HashTag";
-import useOtpParameters from "../hooks/useOtpParameters";
 
 type CardProps = {
   otp: OTP;

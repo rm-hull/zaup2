@@ -2,11 +2,11 @@ import { Box, BoxProps, CloseButton, Flex, HStack, Text, useColorModeValue, VSta
 import * as R from "ramda";
 import { useMemo } from "react";
 import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag } from "react-icons/fi";
+import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import CountdownTimer from "./CountdownTimer";
 import NavItem from "./NavItem";
-import useGeneralSettings from "../hooks/useGeneralSettings";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
