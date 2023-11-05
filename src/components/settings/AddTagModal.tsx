@@ -18,8 +18,8 @@ import {
 } from "@chakra-ui/react";
 import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 import * as R from "ramda";
-import useOtpParameters from "../hooks/useOtpParameters";
-import HashTag from "./HashTag";
+import useOtpParameters from "../../hooks/useOtpParameters";
+import HashTag from "../HashTag";
 
 type AddTagModalProps = {
   isOpen: boolean;

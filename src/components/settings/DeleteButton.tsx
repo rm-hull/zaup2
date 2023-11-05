@@ -1,6 +1,6 @@
 import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { FiTrash2 } from "react-icons/fi";
-import { OTP } from "../types";
+import { OTP } from "../../types";
 import { DeleteModal } from "./DeleteModal";
 
 type DeleteButtonProps = {

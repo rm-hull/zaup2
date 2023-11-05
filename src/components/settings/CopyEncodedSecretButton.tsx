@@ -1,8 +1,8 @@
 import { IconButton, Tooltip, useClipboard } from "@chakra-ui/react";
 import { useMemo } from "react";
 import { FiCheck, FiClipboard } from "react-icons/fi";
-import { getEncodedSecret } from "../otp";
-import { OTP } from "../types";
+import { getEncodedSecret } from "../../otp";
+import { OTP } from "../../types";
 
 type CopyEncodedSecretButtonProps = {
   otp: OTP;

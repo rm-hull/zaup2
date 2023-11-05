@@ -2,7 +2,7 @@ import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
 import * as R from "ramda";
 import { useCallback } from "react";
 import { FiPlus } from "react-icons/fi";
-import { OTP } from "../types";
+import { OTP } from "../../types";
 import { AddTagModal } from "./AddTagModal";
 
 type AddTagButtonProps = {
