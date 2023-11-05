@@ -6,7 +6,6 @@ import {
   FormControl,
   FormErrorIcon,
   FormErrorMessage,
-  Input,
   Modal,
   ModalBody,
   ModalContent,
@@ -16,6 +15,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import PasswordInput from "./PasswordInput";
 
 type PasswordModalProps = {
   isOpen: boolean;
@@ -73,7 +73,7 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
                 <Field name="password" validate={requiredValidator}>
                   {({ field, form }: FieldProps) => (
                     <FormControl isInvalid={form.errors.password !== undefined && !!form.touched.password}>
-                      <Input
+                      <PasswordInput
                         {...field}
                         placeholder="Password"
                         id="password"
@@ -100,7 +100,7 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
                         isInvalid={form.errors.confirmedPassword !== undefined && !!form.touched.confirmedPassword}
                         mt={3}
                       >
-                        <Input
+                        <PasswordInput
                           {...field}
                           placeholder="Re-enter password to confirm"
                           id="confirmedPassword"
