@@ -39,7 +39,6 @@ const requiredValidator = (value: string) => {
 export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
-  const focusBg = useColorModeValue("gray.200", "gray.800");
 
   const handleAdd = (form: PasswordForm, actions: FormikHelpers<PasswordForm>) => {
     try {
@@ -80,11 +79,6 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
                         type="password"
                         color={color}
                         bg={bg}
-                        border={0}
-                        _focus={{
-                          bg: focusBg,
-                          outline: "none",
-                        }}
                       />
                       <FormErrorMessage>
                         <FormErrorIcon />
@@ -107,11 +101,6 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
                           type="password"
                           color={color}
                           bg={bg}
-                          border={0}
-                          _focus={{
-                            bg: focusBg,
-                            outline: "none",
-                          }}
                         />
                         <FormErrorMessage>
                           <FormErrorIcon />
