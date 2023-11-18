@@ -34,6 +34,9 @@ function validateTag(value: string) {
   if (value.trim().length === 0) {
     return "Value is required";
   }
+  if (["NEW!", "UPDATED", "POPULAR"].includes(value.trim().toUpperCase())) {
+    return "Cannot use a reserved tag";
+  }
   return undefined;
 }
 
