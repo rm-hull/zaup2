@@ -1,12 +1,17 @@
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import Group from "../components/Group";
+import { getSystemTags } from "../otp";
 
 export default function Tag(): JSX.Element {
   const { tag } = useParams();
   return (
     <Group
-      filter={(otp) => (otp.tags ?? []).includes(tag ?? "unknown")}
+      filter={(otp) =>
+        getSystemTags(otp)
+          .concat(otp.tags ?? [])
+          .includes(tag ?? "unknown")
+      }
       noData={
         <Alert status="warning">
           <AlertIcon />

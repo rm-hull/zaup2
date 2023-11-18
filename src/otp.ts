@@ -60,3 +60,26 @@ export const getTotp = (otp?: OTP, encodedSecret?: string): OTPAuth.TOTP | undef
 
 export const getEncodedSecret = (otp?: OTP): string | undefined =>
   otp?.secret && base32Encode(Uint8Array.from(Object.values(otp.secret)), "RFC4648");
+
+export const getSystemTags = (otp: OTP): string[] => {
+  const tags: string[] = [];
+
+  if (isTimestampWithinLastNDays(otp.created ?? 0, 3)) {
+    tags.push("NEW!");
+  }
+
+  if (isTimestampWithinLastNDays(otp.lastUpdated ?? 0, 2)) {
+    tags.push("UPDATED");
+  }
+
+  if (otp.copyCount ?? 0 > 200) {
+    tags.push("POPULAR");
+  }
+
+  return tags;
+};
+
+const isTimestampWithinLastNDays = (timestamp: number, days: number) => {
+  const daysAgo = Date.now() - (days - 1) * 24 * 60 * 60 * 1000; // Subtracting (n-1) days
+  return timestamp >= daysAgo;
+};

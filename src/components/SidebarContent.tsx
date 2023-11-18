@@ -1,4 +1,4 @@
-import { Box, BoxProps, CloseButton, Flex, HStack, Text, useColorModeValue, VStack } from "@chakra-ui/react";
+import { Box, BoxProps, CloseButton, Divider, Flex, HStack, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import * as R from "ramda";
 import { useMemo } from "react";
 import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag } from "react-icons/fi";
@@ -7,6 +7,7 @@ import useOtpParameters from "../hooks/useOtpParameters";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import CountdownTimer from "./CountdownTimer";
 import NavItem from "./NavItem";
+import { getSystemTags } from "../otp";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
@@ -21,6 +22,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
     [data]
   );
   const tags = useMemo(() => R.sortBy(R.toLower, R.uniq(data.flatMap((otp) => otp.tags ?? []))), [data]);
+  const systemTags = useMemo(() => R.sortBy(R.toLower, R.uniq(data.flatMap(getSystemTags))), [data]);
 
   const subMenuColor = useColorModeValue("blue.600", "blue.200");
 
@@ -46,9 +48,19 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
             </HStack>
           </Flex>
           <NavItem label="Home" icon={FiHome} path="/" />
-          <NavItem label="Tags" icon={FiTag} count={settings?.showCounts ? tags.length : undefined}>
+          <NavItem label="Tags" icon={FiTag} count={settings?.showCounts ? systemTags.length + tags.length : undefined}>
             <Box w="full">
               <VStack ml={8} alignItems="flex-start" w="full" maxHeight="45vh" overflowY="scroll" gap={0}>
+                {systemTags.map((tag) => (
+                  <NavItem
+                    key={tag}
+                    label={`#${tag.toUpperCase()}`}
+                    color={subMenuColor}
+                    path={`/tags/${encodeURIComponent(tag)}`}
+                    py={1}
+                  />
+                ))}
+                <Divider m={2} />
                 {tags.map((tag) => (
                   <NavItem
                     key={tag}

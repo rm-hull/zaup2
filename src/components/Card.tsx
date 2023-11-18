@@ -21,6 +21,7 @@ import useOtpParameters from "../hooks/useOtpParameters";
 import { getEncodedSecret, getTotp } from "../otp";
 import { OTP } from "../types";
 import HashTag from "./HashTag";
+import SystemTags from "./SystemTags";
 
 type CardProps = {
   otp: OTP;
@@ -104,12 +105,13 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
         )}
 
         <Stack align="center" justify="center" direction="row" mt={4}>
-          <Wrap>
+          <Wrap justify="center">
             {otp.tags?.map((tag) => (
               <WrapItem key={tag}>
                 <HashTag label={tag} bg={tagBg} />
               </WrapItem>
             ))}
+            <SystemTags otp={otp} />
           </Wrap>
         </Stack>
       </Box>

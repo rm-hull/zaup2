@@ -27,6 +27,7 @@ import CopyEncodedSecretButton from "./CopyEncodedSecretButton";
 import CustomLabelButton from "./CustomLabelButton";
 import DeleteButton from "./DeleteButton";
 import FaviconButton from "./FaviconButton";
+import SystemTags from "../SystemTags";
 
 export default function OTPSettings(): JSX.Element | null {
   const { data, update, remove } = useOtpParameters({ includeArchived: true });
@@ -91,6 +92,7 @@ export default function OTPSettings(): JSX.Element | null {
                         <HashTag label={tag} bg={tagBg} onClose={handleDeleteTag(otp, tag)} />
                       </WrapItem>
                     ))}
+                    <SystemTags otp={otp} />
                   </Wrap>
                 </HStack>
               </Td>
