@@ -72,7 +72,7 @@ export const getSystemTags = (otp: OTP): string[] => {
     tags.push("UPDATED");
   }
 
-  if (otp.copyCount ?? 0 > 200) {
+  if ((otp.copyCount ?? 0) > 20) {
     tags.push("POPULAR");
   }
 
