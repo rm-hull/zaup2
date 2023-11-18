@@ -62,9 +62,14 @@ export default function OTPSettings(): JSX.Element | null {
         <Thead>
           <Tr>
             <Th>Issuer / Name</Th>
-            <Th>Tags</Th>
-            <Th align="center">Archived</Th>
-            <Th align="center">Actions</Th>
+            <Th p={2}>Tags</Th>
+            <Th textAlign="center" p={2}>
+              Copy Count
+            </Th>
+            <Th textAlign="center" p={2}>
+              Archived
+            </Th>
+            <Th p={2}>Actions</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -83,7 +88,7 @@ export default function OTPSettings(): JSX.Element | null {
                   </VStack>
                 </HStack>
               </Td>
-              <Td w={200}>
+              <Td p={2}>
                 <HStack alignItems="start">
                   <AddTagButton otp={otp} onAddRequested={update} />
                   <Wrap>
@@ -96,10 +101,13 @@ export default function OTPSettings(): JSX.Element | null {
                   </Wrap>
                 </HStack>
               </Td>
-              <Td align="center" w={50}>
+              <Td textAlign="center" p={2}>
+                {otp.copyCount ?? 0}
+              </Td>
+              <Td textAlign="center" p={2}>
                 <Switch isChecked={otp.archived} onChange={handleToggleArchived(otp)} />
               </Td>
-              <Td align="center">
+              <Td p={2}>
                 <HStack>
                   <DeleteButton otp={otp} onDeleteRequested={remove} />
                   <CustomLabelButton otp={otp} onUpdateRequested={update} />
