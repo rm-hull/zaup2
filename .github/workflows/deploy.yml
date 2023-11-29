@@ -4,27 +4,38 @@ on:
     branches: [main]
 jobs:
   build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     concurrency: deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Yarn 🧶
+      - name: Setup Yarn
         uses: actions/setup-node@v3
         with:
           node-version: "20"
           cache: "yarn"
 
-      - name: Install and Build 🔧
+      - name: Install and Build
         run: |
           yarn install
           yarn build
-      - name: Test 🧪
+      
+      - name: Test
         run: |
           yarn test
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+  
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          branch: gh-pages
-          folder: build
+          path: "./build"
+  
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
