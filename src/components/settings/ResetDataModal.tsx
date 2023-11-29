@@ -1,10 +1,10 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
 
-type ResetDataModalProps = {
+interface ResetDataModalProps {
   isOpen: boolean;
   onResetData: () => void;
   onCancel: () => void;
-};
+}
 
 export function ResetDataModal({ isOpen, onResetData, onCancel }: ResetDataModalProps): JSX.Element {
   return (

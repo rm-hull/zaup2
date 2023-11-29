@@ -1,4 +1,14 @@
-import { Box, BoxProps, CloseButton, Divider, Flex, HStack, Text, useColorModeValue, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  type BoxProps,
+  CloseButton,
+  Divider,
+  Flex,
+  HStack,
+  Text,
+  useColorModeValue,
+  VStack,
+} from "@chakra-ui/react";
 import * as R from "ramda";
 import { useMemo } from "react";
 import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag } from "react-icons/fi";

@@ -1,24 +1,24 @@
 import { useCallback, useMemo } from "react";
-import { OTP } from "../types";
+import { type OTP } from "../types";
 import useLocalStorage from "./useLocalStorage";
 import usePassword from "./usePassword";
 
-type Options = {
+interface Options {
   includeArchived?: boolean;
-};
+}
 
-type UseOTPParametersReturnType = {
+interface UseOTPParametersReturnType {
   data: OTP[];
   update: (...updates: OTP[]) => void;
   remove: (toRemove: OTP) => void;
   removeAll: () => void;
-};
+}
 
 export default function useOtpParameters(options?: Options): UseOTPParametersReturnType {
   const [password] = usePassword();
   const [otpParams, setOtpParams] = useLocalStorage<OTP[]>("zaup2.otp-parameters", password);
 
-  const data = useMemo(() => otpParams || [], [otpParams]);
+  const data = useMemo(() => otpParams ?? [], [otpParams]);
 
   const update = useCallback(
     (...updates: OTP[]) => {
@@ -43,10 +43,12 @@ export default function useOtpParameters(options?: Options): UseOTPParametersRet
     [data, setOtpParams]
   );
 
-  const removeAll = useCallback(() => setOtpParams(undefined), [setOtpParams]);
+  const removeAll = useCallback(() => {
+    setOtpParams(undefined);
+  }, [setOtpParams]);
 
   return {
-    data: options?.includeArchived ? data : data.filter((otp) => !otp.archived),
+    data: options?.includeArchived ?? false ? data : data.filter((otp) => !(otp.archived ?? false)),
     update,
     remove,
     removeAll,

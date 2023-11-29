@@ -13,23 +13,23 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, type FieldProps, Form, Formik, type FormikHelpers } from "formik";
 
-type CustomLabelModalProps = {
+interface CustomLabelModalProps {
   label?: string;
   isOpen: boolean;
   onUpdate: (label?: string) => void;
   onCancel: () => void;
-};
-type CustomLabelForm = {
+}
+interface CustomLabelForm {
   label: string;
-};
+}
 
 export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLabelModalProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 
-  const handleAdd = (values: CustomLabelForm, actions: FormikHelpers<CustomLabelForm>) => {
+  const handleAdd = (values: CustomLabelForm, actions: FormikHelpers<CustomLabelForm>): void => {
     try {
       onUpdate(values.label.trim().length === 0 ? undefined : values.label.trim());
     } finally {
@@ -64,7 +64,7 @@ export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLa
 
               <ModalFooter>
                 <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
-                  {label ? "Update" : "Add"}
+                  {label === undefined ? "Add" : "Update"}
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>
                   Cancel

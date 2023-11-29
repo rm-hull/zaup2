@@ -2,7 +2,14 @@
   "name": "zaup2",
   "version": "2.0.0",
   "license": "MIT",
-  "homepage": "https://destructuring-bind.org/zaup2",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "test": "vitest",
+    "test:ci": "vitest run --coverage",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
     "@chakra-ui/styled-system": "^2.9.2",
@@ -30,11 +37,12 @@
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin-ts": "^1.4.1",
+    "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
     "@types/google-protobuf": "^3.15.12",
-    "@types/jest": "^29.5.10",
     "@types/node": "^20.10.1",
     "@types/object-hash": "^3.0.6",
     "@types/qrcode.react": "^1.0.5",
@@ -43,29 +51,26 @@
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
+    "@vitejs/plugin-react": "^4.2.0",
+    "@vitest/coverage-v8": "^0.34.6",
     "eslint": "8.54.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-cypress": "^2.15.1",
+    "eslint-config-standard-with-typescript": "^40.0.0",
     "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-jest": "^27.6.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-n": "^16.3.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.4",
     "eslint-plugin-testing-library": "^6.2.0",
     "prettier": "^3.1.0",
-    "react-scripts": "5.0.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.3.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "typescript": "^5.3.2",
+    "vite": "^5.0.4",
+    "vitest": "^0.34.6"
   },
   "browserslist": {
     "production": [

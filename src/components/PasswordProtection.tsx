@@ -10,7 +10,7 @@ export default function PasswordProtection({
   const [settings, updateSettings] = useGeneralSettings();
   const [password, setPassword] = usePassword();
 
-  const handleSubmit = (enteredPassword: string) => {
+  const handleSubmit = (enteredPassword: string): void => {
     updateSettings({ ...settings, encrypted: true });
     setPassword(enteredPassword);
   };
@@ -19,5 +19,5 @@ export default function PasswordProtection({
     return <>{children}</>;
   }
 
-  return <PasswordModal isOpen onSubmit={handleSubmit} confirm={!settings?.encrypted} />;
+  return <PasswordModal isOpen onSubmit={handleSubmit} confirm={!(settings?.encrypted ?? false)} />;
 }

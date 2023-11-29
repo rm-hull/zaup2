@@ -6,14 +6,14 @@ import autoAnimate from "@formkit/auto-animate";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sortBy } from "../otp";
-import { OTP } from "../types";
+import { type OTP } from "../types";
 import Card from "./Card";
 import Search from "./Search";
 
-type GroupProps = {
+interface GroupProps {
   filter?: (otp: OTP) => boolean;
   noData?: JSX.Element;
-};
+}
 
 function matches(otp: OTP, searchTerm?: string): boolean {
   if (!searchTerm) {

@@ -14,21 +14,21 @@ import {
   ModalOverlay,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, type FieldProps, Form, Formik, type FormikHelpers } from "formik";
 import PasswordInput from "./PasswordInput";
 
-type PasswordModalProps = {
+interface PasswordModalProps {
   isOpen: boolean;
   confirm: boolean;
   onSubmit: (password: string) => void;
-};
+}
 
-type PasswordForm = {
+interface PasswordForm {
   password: string;
   confirmedPassword: string;
-};
+}
 
-const requiredValidator = (value: string) => {
+const requiredValidator = (value: string): string | undefined => {
   let error;
   if (value.trim().length === 0) {
     error = "Required";
@@ -40,7 +40,7 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 
-  const handleAdd = (form: PasswordForm, actions: FormikHelpers<PasswordForm>) => {
+  const handleAdd = (form: PasswordForm, actions: FormikHelpers<PasswordForm>): void => {
     try {
       onSubmit(form.password.trim());
     } finally {
@@ -48,7 +48,7 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
     }
   };
 
-  const formValidator = (form: PasswordForm) => {
+  const formValidator = (form: PasswordForm): Partial<PasswordForm> => {
     if (confirm && form.password !== form.confirmedPassword) {
       return { confirmedPassword: "Passwords do not match" };
     }

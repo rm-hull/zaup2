@@ -1,9 +1,11 @@
-import { Button, Input, InputGroup, InputProps, InputRightElement } from "@chakra-ui/react";
+import { Button, Input, InputGroup, type InputProps, InputRightElement } from "@chakra-ui/react";
 import { useState } from "react";
 
 export default function PasswordInput(inputProps: InputProps): JSX.Element {
   const [show, setShow] = useState(false);
-  const handleClick = () => setShow((prev) => !prev);
+  const handleClick = (): void => {
+    setShow((prev) => !prev);
+  };
 
   return (
     <InputGroup size="md">

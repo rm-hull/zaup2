@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { getFavicon } from "../../favicons";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import { sortBy } from "../../otp";
-import { OTP } from "../../types";
+import { type OTP } from "../../types";
 import HashTag from "../HashTag";
 import AddTagButton from "./AddTagButton";
 import CopyEncodedSecretButton from "./CopyEncodedSecretButton";
@@ -43,14 +43,14 @@ export default function OTPSettings(): JSX.Element | null {
   const handleDeleteTag = (otp: OTP, tag: string) => () => {
     update({
       ...otp,
-      tags: (otp.tags ?? []).filter((t) => t != tag),
+      tags: (otp.tags ?? []).filter((t) => t !== tag),
     });
   };
 
   const handleToggleArchived = (otp: OTP) => () => {
     update({
       ...otp,
-      archived: !otp.archived,
+      archived: !(otp.archived ?? false),
     });
   };
 
@@ -73,14 +73,14 @@ export default function OTPSettings(): JSX.Element | null {
           </Tr>
         </Thead>
         <Tbody>
-          {sortBy.name(data).map((otp) => (
+          {sortBy.name(data).map((otp: OTP) => (
             <Tr key={hash(otp)}>
               <Td valign="top">
                 <HStack alignItems="flex-start">
                   <Image src={getFavicon(otp)} h={5} />
                   <VStack align="left">
                     <Text fontWeight={600}>
-                      {otp.label || otp.issuer || "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}
+                      {otp.label ?? otp.issuer ?? "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}
                     </Text>
                     <Text fontWeight={400} color="gray.500" noOfLines={1} maxWidth="dw">
                       {otp.name}

@@ -16,21 +16,21 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, type FieldProps, Form, Formik, type FormikHelpers } from "formik";
 import * as R from "ramda";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import HashTag from "../HashTag";
 
-type AddTagModalProps = {
+interface AddTagModalProps {
   isOpen: boolean;
   onAdd: (tag: string) => void;
   onCancel: () => void;
-};
-type AddTagForm = {
+}
+interface AddTagForm {
   tag: string;
-};
+}
 
-function validateTag(value: string) {
+function validateTag(value: string): string | undefined {
   if (value.trim().length === 0) {
     return "Value is required";
   }
@@ -48,7 +48,7 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
   const { data } = useOtpParameters();
   const tags = R.sortBy(R.toLower, R.uniq(data.flatMap((otp) => otp.tags ?? [])));
 
-  const handleAdd = (values: AddTagForm, actions: FormikHelpers<AddTagForm>) => {
+  const handleAdd = (values: AddTagForm, actions: FormikHelpers<AddTagForm>): void => {
     try {
       onAdd(values.tag);
     } finally {
@@ -72,7 +72,13 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
                       <Wrap>
                         {tags.map((tag) => (
                           <WrapItem key={tag}>
-                            <HashTag label={tag} bg={tagBg} onClick={() => onAdd(tag)} />
+                            <HashTag
+                              label={tag}
+                              bg={tagBg}
+                              onClick={() => {
+                                onAdd(tag);
+                              }}
+                            />
                           </WrapItem>
                         ))}
                       </Wrap>

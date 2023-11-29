@@ -1,13 +1,13 @@
 import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { useCallback } from "react";
 import { FiEdit } from "react-icons/fi";
-import { OTP } from "../../types";
+import { type OTP } from "../../types";
 import { CustomLabelModal } from "./CustomLabelModal";
 
-type CustomLabelButtonProps = {
+interface CustomLabelButtonProps {
   otp: OTP;
   onUpdateRequested: (otp: OTP) => void;
-};
+}
 
 export default function CustomLabelButton({ otp, onUpdateRequested }: CustomLabelButtonProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();

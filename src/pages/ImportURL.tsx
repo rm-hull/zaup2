@@ -19,14 +19,14 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, FieldProps, Form, Formik, FormikErrors, FormikHelpers } from "formik";
+import { ErrorMessage, Field, type FieldProps, Form, Formik, type FormikErrors, type FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
 import google_authenticator from "../assets/google_authenticator.svg";
 import { MigrationPayload } from "../proto/migration_payload";
 
-function validateURL(value: string) {
-  if (!value) {
+function validateURL(value: string | undefined): string | undefined {
+  if (value === undefined || value === null) {
     return "Value is required";
   }
 
@@ -39,19 +39,19 @@ function validateURL(value: string) {
       }
       return undefined;
     } else {
-      return `Unknown error: ${err}`;
+      return `Unknown error: ${(err as Error).message}`;
     }
   }
   return undefined;
 }
 
-type ImportForm = {
+interface ImportForm {
   url: string;
-};
+}
 
-type ImportURLProps = {
+interface ImportURLProps {
   onSubmit: (otp_parameters: MigrationPayload.OtpParameters[]) => void;
-};
+}
 
 type SetFieldValueType<Values> = (
   field: string,

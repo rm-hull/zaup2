@@ -9,7 +9,7 @@ const localStorage = atom<Record<string, any> | undefined>(undefined);
 type UseLocalStorageReturnType<T> = [T | undefined, (value: T | undefined) => void];
 
 const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageReturnType<T> => {
-  const decryptData = () => {
+  const decryptData = (): T | undefined => {
     if (!secretKey) {
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : undefined;
@@ -30,11 +30,11 @@ const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageRet
       const decrypted = CryptoJS.AES.decrypt(data, secretKey).toString(CryptoJS.enc.Utf8);
       return JSON.parse(decrypted);
     } catch (ex) {
-      throw Error("Unable to decrypt: Bad secret key?", { cause: ex });
+      throw Error("Unable to decrypt: Bad secret key?");
     }
   };
 
-  const encryptData = <T>(data: T) => {
+  const encryptData = <T>(data: T): void => {
     if (!secretKey) {
       window.localStorage.setItem(key, JSON.stringify(data));
       return;
@@ -43,7 +43,7 @@ const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageRet
     window.localStorage.setItem(key, encrypted);
   };
 
-  const readValue = () => {
+  const readValue = (): T | undefined => {
     if (typeof window === "undefined") {
       return undefined;
     }
@@ -53,7 +53,7 @@ const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageRet
 
   const [storedValue, setStoredValue] = useAtom(localStorage);
 
-  const setValue = (value: T | undefined) => {
+  const setValue = (value: T | undefined): void => {
     try {
       if (value === undefined) {
         window.localStorage.removeItem(key);
@@ -75,7 +75,9 @@ const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageRet
   }, []);
 
   useEffect(() => {
-    const handleStorageChange = () => setStoredValue((prev) => ({ ...prev, [key]: readValue() }));
+    const handleStorageChange = (): void => {
+      setStoredValue((prev) => ({ ...prev, [key]: readValue() }));
+    };
 
     window.addEventListener("storage", handleStorageChange);
     window.addEventListener("local-storage", handleStorageChange);

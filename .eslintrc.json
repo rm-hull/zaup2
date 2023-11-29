@@ -1,14 +1,15 @@
 {
   "env": {
     "browser": true,
-    "es6": true,
-    "node": true,
-    "jest": true
+    "es2021": true
   },
+  "ignorePatterns": ["vite.config.ts"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "ecmaVersion": "latest",
     "sourceType": "module",
-    "ecmaVersion": 2018
+    "project": ["./tsconfig.json", "./tsconfig.node.json"],
+    "tsconfigRootDir": "."
   },
   "settings": {
     "react": {
@@ -28,14 +29,19 @@
     "import",
     "@typescript-eslint",
     "prettier",
-    "jest",
     "node",
     "react",
     "react-hooks",
     "testing-library",
-    "jsx-a11y"
+    "jsx-a11y",
+    "@stylistic/ts"
   ],
   "extends": [
+    "standard-with-typescript",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
@@ -45,8 +51,6 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "plugin:jest/recommended",
-    "plugin:jest/style",
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended"
   ],
@@ -54,24 +58,10 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "overrides": [
-    {
-      "files": ["*.spec.ts"],
-      "rules": {
-        "jest/valid-expect": 0,
-        "jest/expect-expect": 0
-      }
-    },
-    {
-      "files": ["tests/*.spec.ts"],
-      "rules": {
-        "jest/no-done-callback": 0
-      }
-    }
-  ],
+  "overrides": [  ],
   "rules": {
     "react-redux/prefer-separate-component-file": "off",
-    "prettier/prettier": "warn",
+    "prettier/prettier": "error",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/naming-convention": [
       "warn",
@@ -122,6 +112,15 @@
     "quotes": ["error", "double", { "avoidEscape": false, "allowTemplateLiterals": true }],
     "semi": ["error", "always"],
     "no-unused-vars": "warn",
-    "no-dupe-else-if": "off"
+    "no-dupe-else-if": "off",
+    "space-before-function-paren": "off",
+    "@typescript-eslint/space-before-function-paren": "off",
+    "@typescript-eslint/quotes": "off",
+    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/no-confusing-void-expression": "off",
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/member-delimiter-style": "off"
   }
 }

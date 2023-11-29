@@ -8,14 +8,14 @@ import {
   useControllableState,
   useDisclosure,
 } from "@chakra-ui/react";
-import { ChangeEvent, useEffect } from "react";
+import { type ChangeEvent, useEffect } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useKeyPressEvent } from "react-use";
 import useFocus from "../hooks/useFocus";
 
-type SearchProps = {
-  onChange?(value: string): void;
-};
+interface SearchProps {
+  onChange?: (value: string) => void;
+}
 
 export default function Search({ onChange }: SearchProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -23,17 +23,17 @@ export default function Search({ onChange }: SearchProps): JSX.Element {
   const [value, setValue] = useControllableState({ defaultValue: "", onChange });
   const [inputRef, setInputFocus] = useFocus();
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>): void => {
     setValue(e.target.value);
   };
 
-  const handleCancel = (e: { preventDefault(): void }) => {
+  const handleCancel = (e: { preventDefault: () => void }): void => {
     e.preventDefault();
     setValue("");
     onClose();
   };
 
-  const handleBlur = () => {
+  const handleBlur = (): void => {
     setTimeout(onClose, 300);
   };
 

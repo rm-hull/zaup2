@@ -13,7 +13,7 @@ import {
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import usePassword from "../../hooks/usePassword";
-import { sortBy } from "../../otp";
+import { type sortBy } from "../../otp";
 import ResetDataButton from "./ResetDataButton";
 
 export default function GeneralSettings(): JSX.Element {
@@ -21,19 +21,19 @@ export default function GeneralSettings(): JSX.Element {
   const [settings, updateSettings] = useGeneralSettings();
   const [, setPassword] = usePassword();
 
-  const handleToggleShowQRCode = () => {
-    updateSettings({ ...settings, showQRCode: !settings?.showQRCode });
+  const handleToggleShowQRCode = (): void => {
+    updateSettings({ ...settings, showQRCode: !(settings?.showQRCode ?? false) });
   };
 
-  const handleToggleShowCounts = () => {
-    updateSettings({ ...settings, showCounts: !settings?.showCounts });
+  const handleToggleShowCounts = (): void => {
+    updateSettings({ ...settings, showCounts: !(settings?.showCounts ?? false) });
   };
 
-  const handleUpdateSortOrder = (sortOrder: keyof typeof sortBy) => {
+  const handleUpdateSortOrder = (sortOrder: keyof typeof sortBy): void => {
     updateSettings({ ...settings, sortOrder });
   };
 
-  const handleResetData = () => {
+  const handleResetData = (): void => {
     removeAll();
     updateSettings(undefined);
     setPassword(undefined);

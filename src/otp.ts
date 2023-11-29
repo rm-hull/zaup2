@@ -3,7 +3,7 @@ import * as OTPAuth from "otpauth";
 import * as R from "ramda";
 
 import { MigrationPayload } from "./proto/migration_payload";
-import { OTP } from "./types";
+import { type OTP } from "./types";
 
 export const normalize = (otp: OTP): OTP => {
   const posn = otp.name?.indexOf(":") ?? -1;
@@ -17,11 +17,11 @@ export const normalize = (otp: OTP): OTP => {
 
 export const sortBy = {
   name: R.sortBy<OTP>((otp) => (otp.label ?? otp.issuer ?? "Unknown").toLowerCase()),
-  lastUsed: R.sort<OTP>(R.descend((otp) => otp.lastUpdated || 0)),
-  mostUsed: R.sort<OTP>(R.descend((otp) => otp.copyCount || 0)),
+  lastUsed: R.sort<OTP>(R.descend((otp) => otp.lastUpdated ?? 0)),
+  mostUsed: R.sort<OTP>(R.descend((otp) => otp.copyCount ?? 0)),
 };
 
-export const getAlgorithm = (alg?: MigrationPayload.Algorithm) => {
+export const getAlgorithm = (alg?: MigrationPayload.Algorithm): string | undefined => {
   switch (alg) {
     case MigrationPayload.Algorithm.ALGORITHM_MD5:
       return "MD5";
@@ -36,7 +36,7 @@ export const getAlgorithm = (alg?: MigrationPayload.Algorithm) => {
   }
 };
 
-export const getDigits = (digits?: MigrationPayload.DigitCount) => {
+export const getDigits = (digits?: MigrationPayload.DigitCount): number | undefined => {
   switch (digits) {
     case MigrationPayload.DigitCount.DIGIT_COUNT_SIX:
       return 6;
@@ -79,7 +79,7 @@ export const getSystemTags = (otp: OTP): string[] => {
   return tags;
 };
 
-const isTimestampWithinLastNDays = (timestamp: number, days: number) => {
+const isTimestampWithinLastNDays = (timestamp: number, days: number): boolean => {
   const daysAgo = Date.now() - (days - 1) * 24 * 60 * 60 * 1000; // Subtracting (n-1) days
   return timestamp >= daysAgo;
 };

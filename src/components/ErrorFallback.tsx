@@ -1,7 +1,7 @@
 import { Alert, AlertDescription, AlertIcon, AlertTitle, Code, Container, Heading } from "@chakra-ui/react";
-import { FallbackProps } from "react-error-boundary";
+import { type FallbackProps } from "react-error-boundary";
 
-export default function ErrorFallback({ error }: FallbackProps) {
+export default function ErrorFallback({ error }: FallbackProps): JSX.Element {
   return (
     <Container maxWidth="container.lg">
       <Alert status="error">

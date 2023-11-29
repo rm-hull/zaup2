@@ -1,10 +1,10 @@
 import { Button, Modal, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
 
-type DeleteModalProps = {
+interface DeleteModalProps {
   isOpen: boolean;
   onDelete: () => void;
   onCancel: () => void;
-};
+}
 
 export function DeleteModal({ isOpen, onDelete, onCancel }: DeleteModalProps): JSX.Element {
   return (

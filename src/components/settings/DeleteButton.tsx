@@ -1,17 +1,17 @@
 import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { FiTrash2 } from "react-icons/fi";
-import { OTP } from "../../types";
+import { type OTP } from "../../types";
 import { DeleteModal } from "./DeleteModal";
 
-type DeleteButtonProps = {
+interface DeleteButtonProps {
   otp: OTP;
   onDeleteRequested: (otp: OTP) => void;
-};
+}
 
 export default function DeleteButton({ otp, onDeleteRequested }: DeleteButtonProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = (): void => {
     onDeleteRequested(otp);
     setTimeout(onClose, 0);
   };

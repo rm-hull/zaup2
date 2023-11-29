@@ -1,14 +1,14 @@
 import { Button, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { ResetDataModal } from "./ResetDataModal";
 
-type ResetDataButtonProps = {
+interface ResetDataButtonProps {
   onResetRequested: () => void;
-};
+}
 
 export default function ResetDataButton({ onResetRequested }: ResetDataButtonProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleConfirmReset = () => {
+  const handleConfirmReset = (): void => {
     onResetRequested();
     setTimeout(onClose, 0);
   };

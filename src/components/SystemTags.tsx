@@ -1,11 +1,11 @@
 import { Wrap } from "@chakra-ui/react";
-import { OTP } from "../types";
+import { type OTP } from "../types";
 import HashTag from "./HashTag";
 import { getSystemTags } from "../otp";
 
-type SystemTagsProps = {
+interface SystemTagsProps {
   otp: OTP;
-};
+}
 
 export default function SystemTags({ otp }: SystemTagsProps): JSX.Element {
   return (

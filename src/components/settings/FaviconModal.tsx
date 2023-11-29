@@ -15,23 +15,23 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, type FieldProps, Form, Formik, type FormikHelpers } from "formik";
 
-type FaviconModalProps = {
+interface FaviconModalProps {
   url?: string;
   isOpen: boolean;
   onUpdate: (favicon?: string) => void;
   onCancel: () => void;
-};
-type FaviconForm = {
+}
+interface FaviconForm {
   favicon: string;
-};
+}
 
 export function FaviconModal({ url, isOpen, onUpdate, onCancel }: FaviconModalProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 
-  const handleSubmit = (values: FaviconForm, actions: FormikHelpers<FaviconForm>) => {
+  const handleSubmit = (values: FaviconForm, actions: FormikHelpers<FaviconForm>): void => {
     try {
       onUpdate(values.favicon.trim().length === 0 ? undefined : values.favicon.trim());
     } finally {
@@ -69,7 +69,7 @@ export function FaviconModal({ url, isOpen, onUpdate, onCancel }: FaviconModalPr
 
               <ModalFooter>
                 <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
-                  {url ? "Update" : "Add"}
+                  {url === undefined ? "Add" : "Update"}
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>
                   Cancel

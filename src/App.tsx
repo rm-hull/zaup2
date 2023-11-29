@@ -9,14 +9,14 @@ import Issuer from "./pages/Issuer";
 import NotFound from "./pages/NotFound";
 import Settings from "./pages/Settings";
 import Tag from "./pages/Tag";
-import { MigrationPayload } from "./proto/migration_payload";
+import { type MigrationPayload } from "./proto/migration_payload";
 
 export const App = (): JSX.Element => {
   const toast = useToast();
   const navigate = useNavigate();
   const { update } = useOtpParameters();
 
-  const storeOTPParameters = (imported: MigrationPayload.OtpParameters[]) => {
+  const storeOTPParameters = (imported: MigrationPayload.OtpParameters[]): void => {
     update(...imported.map((param) => ({ ...normalize(param.toObject()), archived: false })));
 
     toast.closeAll();

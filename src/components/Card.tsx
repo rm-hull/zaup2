@@ -19,16 +19,16 @@ import { FiCheck, FiClipboard } from "react-icons/fi";
 import { getFavicon } from "../favicons";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { getEncodedSecret, getTotp } from "../otp";
-import { OTP } from "../types";
+import { type OTP } from "../types";
 import HashTag from "./HashTag";
 import SystemTags from "./SystemTags";
 
-type CardProps = {
+interface CardProps {
   otp: OTP;
   refresh?: number;
   showQRCode?: boolean;
   highlight?: string;
-};
+}
 
 const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
   const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
@@ -37,11 +37,15 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
 
   const code = totp!.generate();
   const { hasCopied, onCopy, setValue } = useClipboard("");
-  useEffect(() => setValue(code), [setValue, code]);
+  useEffect(() => {
+    setValue(code);
+  }, [setValue, code]);
 
-  const onCopyClicked = () => {
-    setTimeout(() => update({ ...otp, copyCount: (otp.copyCount ?? 0) + 1 }), 2000);
-    return onCopy();
+  const onCopyClicked = (): void => {
+    setTimeout(() => {
+      update({ ...otp, copyCount: (otp.copyCount ?? 0) + 1 });
+    }, 2000);
+    onCopy();
   };
 
   const bg = useColorModeValue("white", "var(--chakra-colors-gray-900)");
@@ -64,12 +68,12 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
           <Image src={getFavicon(otp)} h={5} />
           <Text fontWeight={600} color="gray.500">
             <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
-              {otp.label || otp.issuer || "«Unknown»"}
+              {otp.label ?? otp.issuer ?? "«Unknown»"}
             </Highlight>
           </Text>
         </Stack>
 
-        {showQRCode && (
+        {showQRCode === true && (
           <Stack align="center" justify="center" direction="row" mt={4}>
             <QRCode
               renderAs="canvas"
@@ -81,7 +85,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
           </Stack>
         )}
 
-        <Stack align="center" justify="center" direction="row" mt={showQRCode ? 4 : 0}>
+        <Stack align="center" justify="center" direction="row" mt={showQRCode === true ? 4 : 0}>
           <Heading fontSize="5xl" fontFamily="body">
             {code}
           </Heading>

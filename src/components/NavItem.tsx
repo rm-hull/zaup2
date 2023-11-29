@@ -1,7 +1,7 @@
 import {
   Collapse,
   Flex,
-  FlexProps,
+  type FlexProps,
   Icon,
   Link,
   Spacer,
@@ -10,8 +10,9 @@ import {
   useDisclosure,
   useOutsideClick,
 } from "@chakra-ui/react";
-import React, { useRef } from "react";
-import { IconType } from "react-icons";
+import type React from "react";
+import { useRef } from "react";
+import { type IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
 
 interface NavItemProps extends React.PropsWithChildren<FlexProps> {
@@ -35,7 +36,7 @@ export default function NavItem({ label, icon, path, count, children, color, ...
         to={path ?? "#"}
         style={{ textDecoration: "none" }}
         _focus={{ outline: "none" }}
-        onClick={path ? undefined : onOpen}
+        onClick={path === undefined ? onOpen : undefined}
         color={color}
       >
         <Flex

@@ -2,11 +2,11 @@ import { IconButton, Tooltip, useClipboard } from "@chakra-ui/react";
 import { useMemo } from "react";
 import { FiCheck, FiClipboard } from "react-icons/fi";
 import { getEncodedSecret } from "../../otp";
-import { OTP } from "../../types";
+import { type OTP } from "../../types";
 
-type CopyEncodedSecretButtonProps = {
+interface CopyEncodedSecretButtonProps {
   otp: OTP;
-};
+}
 
 export default function CopyEncodedSecretButton({ otp }: CopyEncodedSecretButtonProps): JSX.Element {
   const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);

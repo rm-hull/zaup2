@@ -1,12 +1,12 @@
 import useLocalStorage from "./useLocalStorage";
-import { sortBy } from "../otp";
+import { type sortBy } from "../otp";
 
-type GeneralSettings = {
+interface GeneralSettings {
   showQRCode?: boolean;
   showCounts?: boolean;
   sortOrder?: keyof typeof sortBy;
   encrypted?: boolean;
-};
+}
 
 export default function useGeneralSettings(): [
   GeneralSettings | undefined,
