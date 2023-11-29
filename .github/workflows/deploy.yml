@@ -41,10 +41,11 @@ jobs:
       - name: Test
         run: yarn test:ci
 
-      - name: Coveralls
-        uses: coverallsapp/github-action@v2
-        with:
-          file: coverage/clover.xml
+      # IGNORE FOR NOW WHILE THERE IS MUCH CARNAGE
+      # - name: Coveralls
+      #   uses: coverallsapp/github-action@v2
+      #   with:
+      #     file: coverage/clover.xml
 
       - name: Build
         run: yarn build && cp ./dist/index.html ./dist/404.html

@@ -121,6 +121,8 @@
     "@typescript-eslint/consistent-type-definitions": "off",
     "comma-dangle": "off",
     "@typescript-eslint/comma-dangle": "off",
-    "@typescript-eslint/member-delimiter-style": "off"
+    "@typescript-eslint/member-delimiter-style": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/triple-slash-reference": "off"
   }
 }

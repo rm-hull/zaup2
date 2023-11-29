@@ -40,7 +40,7 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
   useEffect(() => {
     if (parent.current) {
       const { enable, disable } = autoAnimate(parent.current);
-      sortOrder == "name" ? disable() : enable();
+      sortOrder === "name" ? disable() : enable();
     }
   }, [parent, sortOrder]);
 
