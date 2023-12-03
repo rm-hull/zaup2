@@ -105,6 +105,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
           const data = decodeURIComponent(values.url).slice(33);
           const payload = MigrationPayload.deserialize(new BinaryReader(data));
           onSubmit(payload.otp_parameters);
+          return;
         } catch (err) {
           if (err instanceof Error) {
             actions.setFieldError("url", `Unable to parse URL: ${err.message}`);
