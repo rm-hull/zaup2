@@ -71,10 +71,7 @@ const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageRet
 
   useEffect(() => {
     setStoredValue((prev) => ({ ...prev, [key]: readValue() }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
-  useEffect(() => {
     const handleStorageChange = (): void => {
       setStoredValue((prev) => ({ ...prev, [key]: readValue() }));
     };

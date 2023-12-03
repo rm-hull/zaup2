@@ -16,7 +16,6 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import hash from "object-hash";
-import { useNavigate } from "react-router-dom";
 import { getCachedFavicon } from "../../favicons";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import { sortBy } from "../../otp";
@@ -28,16 +27,14 @@ import CustomLabelButton from "./CustomLabelButton";
 import DeleteButton from "./DeleteButton";
 import FaviconButton from "./FaviconButton";
 import SystemTags from "../SystemTags";
+import Redirect from "../Redirect";
 
 export default function OTPSettings(): JSX.Element | null {
-  const { data, update, remove } = useOtpParameters({ includeArchived: true });
-
+  const { data = [], update, remove } = useOtpParameters({ includeArchived: true });
   const tagBg = useColorModeValue("gray.50", "gray.800");
-  const navigate = useNavigate();
 
   if (data.length === 0) {
-    navigate("/import");
-    return null;
+    return <Redirect to="/import" />;
   }
 
   const handleDeleteTag = (otp: OTP, tag: string) => () => {

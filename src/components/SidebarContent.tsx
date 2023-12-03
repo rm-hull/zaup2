@@ -24,7 +24,7 @@ interface SidebarProps extends BoxProps {
 }
 
 export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.Element {
-  const { data } = useOtpParameters();
+  const { data = [] } = useOtpParameters();
   const [settings] = useGeneralSettings();
 
   const issuers = useMemo(
