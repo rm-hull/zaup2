@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import hash from "object-hash";
 import { useNavigate } from "react-router-dom";
-import { getFavicon } from "../../favicons";
+import { getCachedFavicon } from "../../favicons";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import { sortBy } from "../../otp";
 import { type OTP } from "../../types";
@@ -77,7 +77,7 @@ export default function OTPSettings(): JSX.Element | null {
             <Tr key={hash(otp)}>
               <Td valign="top">
                 <HStack alignItems="flex-start">
-                  <Image src={getFavicon(otp)} h={5} />
+                  <Image src={getCachedFavicon(otp)} h={5} />
                   <VStack align="left">
                     <Text fontWeight={600}>
                       {otp.label ?? otp.issuer ?? "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}

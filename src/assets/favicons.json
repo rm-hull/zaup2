@@ -12,5 +12,10 @@
   "PyPI": "https://pypi.org/static/images/favicon.35549fe8.ico",
   "1Password": "https://1password.com/icons/favicon-v1.ico",
   "okta.com": "https://www.okta.com/themes/custom/okta_www_theme/favicon.ico",
-  "pritunl.com": "https://pritunl.com/favicon.ico"
+  "pritunl.com": "https://pritunl.com/favicon.ico",
+  "Ubisoft": "https://static-dm.akamaized.net/ubisoft/prod/favicon-32x32.png",
+  "123 Reg": "https://img1.wsimg.com/cdn/Image/All/Website/1/en-GB/6867881e-07de-4669-8fc1-d7a8bbf2d8cf/favicon-194x194.png",
+  "Clojars.org": "https://clojars.org/images/clojars-logo-tiny@2x.png",
+  "Coursera": "https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-72x72.png",
+  "ImprovMX": "https://app.improvmx.com/img/favicon.ico"
 }

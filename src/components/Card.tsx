@@ -16,7 +16,7 @@ import {
 import QRCode from "qrcode.react";
 import { memo, useEffect, useMemo } from "react";
 import { FiCheck, FiClipboard } from "react-icons/fi";
-import { getFavicon } from "../favicons";
+import { getCachedFavicon } from "../favicons";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { getEncodedSecret, getTotp } from "../otp";
 import { type OTP } from "../types";
@@ -65,7 +65,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
         textAlign="center"
       >
         <Stack align="center" justify="center" direction="row" mt={4}>
-          <Image src={getFavicon(otp)} h={5} />
+          <Image src={getCachedFavicon(otp)} h={5} />
           <Text fontWeight={600} color="gray.500">
             <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
               {otp.label ?? otp.issuer ?? "«Unknown»"}
