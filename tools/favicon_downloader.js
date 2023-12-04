@@ -1,12 +1,13 @@
 import fs from "fs";
 import axios from "axios";
 import path from "path";
+import chalk from "chalk";
 
 const fsp = fs.promises;
 
 async function download(urlString, name) {
   const url = new URL(urlString);
-  console.log(`Fetching: ${urlString}`);
+  console.log(`${chalk.grey("Fetching:")} ${chalk.blue.underline.bold(urlString)}`);
 
   const response = await axios.get(urlString, { responseType: "arraybuffer" });
 
