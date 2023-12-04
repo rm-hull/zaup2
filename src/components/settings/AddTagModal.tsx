@@ -45,7 +45,7 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
   const bg = useColorModeValue("gray.100", "gray.600");
   const tagBg = useColorModeValue("gray.50", "gray.800");
 
-  const { data } = useOtpParameters();
+  const { data = [] } = useOtpParameters();
   const tags = R.sortBy(R.toLower, R.uniq(data.flatMap((otp) => otp.tags ?? [])));
 
   const handleAdd = (values: AddTagForm, actions: FormikHelpers<AddTagForm>): void => {

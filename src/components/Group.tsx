@@ -26,7 +26,7 @@ function matches(otp: OTP, searchTerm?: string): boolean {
 }
 
 export default function Group({ filter = () => true, noData }: GroupProps): JSX.Element {
-  const { data } = useOtpParameters();
+  const { data = [] } = useOtpParameters();
   const [settings] = useGeneralSettings();
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
   const parent = useRef(null);

@@ -30,10 +30,12 @@ import SystemTags from "../SystemTags";
 import Redirect from "../Redirect";
 
 export default function OTPSettings(): JSX.Element | null {
-  const { data = [], update, remove } = useOtpParameters({ includeArchived: true });
+  const { data, update, remove } = useOtpParameters({ includeArchived: true });
   const tagBg = useColorModeValue("gray.50", "gray.800");
 
-  if (data.length === 0) {
+  if (data === undefined) {
+    return null;
+  } else if (data.length === 0) {
     return <Redirect to="/import" />;
   }
 
