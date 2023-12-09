@@ -20,12 +20,13 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, type FieldProps, Form, Formik, type FormikErrors, type FormikHelpers } from "formik";
+import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikErrors, type FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
+import { type JSX } from "react";
 import google_authenticator from "../assets/google_authenticator.svg";
-import { MigrationPayload } from "../proto/migration_payload";
 import QrScannerButton from "../components/import/QrScannerButton";
+import { MigrationPayload } from "../proto/migration_payload";
 
 function validateURL(value: string | undefined): string | undefined {
   if (value === undefined || value === null) {
@@ -82,7 +83,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 
-  const handleImport = (values: ImportForm, actions: FormikHelpers<ImportForm>) => {
+  const handleImport = (values: ImportForm, actions: FormikHelpers<ImportForm>): void => {
     try {
       const parsed = OTPAuth.URI.parse(decodeURIComponent(values.url));
       onSubmit([
@@ -115,7 +116,6 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
           }
         }
       }
-      // eslint-disable-next-line no-console
       console.error(err);
       actions.setFieldError("url", `Unable to parse URL: Unknown error`);
     } finally {

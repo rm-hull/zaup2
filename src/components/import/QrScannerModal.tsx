@@ -1,6 +1,6 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
 import { QrScanner } from "@yudiel/react-qr-scanner";
-import { useState } from "react";
+import { useState, type JSX } from "react";
 
 interface QrScannerModalProps {
   isOpen: boolean;

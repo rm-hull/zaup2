@@ -1,8 +1,8 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
-import hash from "object-hash";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useHarmonicIntervalFn } from "react-use";
 import autoAnimate from "@formkit/auto-animate";
+import hash from "object-hash";
+import { useCallback, useEffect, useMemo, useRef, useState, type JSX } from "react";
+import { useHarmonicIntervalFn } from "react-use";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sortBy } from "../otp";

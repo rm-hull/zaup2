@@ -48,15 +48,16 @@ export const getDigits = (digits?: MigrationPayload.DigitCount): number | undefi
 };
 
 export const getTotp = (otp?: OTP, encodedSecret?: string): OTPAuth.TOTP | undefined =>
-  otp &&
-  new OTPAuth.TOTP({
-    issuer: otp.issuer,
-    label: otp.name,
-    algorithm: getAlgorithm(otp.algorithm),
-    digits: getDigits(otp.digits),
-    period: 30,
-    secret: encodedSecret,
-  });
+  otp === undefined
+    ? undefined
+    : new OTPAuth.TOTP({
+        issuer: otp.issuer,
+        label: otp.name,
+        algorithm: getAlgorithm(otp.algorithm),
+        digits: getDigits(otp.digits),
+        period: 30,
+        secret: encodedSecret,
+      });
 
 export const getEncodedSecret = (otp?: OTP): string | undefined =>
   otp?.secret && base32Encode(Uint8Array.from(Object.values(otp.secret)), "RFC4648");

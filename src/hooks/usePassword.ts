@@ -2,6 +2,8 @@ import { atom, useAtom } from "jotai";
 
 const password = atom<string | undefined>(undefined);
 
-export default function usePassword() {
+type UsePasswordReturnType = [string | undefined, (password: string) => void];
+
+export default function usePassword(): UsePasswordReturnType {
   return useAtom(password);
 }

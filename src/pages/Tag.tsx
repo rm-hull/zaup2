@@ -1,4 +1,5 @@
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from "@chakra-ui/react";
+import { type JSX } from "react";
 import { useParams } from "react-router-dom";
 import Group from "../components/Group";
 import { getSystemTags } from "../otp";

@@ -1,4 +1,5 @@
 import { Stack, useColorModeValue } from "@chakra-ui/react";
+import { type JSX } from "react";
 import GeneralSettings from "../components/settings/GeneralSettings";
 import OTPSettings from "../components/settings/OTPSettings";
 

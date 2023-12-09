@@ -1,8 +1,10 @@
 import { useToast } from "@chakra-ui/react";
+import { type JSX } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import useOtpParameters from "./hooks/useOtpParameters";
 import { normalize } from "./otp";
+import About from "./pages/About";
 import Home from "./pages/Home";
 import ImportURL from "./pages/ImportURL";
 import Issuer from "./pages/Issuer";
@@ -10,7 +12,6 @@ import NotFound from "./pages/NotFound";
 import Settings from "./pages/Settings";
 import Tag from "./pages/Tag";
 import { type MigrationPayload } from "./proto/migration_payload";
-import About from "./pages/About";
 
 export const App = (): JSX.Element => {
   const toast = useToast();

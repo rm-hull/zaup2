@@ -1,4 +1,5 @@
 import { Button, useDisclosure, useToast } from "@chakra-ui/react";
+import { type JSX } from "react";
 import { QrScannerModal } from "./QrScannerModal";
 
 interface DeleteButtonProps {

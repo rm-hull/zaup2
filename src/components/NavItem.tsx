@@ -1,7 +1,6 @@
 import {
   Collapse,
   Flex,
-  type FlexProps,
   Icon,
   Link,
   Spacer,
@@ -9,13 +8,13 @@ import {
   Text,
   useDisclosure,
   useOutsideClick,
+  type FlexProps,
 } from "@chakra-ui/react";
-import type React from "react";
-import { useRef } from "react";
+import { useRef, type JSX, type PropsWithChildren } from "react";
 import { type IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
 
-interface NavItemProps extends React.PropsWithChildren<FlexProps> {
+interface NavItemProps extends PropsWithChildren<FlexProps> {
   label: string;
   icon?: IconType;
   path?: string;

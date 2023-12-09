@@ -14,7 +14,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 import QRCode from "qrcode.react";
-import { memo, useEffect, useMemo } from "react";
+import { memo, useEffect, useMemo, type JSX } from "react";
 import { FiCheck, FiClipboard } from "react-icons/fi";
 import { getCachedFavicon } from "../favicons";
 import useOtpParameters from "../hooks/useOtpParameters";

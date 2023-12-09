@@ -1,6 +1,6 @@
 import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
 import * as R from "ramda";
-import { useCallback } from "react";
+import { useCallback, type JSX } from "react";
 import { FiPlus } from "react-icons/fi";
 import { type OTP } from "../../types";
 import { AddTagModal } from "./AddTagModal";

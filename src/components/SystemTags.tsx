@@ -1,7 +1,8 @@
 import { Wrap } from "@chakra-ui/react";
+import { type JSX } from "react";
+import { getSystemTags } from "../otp";
 import { type OTP } from "../types";
 import HashTag from "./HashTag";
-import { getSystemTags } from "../otp";
 
 interface SystemTagsProps {
   otp: OTP;

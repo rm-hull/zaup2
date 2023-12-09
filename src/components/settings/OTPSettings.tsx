@@ -16,18 +16,19 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import hash from "object-hash";
+import { type JSX } from "react";
 import { getCachedFavicon } from "../../favicons";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import { sortBy } from "../../otp";
 import { type OTP } from "../../types";
 import HashTag from "../HashTag";
+import Redirect from "../Redirect";
+import SystemTags from "../SystemTags";
 import AddTagButton from "./AddTagButton";
 import CopyEncodedSecretButton from "./CopyEncodedSecretButton";
 import CustomLabelButton from "./CustomLabelButton";
 import DeleteButton from "./DeleteButton";
 import FaviconButton from "./FaviconButton";
-import SystemTags from "../SystemTags";
-import Redirect from "../Redirect";
 
 export default function OTPSettings(): JSX.Element | null {
   const { data, update, remove } = useOtpParameters({ includeArchived: true });

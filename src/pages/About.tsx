@@ -1,4 +1,5 @@
-import { Heading, Link, Stack, Text, Code, Box } from "@chakra-ui/react";
+import { Box, Code, Heading, Link, Stack, Text } from "@chakra-ui/react";
+import { type JSX } from "react";
 
 export default function About(): JSX.Element | null {
   return (

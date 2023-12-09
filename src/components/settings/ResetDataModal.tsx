@@ -1,4 +1,5 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
+import { type JSX } from "react";
 
 interface ResetDataModalProps {
   isOpen: boolean;

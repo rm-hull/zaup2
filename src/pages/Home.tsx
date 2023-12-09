@@ -1,6 +1,7 @@
+import { type JSX } from "react";
 import Group from "../components/Group";
-import useOtpParameters from "../hooks/useOtpParameters";
 import Redirect from "../components/Redirect";
+import useOtpParameters from "../hooks/useOtpParameters";
 
 export default function Home(): JSX.Element | null {
   const { data } = useOtpParameters();

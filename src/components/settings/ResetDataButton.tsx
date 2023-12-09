@@ -1,4 +1,5 @@
 import { Button, Tooltip, useDisclosure } from "@chakra-ui/react";
+import { type JSX } from "react";
 import { ResetDataModal } from "./ResetDataModal";
 
 interface ResetDataButtonProps {

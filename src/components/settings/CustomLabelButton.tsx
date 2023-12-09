@@ -1,5 +1,5 @@
 import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
-import { useCallback } from "react";
+import { useCallback, type JSX } from "react";
 import { FiEdit } from "react-icons/fi";
 import { type OTP } from "../../types";
 import { CustomLabelModal } from "./CustomLabelModal";

@@ -1,5 +1,5 @@
 import { IconButton, Tooltip, useClipboard } from "@chakra-ui/react";
-import { useMemo } from "react";
+import { useMemo, type JSX } from "react";
 import { FiCheck, FiClipboard } from "react-icons/fi";
 import { getEncodedSecret } from "../../otp";
 import { type OTP } from "../../types";

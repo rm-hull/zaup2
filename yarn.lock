@@ -3747,6 +3747,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-icons@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@types/react-icons@npm:3.0.0"
+  dependencies:
+    react-icons: "npm:*"
+  checksum: 885a9e9d43fd5543c3405b75b7d4f910492bd3bf2a2aa0a6784c6566fc3a9804bd0f6b0678779b4a15df642c35db0069a1d3f3f2c548bfc8414d5abe1fcc6469
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:*":
   version: 18.2.39
   resolution: "@types/react@npm:18.2.39"
@@ -8308,7 +8317,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-icons@npm:^4.12.0":
+"react-icons@npm:*, react-icons@npm:^4.12.0":
   version: 4.12.0
   resolution: "react-icons@npm:4.12.0"
   peerDependencies:
@@ -9929,6 +9938,7 @@ __metadata:
     "@types/ramda": "npm:^0.29.9"
     "@types/react": "npm:^18.2.42"
     "@types/react-dom": "npm:^18.2.17"
+    "@types/react-icons": "npm:^3.0.0"
     "@typescript-eslint/eslint-plugin": "npm:^6.13.2"
     "@typescript-eslint/parser": "npm:^6.13.2"
     "@vitejs/plugin-react": "npm:^4.2.1"

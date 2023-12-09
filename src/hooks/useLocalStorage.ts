@@ -12,11 +12,11 @@ const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageRet
   const decryptData = (): T | undefined => {
     if (!secretKey) {
       const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : undefined;
+      return item ? (JSON.parse(item) as T) : undefined;
     }
 
     let data = window.localStorage.getItem(key);
-    if (!data) {
+    if (data === undefined || data === null) {
       return undefined;
     }
 
@@ -28,7 +28,7 @@ const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageRet
 
     try {
       const decrypted = CryptoJS.AES.decrypt(data, secretKey).toString(CryptoJS.enc.Utf8);
-      return JSON.parse(decrypted);
+      return JSON.parse(decrypted) as T;
     } catch (ex) {
       throw Error("Unable to decrypt: Bad secret key?");
     }
@@ -64,7 +64,6 @@ const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageRet
       setStoredValue((prev) => ({ ...prev, [key]: value }));
       window.dispatchEvent(new Event("local-storage"));
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error(`Error setting localStorage key “${key}”:`, error);
     }
   };
@@ -86,7 +85,7 @@ const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageRet
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return [storedValue?.[key], setValue];
+  return [storedValue?.[key] as T, setValue];
 };
 
 export default useLocalStorage;

@@ -11,7 +11,6 @@ const reportWebVitals = (onPerfEntry?: ReportHandler): void => {
         getTTFB(onPerfEntry);
         return null;
       })
-      // eslint-disable-next-line no-console
       .catch(console.error);
   }
 };

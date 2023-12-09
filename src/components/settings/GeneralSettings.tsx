@@ -10,6 +10,7 @@ import {
   Stack,
   Switch,
 } from "@chakra-ui/react";
+import { type JSX } from "react";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import usePassword from "../../hooks/usePassword";

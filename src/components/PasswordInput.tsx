@@ -1,5 +1,5 @@
-import { Button, Input, InputGroup, type InputProps, InputRightElement } from "@chakra-ui/react";
-import { useState } from "react";
+import { Button, Input, InputGroup, InputRightElement, type InputProps } from "@chakra-ui/react";
+import { useState, type JSX } from "react";
 
 export default function PasswordInput(inputProps: InputProps): JSX.Element {
   const [show, setShow] = useState(false);

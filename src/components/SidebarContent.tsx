@@ -1,23 +1,23 @@
 import {
   Box,
-  type BoxProps,
   CloseButton,
   Divider,
   Flex,
   HStack,
   Text,
-  useColorModeValue,
   VStack,
+  useColorModeValue,
+  type BoxProps,
 } from "@chakra-ui/react";
 import * as R from "ramda";
-import { useMemo } from "react";
-import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag, FiMessageSquare } from "react-icons/fi";
+import { useMemo, type JSX } from "react";
+import { FiCompass, FiHome, FiLogIn, FiMessageSquare, FiSettings, FiTag } from "react-icons/fi";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
+import { getSystemTags } from "../otp";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import CountdownTimer from "./CountdownTimer";
 import NavItem from "./NavItem";
-import { getSystemTags } from "../otp";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;

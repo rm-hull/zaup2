@@ -16,8 +16,9 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, type FieldProps, Form, Formik, type FormikHelpers } from "formik";
+import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import * as R from "ramda";
+import { type JSX } from "react";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import HashTag from "../HashTag";
 

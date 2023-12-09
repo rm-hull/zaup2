@@ -1,4 +1,5 @@
 import { Link, Tag, TagCloseButton, TagLabel, useColorModeValue } from "@chakra-ui/react";
+import { type JSX } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 interface HashTagProps {

@@ -9,7 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import PasswordProtection from "./components/PasswordProtection";
 
 const container = document.getElementById("root");
-if (!container) {
+if (container === null) {
   throw new Error("The #root element wasn't found");
 }
 
