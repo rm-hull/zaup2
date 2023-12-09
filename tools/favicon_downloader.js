@@ -19,9 +19,7 @@ async function process() {
   const contents = await fsp.readFile("./src/assets/favicons.json", "utf-8");
   const favicons = JSON.parse(contents);
 
-  for (const [name, url] of Object.entries(favicons)) {
-    await download(url, name);
-  }
+  await Promise.all(Object.entries(favicons).map(([ name, url]) => download(url, name)));
 }
 
 process().catch(console.error)
