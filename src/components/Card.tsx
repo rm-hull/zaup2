@@ -13,9 +13,10 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
+import { type TOTP } from "otpauth";
 import QRCode from "qrcode.react";
 import { memo, useEffect, useMemo, type JSX } from "react";
-import { FiCheck, FiClipboard } from "react-icons/fi";
+import { FiAlertTriangle, FiCheck, FiClipboard } from "react-icons/fi";
 import { getCachedFavicon } from "../favicons";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { getEncodedSecret, getTotp } from "../otp";
@@ -30,15 +31,23 @@ interface CardProps {
   highlight?: string;
 }
 
+function generateCode(totp?: TOTP): Partial<{ code: string; error: Error }> {
+  try {
+    return { code: totp?.generate() };
+  } catch (err) {
+    return { error: err as Error };
+  }
+}
+
 const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
   const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
   const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
   const { update } = useOtpParameters();
 
-  const code = totp!.generate();
+  const { code, error } = generateCode(totp);
   const { hasCopied, onCopy, setValue } = useClipboard("");
   useEffect(() => {
-    setValue(code);
+    setValue(code ?? "");
   }, [setValue, code]);
 
   const onCopyClicked = (): void => {
@@ -87,15 +96,21 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
 
         <Stack align="center" justify="center" direction="row" mt={showQRCode === true ? 4 : 0}>
           <Heading fontSize="5xl" fontFamily="body">
-            {code}
+            {code ?? "╰(°□°)╯"}
           </Heading>
-          <Tooltip label="Copy to Clipboard">
-            <IconButton
-              aria-label="Copy to clipboard"
-              onClick={onCopyClicked}
-              icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
-            />
-          </Tooltip>
+          {code === undefined ? (
+            <Tooltip label={`Error: ${error?.message}`}>
+              <IconButton disabled aria-label="Could not generate code" icon={<FiAlertTriangle color="red" />} />
+            </Tooltip>
+          ) : (
+            <Tooltip label="Copy to Clipboard">
+              <IconButton
+                aria-label="Copy to clipboard"
+                onClick={onCopyClicked}
+                icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
+              />
+            </Tooltip>
+          )}
         </Stack>
 
         {otp.name && (
