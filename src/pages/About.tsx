@@ -1,9 +1,17 @@
-import { Box, Code, Heading, Link, Stack, Text } from "@chakra-ui/react";
+import { Box, Code, Heading, Link, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { type JSX } from "react";
 
 export default function About(): JSX.Element | null {
   return (
-    <Stack boxShadow="2xl" rounded="xl" p={10} spacing={4} align="left" minWidth={950}>
+    <Stack
+      boxShadow="2xl"
+      bg={useColorModeValue("white", "gray.800")}
+      rounded="xl"
+      p={10}
+      spacing={4}
+      align="left"
+      minWidth={950}
+    >
       <Heading size="md">About</Heading>
       <Text>
         ZAUP 2 is a{" "}
