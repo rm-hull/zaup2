@@ -1,59 +1,75 @@
-This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app).
+# ZAUP 2
 
-## Available Scripts
+ZAUP 2 is a [TOTP](https://en.wikipedia.org/wiki/Time-based_one-time_password) authenticator app for the web: It acts much like
+[Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US), 
+but stores TOTP secrets in your browser's local storage, and they never leave your machine. Data in local storage is encrypted
+using AES using a master password.
 
-In the project directory, you can run:
+![main](./doc/screenshots/main.webp)
 
-### `yarn start`
+Go to https://www.destructuring-bind.org/zaup2 to see it in action. There are a set of demo OTPs that you
+can import to see how it works to try it out. You will need to choose a master password first though:
 
-Runs the app in the development mode.<br /> Open
-[http://localhost:3000](http://localhost:3000) to view it in the browser.
+![security](./doc/screenshots/security.webp)
 
-The page will reload if you make edits.<br /> You will also see any lint errors
-in the console.
+Then import:
 
-### `yarn test`
+![import](./doc/screenshots/import.webp)
 
-Launches the test runner in the interactive watch mode.<br /> See the section
-about
-[running tests](https://facebook.github.io/create-react-app/docs/running-tests)
-for more information.
+Once imported, the TOTP codes will contiunally display and update. The settings page will allow a certain level of
+customisation:
 
-### `yarn build`
+![settings](./doc/screenshots/settings.webp)
 
-Builds the app for production to the `build` folder.<br /> It correctly bundles
-React in production mode and optimizes the build for the best performance.
+## Importing from Google Authenticator
 
-The build is minified and the filenames include the hashes.<br /> Your app is
-ready to be deployed!
+Google Authenticator has a feature that allows you to export. At the moment, this is a bit tricky, but follow these steps.
 
-See the section about
-[deployment](https://facebook.github.io/create-react-app/docs/deployment) for
-more information.
+1. Export the codes from Google Authenticator on your phone
+2. Take a screenshot of the resulting QR codes
+3. Use Google Lens to read the resultant URI (it should start with `otpauth-migration://offline?data=`)
+4. Use something like Slack or WhatsApp to make that URI available on your computer.
+5. Copy the URI into the text field on the import page.
 
-### `yarn eject`
+Yes, its aggro, but I hope to simplify this soon by adding camera support so that you can just show the QR code to the web app.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Running locally
 
-If you aren’t satisfied with the build tool and configuration choices, you can
-`eject` at any time. This command will remove the single build dependency from
-your project.
+You must have Node 20 and Yarn installed. To begin:
 
-Instead, it will copy all the configuration files and the transitive
-dependencies (webpack, Babel, ESLint, etc) right into your project so you have
-full control over them. All of the commands except `eject` will still work, but
-they will point to the copied scripts so you can tweak them. At this point
-you’re on your own.
+```console
+yarn install
+yarn dev
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for
-small and middle deployments, and you shouldn’t feel obligated to use this
-feature. However we understand that this tool wouldn’t be useful if you couldn’t
-customize it when you are ready for it.
+## FAQ
 
-## Learn More
+Why?
+: It's more convenient having TOTP's available locally that can be copy-pasted rather than on my phone. It also serves as a backup if you ever loose you phone or dont have it to hand.
 
-You can learn more in the
-[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Isn't it less secure?
+: Possibly, but the data is encrypted with AES using [Crypto-JS](https://github.com/brix/crypto-js). 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+
+### MIT License
+
+Copyright (c) 2021 Richard Hull
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
