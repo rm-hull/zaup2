@@ -4122,9 +4122,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/coverage-v8@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@vitest/coverage-v8@npm:1.0.2"
+"@vitest/coverage-v8@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@vitest/coverage-v8@npm:1.0.3"
   dependencies:
     "@ampproject/remapping": "npm:^2.2.1"
     "@bcoe/v8-coverage": "npm:^0.2.3"
@@ -4141,7 +4141,7 @@ __metadata:
     v8-to-istanbul: "npm:^9.2.0"
   peerDependencies:
     vitest: ^1.0.0
-  checksum: 081b5101cae43b6f8f62b6ec71752e9c12b7e3b8ba66b3ac3d980852228d737ba3bd7842a4e79878b1b86ad21432bd8dbbeb697b45b738897da58498773ce046
+  checksum: 72b1a7e2e063c840694a40303d143e2d47e999bd1d4fd5c5a6d37e6c7e733ff91ac4b64f9790e531bee48e020e3a6b9f3d8058a4d69261fdc7bfd43c6830dad4
   languageName: node
   linkType: hard
 
@@ -9932,7 +9932,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^6.13.2"
     "@typescript-eslint/parser": "npm:^6.13.2"
     "@vitejs/plugin-react": "npm:^4.2.1"
-    "@vitest/coverage-v8": "npm:^1.0.2"
+    "@vitest/coverage-v8": "npm:^1.0.3"
     "@yudiel/react-qr-scanner": "npm:^1.2.4"
     axios: "npm:^1.6.2"
     base32-encode: "npm:^2.0.0"
