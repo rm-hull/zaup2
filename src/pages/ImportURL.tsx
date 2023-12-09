@@ -61,7 +61,7 @@ type SetFieldValueType<Values> = (
   field: string,
   value: unknown,
   shouldValidate?: boolean
-) => Promise<FormikErrors<Values>>;
+) => Promise<FormikErrors<Values> | void>;
 
 export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
   const toast = useToast();
