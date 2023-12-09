@@ -26,6 +26,7 @@ import * as OTPAuth from "otpauth";
 import { type JSX } from "react";
 import google_authenticator from "../assets/google_authenticator.svg";
 import QrScannerButton from "../components/import/QrScannerButton";
+import { algorithmFrom } from "../otp";
 import { MigrationPayload } from "../proto/migration_payload";
 
 function validateURL(value: string | undefined): string | undefined {
@@ -60,22 +61,7 @@ type SetFieldValueType<Values> = (
   field: string,
   value: unknown,
   shouldValidate?: boolean
-) => Promise<void | FormikErrors<Values>>;
-
-const getAlgorithm = (alg?: string): MigrationPayload.Algorithm => {
-  switch (alg) {
-    case "MD5":
-      return MigrationPayload.Algorithm.ALGORITHM_MD5;
-    case "SHA1":
-      return MigrationPayload.Algorithm.ALGORITHM_SHA1;
-    case "SHA256":
-      return MigrationPayload.Algorithm.ALGORITHM_SHA256;
-    case "SHA512":
-      return MigrationPayload.Algorithm.ALGORITHM_SHA512;
-    default:
-      return MigrationPayload.Algorithm.ALGORITHM_UNSPECIFIED;
-  }
-};
+) => Promise<FormikErrors<Values>>;
 
 export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
   const toast = useToast();
@@ -91,7 +77,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
           name: parsed.label,
           issuer: parsed.issuer,
           secret: new Uint8Array(parsed.secret.buffer),
-          algorithm: getAlgorithm(parsed.algorithm),
+          algorithm: algorithmFrom(parsed.algorithm),
           digits:
             parsed.digits === 6
               ? MigrationPayload.DigitCount.DIGIT_COUNT_SIX
@@ -123,12 +109,44 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
     }
   };
 
+  const randomSecret = (length: number): Uint8Array => {
+    const randomValues = new Uint8Array(length);
+    window.crypto.getRandomValues(randomValues);
+
+    // Ensure values are within the basic Latin-1 codepage, A-Z only
+    for (let i = 0; i < randomValues.length; i++) {
+      randomValues[i] = (randomValues[i] % 26) + 65;
+    }
+    return randomValues;
+  };
+
   const addDummyOtpCodes = (setFieldValue: SetFieldValueType<ImportForm>) => async () => {
     const payload = MigrationPayload.fromObject({
       otp_parameters: [
-        { name: "github.com/dummy1", issuer: "GitHub", type: MigrationPayload.OtpType.OTP_TYPE_TOTP },
-        { name: "dummy2@example.com", issuer: "Google", type: MigrationPayload.OtpType.OTP_TYPE_TOTP },
-        { name: "dummy3@example.com", issuer: "microsoft.com", type: MigrationPayload.OtpType.OTP_TYPE_TOTP },
+        {
+          name: "github.com/dummy1",
+          issuer: "GitHub",
+          type: MigrationPayload.OtpType.OTP_TYPE_TOTP,
+          digits: MigrationPayload.DigitCount.DIGIT_COUNT_SIX,
+          algorithm: MigrationPayload.Algorithm.ALGORITHM_SHA1,
+          secret: randomSecret(20),
+        },
+        {
+          name: "dummy2@example.com",
+          issuer: "Google",
+          type: MigrationPayload.OtpType.OTP_TYPE_TOTP,
+          digits: MigrationPayload.DigitCount.DIGIT_COUNT_SIX,
+          algorithm: MigrationPayload.Algorithm.ALGORITHM_SHA1,
+          secret: randomSecret(20),
+        },
+        {
+          name: "dummy3@example.com",
+          issuer: "microsoft.com",
+          type: MigrationPayload.OtpType.OTP_TYPE_TOTP,
+          digits: MigrationPayload.DigitCount.DIGIT_COUNT_SIX,
+          algorithm: MigrationPayload.Algorithm.ALGORITHM_SHA1,
+          secret: randomSecret(20),
+        },
       ],
     }).serialize();
     const decoder = new TextDecoder("utf8");

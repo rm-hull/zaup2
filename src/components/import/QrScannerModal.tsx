@@ -14,7 +14,10 @@ export function QrScannerModal({ onScanResult, onError, onCancel, isOpen }: QrSc
 
   const handleResult = (result: string): void => {
     if (result.startsWith("otpauth-migration://offline?data=")) {
-      onScanResult(result);
+      setStopDecoding(true);
+      setTimeout(() => {
+        onScanResult(result);
+      }, 0);
     }
   };
 

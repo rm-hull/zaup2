@@ -21,7 +21,7 @@ export const sortBy = {
   mostUsed: R.sort<OTP>(R.descend((otp) => otp.copyCount ?? 0)),
 };
 
-export const getAlgorithm = (alg?: MigrationPayload.Algorithm): string | undefined => {
+export const getAlgorithm = (alg?: MigrationPayload.Algorithm): string => {
   switch (alg) {
     case MigrationPayload.Algorithm.ALGORITHM_MD5:
       return "MD5";
@@ -32,7 +32,22 @@ export const getAlgorithm = (alg?: MigrationPayload.Algorithm): string | undefin
     case MigrationPayload.Algorithm.ALGORITHM_SHA512:
       return "SHA512";
     default:
-      return undefined;
+      return "UNSPECIFIED";
+  }
+};
+
+export const algorithmFrom = (alg?: string): MigrationPayload.Algorithm => {
+  switch (alg) {
+    case "MD5":
+      return MigrationPayload.Algorithm.ALGORITHM_MD5;
+    case "SHA1":
+      return MigrationPayload.Algorithm.ALGORITHM_SHA1;
+    case "SHA256":
+      return MigrationPayload.Algorithm.ALGORITHM_SHA256;
+    case "SHA512":
+      return MigrationPayload.Algorithm.ALGORITHM_SHA512;
+    default:
+      return MigrationPayload.Algorithm.ALGORITHM_UNSPECIFIED;
   }
 };
 
