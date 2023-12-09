@@ -18,12 +18,14 @@ import {
   useColorModeValue,
   useDisclosure,
   useToast,
+  VStack,
 } from "@chakra-ui/react";
 import { ErrorMessage, Field, type FieldProps, Form, Formik, type FormikErrors, type FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
 import google_authenticator from "../assets/google_authenticator.svg";
 import { MigrationPayload } from "../proto/migration_payload";
+import QrScannerButton from "../components/import/QrScannerButton";
 
 function validateURL(value: string | undefined): string | undefined {
   if (value === undefined || value === null) {
@@ -121,7 +123,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
     }
   };
 
-  const addDummyOtpCodes = (setFieldValue: SetFieldValueType<ImportForm>) => () => {
+  const addDummyOtpCodes = (setFieldValue: SetFieldValueType<ImportForm>) => async () => {
     const payload = MigrationPayload.fromObject({
       otp_parameters: [
         { name: "github.com/dummy1", issuer: "GitHub", type: MigrationPayload.OtpType.OTP_TYPE_TOTP },
@@ -131,12 +133,25 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
     }).serialize();
     const decoder = new TextDecoder("utf8");
     const b64 = btoa(decoder.decode(payload));
-    setFieldValue("url", "otpauth-migration://offline?data=" + b64);
+    await setFieldValue("url", "otpauth-migration://offline?data=" + b64);
 
     onClose();
     toast.closeAll();
     toast({
       title: "Ok, I just created some dummy OTP Codes.",
+      description: `Now just hit the Import button...`,
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+  };
+
+  const addScannedQrCode = (setFieldValue: SetFieldValueType<ImportForm>) => async (url: string) => {
+    await setFieldValue("url", url);
+
+    toast.closeAll();
+    toast({
+      title: "Ok, your QR code was successfully scanned.",
       description: `Now just hit the Import button...`,
       status: "success",
       duration: 9000,
@@ -160,7 +175,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
           {({ isSubmitting, values, setFieldValue, isValid }) => (
             <>
               <Form>
-                <Stack spacing={4} direction={{ base: "column", md: "row" }} w="500px">
+                <Stack spacing={4} direction={{ base: "column", md: "row" }} w="500px" alignItems="start">
                   <Field name="url" validate={validateURL}>
                     {({ field, form }: FieldProps) => (
                       <FormControl isInvalid={form.errors.url !== undefined && !!form.touched.url}>
@@ -171,6 +186,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                           placeholder="otpauth-migration://offline?data=CjkKCjpG..."
                           color={color}
                           bg={bg}
+                          minHeight={200}
                         />
                         <FormErrorMessage>
                           <FormErrorIcon />
@@ -180,9 +196,19 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                     )}
                   </Field>
 
-                  <Button isLoading={isSubmitting} type="submit" colorScheme="blue" flex="1 0 auto" disabled={!isValid}>
-                    Import
-                  </Button>
+                  <VStack alignItems="flex-start">
+                    <QrScannerButton onScanResult={addScannedQrCode(setFieldValue)} />
+
+                    <Button
+                      isLoading={isSubmitting}
+                      type="submit"
+                      colorScheme="blue"
+                      flex="1 0 auto"
+                      disabled={!isValid}
+                    >
+                      Import
+                    </Button>
+                  </VStack>
                 </Stack>
               </Form>
               <Collapse in={isOpen || values.url.trim().length === 0} animateOpacity>

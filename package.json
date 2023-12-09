@@ -19,6 +19,7 @@
     "@emotion/styled": "^11.11.0",
     "@formkit/auto-animate": "^0.8.1",
     "@types/crypto-js": "^4.2.1",
+    "@yudiel/react-qr-scanner": "^1.2.4",
     "base32-encode": "^2.0.0",
     "crypto-js": "^4.2.0",
     "format-duration": "^3.0.2",

@@ -23,7 +23,7 @@ customisation:
 
 ## Importing from Google Authenticator
 
-Google Authenticator has a feature that allows you to export. At the moment, this is a bit tricky, but follow these steps.
+Google Authenticator has a feature that allows you to export. At the moment, this is a bit tricky, but follow these steps:
 
 1. Export the codes from Google Authenticator on your phone
 2. Take a screenshot of the resulting QR codes
@@ -31,7 +31,11 @@ Google Authenticator has a feature that allows you to export. At the moment, thi
 4. Use something like Slack or WhatsApp to make that URI available on your computer.
 5. Copy the URI into the text field on the import page.
 
-Yes, its aggro, but I hope to simplify this soon by adding camera support so that you can just show the QR code to the web app.
+Or, if you have a webcam on your computer, pick the '**Scan QR Code**' on the import page, allow access to your camera, and
+center the QR code from Google Authenticator in the preview window. Once the code is recognised, it will populate the 
+text field, and import.
+
+![scan_qr_code](./doc/screenshots/scan_qr_code.webp)
 
 ## Running locally
 
