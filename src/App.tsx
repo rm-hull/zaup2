@@ -1,4 +1,4 @@
-import { Text, useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import useOtpParameters from "./hooks/useOtpParameters";
@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Settings from "./pages/Settings";
 import Tag from "./pages/Tag";
 import { type MigrationPayload } from "./proto/migration_payload";
+import About from "./pages/About";
 
 export const App = (): JSX.Element => {
   const toast = useToast();
@@ -33,7 +34,7 @@ export const App = (): JSX.Element => {
   return (
     <Sidebar>
       <Routes>
-        <Route path="/about" element={<Text>About page</Text>} />
+        <Route path="/about" element={<About />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/import" element={<ImportURL onSubmit={storeOTPParameters} />} />
         <Route path="/tags/:tag" element={<Tag />} />

@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import * as R from "ramda";
 import { useMemo } from "react";
-import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag } from "react-icons/fi";
+import { FiCompass, FiHome, FiLogIn, FiSettings, FiTag, FiMessageSquare } from "react-icons/fi";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
@@ -98,6 +98,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
           </NavItem>
           <NavItem label="Import" icon={FiLogIn} path="/import" />
           <NavItem label="Settings" icon={FiSettings} path="/settings" />
+          <NavItem label="About" icon={FiMessageSquare} path="/about" />
         </Box>
         <Box pb={12}>
           <CountdownTimer duration={30} />
