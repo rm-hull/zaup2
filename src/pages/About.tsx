@@ -38,6 +38,10 @@ export default function About(): JSX.Element | null {
         <Box>
           Build info: <Code>{import.meta.env.VITE_GIT_COMMIT_HASH}</Code>, {import.meta.env.VITE_GIT_COMMIT_DATE}
         </Box>
+
+        <Box>
+          Google API client ID: <Code>{import.meta.env.VITE_GOOGLE_API_CLIENT_ID}</Code>
+        </Box>
       </Text>
 
       <Heading size="md">MIT License</Heading>
