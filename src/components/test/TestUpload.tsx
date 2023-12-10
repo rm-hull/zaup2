@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import { type JSX } from "react";
 import { uploadFile } from "../../api/googleDrive";
-import { ipAddress } from "../../api/ipify";
+// import { ipAddress } from "../../api/ipify";
 import useAccessToken from "../../hooks/useAccessToken";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import useOtpParameters from "../../hooks/useOtpParameters";
@@ -18,7 +18,7 @@ export default function TestUpload(): JSX.Element {
         settings: settings ?? {},
         lastSync: {
           on: new Date().toUTCString(),
-          from: await ipAddress(),
+          from: "TBC", //await ipAddress(),
           url: window.location.href,
         },
       };
