@@ -1,4 +1,4 @@
-import { Box, Code, Heading, Link, Stack, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Code, Heading, Link, Stack, Text, VStack, useColorModeValue } from "@chakra-ui/react";
 import { type JSX } from "react";
 
 export default function About(): JSX.Element | null {
@@ -30,19 +30,20 @@ export default function About(): JSX.Element | null {
         storage is encrypted using AES using a master password.
       </Text>
 
-      <Text>
-        <Link isExternal color="blue.400" href="https://github.com/rm-hull/zaup2">
-          https://github.com/rm-hull/zaup2
-        </Link>
-
-        <Box>
+      <VStack gap={0} align="left">
+        <Text>
+          <Link isExternal color="blue.400" href="https://github.com/rm-hull/zaup2">
+            https://github.com/rm-hull/zaup2
+          </Link>
+        </Text>
+        <Text>
           Build info: <Code>{import.meta.env.VITE_GIT_COMMIT_HASH}</Code>, {import.meta.env.VITE_GIT_COMMIT_DATE}
-        </Box>
+        </Text>
 
-        <Box>
+        <Text>
           Google API client ID: <Code>{import.meta.env.VITE_GOOGLE_API_CLIENT_ID}</Code>
-        </Box>
-      </Text>
+        </Text>
+      </VStack>
 
       <Heading size="md">MIT License</Heading>
       <Text>Copyright &copy; {new Date().getFullYear()} Richard Hull</Text>
