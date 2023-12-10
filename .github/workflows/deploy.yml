@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install
-      
+
       # IGNORE FOR NOW WHILE THERE IS MUCH CARNAGE
       # - name: Lint
       #   run: yarn lint
@@ -48,17 +48,17 @@ jobs:
 
       - name: Build
         env:
-          VITE_GOOGLE_API_CLIENT_ID: ${{ env.VITE_GOOGLE_API_CLIENT_ID }}
+          VITE_GOOGLE_API_CLIENT_ID: ${{ secrets.VITE_GOOGLE_API_CLIENT_ID }}
         run: yarn build && cp ./dist/index.html ./dist/404.html
-          
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
-  
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: "./dist"
-  
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
