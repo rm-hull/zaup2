@@ -41,7 +41,7 @@ export default function About(): JSX.Element | null {
       </Text>
 
       <Heading size="md">MIT License</Heading>
-      <Text>Copyright (c) 2021 Richard Hull</Text>
+      <Text>Copyright &copy; {new Date().getFullYear()} Richard Hull</Text>
 
       <Text>
         Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
