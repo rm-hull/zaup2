@@ -2,6 +2,7 @@ import useLocalStorage from "./useLocalStorage";
 import { type sortBy } from "../otp";
 
 interface GeneralSettings {
+  syncToGoogleDrive?: boolean;
   showQRCode?: boolean;
   showCountdownTimer?: boolean;
   showCounts?: boolean;
