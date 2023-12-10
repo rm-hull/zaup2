@@ -100,9 +100,11 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
           <NavItem label="Settings" icon={FiSettings} path="/settings" />
           <NavItem label="About" icon={FiMessageSquare} path="/about" />
         </Box>
-        <Box pb={12}>
-          <CountdownTimer duration={30} />
-        </Box>
+        {(settings?.showCountdownTimer ?? false) && (
+          <Box pb={12}>
+            <CountdownTimer duration={30} />
+          </Box>
+        )}
       </VStack>
     </Box>
   );

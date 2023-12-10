@@ -3,6 +3,7 @@ import { type sortBy } from "../otp";
 
 interface GeneralSettings {
   showQRCode?: boolean;
+  showCountdownTimer?: boolean;
   showCounts?: boolean;
   sortOrder?: keyof typeof sortBy;
   encrypted?: boolean;

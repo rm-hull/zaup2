@@ -26,6 +26,10 @@ export default function GeneralSettings(): JSX.Element {
     updateSettings({ ...settings, showQRCode: !(settings?.showQRCode ?? false) });
   };
 
+  const handleToggleShowCountdownTimer = (): void => {
+    updateSettings({ ...settings, showCountdownTimer: !(settings?.showCountdownTimer ?? false) });
+  };
+
   const handleToggleShowCounts = (): void => {
     updateSettings({ ...settings, showCounts: !(settings?.showCounts ?? false) });
   };
@@ -48,6 +52,17 @@ export default function GeneralSettings(): JSX.Element {
         <Switch id="show-qr-codes" isChecked={settings?.showQRCode} onChange={handleToggleShowQRCode} />
         <FormLabel htmlFor="show-qr-codes" mb={0} ml={2}>
           Show QR codes
+        </FormLabel>
+      </FormControl>
+
+      <FormControl display="flex" alignItems="center">
+        <Switch
+          id="show-countdown-timer"
+          isChecked={settings?.showCountdownTimer}
+          onChange={handleToggleShowCountdownTimer}
+        />
+        <FormLabel htmlFor="show-countdown-timer" mb={0} ml={2}>
+          Show countdown timer
         </FormLabel>
       </FormControl>
 
