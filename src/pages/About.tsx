@@ -1,4 +1,4 @@
-import { Box, Code, Heading, Link, Stack, Text, VStack, useColorModeValue } from "@chakra-ui/react";
+import { Code, Heading, Link, Stack, Text, VStack, useColorModeValue } from "@chakra-ui/react";
 import { type JSX } from "react";
 
 export default function About(): JSX.Element | null {
