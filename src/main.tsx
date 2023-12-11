@@ -8,7 +8,6 @@ import ErrorFallback from "./components/ErrorFallback";
 import reportWebVitals from "./reportWebVitals";
 import PasswordProtection from "./components/PasswordProtection";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import AutoLogin from "./components/AutoLogin";
 
 const container = document.getElementById("root");
 if (container === null) {
@@ -26,7 +25,6 @@ root.render(
         <Router basename="/zaup2">
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <PasswordProtection>
-              <AutoLogin />
               <App />
             </PasswordProtection>
           </ErrorBoundary>
