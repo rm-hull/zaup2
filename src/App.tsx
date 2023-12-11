@@ -12,7 +12,6 @@ import NotFound from "./pages/NotFound";
 import Settings from "./pages/Settings";
 import Tag from "./pages/Tag";
 import { type MigrationPayload } from "./proto/migration_payload";
-import GoogleDriveTest from "./pages/GoogleDriveTest";
 
 export const App = (): JSX.Element => {
   const toast = useToast();
@@ -41,7 +40,6 @@ export const App = (): JSX.Element => {
         <Route path="/import" element={<ImportURL onSubmit={storeOTPParameters} />} />
         <Route path="/tags/:tag" element={<Tag />} />
         <Route path="/issuers/:issuer" element={<Issuer />} />
-        <Route path="/google-drive-test" element={<GoogleDriveTest />} />
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

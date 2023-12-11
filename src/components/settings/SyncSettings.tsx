@@ -4,7 +4,7 @@ import { GoogleDrive, type Payload } from "../../api/googleDrive";
 import {
   Box,
   Button,
-  VStack,
+  Heading,
   Step,
   StepDescription,
   StepIcon,
@@ -14,6 +14,7 @@ import {
   StepStatus,
   StepTitle,
   Stepper,
+  VStack,
   useSteps,
 } from "@chakra-ui/react";
 import useAccessToken from "../../hooks/useAccessToken";
@@ -83,6 +84,10 @@ export default function TestUpload(): JSX.Element {
     process().catch(console.error);
   }, [data, setProcessing, setActiveStep, activeStep, accessToken, settings, payload]);
 
+  if (!(settings?.syncToGoogleDrive ?? false)) {
+    return <></>;
+  }
+
   const handleSync = (): void => {
     setActiveStep(-1);
     setProcessing(true);
@@ -92,26 +97,30 @@ export default function TestUpload(): JSX.Element {
   };
 
   return (
-    <VStack gap={3} alignItems="flex-start">
-      <Stepper index={activeStep}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepIndicator>
-              <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
-            </StepIndicator>
+    <>
+      <Heading size="md">Sync Settings</Heading>
 
-            <Box flexShrink="0">
-              <StepTitle>{step.title}</StepTitle>
-              <StepDescription>{step.description}</StepDescription>
-            </Box>
+      <VStack gap={3} alignItems="flex-start">
+        <Stepper index={activeStep}>
+          {steps.map((step, index) => (
+            <Step key={index}>
+              <StepIndicator>
+                <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
+              </StepIndicator>
 
-            <StepSeparator />
-          </Step>
-        ))}
-      </Stepper>
-      <Button isLoading={processing} loadingText="Syncing..." onClick={handleSync}>
-        Sync Data
-      </Button>
-    </VStack>
+              <Box flexShrink="0">
+                <StepTitle>{step.title}</StepTitle>
+                <StepDescription>{step.description}</StepDescription>
+              </Box>
+
+              <StepSeparator />
+            </Step>
+          ))}
+        </Stepper>
+        <Button isLoading={processing} loadingText="Syncing..." onClick={handleSync}>
+          Sync Data
+        </Button>
+      </VStack>
+    </>
   );
 }
