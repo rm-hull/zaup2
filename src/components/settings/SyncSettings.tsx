@@ -15,7 +15,6 @@ import {
   StepStatus,
   StepTitle,
   Stepper,
-  VStack,
   useSteps,
 } from "@chakra-ui/react";
 import useAccessToken from "../../hooks/useAccessToken";
