@@ -4,6 +4,7 @@ import { GoogleDrive, type Payload } from "../../api/googleDrive";
 import {
   Box,
   Button,
+  HStack,
   Heading,
   Step,
   StepDescription,
@@ -100,7 +101,7 @@ export default function TestUpload(): JSX.Element {
     <>
       <Heading size="md">Sync Settings</Heading>
 
-      <VStack gap={3} alignItems="flex-start">
+      <HStack alignItems="flex-start" gap={50}>
         <Stepper index={activeStep}>
           {steps.map((step, index) => (
             <Step key={index}>
@@ -120,7 +121,7 @@ export default function TestUpload(): JSX.Element {
         <Button isLoading={processing} loadingText="Syncing..." onClick={handleSync}>
           Sync Data
         </Button>
-      </VStack>
+      </HStack>
     </>
   );
 }
