@@ -42,7 +42,7 @@
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin-ts": "^1.5.0",
+    "@stylistic/eslint-plugin-ts": "^1.5.1",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
