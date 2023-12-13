@@ -37,7 +37,7 @@ async function timeout(ms: number): Promise<void> {
 export default function SyncSettings(): JSX.Element {
   const [processing, setProcessing] = useState(false);
   const [payload, setPayload] = useState<Payload>();
-  const [settings] = useGeneralSettings();
+  const [settings, updateSettings] = useGeneralSettings();
   const { data = [], update } = useOtpParameters({ includeArchived: true });
   const { drive, login, error } = useGoogleDrive("zaup2_sync.json");
   const toast = useToast();
@@ -82,10 +82,11 @@ export default function SyncSettings(): JSX.Element {
         }
 
         if (activeStep === 3) {
-          const newSet = merge(payload?.otp ?? [], data);
+          const newSettings = { ...payload?.settings, ...settings };
+          const newOTPs = merge(payload?.otp ?? [], data);
           await drive.upload({
-            settings: { ...payload?.settings, ...settings },
-            otp: newSet,
+            settings: newSettings,
+            otp: newOTPs,
             lastSync: {
               on: new Date().toUTCString(),
               from: "TBC", // await ipAddress(),
@@ -96,17 +97,31 @@ export default function SyncSettings(): JSX.Element {
           setActiveStep(4);
           toast({
             title: "Sync with Google Drive complete",
-            description: `There were ${newSet.length - (payload?.otp ?? []).length} new OTPs added.`,
+            description: `There were ${newOTPs.length - (payload?.otp ?? []).length} new OTPs added.`,
             status: "success",
             duration: 9000,
             isClosable: true,
           });
-          update(...newSet);
+          update(...newOTPs);
+          updateSettings(newSettings);
         }
       }
     };
     process().catch(console.error);
-  }, [data, setProcessing, processing, error, toast, drive, setActiveStep, activeStep, settings, payload]);
+  }, [
+    data,
+    setProcessing,
+    processing,
+    error,
+    toast,
+    drive,
+    setActiveStep,
+    activeStep,
+    settings,
+    payload,
+    update,
+    updateSettings,
+  ]);
 
   if (!(settings?.syncToGoogleDrive ?? false)) {
     return <></>;
