@@ -1,7 +1,7 @@
 # ZAUP 2
 
 ZAUP 2 is a [TOTP](https://en.wikipedia.org/wiki/Time-based_one-time_password) authenticator app for the web: It acts much like
-[Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US), 
+[Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US),
 but stores TOTP secrets in your browser's local storage, and they never leave your machine. Data in local storage is encrypted
 using AES using a master password.
 
@@ -32,7 +32,7 @@ Google Authenticator has a feature that allows you to export. At the moment, thi
 5. Copy the URI into the text field on the import page.
 
 Or, if you have a webcam on your computer, pick the '**Scan QR Code**' on the import page, allow access to your camera, and
-center the QR code from Google Authenticator in the preview window. Once the code is recognised, it will populate the 
+center the QR code from Google Authenticator in the preview window. Once the code is recognised, it will populate the
 text field, and import.
 
 ![scan_qr_code](./doc/screenshots/scan_qr_code.webp)
@@ -42,9 +42,13 @@ text field, and import.
 You must have Node 20 and Yarn installed. To begin:
 
 ```console
+export VITE_GOOGLE_API_CLIENT_ID=<your-google-api-client-id>
 yarn install
 yarn dev
 ```
+
+You will need to create a project in [Google Developer Console](https://console.cloud.google.com/apis/credentials) and
+create an OAuth 2.0 Client ID. This can probably skipped if you dont enable **Sync to Google Drive** in the settings.
 
 ## FAQ
 
@@ -52,7 +56,7 @@ Why?
 : It's more convenient having TOTP's available locally that can be copy-pasted rather than on my phone. It also serves as a backup if you ever loose you phone or dont have it to hand.
 
 Isn't it less secure?
-: Possibly, but the data is encrypted with AES using [Crypto-JS](https://github.com/brix/crypto-js). 
+: Possibly, but the data is encrypted with AES using [Crypto-JS](https://github.com/brix/crypto-js).
 
 ## License
 

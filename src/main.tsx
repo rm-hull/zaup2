@@ -7,7 +7,6 @@ import { App } from "./App";
 import ErrorFallback from "./components/ErrorFallback";
 import reportWebVitals from "./reportWebVitals";
 import PasswordProtection from "./components/PasswordProtection";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const container = document.getElementById("root");
 if (container === null) {
@@ -20,17 +19,15 @@ const manager = createLocalStorageManager("zaup2.color-mode");
 root.render(
   <React.StrictMode>
     <ColorModeScript storageKey="zaup2.color-mode" />
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_API_CLIENT_ID as string}>
-      <ChakraProvider theme={theme} colorModeManager={manager}>
-        <Router basename="/zaup2">
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <PasswordProtection>
-              <App />
-            </PasswordProtection>
-          </ErrorBoundary>
-        </Router>
-      </ChakraProvider>
-    </GoogleOAuthProvider>
+    <ChakraProvider theme={theme} colorModeManager={manager}>
+      <Router basename="/zaup2">
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <PasswordProtection>
+            <App />
+          </PasswordProtection>
+        </ErrorBoundary>
+      </Router>
+    </ChakraProvider>
   </React.StrictMode>
 );
 
