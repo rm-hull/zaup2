@@ -99,3 +99,14 @@ const isTimestampWithinLastNDays = (timestamp: number, days: number): boolean =>
   const daysAgo = Date.now() - (days - 1) * 24 * 60 * 60 * 1000; // Subtracting (n-1) days
   return timestamp >= daysAgo;
 };
+
+export const merge = (updates: OTP[] = [], list: OTP[] = []): OTP[] => {
+  return updates.reduce((acc: OTP[], curr: OTP) => {
+    const found = acc?.findIndex((otp) => otp.issuer === curr.issuer && otp.name === curr.name);
+    if (found >= 0) {
+      acc[found] = { ...acc[found], ...curr, lastUpdated: Date.now() };
+      return acc;
+    }
+    return [...acc, { ...curr, created: Date.now() }];
+  }, list);
+};

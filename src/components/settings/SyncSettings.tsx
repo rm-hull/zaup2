@@ -1,5 +1,5 @@
 import { useEffect, useState, type JSX } from "react";
-import { GoogleDrive, type Payload } from "../../api/googleDrive";
+import { type Payload } from "../../api/googleDrive";
 // import { ipAddress } from "../../api/ipify";
 import {
   Box,
@@ -16,10 +16,12 @@ import {
   StepTitle,
   Stepper,
   useSteps,
+  useToast,
 } from "@chakra-ui/react";
-import useAccessToken from "../../hooks/useAccessToken";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
+import useGoogleDrive from "../../hooks/useGoogleDrive";
 import useOtpParameters from "../../hooks/useOtpParameters";
+import { merge } from "../../otp";
 
 const steps = [
   { title: "Authenticate", description: "to Google Drive" },
@@ -32,27 +34,40 @@ async function timeout(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export default function TestUpload(): JSX.Element {
+export default function SyncSettings(): JSX.Element {
   const [processing, setProcessing] = useState(false);
   const [payload, setPayload] = useState<Payload>();
   const [settings] = useGeneralSettings();
-  const { data = [] } = useOtpParameters();
-  const { accessToken, login } = useAccessToken("https://www.googleapis.com/auth/drive.file");
-
-  const { activeStep, setActiveStep } = useSteps({
-    index: -1,
-    count: steps.length,
-  });
+  const { data = [], update } = useOtpParameters();
+  const { drive, login, error } = useGoogleDrive("zaup2_sync.json");
+  const toast = useToast();
+  const { activeStep, setActiveStep } = useSteps({ index: -1, count: steps.length });
 
   useEffect(() => {
     const process = async (): Promise<void> => {
-      if (accessToken !== undefined) {
+      if (!processing) {
+        return;
+      }
+
+      if (error !== undefined) {
+        console.log({ error });
+        setProcessing(false);
+        setActiveStep(-1);
+        toast({
+          title: "Unable to sync with Google Drive",
+          description: (error as Error).message,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        return;
+      }
+
+      if (drive !== undefined) {
         if (activeStep <= 0) {
           setActiveStep(1);
           return;
         }
-
-        const drive = new GoogleDrive(accessToken, "zaup2_sync.json");
 
         if (activeStep === 1) {
           setPayload(await drive.download());
@@ -61,15 +76,16 @@ export default function TestUpload(): JSX.Element {
         }
 
         if (activeStep === 2) {
-          await timeout(5000);
+          await timeout(2000);
           setActiveStep(3);
           return;
         }
 
         if (activeStep === 3) {
+          const newSet = merge(payload?.otp ?? [], data);
           await drive.upload({
             settings: { ...payload?.settings, ...settings },
-            otp: [...(payload?.otp ?? []), ...data],
+            otp: newSet,
             lastSync: {
               on: new Date().toUTCString(),
               from: "TBC", // await ipAddress(),
@@ -78,22 +94,44 @@ export default function TestUpload(): JSX.Element {
           });
           setProcessing(false);
           setActiveStep(4);
+          toast({
+            title: "Sync with Google Drive complete",
+            description: `There were ${newSet.length - (payload?.otp ?? []).length} new OTPs added.`,
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+          update(...newSet);
         }
       }
     };
     process().catch(console.error);
-  }, [data, setProcessing, setActiveStep, activeStep, accessToken, settings, payload]);
+  }, [data, setProcessing, processing, error, toast, drive, setActiveStep, activeStep, settings, payload]);
 
   if (!(settings?.syncToGoogleDrive ?? false)) {
     return <></>;
   }
 
   const handleSync = (): void => {
-    setActiveStep(-1);
+    setActiveStep(0);
     setProcessing(true);
-    if (accessToken === undefined) {
+    if (drive === undefined) {
       login();
     }
+    // setTimeout(() => {
+    //   console.log("Timeout occurred, processing = " + processing);
+    //   if (processing) {
+    //     setProcessing(false);
+    //     setActiveStep(-1);
+    //     toast({
+    //       title: "Unable to sync with Google Drive",
+    //       description: "Timeout occurred",
+    //       status: "error",
+    //       duration: 9000,
+    //       isClosable: true,
+    //     });
+    //   }
+    // }, 20000);
   };
 
   return (
