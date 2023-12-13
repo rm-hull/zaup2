@@ -38,7 +38,7 @@ export default function SyncSettings(): JSX.Element {
   const [processing, setProcessing] = useState(false);
   const [payload, setPayload] = useState<Payload>();
   const [settings] = useGeneralSettings();
-  const { data = [], update } = useOtpParameters();
+  const { data = [], update } = useOtpParameters({ includeArchived: true });
   const { drive, login, error } = useGoogleDrive("zaup2_sync.json");
   const toast = useToast();
   const { activeStep, setActiveStep } = useSteps({ index: -1, count: steps.length });
