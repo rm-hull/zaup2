@@ -60,7 +60,15 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
           <NavItem label="Home" icon={FiHome} path="/" />
           <NavItem label="Tags" icon={FiTag} count={settings?.showCounts ? systemTags.length + tags.length : undefined}>
             <Box w="full">
-              <VStack ml={8} alignItems="flex-start" w="full" maxHeight="45vh" overflowY="scroll" gap={0}>
+              <VStack
+                ml={8}
+                alignItems="flex-start"
+                w="full"
+                maxHeight="45vh"
+                overflowY="scroll"
+                gap={0}
+                overflowX="hidden"
+              >
                 {systemTags.map((tag) => (
                   <NavItem
                     key={tag}
