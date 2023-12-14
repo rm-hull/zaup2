@@ -75,7 +75,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
       >
         <Stack align="center" justify="center" direction="row" mt={4}>
           <Image src={getCachedFavicon(otp)} h={5} />
-          <Text fontWeight={600} color="gray.500">
+          <Text fontWeight={600} color="gray.500" noOfLines={1} wordBreak="break-all">
             <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
               {otp.label ?? otp.issuer ?? "«Unknown»"}
             </Highlight>
@@ -115,7 +115,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
 
         {otp.name && (
           <Tooltip label={otp.name}>
-            <Text fontWeight={600} color="gray.500" mb={4} noOfLines={1}>
+            <Text fontWeight={600} color="gray.500" mb={4} noOfLines={1} wordBreak="break-all">
               <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
                 {otp.name}
               </Highlight>
