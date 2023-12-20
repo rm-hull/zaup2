@@ -1,17 +1,17 @@
 import {
   Box,
   Center,
+  HStack,
   Heading,
   Highlight,
   IconButton,
   Image,
-  Stack,
   Text,
   Tooltip,
-  useClipboard,
-  useColorModeValue,
   Wrap,
   WrapItem,
+  useClipboard,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { type TOTP } from "otpauth";
 import QRCode from "qrcode.react";
@@ -73,17 +73,17 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
         p={4}
         textAlign="center"
       >
-        <Stack align="center" justify="center" direction="row" mt={4}>
+        <HStack align="center" justify="center" mt={4}>
           <Image src={getCachedFavicon(otp)} h={5} />
           <Text fontWeight={600} color="gray.500" noOfLines={1} wordBreak="break-all">
             <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
               {otp.label ?? otp.issuer ?? "«Unknown»"}
             </Highlight>
           </Text>
-        </Stack>
+        </HStack>
 
         {showQRCode === true && (
-          <Stack align="center" justify="center" direction="row" mt={4}>
+          <HStack align="center" justify="center" mt={4}>
             <QRCode
               renderAs="canvas"
               size={256}
@@ -91,10 +91,10 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
               fgColor={color}
               bgColor={bg}
             />
-          </Stack>
+          </HStack>
         )}
 
-        <Stack align="center" justify="center" direction="row" mt={showQRCode === true ? 4 : 0}>
+        <HStack align="center" justify="center" mt={showQRCode === true ? 4 : 0}>
           <Heading fontSize="5xl" fontFamily="body">
             {code ?? "╰(°□°)╯"}
           </Heading>
@@ -111,7 +111,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
               />
             </Tooltip>
           )}
-        </Stack>
+        </HStack>
 
         {otp.name && (
           <Tooltip label={otp.name}>
@@ -123,7 +123,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
           </Tooltip>
         )}
 
-        <Stack align="center" justify="center" direction="row" mt={4}>
+        <HStack align="center" justify="center" mt={4}>
           <Wrap justify="center">
             {otp.tags?.map((tag) => (
               <WrapItem key={tag}>
@@ -132,7 +132,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
             ))}
             <SystemTags otp={otp} />
           </Wrap>
-        </Stack>
+        </HStack>
       </Box>
     </Center>
   );

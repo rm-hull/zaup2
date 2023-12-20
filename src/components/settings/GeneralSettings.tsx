@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, HStack, Heading, Radio, RadioGroup, Stack, Switch, VStack } from "@chakra-ui/react";
+import { FormControl, FormLabel, HStack, Heading, Radio, RadioGroup, Switch, VStack } from "@chakra-ui/react";
 import { type JSX } from "react";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import { type sortBy } from "../../otp";
@@ -36,11 +36,11 @@ export default function GeneralSettings(): JSX.Element {
           Sort grid by:
         </FormLabel>
         <RadioGroup id="sort-order" onChange={handleUpdateSortOrder} value={settings?.sortOrder}>
-          <Stack direction="row">
+          <HStack gap={4}>
             <Radio value="name">name</Radio>
             <Radio value="lastUsed">last used</Radio>
             <Radio value="mostUsed">most used</Radio>
-          </Stack>
+          </HStack>
         </RadioGroup>
       </FormControl>
 
