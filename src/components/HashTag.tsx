@@ -15,7 +15,7 @@ export default function HashTag({ bg, label, onClick, onClose, system = false }:
   return (
     <Tag size="sm" px={2} py={1} bg={system ? systemBg : bg} fontWeight="400">
       <TagLabel>
-        {onClick ? (
+        {onClick !== undefined ? (
           <Link onClick={onClick}>#{label.toUpperCase()}</Link>
         ) : (
           <Link as={RouterLink} to={`/tags/${label}`}>
@@ -23,7 +23,7 @@ export default function HashTag({ bg, label, onClick, onClose, system = false }:
           </Link>
         )}
       </TagLabel>
-      {onClose && <TagCloseButton onClick={onClose} />}
+      {onClose !== undefined && <TagCloseButton onClick={onClose} />}
     </Tag>
   );
 }

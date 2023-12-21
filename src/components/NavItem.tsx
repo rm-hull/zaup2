@@ -48,7 +48,7 @@ export default function NavItem({ label, icon, path, count, children, color, ...
           _hover={{ bg: "cyan.400", color: "white" }}
           {...rest}
         >
-          {icon && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
+          {icon !== undefined && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
           <Text noOfLines={1}>{label}</Text>
           <Spacer />
           {count !== undefined && (

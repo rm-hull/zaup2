@@ -10,9 +10,9 @@ type UseLocalStorageReturnType<T> = [T | undefined, (value: T | undefined) => vo
 
 const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageReturnType<T> => {
   const decryptData = (): T | undefined => {
-    if (!secretKey) {
+    if (secretKey === undefined) {
       const item = window.localStorage.getItem(key);
-      return item ? (JSON.parse(item) as T) : undefined;
+      return item === null ? undefined : (JSON.parse(item) as T);
     }
 
     let data = window.localStorage.getItem(key);
@@ -35,7 +35,7 @@ const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageRet
   };
 
   const encryptData = <T>(data: T): void => {
-    if (!secretKey) {
+    if (secretKey === undefined) {
       window.localStorage.setItem(key, JSON.stringify(data));
       return;
     }

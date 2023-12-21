@@ -16,7 +16,7 @@ interface GroupProps {
 }
 
 function matches(otp: OTP, searchTerm?: string): boolean {
-  if (!searchTerm) {
+  if (searchTerm === undefined) {
     return true;
   }
 
@@ -29,7 +29,7 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
   const { data = [] } = useOtpParameters();
   const [settings] = useGeneralSettings();
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
-  const parent = useRef(null);
+  const parent = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState<string | undefined>();
 
   const sortOrder = settings?.sortOrder ?? "name";
@@ -38,7 +38,7 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
   const filtered = useMemo(() => sortFn(data)?.filter(filterPred), [data, filterPred, sortFn]);
 
   useEffect(() => {
-    if (parent.current) {
+    if (parent.current !== null) {
       const { enable, disable } = autoAnimate(parent.current);
       sortOrder === "name" ? disable() : enable();
     }
@@ -51,7 +51,7 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
     setRefresh(timeLeft === 0 ? now : undefined);
   }, 1000);
 
-  if (filtered.length === 0 && noData) {
+  if (filtered.length === 0 && noData !== undefined) {
     return noData;
   }
 

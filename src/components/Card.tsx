@@ -23,6 +23,7 @@ import { getEncodedSecret, getTotp } from "../otp";
 import { type OTP } from "../types";
 import HashTag from "./HashTag";
 import SystemTags from "./SystemTags";
+import * as R from "ramda";
 
 interface CardProps {
   otp: OTP;
@@ -113,11 +114,11 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
           )}
         </HStack>
 
-        {otp.name && (
+        {!R.isEmpty(otp.name) && (
           <Tooltip label={otp.name}>
             <Text fontWeight={600} color="gray.500" mb={4} noOfLines={1} wordBreak="break-all">
               <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
-                {otp.name}
+                {otp.name ?? ""}
               </Highlight>
             </Text>
           </Tooltip>

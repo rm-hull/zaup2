@@ -58,7 +58,11 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
             </HStack>
           </Flex>
           <NavItem label="Home" icon={FiHome} path="/" />
-          <NavItem label="Tags" icon={FiTag} count={settings?.showCounts ? systemTags.length + tags.length : undefined}>
+          <NavItem
+            label="Tags"
+            icon={FiTag}
+            count={settings?.showCounts === true ? systemTags.length + tags.length : undefined}
+          >
             <Box w="full">
               <VStack
                 ml={8}
@@ -91,14 +95,14 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
               </VStack>
             </Box>
           </NavItem>
-          <NavItem label="Issuers" icon={FiCompass} count={settings?.showCounts ? issuers.length : undefined}>
+          <NavItem label="Issuers" icon={FiCompass} count={settings?.showCounts === true ? issuers.length : undefined}>
             <VStack ml={8} alignItems="flex-start" w="full" maxHeight="45vh" overflowY="scroll" gap={0}>
               {issuers.map((issuer) => (
                 <NavItem
                   key={issuer}
-                  label={issuer || "«Unknown»"}
+                  label={issuer ?? "«Unknown»"}
                   color={subMenuColor}
-                  path={`/issuers/${encodeURIComponent(issuer || "«Unknown»")}`}
+                  path={`/issuers/${encodeURIComponent(issuer ?? "«Unknown»")}`}
                   py={1}
                 />
               ))}

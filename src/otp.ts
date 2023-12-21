@@ -75,7 +75,7 @@ export const getTotp = (otp?: OTP, encodedSecret?: string): OTPAuth.TOTP | undef
       });
 
 export const getEncodedSecret = (otp?: OTP): string | undefined =>
-  otp?.secret && base32Encode(Uint8Array.from(Object.values(otp.secret)), "RFC4648");
+  otp?.secret === undefined ? undefined : base32Encode(Uint8Array.from(Object.values(otp.secret)), "RFC4648");
 
 export const getSystemTags = (otp: OTP): string[] => {
   const tags: string[] = [];
