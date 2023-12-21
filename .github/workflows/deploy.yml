@@ -34,9 +34,8 @@ jobs:
         run: |
           yarn install
 
-      # IGNORE FOR NOW WHILE THERE IS MUCH CARNAGE
-      # - name: Lint
-      #   run: yarn lint
+      - name: Lint
+        run: yarn lint || exit 0
 
       - name: Test
         run: yarn test:ci
