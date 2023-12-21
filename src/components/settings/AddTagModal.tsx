@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   FormControl,
+  FormErrorIcon,
   FormErrorMessage,
   Input,
   Modal,
@@ -15,23 +16,27 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import * as R from "ramda";
-import useOtpParameters from "../hooks/useOtpParameters";
-import HashTag from "./HashTag";
+import { type JSX } from "react";
+import useOtpParameters from "../../hooks/useOtpParameters";
+import HashTag from "../HashTag";
 
-type AddTagModalProps = {
+interface AddTagModalProps {
   isOpen: boolean;
   onAdd: (tag: string) => void;
   onCancel: () => void;
-};
-type AddTagForm = {
+}
+interface AddTagForm {
   tag: string;
-};
+}
 
-function validateTag(value: string) {
+function validateTag(value: string): string | undefined {
   if (value.trim().length === 0) {
     return "Value is required";
+  }
+  if (["NEW!", "UPDATED", "POPULAR"].includes(value.trim().toUpperCase())) {
+    return "Cannot use a reserved tag";
   }
   return undefined;
 }
@@ -39,13 +44,12 @@ function validateTag(value: string) {
 export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
-  const focusBg = useColorModeValue("gray.200", "gray.800");
   const tagBg = useColorModeValue("gray.50", "gray.800");
 
-  const { data } = useOtpParameters();
+  const { data = [] } = useOtpParameters();
   const tags = R.sortBy(R.toLower, R.uniq(data.flatMap((otp) => otp.tags ?? [])));
 
-  const handleAdd = (values: AddTagForm, actions: FormikHelpers<AddTagForm>) => {
+  const handleAdd = (values: AddTagForm, actions: FormikHelpers<AddTagForm>): void => {
     try {
       onAdd(values.tag);
     } finally {
@@ -59,7 +63,7 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
       <ModalContent>
         <ModalHeader>Add tag</ModalHeader>
         <Formik initialValues={{ tag: "" }} onSubmit={handleAdd}>
-          {() => (
+          {({ isValid }) => (
             <Form>
               <ModalBody>
                 {tags.length > 0 ? (
@@ -69,7 +73,13 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
                       <Wrap>
                         {tags.map((tag) => (
                           <WrapItem key={tag}>
-                            <HashTag label={tag} bg={tagBg} onClick={() => onAdd(tag)} />
+                            <HashTag
+                              label={tag}
+                              bg={tagBg}
+                              onClick={() => {
+                                onAdd(tag);
+                              }}
+                            />
                           </WrapItem>
                         ))}
                       </Wrap>
@@ -82,33 +92,18 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
                 <Field name="tag" validate={validateTag}>
                   {({ field, form }: FieldProps) => (
                     <FormControl isInvalid={form.errors.tag !== undefined && !!form.touched.tag}>
-                      <Input
-                        {...field}
-                        id="tag"
-                        type="text"
-                        color={color}
-                        bg={bg}
-                        border={0}
-                        _focus={{
-                          bg: focusBg,
-                          outline: "none",
-                        }}
-                      />
-                      <FormErrorMessage>{form.errors.tag}</FormErrorMessage>
+                      <Input {...field} id="tag" type="text" color={color} bg={bg} />
+                      <FormErrorMessage>
+                        <FormErrorIcon />
+                        <ErrorMessage name="tag" />
+                      </FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
               </ModalBody>
 
               <ModalFooter>
-                <Button
-                  type="submit"
-                  bg="blue.400"
-                  color="white"
-                  _hover={{ bg: "blue.500" }}
-                  _focus={{ bg: "blue.500" }}
-                  mr={3}
-                >
+                <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
                   Add
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>

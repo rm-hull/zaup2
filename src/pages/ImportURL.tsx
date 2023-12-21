@@ -1,23 +1,36 @@
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
   Button,
   chakra,
+  Collapse,
   Flex,
   FormControl,
+  FormErrorIcon,
   FormErrorMessage,
   Heading,
+  Link,
   Stack,
   Text,
   Textarea,
   useColorModeValue,
+  useDisclosure,
+  useToast,
+  VStack,
 } from "@chakra-ui/react";
-import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikErrors, type FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
+import { type JSX } from "react";
 import google_authenticator from "../assets/google_authenticator.svg";
+import QrScannerButton from "../components/import/QrScannerButton";
+import { algorithmFrom } from "../otp";
 import { MigrationPayload } from "../proto/migration_payload";
 
-function validateURL(value: string) {
-  if (!value) {
+function validateURL(value: string | undefined): string | undefined {
+  if (value === undefined || value === null) {
     return "Value is required";
   }
 
@@ -30,41 +43,33 @@ function validateURL(value: string) {
       }
       return undefined;
     } else {
-      return `Unknown error: ${err}`;
+      return `Unknown error: ${(err as Error).message}`;
     }
   }
   return undefined;
 }
 
-type ImportForm = {
+interface ImportForm {
   url: string;
-};
+}
 
-type ImportURLProps = {
+interface ImportURLProps {
   onSubmit: (otp_parameters: MigrationPayload.OtpParameters[]) => void;
-};
+}
 
-const getAlgorithm = (alg?: string): MigrationPayload.Algorithm => {
-  switch (alg) {
-    case "MD5":
-      return MigrationPayload.Algorithm.ALGORITHM_MD5;
-    case "SHA1":
-      return MigrationPayload.Algorithm.ALGORITHM_SHA1;
-    case "SHA256":
-      return MigrationPayload.Algorithm.ALGORITHM_SHA256;
-    case "SHA512":
-      return MigrationPayload.Algorithm.ALGORITHM_SHA512;
-    default:
-      return MigrationPayload.Algorithm.ALGORITHM_UNSPECIFIED;
-  }
-};
+type SetFieldValueType<Values> = (
+  field: string,
+  value: unknown,
+  shouldValidate?: boolean
+) => Promise<FormikErrors<Values> | void>;
 
 export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
+  const toast = useToast();
+  const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
-  const focusBg = useColorModeValue("gray.200", "gray.800");
 
-  const handleImport = (values: ImportForm, actions: FormikHelpers<ImportForm>) => {
+  const handleImport = (values: ImportForm, actions: FormikHelpers<ImportForm>): void => {
     try {
       const parsed = OTPAuth.URI.parse(decodeURIComponent(values.url));
       onSubmit([
@@ -72,7 +77,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
           name: parsed.label,
           issuer: parsed.issuer,
           secret: new Uint8Array(parsed.secret.buffer),
-          algorithm: getAlgorithm(parsed.algorithm),
+          algorithm: algorithmFrom(parsed.algorithm),
           digits:
             parsed.digits === 6
               ? MigrationPayload.DigitCount.DIGIT_COUNT_SIX
@@ -89,6 +94,7 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
           const data = decodeURIComponent(values.url).slice(33);
           const payload = MigrationPayload.deserialize(new BinaryReader(data));
           onSubmit(payload.otp_parameters);
+          return;
         } catch (err) {
           if (err instanceof Error) {
             actions.setFieldError("url", `Unable to parse URL: ${err.message}`);
@@ -96,12 +102,79 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
           }
         }
       }
-      // eslint-disable-next-line no-console
       console.error(err);
       actions.setFieldError("url", `Unable to parse URL: Unknown error`);
     } finally {
       actions.setSubmitting(false);
     }
+  };
+
+  const randomSecret = (length: number): Uint8Array => {
+    const randomValues = new Uint8Array(length);
+    window.crypto.getRandomValues(randomValues);
+
+    // Ensure values are within the basic Latin-1 codepage, A-Z only
+    for (let i = 0; i < randomValues.length; i++) {
+      randomValues[i] = (randomValues[i] % 26) + 65;
+    }
+    return randomValues;
+  };
+
+  const addDummyOtpCodes = (setFieldValue: SetFieldValueType<ImportForm>) => async () => {
+    const payload = MigrationPayload.fromObject({
+      otp_parameters: [
+        {
+          name: "github.com/dummy1",
+          issuer: "GitHub",
+          type: MigrationPayload.OtpType.OTP_TYPE_TOTP,
+          digits: MigrationPayload.DigitCount.DIGIT_COUNT_SIX,
+          algorithm: MigrationPayload.Algorithm.ALGORITHM_SHA1,
+          secret: randomSecret(20),
+        },
+        {
+          name: "dummy2@example.com",
+          issuer: "Google",
+          type: MigrationPayload.OtpType.OTP_TYPE_TOTP,
+          digits: MigrationPayload.DigitCount.DIGIT_COUNT_SIX,
+          algorithm: MigrationPayload.Algorithm.ALGORITHM_SHA1,
+          secret: randomSecret(20),
+        },
+        {
+          name: "dummy3@example.com",
+          issuer: "microsoft.com",
+          type: MigrationPayload.OtpType.OTP_TYPE_TOTP,
+          digits: MigrationPayload.DigitCount.DIGIT_COUNT_SIX,
+          algorithm: MigrationPayload.Algorithm.ALGORITHM_SHA1,
+          secret: randomSecret(20),
+        },
+      ],
+    }).serialize();
+    const decoder = new TextDecoder("utf8");
+    const b64 = btoa(decoder.decode(payload));
+    await setFieldValue("url", "otpauth-migration://offline?data=" + b64);
+
+    onClose();
+    toast.closeAll();
+    toast({
+      title: "Ok, I just created some dummy OTP Codes.",
+      description: `Now just hit the Import button...`,
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+  };
+
+  const addScannedQrCode = (setFieldValue: SetFieldValueType<ImportForm>) => async (url: string) => {
+    await setFieldValue("url", url);
+
+    toast.closeAll();
+    toast({
+      title: "Ok, your QR code was successfully scanned.",
+      description: `Now just hit the Import button...`,
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
   };
 
   return (
@@ -117,43 +190,59 @@ export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
           </Text>
         </Stack>
         <Formik initialValues={{ url: "" }} onSubmit={handleImport}>
-          {({ isSubmitting }) => (
-            <Form>
-              <Stack spacing={4} direction={{ base: "column", md: "row" }} w="500px">
-                <Field name="url" validate={validateURL}>
-                  {({ field, form }: FieldProps) => (
-                    <FormControl isInvalid={form.errors.url !== undefined && !!form.touched.url}>
-                      <Textarea
-                        {...field}
-                        id="url"
-                        resize="vertical"
-                        placeholder="otpauth-migration://offline?data=CjkKCjpG..."
-                        color={color}
-                        bg={bg}
-                        border={0}
-                        _focus={{
-                          bg: focusBg,
-                          outline: "none",
-                        }}
-                      />
-                      <FormErrorMessage>{form.errors.url}</FormErrorMessage>
-                    </FormControl>
-                  )}
-                </Field>
+          {({ isSubmitting, values, setFieldValue, isValid }) => (
+            <>
+              <Form>
+                <Stack spacing={4} direction={{ base: "column", md: "row" }} w="500px" alignItems="start">
+                  <Field name="url" validate={validateURL}>
+                    {({ field, form }: FieldProps) => (
+                      <FormControl isInvalid={form.errors.url !== undefined && !!form.touched.url}>
+                        <Textarea
+                          {...field}
+                          id="url"
+                          resize="vertical"
+                          placeholder="otpauth-migration://offline?data=CjkKCjpG..."
+                          color={color}
+                          bg={bg}
+                          minHeight={200}
+                        />
+                        <FormErrorMessage>
+                          <FormErrorIcon />
+                          <ErrorMessage name="url" />
+                        </FormErrorMessage>
+                      </FormControl>
+                    )}
+                  </Field>
 
-                <Button
-                  isLoading={isSubmitting}
-                  type="submit"
-                  bg="blue.400"
-                  color="white"
-                  flex="1 0 auto"
-                  _hover={{ bg: "blue.500" }}
-                  _focus={{ bg: "blue.500" }}
-                >
-                  Import
-                </Button>
-              </Stack>
-            </Form>
+                  <VStack alignItems="flex-start">
+                    <QrScannerButton onScanResult={addScannedQrCode(setFieldValue)} />
+
+                    <Button
+                      isLoading={isSubmitting}
+                      type="submit"
+                      colorScheme="blue"
+                      flex="1 0 auto"
+                      disabled={!isValid}
+                    >
+                      Import
+                    </Button>
+                  </VStack>
+                </Stack>
+              </Form>
+              <Collapse in={isOpen || values.url.trim().length === 0} animateOpacity>
+                <Alert status="info">
+                  <AlertIcon />
+                  <AlertTitle>Just want to try it out?</AlertTitle>
+                  <AlertDescription>
+                    Add some dummy{" "}
+                    <Link onClick={addDummyOtpCodes(setFieldValue)} color="blue.400">
+                      test OTP codes
+                    </Link>
+                    .
+                  </AlertDescription>
+                </Alert>
+              </Collapse>
+            </>
           )}
         </Formik>
       </Stack>

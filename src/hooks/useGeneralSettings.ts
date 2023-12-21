@@ -1,13 +1,19 @@
 import useLocalStorage from "./useLocalStorage";
+import { type sortBy } from "../otp";
 
-type GeneralSettings = {
+export interface GeneralSettings {
+  syncToGoogleDrive?: boolean;
   showQRCode?: boolean;
+  showCountdownTimer?: boolean;
+  showCounts?: boolean;
+  sortOrder?: keyof typeof sortBy;
+  encrypted?: boolean;
   enableNotifications?: boolean;
-};
+}
 
 export default function useGeneralSettings(): [
   GeneralSettings | undefined,
-  (value: GeneralSettings | undefined) => void
+  (value: GeneralSettings | undefined) => void,
 ] {
-  return useLocalStorage<GeneralSettings>("general-settings");
+  return useLocalStorage<GeneralSettings>("zaup2.general-settings");
 }

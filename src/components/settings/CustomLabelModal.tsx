@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  FormErrorIcon,
   FormErrorMessage,
   Input,
   Modal,
@@ -12,24 +13,24 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
+import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
+import { type JSX } from "react";
 
-type CustomLabelModalProps = {
+interface CustomLabelModalProps {
   label?: string;
   isOpen: boolean;
   onUpdate: (label?: string) => void;
   onCancel: () => void;
-};
-type CustomLabelForm = {
+}
+interface CustomLabelForm {
   label: string;
-};
+}
 
 export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLabelModalProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
-  const focusBg = useColorModeValue("gray.200", "gray.800");
 
-  const handleAdd = (values: CustomLabelForm, actions: FormikHelpers<CustomLabelForm>) => {
+  const handleAdd = (values: CustomLabelForm, actions: FormikHelpers<CustomLabelForm>): void => {
     try {
       onUpdate(values.label.trim().length === 0 ? undefined : values.label.trim());
     } finally {
@@ -43,25 +44,17 @@ export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLa
       <ModalContent>
         <ModalHeader>Set a custom label</ModalHeader>
         <Formik initialValues={{ label: label ?? "" }} onSubmit={handleAdd}>
-          {() => (
+          {({ isValid }) => (
             <Form>
               <ModalBody>
                 <Field name="label">
                   {({ field, form }: FieldProps) => (
                     <FormControl isInvalid={form.errors.label !== undefined && !!form.touched.label}>
-                      <Input
-                        {...field}
-                        id="label"
-                        type="text"
-                        color={color}
-                        bg={bg}
-                        border={0}
-                        _focus={{
-                          bg: focusBg,
-                          outline: "none",
-                        }}
-                      />
-                      <FormErrorMessage>{form.errors.label}</FormErrorMessage>
+                      <Input {...field} id="label" type="text" color={color} bg={bg} />
+                      <FormErrorMessage>
+                        <FormErrorIcon />
+                        <ErrorMessage name="label" />
+                      </FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
@@ -71,15 +64,8 @@ export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLa
               </ModalBody>
 
               <ModalFooter>
-                <Button
-                  type="submit"
-                  bg="blue.400"
-                  color="white"
-                  _hover={{ bg: "blue.500" }}
-                  _focus={{ bg: "blue.500" }}
-                  mr={3}
-                >
-                  {label ? "Update" : "Add"}
+                <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
+                  {label === undefined ? "Add" : "Update"}
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>
                   Cancel

@@ -1,18 +1,21 @@
-import { Link, Tag, TagCloseButton, TagLabel } from "@chakra-ui/react";
+import { Link, Tag, TagCloseButton, TagLabel, useColorModeValue } from "@chakra-ui/react";
+import { type JSX } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
-type HashTagProps = {
+interface HashTagProps {
   bg?: string;
   label: string;
   onClose?: () => void;
   onClick?: () => void;
-};
+  system?: boolean;
+}
 
-export default function HashTag({ bg, label, onClick, onClose }: HashTagProps): JSX.Element {
+export default function HashTag({ bg, label, onClick, onClose, system = false }: HashTagProps): JSX.Element {
+  const systemBg = useColorModeValue("purple.50", "purple.900");
   return (
-    <Tag size="sm" px={2} py={1} bg={bg} fontWeight="400">
+    <Tag size="sm" px={2} py={1} bg={system ? systemBg : bg} fontWeight="400">
       <TagLabel>
-        {onClick ? (
+        {onClick !== undefined ? (
           <Link onClick={onClick}>#{label.toUpperCase()}</Link>
         ) : (
           <Link as={RouterLink} to={`/tags/${label}`}>
@@ -20,7 +23,7 @@ export default function HashTag({ bg, label, onClick, onClose }: HashTagProps): 
           </Link>
         )}
       </TagLabel>
-      {onClose && <TagCloseButton onClick={onClose} />}
+      {onClose !== undefined && <TagCloseButton onClick={onClose} />}
     </Tag>
   );
 }

@@ -1,4 +1,4 @@
-import { ReportHandler } from "web-vitals";
+import { type ReportHandler } from "web-vitals";
 
 const reportWebVitals = (onPerfEntry?: ReportHandler): void => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
@@ -11,7 +11,6 @@ const reportWebVitals = (onPerfEntry?: ReportHandler): void => {
         getTTFB(onPerfEntry);
         return null;
       })
-      // eslint-disable-next-line no-console
       .catch(console.error);
   }
 };

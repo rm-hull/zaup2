@@ -3,10 +3,11 @@
     "**/.yarn": true,
     "**/.pnp.*": true
   },
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "file:///Users/rhu/dev/zaup2/.github/workflows/deploy.yml"
-  }
+  },
+  "eslint.nodePath": ".yarn/sdks"
 }

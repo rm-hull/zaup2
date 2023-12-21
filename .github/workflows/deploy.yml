@@ -1,25 +1,63 @@
-
-   
 name: Build and Deploy
 on:
   push:
-    branches: [ main ]
+    branches: ["main"]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Install and Build 🔧
+      - name: Setup Yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          cache: "yarn"
+
+      - name: Install dependencies
         run: |
           yarn install
-          yarn build
-      - name: Test 🧪
-        run: |
-          yarn test
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.6
+
+      - name: Lint
+        run: yarn lint || exit 0
+
+      - name: Test
+        run: yarn test:ci
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
         with:
-          branch: gh-pages
-          folder: build
+          file: coverage/clover.xml
+
+      - name: Build
+        env:
+          VITE_GOOGLE_API_CLIENT_ID: ${{ secrets.VITE_GOOGLE_API_CLIENT_ID }}
+        run: yarn build && cp ./dist/index.html ./dist/404.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: "./dist"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1

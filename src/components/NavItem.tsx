@@ -1,16 +1,28 @@
-import { Collapse, Flex, FlexProps, Icon, Link, Tag, Text, useDisclosure, useOutsideClick } from "@chakra-ui/react";
-import React, { useRef } from "react";
-import { IconType } from "react-icons";
+import {
+  Collapse,
+  Flex,
+  Icon,
+  Link,
+  Spacer,
+  Tag,
+  Text,
+  useDisclosure,
+  useOutsideClick,
+  type FlexProps,
+} from "@chakra-ui/react";
+import { useRef, type JSX, type PropsWithChildren } from "react";
+import { type IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
 
-interface NavItemProps extends React.PropsWithChildren<FlexProps> {
+interface NavItemProps extends PropsWithChildren<FlexProps> {
   label: string;
   icon?: IconType;
   path?: string;
   count?: number;
+  color?: string;
 }
 
-export default function NavItem({ label, icon, path, count, children, ...rest }: NavItemProps): JSX.Element {
+export default function NavItem({ label, icon, path, count, children, color, ...rest }: NavItemProps): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -23,7 +35,8 @@ export default function NavItem({ label, icon, path, count, children, ...rest }:
         to={path ?? "#"}
         style={{ textDecoration: "none" }}
         _focus={{ outline: "none" }}
-        onClick={path ? undefined : onOpen}
+        onClick={path === undefined ? onOpen : undefined}
+        color={color}
       >
         <Flex
           align="center"
@@ -35,10 +48,11 @@ export default function NavItem({ label, icon, path, count, children, ...rest }:
           _hover={{ bg: "cyan.400", color: "white" }}
           {...rest}
         >
-          {icon && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
+          {icon !== undefined && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
           <Text noOfLines={1}>{label}</Text>
+          <Spacer />
           {count !== undefined && (
-            <Tag size="sm" variant="solid" colorScheme="teal">
+            <Tag size="sm" variant="solid" colorScheme="blue">
               {count}
             </Tag>
           )}

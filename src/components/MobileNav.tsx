@@ -1,4 +1,5 @@
-import { Flex, FlexProps, IconButton, Text, useColorModeValue } from "@chakra-ui/react";
+import { Flex, IconButton, Text, useColorModeValue, type FlexProps } from "@chakra-ui/react";
+import { type JSX } from "react";
 import { FiMenu } from "react-icons/fi";
 
 interface MobileProps extends FlexProps {
