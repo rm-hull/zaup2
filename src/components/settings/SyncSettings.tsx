@@ -1,4 +1,4 @@
-import { useEffect, useState, type JSX } from "react";
+import { useEffect, useState, type JSX, useCallback } from "react";
 import { type Payload } from "../../api/googleDrive";
 // import { ipAddress } from "../../api/ipify";
 import {
@@ -43,85 +43,89 @@ export default function SyncSettings(): JSX.Element {
   const toast = useToast();
   const { activeStep, setActiveStep } = useSteps({ index: -1, count: steps.length });
 
-  useEffect(() => {
-    const process = async (): Promise<void> => {
-      if (!processing) {
+  const handleError = useCallback(() => {
+    console.log({ error });
+    setProcessing(false);
+    setActiveStep(-1);
+    toast({
+      title: "Unable to sync with Google Drive",
+      description: (error as Error).message,
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    });
+  }, [error, setActiveStep, toast]);
+
+  const process = useCallback(async (): Promise<void> => {
+    if (!processing) {
+      return;
+    }
+
+    if (error !== undefined) {
+      throw error as Error;
+    }
+
+    if (drive !== undefined) {
+      if (activeStep <= 0) {
+        setActiveStep(1);
         return;
       }
 
-      if (error !== undefined) {
-        console.log({ error });
+      if (activeStep === 1) {
+        setPayload(await drive.download());
+        setActiveStep(2);
+        return;
+      }
+
+      if (activeStep === 2) {
+        await timeout(2000);
+        setActiveStep(3);
+        return;
+      }
+
+      if (activeStep === 3) {
+        const newSettings = { ...payload?.settings, ...settings };
+        const newOTPs = merge(payload?.otp ?? [], data);
+        await drive.upload({
+          settings: newSettings,
+          otp: newOTPs,
+          lastSync: {
+            on: new Date().toUTCString(),
+            from: "TBC", // await ipAddress(),
+            url: window.location.href,
+          },
+        });
         setProcessing(false);
-        setActiveStep(-1);
+        setActiveStep(4);
         toast({
-          title: "Unable to sync with Google Drive",
-          description: (error as Error).message,
-          status: "error",
+          title: "Sync with Google Drive complete",
+          description: `There were ${newOTPs.length - (payload?.otp ?? []).length} new OTPs added.`,
+          status: "success",
           duration: 9000,
           isClosable: true,
         });
-        return;
+        update(...newOTPs);
+        updateSettings(newSettings);
       }
-
-      if (drive !== undefined) {
-        if (activeStep <= 0) {
-          setActiveStep(1);
-          return;
-        }
-
-        if (activeStep === 1) {
-          setPayload(await drive.download());
-          setActiveStep(2);
-          return;
-        }
-
-        if (activeStep === 2) {
-          await timeout(2000);
-          setActiveStep(3);
-          return;
-        }
-
-        if (activeStep === 3) {
-          const newSettings = { ...payload?.settings, ...settings };
-          const newOTPs = merge(payload?.otp ?? [], data);
-          await drive.upload({
-            settings: newSettings,
-            otp: newOTPs,
-            lastSync: {
-              on: new Date().toUTCString(),
-              from: "TBC", // await ipAddress(),
-              url: window.location.href,
-            },
-          });
-          setProcessing(false);
-          setActiveStep(4);
-          toast({
-            title: "Sync with Google Drive complete",
-            description: `There were ${newOTPs.length - (payload?.otp ?? []).length} new OTPs added.`,
-            status: "success",
-            duration: 9000,
-            isClosable: true,
-          });
-          update(...newOTPs);
-          updateSettings(newSettings);
-        }
-      }
-    };
-    process().catch(console.error);
+    }
   }, [
-    data,
-    setProcessing,
-    processing,
-    error,
-    toast,
-    drive,
-    setActiveStep,
     activeStep,
+    data,
+    drive,
+    error,
+    payload?.otp,
+    payload?.settings,
+    processing,
+    setActiveStep,
     settings,
-    payload,
+    toast,
     update,
     updateSettings,
   ]);
+
+  useEffect(() => {
+    process().catch(handleError);
+  }, [handleError, process]);
 
   if (!(settings?.syncToGoogleDrive ?? false)) {
     return <></>;

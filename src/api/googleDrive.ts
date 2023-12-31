@@ -16,8 +16,6 @@ interface ListFiles {
   files: File[];
 }
 
-const filename = "zaup2_sync.json";
-
 export interface Payload {
   settings: GeneralSettings;
   otp: OTP[];
@@ -42,6 +40,7 @@ export class GoogleDrive {
     const resp = await axios.get<ListFiles>("https://www.googleapis.com/drive/v3/files", {
       headers: this.headers,
       params: {
+        spaces: "appDataFolder",
         q: `name='${this.#filename}'`,
       },
     });
@@ -70,7 +69,7 @@ export class GoogleDrive {
 
   async upload(payload: Payload): Promise<File> {
     const metadata = {
-      name: filename,
+      name: this.#filename,
       description: "ZAUP 2.0 Sync data",
       contentType: "application/json; charset=UTF-8",
       mimeType: "application/json; charset=UTF-8",
