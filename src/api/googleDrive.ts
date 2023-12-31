@@ -40,7 +40,6 @@ export class GoogleDrive {
     const resp = await axios.get<ListFiles>("https://www.googleapis.com/drive/v3/files", {
       headers: this.headers,
       params: {
-        spaces: "appDataFolder",
         q: `name='${this.#filename}'`,
       },
     });
