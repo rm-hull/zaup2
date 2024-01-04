@@ -1,11 +1,33 @@
-import { FormControl, FormLabel, HStack, Heading, Radio, RadioGroup, Switch, VStack } from "@chakra-ui/react";
-import { type JSX } from "react";
+import { FormControl, FormLabel, HStack, Heading, Radio, RadioGroup, Switch, VStack, useToast } from "@chakra-ui/react";
+import { type JSX, useEffect, useCallback } from "react";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import { type sortBy } from "../../otp";
 import SyncInfoPanel from "./SyncInfoPanel";
 
 export default function GeneralSettings(): JSX.Element {
   const [settings, updateSettings] = useGeneralSettings();
+  const toast = useToast();
+
+  const enableNotifications = useCallback(async () => {
+    if (settings?.enableNotifications === true && Notification.permission !== "granted") {
+      const reason = await Notification.requestPermission();
+      if (reason !== "granted") {
+        toast({
+          title: "Requested permission for notications was not granted",
+          description: `In order to use this functionality you must allow the browser to post notifications.`,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        updateSettings({ ...settings, enableNotifications: false });
+      }
+    }
+  }, [toast, settings, updateSettings]);
+
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    enableNotifications().catch(console.error);
+  }, [enableNotifications]);
 
   const handleToggleSyncToGoogleDrive = (): void => {
     updateSettings({ ...settings, syncToGoogleDrive: !(settings?.syncToGoogleDrive ?? false) });
@@ -25,6 +47,10 @@ export default function GeneralSettings(): JSX.Element {
 
   const handleUpdateSortOrder = (sortOrder: keyof typeof sortBy): void => {
     updateSettings({ ...settings, sortOrder });
+  };
+
+  const handleToggleEnableNotifications = (): void => {
+    updateSettings({ ...settings, enableNotifications: !(settings?.enableNotifications ?? false) });
   };
 
   return (
@@ -79,6 +105,17 @@ export default function GeneralSettings(): JSX.Element {
             <Switch id="show-counts" isChecked={settings?.showCounts} onChange={handleToggleShowCounts} />
             <FormLabel htmlFor="show-counts" mb={0} ml={2}>
               Show counts in menu
+            </FormLabel>
+          </FormControl>
+
+          <FormControl display="flex" alignItems="center">
+            <Switch
+              id="enable-notifications"
+              isChecked={settings?.enableNotifications}
+              onChange={handleToggleEnableNotifications}
+            />
+            <FormLabel htmlFor="show-qr-codes" mb="0" ml={2}>
+              Enable Notifications (WIP)
             </FormLabel>
           </FormControl>
         </VStack>

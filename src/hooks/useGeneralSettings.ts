@@ -8,6 +8,7 @@ export interface GeneralSettings {
   showCounts?: boolean;
   sortOrder?: keyof typeof sortBy;
   encrypted?: boolean;
+  enableNotifications?: boolean;
 }
 
 export default function useGeneralSettings(): [
