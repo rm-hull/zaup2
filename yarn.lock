@@ -4295,15 +4295,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yudiel/react-qr-scanner@npm:^1.2.4":
-  version: 1.2.4
-  resolution: "@yudiel/react-qr-scanner@npm:1.2.4"
+"@yudiel/react-qr-scanner@npm:^1.2.6":
+  version: 1.2.6
+  resolution: "@yudiel/react-qr-scanner@npm:1.2.6"
   dependencies:
     "@zxing/library": "npm:^0.20.0"
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: a5f0e60afca3ddcd66c04d05f1b5fbd6b3829656fbaf08d3abad0acfa8e1a61789af18a4349e5d82ad34c7fae0ebd060d6d7fdb680b9195162cbc297317bfe17
+  checksum: 2da82c287e3d4b4c22ab676d8d20ae4df273a6a9788a4c6d8535ae3159e986444d2ed4b7705c92535aa53e20f0b0527da7d30ac60651099f5ec7eb619ba23dca
   languageName: node
   linkType: hard
 
@@ -10105,7 +10105,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^6.19.0"
     "@vitejs/plugin-react": "npm:^4.2.1"
     "@vitest/coverage-v8": "npm:^1.2.0"
-    "@yudiel/react-qr-scanner": "npm:^1.2.4"
+    "@yudiel/react-qr-scanner": "npm:^1.2.6"
     axios: "npm:^1.6.5"
     base32-encode: "npm:^2.0.0"
     chalk: "npm:^5.3.0"
