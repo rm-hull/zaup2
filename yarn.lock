@@ -3717,12 +3717,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.11.5":
-  version: 20.11.5
-  resolution: "@types/node@npm:20.11.5"
+"@types/node@npm:^20.11.22":
+  version: 20.11.22
+  resolution: "@types/node@npm:20.11.22"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 9f31c471047d7b3e240ce7b77ff29b0d15e83be7e3feafb3d0b0d0931122b438b1eefa302a5a2e1e9849914ff3fd76aafbd8ccb372efb1331ba048da63bce6f8
+  checksum: 855058a4328c0c88bd0616b2fcfedc6504ca08c3e5304674dc2e6485147d7f523d0ff591e002c765a1ec761b26fc0934599d694a2749634e9244ba3bf02de703
   languageName: node
   linkType: hard
 
@@ -10114,7 +10114,7 @@ __metadata:
     "@testing-library/user-event": "npm:^14.5.2"
     "@types/crypto-js": "npm:^4.2.2"
     "@types/google-protobuf": "npm:^3.15.12"
-    "@types/node": "npm:^20.11.5"
+    "@types/node": "npm:^20.11.22"
     "@types/object-hash": "npm:^3.0.6"
     "@types/qrcode.react": "npm:^1.0.5"
     "@types/ramda": "npm:^0.29.10"
