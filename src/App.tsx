@@ -4,14 +4,17 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import useOtpParameters from "./hooks/useOtpParameters";
 import { normalize } from "./otp";
-import About from "./pages/About";
-import Home from "./pages/Home";
-import ImportURL from "./pages/ImportURL";
-import Issuer from "./pages/Issuer";
-import NotFound from "./pages/NotFound";
-import Settings from "./pages/Settings";
-import Tag from "./pages/Tag";
 import { type MigrationPayload } from "./proto/migration_payload";
+import { lazily } from "react-lazily";
+import { Loader } from "./components/Loader";
+
+const { Home } = lazily(async () => await import("./pages/Home"));
+const { About } = lazily(async () => await import("./pages/About"));
+const { ImportURL } = lazily(async () => await import("./pages/ImportURL"));
+const { Settings } = lazily(async () => await import("./pages/Settings"));
+const { Issuer } = lazily(async () => await import("./pages/Issuer"));
+const { Tag } = lazily(async () => await import("./pages/Tag"));
+const { NotFound } = lazily(async () => await import("./pages/NotFound"));
 
 export const App = (): JSX.Element => {
   const toast = useToast();
@@ -35,13 +38,62 @@ export const App = (): JSX.Element => {
   return (
     <Sidebar>
       <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/import" element={<ImportURL onSubmit={storeOTPParameters} />} />
-        <Route path="/tags/:tag" element={<Tag />} />
-        <Route path="/issuers/:issuer" element={<Issuer />} />
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
+        <Route
+          path="/about"
+          element={
+            <Loader>
+              <About />
+            </Loader>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <Loader>
+              <Settings />
+            </Loader>
+          }
+        />
+        <Route
+          path="/import"
+          element={
+            <Loader>
+              <ImportURL onSubmit={storeOTPParameters} />
+            </Loader>
+          }
+        />
+        <Route
+          path="/tags/:tag"
+          element={
+            <Loader>
+              <Tag />
+            </Loader>
+          }
+        />
+        <Route
+          path="/issuers/:issuer"
+          element={
+            <Loader>
+              <Issuer />
+            </Loader>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <Loader>
+              <Home />
+            </Loader>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Loader>
+              <NotFound />
+            </Loader>
+          }
+        />
       </Routes>
     </Sidebar>
   );

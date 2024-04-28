@@ -63,7 +63,7 @@ type SetFieldValueType<Values> = (
   shouldValidate?: boolean
 ) => Promise<FormikErrors<Values> | void>;
 
-export default function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
+export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
   const toast = useToast();
   const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
   const color = useColorModeValue("gray.800", "gray.200");
