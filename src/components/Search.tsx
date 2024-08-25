@@ -8,7 +8,7 @@ import {
   useControllableState,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useEffect, type ChangeEvent, type JSX } from "react";
+import { type ChangeEvent, type JSX } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useKeyPressEvent } from "react-use";
 import useFocus from "../hooks/useFocus";
@@ -28,24 +28,21 @@ export default function Search({ onChange }: SearchProps): JSX.Element {
   };
 
   const handleCancel = (e: { preventDefault: () => void }): void => {
-    e.preventDefault();
-    setValue("");
-    onClose();
+    if (isOpen) {
+      e.preventDefault();
+      setValue("");
+      onClose();
+    }
   };
 
-  const handleBlur = (): void => {
-    setTimeout(onClose, 300);
+  const handleOpen = (): void => {
+    onOpen();
+    setTimeout(setInputFocus, 10);
   };
 
-  useKeyPressEvent("/", onOpen);
+  useKeyPressEvent("/", handleOpen);
   useKeyPressEvent("Enter", onClose);
   useKeyPressEvent("Escape", handleCancel);
-
-  useEffect(() => {
-    if (isOpen) {
-      setInputFocus();
-    }
-  }, [isOpen, setInputFocus]);
 
   return (
     <Collapse in={isOpen} animateOpacity>
@@ -54,14 +51,7 @@ export default function Search({ onChange }: SearchProps): JSX.Element {
           <InputLeftElement pointerEvents="none">
             <FiSearch />
           </InputLeftElement>
-          <Input
-            ref={inputRef}
-            placeholder="Search"
-            bgColor={bg}
-            value={value}
-            onChange={handleSearch}
-            onBlur={handleBlur}
-          />
+          <Input ref={inputRef} placeholder="Search" bgColor={bg} value={value} onChange={handleSearch} />
         </InputGroup>
       </Box>
     </Collapse>
