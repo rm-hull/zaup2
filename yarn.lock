@@ -7236,12 +7236,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qrcode.react@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "qrcode.react@npm:3.1.0"
+"qrcode.react@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "qrcode.react@npm:4.0.1"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/71953241f151ca5ad4013c034cb13033e1ebad56a1db77297a7ddd7fd4d5f137f37f3be51133aeef0b54dc52d6c76630429d2269bd72e6858c3209fe42310498
+  checksum: 10/786cf24511940079247f0c640daa7760f65b244ada465b54647d35cf666ca2d9efc78082339893cd4dc70711fdaef436306c9310c9c12c719fe823e585f82d4e
   languageName: node
   linkType: hard
 
@@ -9016,7 +9016,7 @@ __metadata:
     object-hash: "npm:^3.0.0"
     otpauth: "npm:^9.3.4"
     prettier: "npm:^3.3.3"
-    qrcode.react: "npm:^3.1.0"
+    qrcode.react: "npm:^4.0.1"
     ramda: "npm:^0.30.1"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
