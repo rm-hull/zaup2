@@ -14,7 +14,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { type TOTP } from "otpauth";
-import QRCode from "qrcode.react";
+import { QRCodeSVG } from "qrcode.react";
 import { memo, useEffect, useMemo, type JSX } from "react";
 import { FiAlertTriangle, FiCheck, FiClipboard } from "react-icons/fi";
 import { getCachedFavicon } from "../favicons";
@@ -85,8 +85,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
 
         {showQRCode === true && (
           <HStack align="center" justify="center" mt={4}>
-            <QRCode
-              renderAs="canvas"
+            <QRCodeSVG
               size={256}
               value={`otpauth://totp/${otp.name}?secret=${encodedSecret}&issuer=${otp.issuer}`}
               fgColor={color}
