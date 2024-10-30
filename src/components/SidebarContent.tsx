@@ -6,7 +6,6 @@ import {
   HStack,
   Text,
   VStack,
-  useColorModeValue,
   type BoxProps,
 } from "@chakra-ui/react";
 import * as R from "ramda";
@@ -18,6 +17,7 @@ import { getSystemTags } from "../otp";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import CountdownTimer from "./CountdownTimer";
 import NavItem from "./NavItem";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
@@ -46,13 +46,13 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
       h="full"
       {...rest}
     >
-      <VStack spacing={0} h="full" justifyContent="space-between">
+      <VStack gap={0} h="full" justifyContent="space-between">
         <Box w="full">
           <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
             <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
               ZAUP2
             </Text>
-            <HStack spacing={1}>
+            <HStack gap={1}>
               <ColorModeSwitcher />
               <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
             </HStack>

@@ -1,26 +1,26 @@
 import {
   Button,
+  DialogBackdrop,
+  DialogBody,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
   FormControl,
   FormErrorIcon,
   FormErrorMessage,
   HStack,
   Image,
   Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Text,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import { type JSX } from "react";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 interface FaviconModalProps {
   url?: string;
-  isOpen: boolean;
+  open: boolean;
   onUpdate: (favicon?: string) => void;
   onCancel: () => void;
 }
@@ -28,7 +28,7 @@ interface FaviconForm {
   favicon: string;
 }
 
-export function FaviconModal({ url, isOpen, onUpdate, onCancel }: FaviconModalProps): JSX.Element {
+export function FaviconModal({ url, open, onUpdate, onCancel }: FaviconModalProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 
@@ -41,14 +41,14 @@ export function FaviconModal({ url, isOpen, onUpdate, onCancel }: FaviconModalPr
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onCancel}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Add custom favicon</ModalHeader>
+    <DialogRoot open={open} onOpenChange={onCancel}>
+      <DialogBackdrop />
+      <DialogContent>
+        <DialogHeader>Add custom favicon</DialogHeader>
         <Formik initialValues={{ favicon: url ?? "" }} onSubmit={handleSubmit}>
           {({ isValid }) => (
             <Form>
-              <ModalBody>
+              <DialogBody>
                 <Field name="favicon">
                   {({ field, form }: FieldProps) => (
                     <FormControl isInvalid={form.errors.favicon !== undefined && !!form.touched.favicon}>
@@ -66,20 +66,20 @@ export function FaviconModal({ url, isOpen, onUpdate, onCancel }: FaviconModalPr
                     </FormControl>
                   )}
                 </Field>
-              </ModalBody>
+              </DialogBody>
 
-              <ModalFooter>
+              <DialogFooter>
                 <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
                   {url === undefined ? "Add" : "Update"}
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>
                   Cancel
                 </Button>
-              </ModalFooter>
+              </DialogFooter>
             </Form>
           )}
         </Formik>
-      </ModalContent>
-    </Modal>
+      </DialogContent>
+    </DialogRoot>
   );
 }

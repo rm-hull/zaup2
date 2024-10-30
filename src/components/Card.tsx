@@ -1,6 +1,7 @@
 import {
   Box,
   Center,
+  Flex,
   HStack,
   Heading,
   Highlight,
@@ -8,10 +9,7 @@ import {
   Image,
   Text,
   Tooltip,
-  Wrap,
-  WrapItem,
   useClipboard,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { type TOTP } from "otpauth";
 import { QRCodeSVG } from "qrcode.react";
@@ -24,6 +22,7 @@ import { type OTP } from "../types";
 import HashTag from "./HashTag";
 import SystemTags from "./SystemTags";
 import * as R from "ramda";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 interface CardProps {
   otp: OTP;
@@ -46,16 +45,13 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
   const { update } = useOtpParameters();
 
   const { code, error } = generateCode(totp);
-  const { hasCopied, onCopy, setValue } = useClipboard("");
-  useEffect(() => {
-    setValue(code ?? "");
-  }, [setValue, code]);
+  const { copied, copy } = useClipboard({ value: code });
 
   const onCopyClicked = (): void => {
     setTimeout(() => {
       update({ ...otp, copyCount: (otp.copyCount ?? 0) + 1 });
     }, 2000);
-    onCopy();
+    copy();
   };
 
   const bg = useColorModeValue("white", "var(--chakra-colors-gray-900)");
@@ -100,15 +96,15 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
           </Heading>
           {code === undefined ? (
             <Tooltip label={`Error: ${error?.message}`}>
-              <IconButton disabled aria-label="Could not generate code" icon={<FiAlertTriangle color="red" />} />
+              <IconButton disabled aria-label="Could not generate code">
+                <FiAlertTriangle color="red" />
+              </IconButton>
             </Tooltip>
           ) : (
             <Tooltip label="Copy to Clipboard">
-              <IconButton
-                aria-label="Copy to clipboard"
-                onClick={onCopyClicked}
-                icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
-              />
+              <IconButton aria-label="Copy to clipboard" onClick={onCopyClicked}>
+                {copied ? <FiCheck color="green" /> : <FiClipboard />}
+              </IconButton>
             </Tooltip>
           )}
         </HStack>
@@ -124,14 +120,14 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
         )}
 
         <HStack align="center" justify="center" mt={4}>
-          <Wrap justify="center">
+          <HStack wrap="wrap" justify="center">
             {otp.tags?.map((tag) => (
-              <WrapItem key={tag}>
+              <Flex key={tag} align="flex-start">
                 <HashTag label={tag} bg={tagBg} />
-              </WrapItem>
+              </Flex>
             ))}
             <SystemTags otp={otp} />
-          </Wrap>
+          </HStack>
         </HStack>
       </Box>
     </Center>

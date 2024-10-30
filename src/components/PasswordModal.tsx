@@ -1,25 +1,23 @@
 import {
   Alert,
-  AlertDescription,
-  AlertTitle,
   Button,
+  DialogBackdrop,
+  DialogBody,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
   FormControl,
   FormErrorIcon,
   FormErrorMessage,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import { type JSX } from "react";
 import PasswordInput from "./PasswordInput";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 interface PasswordModalProps {
-  isOpen: boolean;
+  open: boolean;
   confirm: boolean;
   onSubmit: (password: string) => void;
 }
@@ -37,7 +35,7 @@ const requiredValidator = (value: string): string | undefined => {
   return error;
 };
 
-export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps): JSX.Element {
+export function PasswordModal({ open, confirm, onSubmit }: PasswordModalProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 
@@ -57,10 +55,10 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
   };
 
   return (
-    <Modal isOpen={isOpen} size="lg" onClose={() => {}}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>{confirm ? "Create a new password" : "Enter your password"}</ModalHeader>
+    <DialogRoot open={open} size="lg" onOpenChange={() => {}}>
+      <DialogBackdrop />
+      <DialogContent>
+        <DialogHeader>{confirm ? "Create a new password" : "Enter your password"}</DialogHeader>
         <Formik
           initialValues={{ password: "", confirmedPassword: "" }}
           onSubmit={handleAdd}
@@ -69,7 +67,7 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
         >
           {({ isValid }) => (
             <Form>
-              <ModalBody>
+              <DialogBody>
                 <Field name="password" validate={requiredValidator}>
                   {({ field, form }: FieldProps) => (
                     <FormControl isInvalid={form.errors.password !== undefined && !!form.touched.password}>
@@ -112,29 +110,29 @@ export function PasswordModal({ isOpen, confirm, onSubmit }: PasswordModalProps)
                   </Field>
                 )}
                 {confirm && (
-                  <Alert mt={5} status="info" variant="left-accent" flexDirection="column" alignItems="start">
-                    <AlertTitle mb={1} fontSize="lg">
+                  <Alert.Root mt={5} status="info" flexDirection="column" alignItems="start">
+                    <Alert.Title mb={1} fontSize="lg">
                       Data Safety
-                    </AlertTitle>
-                    <AlertDescription>
+                    </Alert.Title>
+                    <Alert.Description>
                       The password you choose above will be used to store data securely using AES encryption. If you
                       loose or forget the password, any saved data will <strong>not</strong> be recoverable. Data is
                       never uploaded and stays on your machine in local storage only; note also that the password is
                       never stored.
-                    </AlertDescription>
-                  </Alert>
+                    </Alert.Description>
+                  </Alert.Root>
                 )}
-              </ModalBody>
+              </DialogBody>
 
-              <ModalFooter>
+              <DialogFooter>
                 <Button type="submit" colorScheme="blue" disabled={!isValid}>
                   Ok
                 </Button>
-              </ModalFooter>
+              </DialogFooter>
             </Form>
           )}
         </Formik>
-      </ModalContent>
-    </Modal>
+      </DialogContent>
+    </DialogRoot>
   );
 }

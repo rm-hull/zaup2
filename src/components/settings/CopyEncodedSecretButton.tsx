@@ -10,15 +10,12 @@ interface CopyEncodedSecretButtonProps {
 
 export default function CopyEncodedSecretButton({ otp }: CopyEncodedSecretButtonProps): JSX.Element {
   const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
-  const { hasCopied, onCopy } = useClipboard(encodedSecret ?? "");
+  const { copied, copy } = useClipboard({ value: encodedSecret ?? "" });
   return (
     <Tooltip label="Copy secret to Clipboard">
-      <IconButton
-        aria-label="copy secret to clipboard"
-        size="sm"
-        onClick={onCopy}
-        icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
-      />
+      <IconButton aria-label="copy secret to clipboard" size="sm" onClick={copy}>
+        {copied ? <FiCheck color="green" /> : <FiClipboard />}
+      </IconButton>
     </Tooltip>
   );
 }

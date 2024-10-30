@@ -11,7 +11,7 @@ interface AddTagButtonProps {
 }
 
 export default function AddTagButton({ otp, onAddRequested }: AddTagButtonProps): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
 
   const handleConfirmAddTag = useCallback(
     (tag: string) => {
@@ -26,16 +26,12 @@ export default function AddTagButton({ otp, onAddRequested }: AddTagButtonProps)
 
   return (
     <>
-      {isOpen && <AddTagModal isOpen={isOpen} onAdd={handleConfirmAddTag} onCancel={onClose} />}
+      {open && <AddTagModal open={open} onAdd={handleConfirmAddTag} onCancel={onClose} />}
 
       <Tooltip label="Add tag">
-        <IconButton
-          aria-label="Add tag"
-          disabled={(otp.tags ?? []).length >= 3}
-          size="sm"
-          onClick={onOpen}
-          icon={<FiPlus />}
-        />
+        <IconButton aria-label="Add tag" disabled={(otp.tags ?? []).length >= 3} size="sm" onClick={onOpen}>
+          <FiPlus />
+        </IconButton>
       </Tooltip>
     </>
   );

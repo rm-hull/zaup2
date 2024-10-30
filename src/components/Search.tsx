@@ -4,7 +4,6 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  useColorModeValue,
   useControllableState,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -12,13 +11,14 @@ import { type ChangeEvent, type JSX } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useKeyPressEvent } from "react-use";
 import useFocus from "../hooks/useFocus";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 interface SearchProps {
   onChange?: (value: string) => void;
 }
 
 export default function Search({ onChange }: SearchProps): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
   const bg = useColorModeValue("white", "var(--chakra-colors-gray-900)");
   const [value, setValue] = useControllableState({ defaultValue: "", onChange });
   const [inputRef, setInputFocus] = useFocus();
@@ -28,7 +28,7 @@ export default function Search({ onChange }: SearchProps): JSX.Element {
   };
 
   const handleCancel = (e: { preventDefault: () => void }): void => {
-    if (isOpen) {
+    if (open) {
       e.preventDefault();
       setValue("");
       onClose();
@@ -45,7 +45,7 @@ export default function Search({ onChange }: SearchProps): JSX.Element {
   useKeyPressEvent("Escape", handleCancel);
 
   return (
-    <Collapse in={isOpen} animateOpacity>
+    <Collapse in={open} animateOpacity>
       <Box p="4px">
         <InputGroup>
           <InputLeftElement pointerEvents="none">

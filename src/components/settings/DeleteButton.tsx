@@ -10,7 +10,7 @@ interface DeleteButtonProps {
 }
 
 export default function DeleteButton({ otp, onDeleteRequested }: DeleteButtonProps): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
 
   const handleConfirmDelete = (): void => {
     onDeleteRequested(otp);
@@ -19,10 +19,12 @@ export default function DeleteButton({ otp, onDeleteRequested }: DeleteButtonPro
 
   return (
     <>
-      {isOpen && <DeleteModal isOpen={isOpen} onDelete={handleConfirmDelete} onCancel={onClose} />}
+      {open && <DeleteModal open={open} onDelete={handleConfirmDelete} onCancel={onClose} />}
 
       <Tooltip label="Delete OTP">
-        <IconButton aria-label="Delete" size="sm" onClick={onOpen} icon={<FiTrash2 />} />
+        <IconButton aria-label="Delete" size="sm" onClick={onOpen}>
+          <FiTrash2 />
+        </IconButton>
       </Tooltip>
     </>
   );

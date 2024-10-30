@@ -10,7 +10,7 @@ interface FaviconButtonProps {
 }
 
 export default function FaviconButton({ otp, onUpdateRequested }: FaviconButtonProps): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
 
   const handleConfirmFavicon = useCallback(
     (favicon?: string) => {
@@ -23,10 +23,12 @@ export default function FaviconButton({ otp, onUpdateRequested }: FaviconButtonP
   const label = otp.favicon === undefined ? "Add favicon" : "Update favicon";
   return (
     <>
-      {isOpen && <FaviconModal isOpen={isOpen} onUpdate={handleConfirmFavicon} onCancel={onClose} url={otp.favicon} />}
+      {open && <FaviconModal open={open} onUpdate={handleConfirmFavicon} onCancel={onClose} url={otp.favicon} />}
 
       <Tooltip label={label}>
-        <IconButton aria-label={label} size="sm" onClick={onOpen} icon={<FiImage />} />
+        <IconButton aria-label={label} size="sm" onClick={onOpen}>
+          <FiImage />
+        </IconButton>
       </Tooltip>
     </>
   );

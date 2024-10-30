@@ -1,14 +1,14 @@
-import { Button, useDisclosure, useToast } from "@chakra-ui/react";
+import { Button, useDisclosure } from "@chakra-ui/react";
 import { type JSX } from "react";
 import { QrScannerModal } from "./QrScannerModal";
+import { toaster } from "@/components/ui/toaster";
 
 interface DeleteButtonProps {
   onScanResult: (uri: string) => void;
 }
 
 export default function QrScannerButton({ onScanResult }: DeleteButtonProps): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const toast = useToast();
+  const { open, onOpen, onClose } = useDisclosure();
 
   const handleConfirmDelete = (uri: string): void => {
     onScanResult(uri);
@@ -17,20 +17,20 @@ export default function QrScannerButton({ onScanResult }: DeleteButtonProps): JS
 
   const handleError = (error: Error): void => {
     onClose();
-    toast.closeAll();
-    toast({
+    toaster.dismiss();
+    toaster.create({
       title: "Unable to scan QR code.",
       description: `Error occurred: ${error.message}`,
-      status: "error",
+      type: "error",
       duration: 9000,
-      isClosable: true,
+      // isClosable: true,
     });
   };
 
   return (
     <>
-      {isOpen && (
-        <QrScannerModal isOpen={isOpen} onCancel={onClose} onScanResult={handleConfirmDelete} onError={handleError} />
+      {open && (
+        <QrScannerModal open={open} onCancel={onClose} onScanResult={handleConfirmDelete} onError={handleError} />
       )}
 
       <Button colorScheme="blue" flex="1 0 auto" onClick={onOpen}>

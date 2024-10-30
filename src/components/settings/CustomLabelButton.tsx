@@ -10,7 +10,7 @@ interface CustomLabelButtonProps {
 }
 
 export default function CustomLabelButton({ otp, onUpdateRequested }: CustomLabelButtonProps): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
 
   const handleConfirmCustomLabel = useCallback(
     (label?: string) => {
@@ -23,12 +23,14 @@ export default function CustomLabelButton({ otp, onUpdateRequested }: CustomLabe
   const label = otp.label ? "Update custom label" : "Add custom label";
   return (
     <>
-      {isOpen && (
-        <CustomLabelModal isOpen={isOpen} onUpdate={handleConfirmCustomLabel} onCancel={onClose} label={otp.label} />
+      {open && (
+        <CustomLabelModal open={open} onUpdate={handleConfirmCustomLabel} onCancel={onClose} label={otp.label} />
       )}
 
       <Tooltip label={label}>
-        <IconButton aria-label={label} size="sm" onClick={onOpen} icon={<FiEdit />} />
+        <IconButton aria-label={label} size="sm" onClick={onOpen}>
+          <FiEdit />
+        </IconButton>
       </Tooltip>
     </>
   );

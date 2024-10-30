@@ -1,5 +1,5 @@
 import {
-  Collapse,
+  Collapsible,
   Flex,
   Icon,
   Link,
@@ -24,7 +24,7 @@ interface NavItemProps extends PropsWithChildren<FlexProps> {
 
 export default function NavItem({ label, icon, path, count, children, color, ...rest }: NavItemProps): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
 
   useOutsideClick({ ref, handler: onClose });
 
@@ -58,9 +58,9 @@ export default function NavItem({ label, icon, path, count, children, color, ...
           )}
         </Flex>
       </Link>
-      <Collapse in={isOpen} animateOpacity>
-        {children}
-      </Collapse>
+      <Collapsible.Root open={open} animateOpacity>
+        <Collapsible.Content>{children}</Collapsible.Content>
+      </Collapsible.Root>
     </div>
   );
 }

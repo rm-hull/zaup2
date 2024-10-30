@@ -1,29 +1,29 @@
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormErrorIcon,
   FormErrorMessage,
+  HStack,
   Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
+  DialogBackdrop,
+  DialogBody,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
   Text,
-  useColorModeValue,
-  Wrap,
-  WrapItem,
 } from "@chakra-ui/react";
 import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import * as R from "ramda";
 import { type JSX } from "react";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import HashTag from "../HashTag";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
-interface AddTagModalProps {
-  isOpen: boolean;
+interface AddTagDialogProps {
+  open: boolean;
   onAdd: (tag: string) => void;
   onCancel: () => void;
 }
@@ -41,7 +41,7 @@ function validateTag(value: string): string | undefined {
   return undefined;
 }
 
-export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.Element {
+export function AddTagDialog({ open, onAdd, onCancel }: AddTagDialogProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
   const tagBg = useColorModeValue("gray.50", "gray.800");
@@ -58,21 +58,21 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onCancel}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Add tag</ModalHeader>
+    <DialogRoot open={open} onOpenChange={onCancel}>
+      <DialogBackdrop />
+      <DialogContent>
+        <DialogHeader>Add tag</DialogHeader>
         <Formik initialValues={{ tag: "" }} onSubmit={handleAdd}>
           {({ isValid }) => (
             <Form>
-              <ModalBody>
+              <DialogBody>
                 {tags.length > 0 ? (
                   <>
                     <Text py={2}>Pick an existing tag:</Text>
                     <Box bg={bg} borderRadius={10} p={2}>
-                      <Wrap>
+                      <HStack wrap="wrap">
                         {tags.map((tag) => (
-                          <WrapItem key={tag}>
+                          <Flex key={tag} align="flex-start">
                             <HashTag
                               label={tag}
                               bg={tagBg}
@@ -80,9 +80,9 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
                                 onAdd(tag);
                               }}
                             />
-                          </WrapItem>
+                          </Flex>
                         ))}
-                      </Wrap>
+                      </HStack>
                     </Box>
                     <Text py={2}>Or create a new one:</Text>
                   </>
@@ -100,20 +100,20 @@ export function AddTagModal({ isOpen, onAdd, onCancel }: AddTagModalProps): JSX.
                     </FormControl>
                   )}
                 </Field>
-              </ModalBody>
+              </DialogBody>
 
-              <ModalFooter>
+              <DialogFooter>
                 <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
                   Add
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>
                   Cancel
                 </Button>
-              </ModalFooter>
+              </DialogFooter>
             </Form>
           )}
         </Formik>
-      </ModalContent>
-    </Modal>
+      </DialogContent>
+    </DialogRoot>
   );
 }

@@ -18,16 +18,16 @@ export default function GeneralSettings(): JSX.Element {
 
   return (
     <>
-      <Alert status="error" variant="left-accent" flexDirection="column" alignItems="start">
-        <AlertTitle mb={1} fontSize="lg">
+      <Alert.Root status="error" flexDirection="column" alignItems="start">
+        <Alert.Title mb={1} fontSize="lg">
           Danger Zone
-        </AlertTitle>
-        <AlertDescription mb={3}>
+        </Alert.Title>
+        <Alert.Description mb={3}>
           The operations in this section are destructive and not recoverable. Ensure that you definitely want proceed,
           as there is no way to subsequently revert any completed operations.
-        </AlertDescription>
+        </Alert.Description>
         <ResetDataButton onResetRequested={handleResetData} />
-      </Alert>
+      </Alert.Root>
     </>
   );
 }
