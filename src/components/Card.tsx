@@ -1,19 +1,7 @@
-import {
-  Box,
-  Center,
-  Flex,
-  HStack,
-  Heading,
-  Highlight,
-  IconButton,
-  Image,
-  Text,
-  Tooltip,
-  useClipboard,
-} from "@chakra-ui/react";
+import { Box, Center, Flex, HStack, Heading, Highlight, IconButton, Image, Text, useClipboard } from "@chakra-ui/react";
 import { type TOTP } from "otpauth";
 import { QRCodeSVG } from "qrcode.react";
-import { memo, useEffect, useMemo, type JSX } from "react";
+import { memo, useMemo, type JSX } from "react";
 import { FiAlertTriangle, FiCheck, FiClipboard } from "react-icons/fi";
 import { getCachedFavicon } from "../favicons";
 import useOtpParameters from "../hooks/useOtpParameters";
@@ -23,6 +11,7 @@ import HashTag from "./HashTag";
 import SystemTags from "./SystemTags";
 import * as R from "ramda";
 import { useColorModeValue } from "@/components/ui/color-mode";
+import { Tooltip } from "./ui/tooltip";
 
 interface CardProps {
   otp: OTP;
@@ -72,7 +61,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
       >
         <HStack align="center" justify="center" mt={4}>
           <Image src={getCachedFavicon(otp)} h={5} />
-          <Text fontWeight={600} color="gray.500" noOfLines={1} wordBreak="break-all">
+          <Text fontWeight={600} color="gray.500" lineClamp={1} wordBreak="break-all">
             <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
               {otp.label ?? otp.issuer ?? "«Unknown»"}
             </Highlight>
@@ -95,13 +84,13 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
             {code ?? "╰(°□°)╯"}
           </Heading>
           {code === undefined ? (
-            <Tooltip label={`Error: ${error?.message}`}>
+            <Tooltip showArrow content={`Error: ${error?.message}`}>
               <IconButton disabled aria-label="Could not generate code">
                 <FiAlertTriangle color="red" />
               </IconButton>
             </Tooltip>
           ) : (
-            <Tooltip label="Copy to Clipboard">
+            <Tooltip showArrow content="Copy to Clipboard">
               <IconButton aria-label="Copy to clipboard" onClick={onCopyClicked}>
                 {copied ? <FiCheck color="green" /> : <FiClipboard />}
               </IconButton>
@@ -110,8 +99,8 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
         </HStack>
 
         {!R.isEmpty(otp.name) && (
-          <Tooltip label={otp.name}>
-            <Text fontWeight={600} color="gray.500" mb={4} noOfLines={1} wordBreak="break-all">
+          <Tooltip showArrow content={otp.name}>
+            <Text fontWeight={600} color="gray.500" mb={4} lineClamp={1} wordBreak="break-all">
               <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
                 {otp.name ?? ""}
               </Highlight>

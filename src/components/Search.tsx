@@ -1,6 +1,7 @@
 import {
   Box,
   Collapse,
+  Collapsible,
   Input,
   InputGroup,
   InputLeftElement,
@@ -45,15 +46,17 @@ export default function Search({ onChange }: SearchProps): JSX.Element {
   useKeyPressEvent("Escape", handleCancel);
 
   return (
-    <Collapse in={open} animateOpacity>
-      <Box p="4px">
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <FiSearch />
-          </InputLeftElement>
-          <Input ref={inputRef} placeholder="Search" bgColor={bg} value={value} onChange={handleSearch} />
-        </InputGroup>
-      </Box>
-    </Collapse>
+    <Collapsible.Root open={open}>
+      <Collapsible.Content>
+        <Box p="4px">
+          <InputGroup>
+            <InputLeftElement pointerEvents="none">
+              <FiSearch />
+            </InputLeftElement>
+            <Input ref={inputRef} placeholder="Search" bgColor={bg} value={value} onChange={handleSearch} />
+          </InputGroup>
+        </Box>
+      </Collapsible.Content>
+    </Collapsible.Root>
   );
 }

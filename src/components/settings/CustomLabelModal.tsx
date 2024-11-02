@@ -58,7 +58,7 @@ export function CustomLabelDialog({ label, open, onUpdate, onCancel }: CustomLab
                     </FormControl>
                   )}
                 </Field>
-                <Text size="xs" color="gray.500">
+                <Text textStyle="xs" color="gray.500">
                   <strong>Note:</strong> this label will override the issuer when the card is displayed.
                 </Text>
               </DialogBody>

@@ -1,8 +1,9 @@
-import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
+import { IconButton, useDisclosure } from "@chakra-ui/react";
 import { useCallback, type JSX } from "react";
 import { FiImage } from "react-icons/fi";
 import { type OTP } from "../../types";
 import { FaviconModal } from "./FaviconModal";
+import { Tooltip } from "@/components/ui/tooltip";
 
 interface FaviconButtonProps {
   otp: OTP;
@@ -25,7 +26,7 @@ export default function FaviconButton({ otp, onUpdateRequested }: FaviconButtonP
     <>
       {open && <FaviconModal open={open} onUpdate={handleConfirmFavicon} onCancel={onClose} url={otp.favicon} />}
 
-      <Tooltip label={label}>
+      <Tooltip showArrow content={label}>
         <IconButton aria-label={label} size="sm" onClick={onOpen}>
           <FiImage />
         </IconButton>

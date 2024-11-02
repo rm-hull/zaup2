@@ -1,4 +1,4 @@
-import { Flex, HStack, Heading, Image, Switch, Table, Text, VStack } from "@chakra-ui/react";
+import { Flex, HStack, Heading, Image, Table, Text, VStack } from "@chakra-ui/react";
 
 import hash from "object-hash";
 import { type JSX } from "react";
@@ -15,6 +15,7 @@ import CustomLabelButton from "./CustomLabelButton";
 import DeleteButton from "./DeleteButton";
 import FaviconButton from "./FaviconButton";
 import { useColorModeValue } from "@/components/ui/color-mode";
+import { Switch } from "@/components/ui/switch";
 
 export default function OTPSettings(): JSX.Element | null {
   const { data, update, remove } = useOtpParameters({ includeArchived: true });
@@ -44,7 +45,7 @@ export default function OTPSettings(): JSX.Element | null {
     <>
       <Heading size="md">OTP Settings</Heading>
 
-      <Table.Root variant="simple">
+      <Table.Root>
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeader>Issuer / Name</Table.ColumnHeader>
@@ -71,7 +72,7 @@ export default function OTPSettings(): JSX.Element | null {
                     >
                       {otp.label ?? otp.issuer ?? "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}
                     </Text>
-                    <Text fontWeight={400} color="gray.500" noOfLines={1} maxWidth="dw">
+                    <Text fontWeight={400} color="gray.500" lineClamp={1} maxWidth="dw">
                       {otp.name}
                     </Text>
                   </VStack>
@@ -94,7 +95,7 @@ export default function OTPSettings(): JSX.Element | null {
                 {otp.copyCount ?? 0}
               </Table.Cell>
               <Table.Cell textAlign="center" p={2}>
-                <Switch isChecked={otp.archived} onChange={handleToggleArchived(otp)} />
+                <Switch checked={otp.archived} onChange={handleToggleArchived(otp)} />
               </Table.Cell>
               <Table.Cell p={2}>
                 <HStack>

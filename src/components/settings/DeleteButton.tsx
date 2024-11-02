@@ -1,8 +1,9 @@
-import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
+import { IconButton, useDisclosure } from "@chakra-ui/react";
 import { type JSX } from "react";
 import { FiTrash2 } from "react-icons/fi";
 import { type OTP } from "../../types";
 import { DeleteModal } from "./DeleteModal";
+import { Tooltip } from "@/components/ui/tooltip";
 
 interface DeleteButtonProps {
   otp: OTP;
@@ -21,7 +22,7 @@ export default function DeleteButton({ otp, onDeleteRequested }: DeleteButtonPro
     <>
       {open && <DeleteModal open={open} onDelete={handleConfirmDelete} onCancel={onClose} />}
 
-      <Tooltip label="Delete OTP">
+      <Tooltip showArrow content="Delete OTP">
         <IconButton aria-label="Delete" size="sm" onClick={onOpen}>
           <FiTrash2 />
         </IconButton>

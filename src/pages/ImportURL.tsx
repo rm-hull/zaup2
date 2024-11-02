@@ -219,7 +219,7 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                   </VStack>
                 </Stack>
               </Form>
-              <Collapsible.Root open={open || values.url.trim().length === 0} animateOpacity>
+              <Collapsible.Root open={open || values.url.trim().length === 0}>
                 <Collapsible.Content>
                   <Alert.Root status="info">
                     <Alert.Indicator />
