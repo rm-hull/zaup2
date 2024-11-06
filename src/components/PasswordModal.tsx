@@ -7,9 +7,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogRoot,
-  FormControl,
-  FormErrorIcon,
-  FormErrorMessage,
 } from "@chakra-ui/react";
 import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import { type JSX } from "react";
@@ -69,8 +66,11 @@ export function PasswordModal({ open, confirm, onSubmit }: PasswordModalProps): 
             <Form>
               <DialogBody>
                 <Field name="password" validate={requiredValidator}>
-                  {({ field, form }: FieldProps) => (
-                    <FormControl isInvalid={form.errors.password !== undefined && !!form.touched.password}>
+                  {({ field, form, meta }: FieldProps) => (
+                    <Field
+                      isInvalid={form.errors.password !== undefined && !!form.touched.password}
+                      errorText={meta.error}
+                    >
                       <PasswordInput
                         {...field}
                         placeholder="Password"
@@ -79,18 +79,15 @@ export function PasswordModal({ open, confirm, onSubmit }: PasswordModalProps): 
                         color={color}
                         bg={bg}
                       />
-                      <FormErrorMessage>
-                        <FormErrorIcon />
-                        <ErrorMessage name="password" />
-                      </FormErrorMessage>
-                    </FormControl>
+                    </Field>
                   )}
                 </Field>
                 {confirm && (
                   <Field name="confirmedPassword">
-                    {({ field, form }: FieldProps) => (
-                      <FormControl
+                    {({ field, form, meta }: FieldProps) => (
+                      <Field
                         isInvalid={form.errors.confirmedPassword !== undefined && !!form.touched.confirmedPassword}
+                        errorText={meta.error}
                         mt={3}
                       >
                         <PasswordInput
@@ -101,11 +98,7 @@ export function PasswordModal({ open, confirm, onSubmit }: PasswordModalProps): 
                           color={color}
                           bg={bg}
                         />
-                        <FormErrorMessage>
-                          <FormErrorIcon />
-                          <ErrorMessage name="confirmedPassword" />
-                        </FormErrorMessage>
-                      </FormControl>
+                      </Field>
                     )}
                   </Field>
                 )}

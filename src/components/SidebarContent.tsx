@@ -1,13 +1,4 @@
-import {
-  Box,
-  CloseButton,
-  Divider,
-  Flex,
-  HStack,
-  Text,
-  VStack,
-  type BoxProps,
-} from "@chakra-ui/react";
+import { Box, Flex, HStack, Separator, Text, VStack, type BoxProps } from "@chakra-ui/react";
 import * as R from "ramda";
 import { useMemo, type JSX } from "react";
 import { FiCompass, FiHome, FiLogIn, FiMessageSquare, FiSettings, FiTag } from "react-icons/fi";
@@ -18,6 +9,7 @@ import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import CountdownTimer from "./CountdownTimer";
 import NavItem from "./NavItem";
 import { useColorModeValue } from "@/components/ui/color-mode";
+import { CloseButton } from "@/components/ui/close-button";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
@@ -82,7 +74,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
                     py={1}
                   />
                 ))}
-                {systemTags.length > 0 && tags.length > 0 && <Divider m={2} />}
+                {systemTags.length > 0 && tags.length > 0 && <Separator m={2} />}
                 {tags.map((tag) => (
                   <NavItem
                     key={tag}

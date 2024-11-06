@@ -1,6 +1,5 @@
 import {
   Box,
-  Collapse,
   Collapsible,
   Input,
   InputGroup,

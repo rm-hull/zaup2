@@ -6,15 +6,12 @@ import {
   DialogFooter,
   DialogHeader,
   DialogRoot,
-  FormControl,
-  FormErrorIcon,
-  FormErrorMessage,
   HStack,
   Image,
   Input,
   Text,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
+import { Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import { type JSX } from "react";
 import { useColorModeValue } from "@/components/ui/color-mode";
 
@@ -50,20 +47,19 @@ export function FaviconModal({ url, open, onUpdate, onCancel }: FaviconModalProp
             <Form>
               <DialogBody>
                 <Field name="favicon">
-                  {({ field, form }: FieldProps) => (
-                    <FormControl isInvalid={form.errors.favicon !== undefined && !!form.touched.favicon}>
+                  {({ field, form, meta }: FieldProps) => (
+                    <Field
+                      isInvalid={form.errors.favicon !== undefined && !!form.touched.favicon}
+                      errorText={meta.error}
+                    >
                       <Input {...field} id="favicon" type="text" color={color} bg={bg} />
-                      <FormErrorMessage>
-                        <FormErrorIcon />
-                        <ErrorMessage name="favicon" />
-                      </FormErrorMessage>
                       <HStack mt={1}>
-                        <Text size="xs" color="gray.500">
+                        <Text textStyle="xs" color="gray.500">
                           Preview:
                         </Text>
                         <Image src={field.value} h={5} />
                       </HStack>
-                    </FormControl>
+                    </Field>
                   )}
                 </Field>
               </DialogBody>

@@ -2,9 +2,6 @@ import {
   Box,
   Button,
   Flex,
-  FormControl,
-  FormErrorIcon,
-  FormErrorMessage,
   HStack,
   Input,
   DialogBackdrop,
@@ -15,7 +12,7 @@ import {
   DialogRoot,
   Text,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
+import { Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import * as R from "ramda";
 import { type JSX } from "react";
 import useOtpParameters from "../../hooks/useOtpParameters";
@@ -90,14 +87,10 @@ export function AddTagDialog({ open, onAdd, onCancel }: AddTagDialogProps): JSX.
                   <Text py={2}>Create a new tag:</Text>
                 )}
                 <Field name="tag" validate={validateTag}>
-                  {({ field, form }: FieldProps) => (
-                    <FormControl isInvalid={form.errors.tag !== undefined && !!form.touched.tag}>
+                  {({ field, form, meta }: FieldProps) => (
+                    <Field isInvalid={form.errors.tag !== undefined && !!form.touched.tag} errorText={meta.error}>
                       <Input {...field} id="tag" type="text" color={color} bg={bg} />
-                      <FormErrorMessage>
-                        <FormErrorIcon />
-                        <ErrorMessage name="tag" />
-                      </FormErrorMessage>
-                    </FormControl>
+                    </Field>
                   )}
                 </Field>
               </DialogBody>

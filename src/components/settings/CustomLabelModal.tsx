@@ -1,8 +1,5 @@
 import {
   Button,
-  FormControl,
-  FormErrorIcon,
-  FormErrorMessage,
   Input,
   DialogBackdrop,
   DialogBody,
@@ -12,7 +9,7 @@ import {
   DialogRoot,
   Text,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
+import { Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import { type JSX } from "react";
 import { useColorModeValue } from "@/components/ui/color-mode";
 
@@ -48,14 +45,10 @@ export function CustomLabelDialog({ label, open, onUpdate, onCancel }: CustomLab
             <Form>
               <DialogBody>
                 <Field name="label">
-                  {({ field, form }: FieldProps) => (
-                    <FormControl isInvalid={form.errors.label !== undefined && !!form.touched.label}>
+                  {({ field, form, meta }: FieldProps) => (
+                    <Field isInvalid={form.errors.label !== undefined && !!form.touched.label} errorText={meta.error}>
                       <Input {...field} id="label" type="text" color={color} bg={bg} />
-                      <FormErrorMessage>
-                        <FormErrorIcon />
-                        <ErrorMessage name="label" />
-                      </FormErrorMessage>
-                    </FormControl>
+                    </Field>
                   )}
                 </Field>
                 <Text textStyle="xs" color="gray.500">
