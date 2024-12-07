@@ -1,24 +1,21 @@
 import {
   Button,
-  FormControl,
-  FormErrorIcon,
-  FormErrorMessage,
   Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
+  DialogBackdrop,
+  DialogBody,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
   Text,
-  useColorModeValue,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
+import { Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import { type JSX } from "react";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
-interface CustomLabelModalProps {
+interface CustomLabelDialogProps {
   label?: string;
-  isOpen: boolean;
+  open: boolean;
   onUpdate: (label?: string) => void;
   onCancel: () => void;
 }
@@ -26,7 +23,7 @@ interface CustomLabelForm {
   label: string;
 }
 
-export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLabelModalProps): JSX.Element {
+export function CustomLabelDialog({ label, open, onUpdate, onCancel }: CustomLabelDialogProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 
@@ -39,42 +36,38 @@ export function CustomLabelModal({ label, isOpen, onUpdate, onCancel }: CustomLa
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onCancel}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Set a custom label</ModalHeader>
+    <DialogRoot open={open} onOpenChange={onCancel}>
+      <DialogBackdrop />
+      <DialogContent>
+        <DialogHeader>Set a custom label</DialogHeader>
         <Formik initialValues={{ label: label ?? "" }} onSubmit={handleAdd}>
           {({ isValid }) => (
             <Form>
-              <ModalBody>
+              <DialogBody>
                 <Field name="label">
-                  {({ field, form }: FieldProps) => (
-                    <FormControl isInvalid={form.errors.label !== undefined && !!form.touched.label}>
+                  {({ field, form, meta }: FieldProps) => (
+                    <Field isInvalid={form.errors.label !== undefined && !!form.touched.label} errorText={meta.error}>
                       <Input {...field} id="label" type="text" color={color} bg={bg} />
-                      <FormErrorMessage>
-                        <FormErrorIcon />
-                        <ErrorMessage name="label" />
-                      </FormErrorMessage>
-                    </FormControl>
+                    </Field>
                   )}
                 </Field>
-                <Text size="xs" color="gray.500">
+                <Text textStyle="xs" color="gray.500">
                   <strong>Note:</strong> this label will override the issuer when the card is displayed.
                 </Text>
-              </ModalBody>
+              </DialogBody>
 
-              <ModalFooter>
+              <DialogFooter>
                 <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
                   {label === undefined ? "Add" : "Update"}
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>
                   Cancel
                 </Button>
-              </ModalFooter>
+              </DialogFooter>
             </Form>
           )}
         </Formik>
-      </ModalContent>
-    </Modal>
+      </DialogContent>
+    </DialogRoot>
   );
 }

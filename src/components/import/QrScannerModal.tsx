@@ -1,15 +1,23 @@
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
+import {
+  Button,
+  DialogBackdrop,
+  DialogBody,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+} from "@chakra-ui/react";
 import { QrScanner } from "@yudiel/react-qr-scanner";
 import { useState, type JSX } from "react";
 
 interface QrScannerModalProps {
-  isOpen: boolean;
+  open: boolean;
   onCancel: () => void;
   onScanResult: (uri: string) => void;
   onError: (err: Error) => void;
 }
 
-export function QrScannerModal({ onScanResult, onError, onCancel, isOpen }: QrScannerModalProps): JSX.Element {
+export function QrScannerModal({ onScanResult, onError, onCancel, open }: QrScannerModalProps): JSX.Element {
   const [stopDecoding, setStopDecoding] = useState(false);
 
   const handleResult = (result: string): void => {
@@ -33,20 +41,20 @@ export function QrScannerModal({ onScanResult, onError, onCancel, isOpen }: QrSc
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Scan QR Code</ModalHeader>
+    <DialogRoot open={open} onOpenChange={handleClose}>
+      <DialogBackdrop />
+      <DialogContent>
+        <DialogHeader>Scan QR Code</DialogHeader>
 
-        <ModalBody>
+        <DialogBody>
           <QrScanner hideCount stopDecoding={stopDecoding} onDecode={handleResult} onError={handleError} />
-        </ModalBody>
-        <ModalFooter>
+        </DialogBody>
+        <DialogFooter>
           <Button variant="ghost" onClick={handleClose}>
             Cancel
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </DialogRoot>
   );
 }

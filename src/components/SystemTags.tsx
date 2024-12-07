@@ -1,4 +1,4 @@
-import { Wrap } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { type JSX } from "react";
 import { getSystemTags } from "../otp";
 import { type OTP } from "../types";
@@ -12,9 +12,9 @@ export default function SystemTags({ otp }: SystemTagsProps): JSX.Element {
   return (
     <>
       {getSystemTags(otp).map((tag) => (
-        <Wrap key={tag}>
+        <HStack key={tag} wrap="wrap">
           <HashTag label={tag} system />
-        </Wrap>
+        </HStack>
       ))}
     </>
   );

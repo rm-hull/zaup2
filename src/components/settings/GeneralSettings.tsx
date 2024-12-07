@@ -1,8 +1,10 @@
-import { FormControl, FormLabel, HStack, Heading, Radio, RadioGroup, Switch, VStack } from "@chakra-ui/react";
+import { HStack, Heading, VStack } from "@chakra-ui/react";
 import { type JSX } from "react";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import { type sortBy } from "../../otp";
 import SyncInfoPanel from "./SyncInfoPanel";
+import { Switch } from "@/components/ui/switch";
+import { Radio, RadioGroup } from "@/components/ui/radio";
 
 export default function GeneralSettings(): JSX.Element {
   const [settings, updateSettings] = useGeneralSettings();
@@ -35,7 +37,11 @@ export default function GeneralSettings(): JSX.Element {
         <FormLabel htmlFor="sort-order" mb={0}>
           Sort grid by:
         </FormLabel>
-        <RadioGroup id="sort-order" onChange={handleUpdateSortOrder} value={settings?.sortOrder}>
+        <RadioGroup
+          id="sort-order"
+          onValueChange={(e) => handleUpdateSortOrder(e.value as keyof typeof sortBy)} // yuk
+          value={settings?.sortOrder}
+        >
           <HStack gap={4}>
             <Radio value="name">name</Radio>
             <Radio value="lastUsed">last used</Radio>
@@ -49,7 +55,7 @@ export default function GeneralSettings(): JSX.Element {
           <FormControl display="flex" alignItems="center">
             <Switch
               id="sync-to-google-drive"
-              isChecked={settings?.syncToGoogleDrive}
+              checked={settings?.syncToGoogleDrive}
               onChange={handleToggleSyncToGoogleDrive}
             />
             <FormLabel htmlFor="sync-to-google-drive" mb={0} ml={2}>
@@ -58,7 +64,7 @@ export default function GeneralSettings(): JSX.Element {
           </FormControl>
 
           <FormControl display="flex" alignItems="center">
-            <Switch id="show-qr-codes" isChecked={settings?.showQRCode} onChange={handleToggleShowQRCode} />
+            <Switch id="show-qr-codes" checked={settings?.showQRCode} onChange={handleToggleShowQRCode} />
             <FormLabel htmlFor="show-qr-codes" mb={0} ml={2}>
               Show QR codes
             </FormLabel>
@@ -67,7 +73,7 @@ export default function GeneralSettings(): JSX.Element {
           <FormControl display="flex" alignItems="center">
             <Switch
               id="show-countdown-timer"
-              isChecked={settings?.showCountdownTimer}
+              checked={settings?.showCountdownTimer}
               onChange={handleToggleShowCountdownTimer}
             />
             <FormLabel htmlFor="show-countdown-timer" mb={0} ml={2}>
@@ -76,7 +82,7 @@ export default function GeneralSettings(): JSX.Element {
           </FormControl>
 
           <FormControl display="flex" alignItems="center">
-            <Switch id="show-counts" isChecked={settings?.showCounts} onChange={handleToggleShowCounts} />
+            <Switch id="show-counts" checked={settings?.showCounts} onChange={handleToggleShowCounts} />
             <FormLabel htmlFor="show-counts" mb={0} ml={2}>
               Show counts in menu
             </FormLabel>

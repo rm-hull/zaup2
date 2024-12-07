@@ -1,28 +1,28 @@
-import { Button, Modal, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
+import { Button, DialogBackdrop, DialogContent, DialogFooter, DialogHeader, DialogRoot } from "@chakra-ui/react";
 import { type JSX } from "react";
 
-interface DeleteModalProps {
-  isOpen: boolean;
+interface DeleteDialogProps {
+  open: boolean;
   onDelete: () => void;
   onCancel: () => void;
 }
 
-export function DeleteModal({ isOpen, onDelete, onCancel }: DeleteModalProps): JSX.Element {
+export function DeleteModal({ open, onDelete, onCancel }: DeleteDialogProps): JSX.Element {
   return (
-    <Modal isOpen={isOpen} onClose={onCancel}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Confirm delete?</ModalHeader>
+    <DialogRoot open={open} onOpenChange={onCancel}>
+      <DialogBackdrop />
+      <DialogContent>
+        <DialogHeader>Confirm delete?</DialogHeader>
 
-        <ModalFooter>
+        <DialogFooter>
           <Button type="submit" onClick={onDelete} colorScheme="red" mr={3}>
             Delete
           </Button>
           <Button variant="ghost" onClick={onCancel}>
             Cancel
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </DialogRoot>
   );
 }

@@ -3,25 +3,27 @@ import { type Payload } from "../../api/googleDrive";
 // import { ipAddress } from "../../api/ipify";
 import {
   Box,
-  Button,
   HStack,
   Heading,
-  Step,
-  StepDescription,
-  StepIcon,
-  StepIndicator,
-  StepNumber,
-  StepSeparator,
-  StepStatus,
-  StepTitle,
+
   Stepper,
   useSteps,
-  useToast,
 } from "@chakra-ui/react";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import useGoogleDrive from "../../hooks/useGoogleDrive";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import { merge } from "../../otp";
+import { toaster } from "@/components/ui/toaster";
+import { Button } from "@/components/ui/button";
+import {
+  StepsCompleteContent,
+  StepsContent,
+  StepsItem,
+  StepsList,
+  StepsNextTrigger,
+  StepsPrevTrigger,
+  StepsRoot,
+} from "@/components/ui/steps"
 
 const steps = [
   { title: "Authenticate", description: "to Google Drive" },
@@ -40,21 +42,20 @@ export default function SyncSettings(): JSX.Element {
   const [settings, updateSettings] = useGeneralSettings();
   const { data = [], update } = useOtpParameters({ includeArchived: true });
   const { drive, login, error } = useGoogleDrive("zaup2_sync.json");
-  const toast = useToast();
   const { activeStep, setActiveStep } = useSteps({ index: -1, count: steps.length });
 
   const handleError = useCallback(() => {
     console.log({ error });
     setProcessing(false);
     setActiveStep(-1);
-    toast({
+    toaster.create({
       title: "Unable to sync with Google Drive",
       description: (error as Error).message,
-      status: "error",
+      type: "error",
       duration: 9000,
-      isClosable: true,
+      // isClosable: true,
     });
-  }, [error, setActiveStep, toast]);
+  }, [error, setActiveStep, toaster]);
 
   const process = useCallback(async (): Promise<void> => {
     if (!processing) {
@@ -97,12 +98,12 @@ export default function SyncSettings(): JSX.Element {
         });
         setProcessing(false);
         setActiveStep(4);
-        toast({
+        toaster.create({
           title: "Sync with Google Drive complete",
           description: `There were ${newOTPs.length - (payload?.otp ?? []).length} new OTPs added.`,
-          status: "success",
+          type: "success",
           duration: 9000,
-          isClosable: true,
+          // isClosable: true,
         });
         update(...newOTPs);
         updateSettings(newSettings);
@@ -118,7 +119,7 @@ export default function SyncSettings(): JSX.Element {
     processing,
     setActiveStep,
     settings,
-    toast,
+    toaster,
     update,
     updateSettings,
   ]);
@@ -174,7 +175,7 @@ export default function SyncSettings(): JSX.Element {
             </Step>
           ))}
         </Stepper>
-        <Button isLoading={processing} loadingText="Syncing..." onClick={handleSync}>
+        <Button loading={processing} loadingText="Syncing..." onClick={handleSync}>
           Sync Data
         </Button>
       </HStack>

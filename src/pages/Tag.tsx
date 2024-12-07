@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle } from "@chakra-ui/react";
+import { Alert } from "@chakra-ui/react";
 import { type JSX } from "react";
 import { useParams } from "react-router-dom";
 import Group from "../components/Group";
@@ -14,13 +14,13 @@ export function Tag(): JSX.Element {
           .includes(tag ?? "unknown")
       }
       noData={
-        <Alert status="warning">
-          <AlertIcon />
-          <AlertTitle>Unknown Tag</AlertTitle>
-          <AlertDescription>
+        <Alert.Root status="warning">
+          <Alert.Indicator />
+          <Alert.Title>Unknown Tag</Alert.Title>
+          <Alert.Description>
             There are no 2FA configurations for <em>{tag}</em>.
-          </AlertDescription>
-        </Alert>
+          </Alert.Description>
+        </Alert.Root>
       }
     />
   );

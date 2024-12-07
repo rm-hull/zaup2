@@ -1,10 +1,9 @@
 import {
-  Collapse,
+  Collapsible,
   Flex,
   Icon,
   Link,
   Spacer,
-  Tag,
   Text,
   useDisclosure,
   type FlexProps,
@@ -12,6 +11,7 @@ import {
 import { type JSX, type PropsWithChildren } from "react";
 import { type IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
+import { Tag } from "@/components/ui/tag";
 
 interface NavItemProps extends PropsWithChildren<FlexProps> {
   label: string;
@@ -28,7 +28,7 @@ export default function NavItem({ label, icon, path, count, children, color, ...
     <div>
       <Link
         as={RouterLink}
-        to={path ?? "#"}
+        href={path ?? "#"}
         style={{ textDecoration: "none" }}
         _focus={{ outline: "none" }}
         onClick={path === undefined ? onToggle : undefined}
@@ -45,7 +45,7 @@ export default function NavItem({ label, icon, path, count, children, color, ...
           {...rest}
         >
           {icon !== undefined && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
-          <Text noOfLines={1}>{label}</Text>
+          <Text lineClamp={1}>{label}</Text>
           <Spacer />
           {count !== undefined && (
             <Tag size="sm" variant="solid" colorScheme="blue">
@@ -54,9 +54,9 @@ export default function NavItem({ label, icon, path, count, children, color, ...
           )}
         </Flex>
       </Link>
-      <Collapse in={isOpen} animateOpacity>
-        {children}
-      </Collapse>
+      <Collapsible.Root open={open}>
+        <Collapsible.Content>{children}</Collapsible.Content>
+      </Collapsible.Root>
     </div>
   );
 }
