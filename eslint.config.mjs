@@ -13,74 +13,87 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
+import reactCompiler from "eslint-plugin-react-compiler";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all,
 });
 
-export default [{
+export default [
+  {
     ignores: ["**/vite.config.ts", "dist", "eslint.config.mjs", "**/*.js", ".yarn/**"],
-}, ...fixupConfigRules(compat.extends(
-    "standard-with-typescript",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-type-checked",
-    "eslint:recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:promise/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
-    "plugin:jsx-a11y/recommended",
-    "plugin:prettier/recommended",
-)), {
+  },
+  ...fixupConfigRules(
+    compat.extends(
+      "standard-with-typescript",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-type-checked",
+      "eslint:recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:promise/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript",
+      "plugin:jsx-a11y/recommended",
+      "plugin:prettier/recommended"
+    )
+  ),
+  {
     plugins: {
-        "@typescript-eslint": fixupPluginRules(typescriptEslint),
-        react: fixupPluginRules(react),
-        promise: fixupPluginRules(promise),
-        import: fixupPluginRules(_import),
-        "@typescript-eslint": fixupPluginRules(typescriptEslint),
-        prettier: fixupPluginRules(prettier),
-        "react-hooks": fixupPluginRules(reactHooks),
-        "testing-library": testingLibrary,
-        "@stylistic": stylistic,
+      "react-compiler": reactCompiler,
+      "@typescript-eslint": fixupPluginRules(typescriptEslint),
+      react: fixupPluginRules(react),
+      promise: fixupPluginRules(promise),
+      import: fixupPluginRules(_import),
+      "@typescript-eslint": fixupPluginRules(typescriptEslint),
+      prettier: fixupPluginRules(prettier),
+      "react-hooks": fixupPluginRules(reactHooks),
+      "testing-library": testingLibrary,
+      "@stylistic": stylistic,
     },
 
     languageOptions: {
-        globals: {
-            ...globals.browser,
-        },
+      globals: {
+        ...globals.browser,
+      },
 
-        parser: tsParser,
-        ecmaVersion: "latest",
-        sourceType: "module",
+      parser: tsParser,
+      ecmaVersion: "latest",
+      sourceType: "module",
 
-        parserOptions: {
-            project: ["./tsconfig.json", "./tsconfig.node.json"],
-            tsconfigRootDir: ".",
-            ecmaFeatures: {
-                jsx: true
-            }
+      parserOptions: {
+        project: ["./tsconfig.json", "./tsconfig.node.json"],
+        tsconfigRootDir: ".",
+        ecmaFeatures: {
+          jsx: true,
         },
+      },
     },
 
     settings: {
-        react: {
-            createClass: "createReactClass",
-            pragma: "React",
-            version: "detect",
-        },
+      react: {
+        createClass: "createReactClass",
+        pragma: "React",
+        version: "detect",
+      },
 
-        linkComponents: ["Hyperlink", {
-            name: "Link",
-            linkAttribute: "to",
-        }],
+      linkComponents: [
+        "Hyperlink",
+        {
+          name: "Link",
+          linkAttribute: "to",
+        },
+      ],
     },
 
-    rules: {},
-}]
+    rules: {
+      "react-compiler/react-compiler": "error",
+    },
+  },
+];
