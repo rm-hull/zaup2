@@ -7053,9 +7053,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.11.3":
-  version: 2.11.3
-  resolution: "jotai@npm:2.11.3"
+"jotai@npm:^2.12.1":
+  version: 2.12.1
+  resolution: "jotai@npm:2.12.1"
   peerDependencies:
     "@types/react": ">=17.0.0"
     react: ">=17.0.0"
@@ -7064,7 +7064,7 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: 10/72c75a2768e072589b298b1726166cdad28e3f3bf0c47761d4576eaf6f3e88e4126ef3b1782530d536099a17c7b96e3aeee4b19e6fffb737c21aef71747ad998
+  checksum: 10/14a16ee56ef0e6496ffb08b48a8ba4cb6d2f9865d51b88cad2d91f72d261175a10a14d8a41efc3145408865f2505cac0c186c1662e31c49ff44dcccb905a0a8a
   languageName: node
   linkType: hard
 
@@ -10146,7 +10146,7 @@ __metadata:
     framer-motion: "npm:^11.18.2"
     globals: "npm:^15.15.0"
     google-protobuf: "npm:^3.21.4"
-    jotai: "npm:^2.11.3"
+    jotai: "npm:^2.12.1"
     object-hash: "npm:^3.0.0"
     otpauth: "npm:^9.3.6"
     prettier: "npm:^3.5.0"
