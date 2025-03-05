@@ -69,8 +69,6 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
       //   notification.close();
       // };
     }
-
-    setRefresh(timeLeft === 0 ? now : undefined);
   }, 1000);
 
   if (filtered.length === 0 && noData !== undefined) {
