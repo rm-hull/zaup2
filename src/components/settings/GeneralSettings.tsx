@@ -11,16 +11,28 @@ export default function GeneralSettings(): JSX.Element {
   const enableNotifications = useCallback(async () => {
     if (settings?.enableNotifications === true && Notification.permission !== "granted") {
       const reason = await Notification.requestPermission();
-      if (reason !== "granted") {
+      if (reason === "denied") {
         toast({
-          title: "Requested permission for notications was not granted",
-          description: `In order to use this functionality you must allow the browser to post notifications.`,
-          status: "error",
+          title: "Notifications are disabled",
+          description: `You have disabled notifications for this site. Please enable them in your browser settings to use this feature.`, // TODO: More descriptive message
+          status: "warning",
           duration: 9000,
           isClosable: true,
         });
         updateSettings({ ...settings, enableNotifications: false });
+      } else if (reason === "granted") {
+        toast({
+          title: "Notifications enabled",
+          description: "Notifications have been enabled for this site.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        updateSettings({ ...settings, enableNotifications: false });
       }
+    } else {
+      // Handle 'default' state (user hasn't chosen yet)
+      console.log("Notification permission is in the 'default' state.");
     }
   }, [toast, settings, updateSettings]);
 
@@ -114,7 +126,7 @@ export default function GeneralSettings(): JSX.Element {
               isChecked={settings?.enableNotifications}
               onChange={handleToggleEnableNotifications}
             />
-            <FormLabel htmlFor="show-qr-codes" mb="0" ml={2}>
+            <FormLabel htmlFor="enable-notifications" mb="0" ml={2}>
               Enable Notifications (WIP)
             </FormLabel>
           </FormControl>
