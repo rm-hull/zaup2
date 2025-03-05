@@ -28,7 +28,6 @@ export default function GeneralSettings(): JSX.Element {
           duration: 5000,
           isClosable: true,
         });
-        updateSettings({ ...settings, enableNotifications: false });
       }
     } else {
       // Handle 'default' state (user hasn't chosen yet)
