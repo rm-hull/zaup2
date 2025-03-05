@@ -7,10 +7,9 @@ import {
   Tag,
   Text,
   useDisclosure,
-  useOutsideClick,
   type FlexProps,
 } from "@chakra-ui/react";
-import { useRef, type JSX, type PropsWithChildren } from "react";
+import { type JSX, type PropsWithChildren } from "react";
 import { type IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -23,19 +22,16 @@ interface NavItemProps extends PropsWithChildren<FlexProps> {
 }
 
 export default function NavItem({ label, icon, path, count, children, color, ...rest }: NavItemProps): JSX.Element {
-  const ref = useRef<HTMLDivElement>(null);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  useOutsideClick({ ref, handler: onClose });
+  const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <div ref={ref}>
+    <div>
       <Link
         as={RouterLink}
         to={path ?? "#"}
         style={{ textDecoration: "none" }}
         _focus={{ outline: "none" }}
-        onClick={path === undefined ? onOpen : undefined}
+        onClick={path === undefined ? onToggle : undefined}
         color={color}
       >
         <Flex

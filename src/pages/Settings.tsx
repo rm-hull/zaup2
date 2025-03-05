@@ -6,7 +6,7 @@ import SyncSettings from "../components/settings/SyncSettings";
 import DangerZoneSettings from "../components/settings/DangerZoneSettings";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-export default function Settings(): JSX.Element | null {
+export function Settings(): JSX.Element | null {
   const stackBg = useColorModeValue("white", "gray.800");
   return (
     <Stack boxShadow="2xl" bg={stackBg} rounded="xl" p={10} spacing={8} mb={8} align="flex-start" minWidth={950}>

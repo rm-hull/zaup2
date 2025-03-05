@@ -63,11 +63,11 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
         icon: getCachedFavicon(otp),
         requireInteraction: true,
       });
-      // notification.onclose = (event) => {
-      //   console.log("onclose called", { event });
-      //   setOtp(undefined);
-      //   notification.close();
-      // };
+      notification.onclose = (event) => {
+        console.log("onclose called", { event });
+        setOtp(undefined);
+        notification.close();
+      };
     }
 
     setRefresh(timeLeft === 0 ? now : undefined);

@@ -17,7 +17,7 @@ interface UseOTPParametersReturnType {
 
 export default function useOtpParameters(options?: Options): UseOTPParametersReturnType {
   const [password] = usePassword();
-  const [otpParams, setOtpParams] = useLocalStorage<OTP[]>("zaup2.otp-parameters", password);
+  const [otpParams, setOtpParams] = useLocalStorage<OTP[]>("zaup2.otp-parameters", [], password);
 
   const update = useCallback(
     (...updates: OTP[]) => {

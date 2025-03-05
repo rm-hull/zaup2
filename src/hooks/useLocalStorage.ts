@@ -6,18 +6,18 @@ import isJson from "../utils/isJson";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const localStorage = atom<Record<string, any> | undefined>(undefined);
 
-type UseLocalStorageReturnType<T> = [T | undefined, (value: T | undefined) => void];
+type UseLocalStorageReturnType<T> = [T, (value: T | undefined) => void];
 
-const useLocalStorage = <T>(key: string, secretKey?: string): UseLocalStorageReturnType<T> => {
+const useLocalStorage = <T>(key: string, initialValue: T, secretKey?: string): UseLocalStorageReturnType<T> => {
   const decryptData = (): T | undefined => {
     if (secretKey === undefined) {
       const item = window.localStorage.getItem(key);
-      return item === null ? undefined : (JSON.parse(item) as T);
+      return item === null ? initialValue : (JSON.parse(item) as T);
     }
 
     let data = window.localStorage.getItem(key);
     if (data === undefined || data === null) {
-      return undefined;
+      return initialValue;
     }
 
     // check to see if plain JSON (i.e. unencrypted): if so, do a one type migration

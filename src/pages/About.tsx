@@ -1,7 +1,7 @@
 import { Code, Heading, Link, Stack, Text, VStack, useColorModeValue } from "@chakra-ui/react";
 import { type JSX } from "react";
 
-export default function About(): JSX.Element | null {
+export function About(): JSX.Element | null {
   return (
     <Stack
       boxShadow="2xl"

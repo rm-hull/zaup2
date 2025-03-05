@@ -79,7 +79,7 @@ export default function OTPSettings(): JSX.Element | null {
                 <HStack alignItems="flex-start">
                   <Image src={getCachedFavicon(otp)} h={5} />
                   <VStack align="left">
-                    <Text fontWeight={600}>
+                    <Text fontWeight={600} style={{ textDecoration: otp.archived ? "line-through" : undefined }}>
                       {otp.label ?? otp.issuer ?? "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}
                     </Text>
                     <Text fontWeight={400} color="gray.500" noOfLines={1} maxWidth="dw">

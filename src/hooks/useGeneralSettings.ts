@@ -15,5 +15,12 @@ export default function useGeneralSettings(): [
   GeneralSettings | undefined,
   (value: GeneralSettings | undefined) => void,
 ] {
-  return useLocalStorage<GeneralSettings>("zaup2.general-settings");
+  return useLocalStorage<GeneralSettings>("zaup2.general-settings", {
+    syncToGoogleDrive: false,
+    showQRCode: true,
+    showCountdownTimer: true,
+    showCounts: true,
+    sortOrder: "name",
+    encrypted: false,
+  });
 }
