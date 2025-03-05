@@ -54,7 +54,7 @@
     "@types/google-protobuf": "^3.15.12",
     "@types/node": "^22.13.9",
     "@types/object-hash": "^3.0.6",
-    "@types/qrcode.react": "^1.0.5",
+    "@types/qrcode.react": "^3.0.0",
     "@types/ramda": "^0.30.2",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
