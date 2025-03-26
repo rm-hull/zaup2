@@ -37,7 +37,7 @@ export default function Search({ onChange }: SearchProps): JSX.Element {
 
   const handleOpen = (): void => {
     onOpen();
-    setTimeout(setInputFocus, 10);
+    setTimeout(setInputFocus, 25);
   };
 
   useKeyPressEvent("/", handleOpen);
