@@ -1880,6 +1880,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/types@npm:^7.19.0":
+  version: 7.27.0
+  resolution: "@babel/types@npm:7.27.0"
+  dependencies:
+    "@babel/helper-string-parser": "npm:^7.25.9"
+    "@babel/helper-validator-identifier": "npm:^7.25.9"
+  checksum: 10/2c322bce107c8a534dc4a23be60d570e6a4cc7ca2e44d4f0eee08c0b626104eb7e60ab8de03463bc5da1773a2f69f1e6edec1648d648d65461d6520a7f3b0770
+  languageName: node
+  linkType: hard
+
 "@babel/types@npm:^7.25.9, @babel/types@npm:^7.26.0, @babel/types@npm:^7.26.3":
   version: 7.26.3
   resolution: "@babel/types@npm:7.26.3"
@@ -4279,12 +4289,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-react-compiler@npm:19.0.0-beta-3229e95-20250315":
-  version: 19.0.0-beta-3229e95-20250315
-  resolution: "babel-plugin-react-compiler@npm:19.0.0-beta-3229e95-20250315"
+"babel-plugin-react-compiler@npm:19.0.0-beta-714736e-20250131":
+  version: 19.0.0-beta-714736e-20250131
+  resolution: "babel-plugin-react-compiler@npm:19.0.0-beta-714736e-20250131"
   dependencies:
-    "@babel/types": "npm:^7.26.0"
-  checksum: 10/1162a1c6615d108776ba1330245b913524e0db27e2492f649290b3ac3c788a426f6a7f5bb650b5b59a8e691f739ffd2570290a66205bdb0efc61b5a7a45f93e8
+    "@babel/types": "npm:^7.19.0"
+  checksum: 10/1a91429393a196e3ece4ea657c8b4b0409c797ce27f5b2bcd7f7a869f5010a44094ab557be59bd3e52626b266fe727bd893c00820f6761b40df57b70ccdca812
   languageName: node
   linkType: hard
 
@@ -10505,7 +10515,7 @@ __metadata:
     "@vitest/coverage-v8": "npm:^3.0.9"
     "@yudiel/react-qr-scanner": "npm:^1.2.10"
     axios: "npm:^1.8.4"
-    babel-plugin-react-compiler: "npm:19.0.0-beta-3229e95-20250315"
+    babel-plugin-react-compiler: "npm:19.0.0-beta-714736e-20250131"
     base32-encode: "npm:^2.0.0"
     chalk: "npm:^5.4.1"
     crypto-js: "npm:^4.2.0"
