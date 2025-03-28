@@ -63,7 +63,7 @@
     "@typescript-eslint/parser": "^8.28.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^3.0.9",
-    "babel-plugin-react-compiler": "19.0.0-beta-3229e95-20250315",
+    "babel-plugin-react-compiler": "19.0.0-beta-714736e-20250131",
     "chalk": "^5.4.1",
     "eslint": "9.23.0",
     "eslint-config-prettier": "^10.1.1",
