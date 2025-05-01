@@ -1,6 +1,6 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
-import { QrScanner } from "@yudiel/react-qr-scanner";
-import { useState, type JSX } from "react";
+import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
+import { type JSX } from "react";
 
 interface QrScannerModalProps {
   isOpen: boolean;
@@ -10,36 +10,34 @@ interface QrScannerModalProps {
 }
 
 export function QrScannerModal({ onScanResult, onError, onCancel, isOpen }: QrScannerModalProps): JSX.Element {
-  const [stopDecoding, setStopDecoding] = useState(false);
-
-  const handleResult = (result: string): void => {
-    if (result.startsWith("otpauth-migration://offline?data=")) {
-      setStopDecoding(true);
-      setTimeout(() => {
-        onScanResult(result);
-      }, 0);
+  const handleResult = (detectedCodes: IDetectedBarcode[]): void => {
+    for (const result of detectedCodes) {
+      if (
+        result.rawValue?.startsWith("otpauth-migration://offline?data=") ||
+        result.rawValue?.startsWith("otpauth://totp/")
+      ) {
+        setTimeout(() => {
+          onScanResult(result.rawValue);
+        }, 0);
+      }
     }
   };
 
   const handleClose = (): void => {
-    setStopDecoding(true);
     setTimeout(onCancel, 0);
   };
 
-  const handleError = (err: Error): void => {
-    if (!stopDecoding) {
-      onError(err);
-    }
+  const handleError = (err: unknown): void => {
+    onError(err as Error);
   };
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent height={550}>
         <ModalHeader>Scan QR Code</ModalHeader>
-
         <ModalBody>
-          <QrScanner hideCount stopDecoding={stopDecoding} onDecode={handleResult} onError={handleError} />
+          <Scanner formats={["qr_code"]} onScan={handleResult} onError={handleError} />
         </ModalBody>
         <ModalFooter>
           <Button variant="ghost" onClick={handleClose}>
