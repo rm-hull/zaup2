@@ -4006,16 +4006,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yudiel/react-qr-scanner@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "@yudiel/react-qr-scanner@npm:2.2.1"
+"@yudiel/react-qr-scanner@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@yudiel/react-qr-scanner@npm:2.3.0"
   dependencies:
-    barcode-detector: "npm:^3.0.0"
-    webrtc-adapter: "npm:9.0.1"
+    barcode-detector: "npm:3.0.1"
+    webrtc-adapter: "npm:9.0.3"
   peerDependencies:
     react: ^17 || ^18 || ^19
     react-dom: ^17 || ^18 || ^19
-  checksum: 10/8964d9fcd946f1295a4f80a9b9c7bfdbaeb804e5ca22785852f8d4d90d7dd4138438a118c5bd28d46c439abb96d60488192017dccfd63c3fe91cc55627c8891b
+  checksum: 10/47c760689aa52ff3423c92fd05f1e1ddb885536499953ee2defdb4415c87fffe30bc4529e141b0f457643fa18a58272cb14ceef15b53a7d4f50656fbeb835c47
   languageName: node
   linkType: hard
 
@@ -4501,12 +4501,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"barcode-detector@npm:^3.0.0":
-  version: 3.0.2
-  resolution: "barcode-detector@npm:3.0.2"
+"barcode-detector@npm:3.0.1":
+  version: 3.0.1
+  resolution: "barcode-detector@npm:3.0.1"
   dependencies:
-    zxing-wasm: "npm:^2.1.1"
-  checksum: 10/06557c205756c4c090b7a26d6f01f6fcbc392aa9e9d65c204be519ffc0255defaec887d8e01b1c1e2593ee1da4b1cec3d3d28d7e15fd0081a89d6f625f293e51
+    zxing-wasm: "npm:^2.1.0"
+  checksum: 10/238aff76b021eeaeefe2eb799426013c83a784800d17bf2e3d0abaea4c72e32158dceb432cb71c9644b8e62683f6d1949451578702537df80f0b2bb51b70224e
   languageName: node
   linkType: hard
 
@@ -10626,12 +10626,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webrtc-adapter@npm:9.0.1":
-  version: 9.0.1
-  resolution: "webrtc-adapter@npm:9.0.1"
+"webrtc-adapter@npm:9.0.3":
+  version: 9.0.3
+  resolution: "webrtc-adapter@npm:9.0.3"
   dependencies:
     sdp: "npm:^3.2.0"
-  checksum: 10/5e73ddb6fb807e28fc4bb727bdee2717a697bcf24cfbe1e401c5a3c57d61627fa000b6185470ec3c9fcc1dca42093b67776742c7fde7002fbc14da272a020cbf
+  checksum: 10/5544cb38093a20b485d1d24eb23483f9ad3cdab0b0edd277cc44a90e871269dd78d124d9c45e91381e16361f79744648575fce762b258bc02c12c3c28ef5e138
   languageName: node
   linkType: hard
 
@@ -10862,7 +10862,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.31.1"
     "@vitejs/plugin-react": "npm:^4.4.1"
     "@vitest/coverage-v8": "npm:^3.1.2"
-    "@yudiel/react-qr-scanner": "npm:^2.2.1"
+    "@yudiel/react-qr-scanner": "npm:^2.3.0"
     axios: "npm:^1.9.0"
     babel-plugin-react-compiler: "npm:19.1.0-rc.1"
     base32-encode: "npm:^2.0.0"
@@ -10926,7 +10926,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zxing-wasm@npm:^2.1.1":
+"zxing-wasm@npm:^2.1.0":
   version: 2.1.1
   resolution: "zxing-wasm@npm:2.1.1"
   dependencies:
