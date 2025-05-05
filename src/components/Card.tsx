@@ -14,21 +14,23 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { type TOTP } from "otpauth";
+import * as R from "ramda";
 import { QRCodeSVG } from "qrcode.react";
 import { memo, useEffect, useMemo, type JSX } from "react";
-import { FiAlertTriangle, FiCheck, FiClipboard } from "react-icons/fi";
+import { FiActivity, FiAlertTriangle, FiCheck, FiClipboard } from "react-icons/fi";
 import { getCachedFavicon } from "../favicons";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { getEncodedSecret, getTotp } from "../otp";
 import { type OTP } from "../types";
 import HashTag from "./HashTag";
 import SystemTags from "./SystemTags";
-import * as R from "ramda";
 
 interface CardProps {
   otp: OTP;
   refresh?: number;
   showQRCode?: boolean;
+  enableNotifications?: boolean;
+  onNotify?: () => void;
   highlight?: string;
 }
 
@@ -40,7 +42,7 @@ function generateCode(totp?: TOTP): Partial<{ code: string; error: Error }> {
   }
 }
 
-const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
+const Card = memo(({ otp, showQRCode, highlight, enableNotifications, onNotify }: CardProps): JSX.Element => {
   const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
   const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
   const { update } = useOtpParameters();
@@ -95,6 +97,11 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
         )}
 
         <HStack align="center" justify="center" mt={showQRCode === true ? 4 : 0}>
+          {enableNotifications === true && (
+            <Tooltip label="Notify">
+              <IconButton aria-label="Notify" onClick={onNotify} icon={<FiActivity />} />
+            </Tooltip>
+          )}
           <Heading fontSize="5xl" fontFamily="body">
             {code ?? "╰(°□°)╯"}
           </Heading>

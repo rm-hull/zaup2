@@ -1,11 +1,44 @@
-import { FormControl, FormLabel, HStack, Heading, Radio, RadioGroup, Switch, VStack } from "@chakra-ui/react";
-import { type JSX } from "react";
+import { FormControl, FormLabel, HStack, Heading, Radio, RadioGroup, Switch, VStack, useToast } from "@chakra-ui/react";
+import { type JSX, useEffect, useCallback } from "react";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import { type sortBy } from "../../otp";
 import SyncInfoPanel from "./SyncInfoPanel";
 
 export default function GeneralSettings(): JSX.Element {
   const [settings, updateSettings] = useGeneralSettings();
+  const toast = useToast();
+
+  const enableNotifications = useCallback(async () => {
+    if (settings?.enableNotifications === true && Notification.permission !== "granted") {
+      const reason = await Notification.requestPermission();
+      if (reason === "denied") {
+        toast({
+          title: "Notifications are disabled",
+          description: `You have disabled notifications for this site. Please enable them in your browser settings to use this feature.`, // TODO: More descriptive message
+          status: "warning",
+          duration: 9000,
+          isClosable: true,
+        });
+        updateSettings({ ...settings, enableNotifications: false });
+      } else if (reason === "granted") {
+        toast({
+          title: "Notifications enabled",
+          description: "Notifications have been enabled for this site.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    } else {
+      // Handle 'default' state (user hasn't chosen yet)
+      console.log("Notification permission is in the 'default' state.");
+    }
+  }, [toast, settings, updateSettings]);
+
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    enableNotifications().catch(console.error);
+  }, [enableNotifications]);
 
   const handleToggleSyncToGoogleDrive = (): void => {
     updateSettings({ ...settings, syncToGoogleDrive: !(settings?.syncToGoogleDrive ?? false) });
@@ -25,6 +58,10 @@ export default function GeneralSettings(): JSX.Element {
 
   const handleUpdateSortOrder = (sortOrder: keyof typeof sortBy): void => {
     updateSettings({ ...settings, sortOrder });
+  };
+
+  const handleToggleEnableNotifications = (): void => {
+    updateSettings({ ...settings, enableNotifications: !(settings?.enableNotifications ?? false) });
   };
 
   return (
@@ -79,6 +116,17 @@ export default function GeneralSettings(): JSX.Element {
             <Switch id="show-counts" isChecked={settings?.showCounts} onChange={handleToggleShowCounts} />
             <FormLabel htmlFor="show-counts" mb={0} ml={2}>
               Show counts in menu
+            </FormLabel>
+          </FormControl>
+
+          <FormControl display="flex" alignItems="center">
+            <Switch
+              id="enable-notifications"
+              isChecked={settings?.enableNotifications}
+              onChange={handleToggleEnableNotifications}
+            />
+            <FormLabel htmlFor="enable-notifications" mb="0" ml={2}>
+              Enable Notifications (WIP)
             </FormLabel>
           </FormControl>
         </VStack>
