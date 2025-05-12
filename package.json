@@ -28,7 +28,7 @@
     "formik": "^2.4.6",
     "framer-motion": "^12.10.0",
     "google-protobuf": "^3.21.4",
-    "jotai": "^2.12.3",
+    "jotai": "^2.12.4",
     "object-hash": "^3.0.0",
     "otpauth": "^9.4.0",
     "qrcode.react": "^4.2.0",
