@@ -20,7 +20,7 @@
     "@formkit/auto-animate": "^0.8.2",
     "@react-oauth/google": "^0.12.1",
     "@types/crypto-js": "^4.2.2",
-    "@yudiel/react-qr-scanner": "^2.3.0",
+    "@yudiel/react-qr-scanner": "^2.3.1",
     "axios": "^1.9.0",
     "base32-encode": "^2.0.0",
     "crypto-js": "^4.2.0",
