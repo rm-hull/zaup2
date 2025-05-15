@@ -7,8 +7,8 @@ import {
   DialogHeader,
   DialogRoot,
 } from "@chakra-ui/react";
-import { QrScanner } from "@yudiel/react-qr-scanner";
-import { useState, type JSX } from "react";
+import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
+import { type JSX } from "react";
 
 interface QrScannerModalProps {
   open: boolean;
@@ -17,37 +17,36 @@ interface QrScannerModalProps {
   onError: (err: Error) => void;
 }
 
-export function QrScannerModal({ onScanResult, onError, onCancel, open }: QrScannerModalProps): JSX.Element {
-  const [stopDecoding, setStopDecoding] = useState(false);
-
-  const handleResult = (result: string): void => {
-    if (result.startsWith("otpauth-migration://offline?data=")) {
-      setStopDecoding(true);
-      setTimeout(() => {
-        onScanResult(result);
-      }, 0);
+export function QrScannerModal({ onScanResult, onError, onCancel }: QrScannerModalProps): JSX.Element {
+  const handleResult = (detectedCodes: IDetectedBarcode[]): void => {
+    for (const result of detectedCodes) {
+      if (
+        result.rawValue?.startsWith("otpauth-migration://offline?data=") ||
+        result.rawValue?.startsWith("otpauth://totp/")
+      ) {
+        setTimeout(() => {
+          onScanResult(result.rawValue);
+        }, 0);
+      }
     }
   };
 
   const handleClose = (): void => {
-    setStopDecoding(true);
     setTimeout(onCancel, 0);
   };
 
-  const handleError = (err: Error): void => {
-    if (!stopDecoding) {
-      onError(err);
-    }
+  const handleError = (err: unknown): void => {
+    onError(err as Error);
   };
 
   return (
     <DialogRoot open={open} onOpenChange={handleClose}>
       <DialogBackdrop />
-      <DialogContent>
+      <DialogContent height={550}>
         <DialogHeader>Scan QR Code</DialogHeader>
 
         <DialogBody>
-          <QrScanner hideCount stopDecoding={stopDecoding} onDecode={handleResult} onError={handleError} />
+          <Scanner formats={["qr_code"]} onScan={handleResult} onError={handleError} />
         </DialogBody>
         <DialogFooter>
           <Button variant="ghost" onClick={handleClose}>
