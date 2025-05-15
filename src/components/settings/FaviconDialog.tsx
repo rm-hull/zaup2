@@ -7,15 +7,16 @@ import {
   DialogHeader,
   DialogRoot,
   HStack,
+  Field,
   Image,
   Input,
   Text,
 } from "@chakra-ui/react";
-import { Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
+import { Field as FormikField, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import { type JSX } from "react";
 import { useColorModeValue } from "@/components/ui/color-mode";
 
-interface FaviconModalProps {
+interface FaviconDialogProps {
   url?: string;
   open: boolean;
   onUpdate: (favicon?: string) => void;
@@ -25,7 +26,7 @@ interface FaviconForm {
   favicon: string;
 }
 
-export function FaviconModal({ url, open, onUpdate, onCancel }: FaviconModalProps): JSX.Element {
+export function FaviconDialog({ url, open, onUpdate, onCancel }: FaviconDialogProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 
@@ -46,26 +47,24 @@ export function FaviconModal({ url, open, onUpdate, onCancel }: FaviconModalProp
           {({ isValid }) => (
             <Form>
               <DialogBody>
-                <Field name="favicon">
-                  {({ field, form, meta }: FieldProps) => (
-                    <Field
-                      isInvalid={form.errors.favicon !== undefined && !!form.touched.favicon}
-                      errorText={meta.error}
-                    >
+                <FormikField name="favicon">
+                  {({ field, meta }: FieldProps) => (
+                    <Field.Root>
                       <Input {...field} id="favicon" type="text" color={color} bg={bg} />
-                      <HStack mt={1}>
-                        <Text textStyle="xs" color="gray.500">
+                      <Field.HelperText>
+                        <HStack mt={1}>
                           Preview:
-                        </Text>
-                        <Image src={field.value} h={5} />
-                      </HStack>
-                    </Field>
+                          <Image src={field.value} h={5} />
+                        </HStack>
+                      </Field.HelperText>
+                      <Field.ErrorText>{meta.error}</Field.ErrorText>
+                    </Field.Root>
                   )}
-                </Field>
+                </FormikField>
               </DialogBody>
 
               <DialogFooter>
-                <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
+                <Button type="submit" colorPalette="blue" mr={3} disabled={!isValid}>
                   {url === undefined ? "Add" : "Update"}
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>

@@ -3,7 +3,7 @@ import * as R from "ramda";
 import { useCallback, type JSX } from "react";
 import { FiPlus } from "react-icons/fi";
 import { type OTP } from "../../types";
-import { AddTagModal } from "./AddTagModal";
+import { AddTagDialog } from "./AddTagDialog";
 import { Tooltip } from "@/components/ui/tooltip";
 
 interface AddTagButtonProps {
@@ -27,7 +27,7 @@ export default function AddTagButton({ otp, onAddRequested }: AddTagButtonProps)
 
   return (
     <>
-      {open && <AddTagModal open={open} onAdd={handleConfirmAddTag} onCancel={onClose} />}
+      {open && <AddTagDialog open={open} onAdd={handleConfirmAddTag} onCancel={onClose} />}
 
       <Tooltip showArrow content="Add tag">
         <IconButton aria-label="Add tag" disabled={(otp.tags ?? []).length >= 3} size="sm" onClick={onOpen}>

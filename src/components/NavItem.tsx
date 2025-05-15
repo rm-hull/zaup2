@@ -1,13 +1,4 @@
-import {
-  Collapsible,
-  Flex,
-  Icon,
-  Link,
-  Spacer,
-  Text,
-  useDisclosure,
-  type FlexProps,
-} from "@chakra-ui/react";
+import { Collapsible, Flex, Icon, Link, Spacer, Text, useDisclosure, type FlexProps } from "@chakra-ui/react";
 import { type JSX, type PropsWithChildren } from "react";
 import { type IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
@@ -22,7 +13,7 @@ interface NavItemProps extends PropsWithChildren<FlexProps> {
 }
 
 export default function NavItem({ label, icon, path, count, children, color, ...rest }: NavItemProps): JSX.Element {
-  const { isOpen, onToggle } = useDisclosure();
+  const { open, onToggle } = useDisclosure();
 
   return (
     <div>
@@ -48,7 +39,7 @@ export default function NavItem({ label, icon, path, count, children, color, ...
           <Text lineClamp={1}>{label}</Text>
           <Spacer />
           {count !== undefined && (
-            <Tag size="sm" variant="solid" colorScheme="blue">
+            <Tag size="sm" variant="solid" colorPalette="blue">
               {count}
             </Tag>
           )}

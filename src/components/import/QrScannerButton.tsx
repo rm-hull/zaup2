@@ -33,7 +33,7 @@ export default function QrScannerButton({ onScanResult }: DeleteButtonProps): JS
         <QrScannerModal open={open} onCancel={onClose} onScanResult={handleConfirmDelete} onError={handleError} />
       )}
 
-      <Button colorScheme="blue" flex="1 0 auto" onClick={onOpen}>
+      <Button colorPalette="blue" flex="1 0 auto" onClick={onOpen}>
         Scan QR Code
       </Button>
     </>

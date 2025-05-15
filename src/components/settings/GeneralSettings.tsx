@@ -1,4 +1,4 @@
-import { HStack, Heading, VStack } from "@chakra-ui/react";
+import { Field, HStack, Heading, VStack } from "@chakra-ui/react";
 import { type JSX } from "react";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import { type sortBy } from "../../otp";
@@ -33,10 +33,10 @@ export default function GeneralSettings(): JSX.Element {
     <>
       <Heading size="md">General Settings</Heading>
 
-      <FormControl display="flex" alignItems="center">
-        <FormLabel htmlFor="sort-order" mb={0}>
+      <Field.Root display="flex" alignItems="center">
+        <Field.Label htmlFor="sort-order" mb={0}>
           Sort grid by:
-        </FormLabel>
+        </Field.Label>
         <RadioGroup
           id="sort-order"
           onValueChange={(e) => handleUpdateSortOrder(e.value as keyof typeof sortBy)} // yuk
@@ -48,45 +48,45 @@ export default function GeneralSettings(): JSX.Element {
             <Radio value="mostUsed">most used</Radio>
           </HStack>
         </RadioGroup>
-      </FormControl>
+      </Field.Root>
 
       <HStack alignItems="flex-start">
         <VStack gap={4} minWidth={250}>
-          <FormControl display="flex" alignItems="center">
+          <Field.Root display="flex" alignItems="center">
             <Switch
               id="sync-to-google-drive"
               checked={settings?.syncToGoogleDrive}
               onChange={handleToggleSyncToGoogleDrive}
             />
-            <FormLabel htmlFor="sync-to-google-drive" mb={0} ml={2}>
+            <Field.Label htmlFor="sync-to-google-drive" mb={0} ml={2}>
               Sync to Google Drive
-            </FormLabel>
-          </FormControl>
+            </Field.Label>
+          </Field.Root>
 
-          <FormControl display="flex" alignItems="center">
+          <Field.Root display="flex" alignItems="center">
             <Switch id="show-qr-codes" checked={settings?.showQRCode} onChange={handleToggleShowQRCode} />
-            <FormLabel htmlFor="show-qr-codes" mb={0} ml={2}>
+            <Field.Label htmlFor="show-qr-codes" mb={0} ml={2}>
               Show QR codes
-            </FormLabel>
-          </FormControl>
+            </Field.Label>
+          </Field.Root>
 
-          <FormControl display="flex" alignItems="center">
+          <Field.Root display="flex" alignItems="center">
             <Switch
               id="show-countdown-timer"
               checked={settings?.showCountdownTimer}
               onChange={handleToggleShowCountdownTimer}
             />
-            <FormLabel htmlFor="show-countdown-timer" mb={0} ml={2}>
+            <Field.Label htmlFor="show-countdown-timer" mb={0} ml={2}>
               Show countdown timer
-            </FormLabel>
-          </FormControl>
+            </Field.Label>
+          </Field.Root>
 
-          <FormControl display="flex" alignItems="center">
+          <Field.Root display="flex" alignItems="center">
             <Switch id="show-counts" checked={settings?.showCounts} onChange={handleToggleShowCounts} />
-            <FormLabel htmlFor="show-counts" mb={0} ml={2}>
+            <Field.Label htmlFor="show-counts" mb={0} ml={2}>
               Show counts in menu
-            </FormLabel>
-          </FormControl>
+            </Field.Label>
+          </Field.Root>
         </VStack>
 
         {(settings?.syncToGoogleDrive ?? false) && <SyncInfoPanel />}

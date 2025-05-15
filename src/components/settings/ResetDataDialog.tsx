@@ -9,13 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { type JSX } from "react";
 
-interface ResetDataModalProps {
+interface ResetDataDialogProps {
   open: boolean;
   onResetData: () => void;
   onCancel: () => void;
 }
 
-export function ResetDataModal({ open, onResetData, onCancel }: ResetDataModalProps): JSX.Element {
+export function ResetDataDialog({ open, onResetData, onCancel }: ResetDataDialogProps): JSX.Element {
   return (
     <DialogRoot open={open} onOpenChange={onCancel}>
       <DialogBackdrop />
@@ -27,7 +27,7 @@ export function ResetDataModal({ open, onResetData, onCancel }: ResetDataModalPr
         </DialogBody>
 
         <DialogFooter>
-          <Button type="submit" onClick={onResetData} colorScheme="red" mr={3}>
+          <Button type="submit" onClick={onResetData} colorPalette="red" mr={3}>
             Reset Data
           </Button>
           <Button variant="ghost" onClick={onCancel}>

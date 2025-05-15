@@ -17,7 +17,7 @@ interface QrScannerModalProps {
   onError: (err: Error) => void;
 }
 
-export function QrScannerModal({ onScanResult, onError, onCancel }: QrScannerModalProps): JSX.Element {
+export function QrScannerModal({ open, onScanResult, onError, onCancel }: QrScannerModalProps): JSX.Element {
   const handleResult = (detectedCodes: IDetectedBarcode[]): void => {
     for (const result of detectedCodes) {
       if (

@@ -7,7 +7,7 @@ interface DeleteDialogProps {
   onCancel: () => void;
 }
 
-export function DeleteModal({ open, onDelete, onCancel }: DeleteDialogProps): JSX.Element {
+export function DeleteDialog({ open, onDelete, onCancel }: DeleteDialogProps): JSX.Element {
   return (
     <DialogRoot open={open} onOpenChange={onCancel}>
       <DialogBackdrop />
@@ -15,7 +15,7 @@ export function DeleteModal({ open, onDelete, onCancel }: DeleteDialogProps): JS
         <DialogHeader>Confirm delete?</DialogHeader>
 
         <DialogFooter>
-          <Button type="submit" onClick={onDelete} colorScheme="red" mr={3}>
+          <Button type="submit" onClick={onDelete} colorPalette="red" mr={3}>
             Delete
           </Button>
           <Button variant="ghost" onClick={onCancel}>

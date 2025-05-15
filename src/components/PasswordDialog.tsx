@@ -7,13 +7,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogRoot,
+  Field,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
+import { Field as FormikField, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import { type JSX } from "react";
 import PasswordInput from "./PasswordInput";
 import { useColorModeValue } from "@/components/ui/color-mode";
 
-interface PasswordModalProps {
+interface PasswordDialogProps {
   open: boolean;
   confirm: boolean;
   onSubmit: (password: string) => void;
@@ -32,7 +33,7 @@ const requiredValidator = (value: string): string | undefined => {
   return error;
 };
 
-export function PasswordModal({ open, confirm, onSubmit }: PasswordModalProps): JSX.Element {
+export function PasswordDialog({ open, confirm, onSubmit }: PasswordDialogProps): JSX.Element {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 
@@ -65,12 +66,9 @@ export function PasswordModal({ open, confirm, onSubmit }: PasswordModalProps): 
           {({ isValid }) => (
             <Form>
               <DialogBody>
-                <Field name="password" validate={requiredValidator}>
+                <FormikField name="password" validate={requiredValidator}>
                   {({ field, form, meta }: FieldProps) => (
-                    <Field
-                      isInvalid={form.errors.password !== undefined && !!form.touched.password}
-                      errorText={meta.error}
-                    >
+                    <Field.Root>
                       <PasswordInput
                         {...field}
                         placeholder="Password"
@@ -79,17 +77,16 @@ export function PasswordModal({ open, confirm, onSubmit }: PasswordModalProps): 
                         color={color}
                         bg={bg}
                       />
-                    </Field>
+                      {form.errors.password !== undefined && !!form.touched.password && (
+                        <Field.ErrorText>{meta.error}</Field.ErrorText>
+                      )}
+                    </Field.Root>
                   )}
-                </Field>
+                </FormikField>
                 {confirm && (
-                  <Field name="confirmedPassword">
+                  <FormikField name="confirmedPassword">
                     {({ field, form, meta }: FieldProps) => (
-                      <Field
-                        isInvalid={form.errors.confirmedPassword !== undefined && !!form.touched.confirmedPassword}
-                        errorText={meta.error}
-                        mt={3}
-                      >
+                      <Field.Root mt={3}>
                         <PasswordInput
                           {...field}
                           placeholder="Re-enter password to confirm"
@@ -98,9 +95,12 @@ export function PasswordModal({ open, confirm, onSubmit }: PasswordModalProps): 
                           color={color}
                           bg={bg}
                         />
-                      </Field>
+                        {form.errors.confirmedPassword !== undefined && !!form.touched.confirmedPassword && (
+                          <Field.ErrorText>{meta.error}</Field.ErrorText>
+                        )}
+                      </Field.Root>
                     )}
-                  </Field>
+                  </FormikField>
                 )}
                 {confirm && (
                   <Alert.Root mt={5} status="info" flexDirection="column" alignItems="start">
@@ -118,7 +118,7 @@ export function PasswordModal({ open, confirm, onSubmit }: PasswordModalProps): 
               </DialogBody>
 
               <DialogFooter>
-                <Button type="submit" colorScheme="blue" disabled={!isValid}>
+                <Button type="submit" colorPalette="blue" disabled={!isValid}>
                   Ok
                 </Button>
               </DialogFooter>

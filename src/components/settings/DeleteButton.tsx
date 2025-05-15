@@ -2,7 +2,7 @@ import { IconButton, useDisclosure } from "@chakra-ui/react";
 import { type JSX } from "react";
 import { FiTrash2 } from "react-icons/fi";
 import { type OTP } from "../../types";
-import { DeleteModal } from "./DeleteModal";
+import { DeleteDialog } from "./DeleteDialog";
 import { Tooltip } from "@/components/ui/tooltip";
 
 interface DeleteButtonProps {
@@ -20,7 +20,7 @@ export default function DeleteButton({ otp, onDeleteRequested }: DeleteButtonPro
 
   return (
     <>
-      {open && <DeleteModal open={open} onDelete={handleConfirmDelete} onCancel={onClose} />}
+      {open && <DeleteDialog open={open} onDelete={handleConfirmDelete} onCancel={onClose} />}
 
       <Tooltip showArrow content="Delete OTP">
         <IconButton aria-label="Delete" size="sm" onClick={onOpen}>

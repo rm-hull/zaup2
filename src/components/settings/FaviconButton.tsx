@@ -2,7 +2,7 @@ import { IconButton, useDisclosure } from "@chakra-ui/react";
 import { useCallback, type JSX } from "react";
 import { FiImage } from "react-icons/fi";
 import { type OTP } from "../../types";
-import { FaviconModal } from "./FaviconModal";
+import { FaviconDialog } from "./FaviconDialog";
 import { Tooltip } from "@/components/ui/tooltip";
 
 interface FaviconButtonProps {
@@ -24,7 +24,7 @@ export default function FaviconButton({ otp, onUpdateRequested }: FaviconButtonP
   const label = otp.favicon === undefined ? "Add favicon" : "Update favicon";
   return (
     <>
-      {open && <FaviconModal open={open} onUpdate={handleConfirmFavicon} onCancel={onClose} url={otp.favicon} />}
+      {open && <FaviconDialog open={open} onUpdate={handleConfirmFavicon} onCancel={onClose} url={otp.favicon} />}
 
       <Tooltip showArrow content={label}>
         <IconButton aria-label={label} size="sm" onClick={onOpen}>

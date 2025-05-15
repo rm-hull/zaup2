@@ -1539,7 +1539,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/react@npm:^3.2.3":
+"@chakra-ui/react@npm:^3.19.0":
   version: 3.19.0
   resolution: "@chakra-ui/react@npm:3.19.0"
   dependencies:
@@ -1657,7 +1657,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:^11.13.5":
+"@emotion/react@npm:^11.14.0":
   version: 11.14.0
   resolution: "@emotion/react@npm:11.14.0"
   dependencies:
@@ -7608,7 +7608,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-themes@npm:^0.4.4":
+"next-themes@npm:^0.4.6":
   version: 0.4.6
   resolution: "next-themes@npm:0.4.6"
   peerDependencies:
@@ -10027,9 +10027,9 @@ __metadata:
   resolution: "zaup2@workspace:."
   dependencies:
     "@chakra-ui/cli": "npm:^3.2.3"
-    "@chakra-ui/react": "npm:^3.2.3"
+    "@chakra-ui/react": "npm:^3.19.0"
     "@chakra-ui/styled-system": "npm:^2.12.1"
-    "@emotion/react": "npm:^11.13.5"
+    "@emotion/react": "npm:^11.14.0"
     "@eslint/compat": "npm:^1.2.9"
     "@eslint/eslintrc": "npm:^3.3.1"
     "@eslint/js": "npm:^9.26.0"
@@ -10078,7 +10078,7 @@ __metadata:
     globals: "npm:^16.1.0"
     google-protobuf: "npm:^3.21.4"
     jotai: "npm:^2.12.4"
-    next-themes: "npm:^0.4.4"
+    next-themes: "npm:^0.4.6"
     object-hash: "npm:^3.0.0"
     otpauth: "npm:^9.4.0"
     prettier: "npm:^3.5.3"

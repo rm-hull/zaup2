@@ -22,14 +22,13 @@ export function NotFound(): JSX.Element {
       </Text>
 
       <Button
-        to="/"
-        as={Link}
-        colorScheme="cyan"
+        asChild
+        colorPalette="cyan"
         bgGradient="linear(to-r, cyan.400, cyan.500, cyan.600)"
         color="white"
         variant="solid"
       >
-        Go to Home
+        <Link to="/">Go to Home</Link>
       </Button>
     </Box>
   );

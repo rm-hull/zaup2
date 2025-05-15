@@ -7,9 +7,10 @@ import {
   DialogFooter,
   DialogHeader,
   DialogRoot,
+  Field,
   Text,
 } from "@chakra-ui/react";
-import { Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
+import { Field as FormikField, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import { type JSX } from "react";
 import { useColorModeValue } from "@/components/ui/color-mode";
 
@@ -44,20 +45,21 @@ export function CustomLabelDialog({ label, open, onUpdate, onCancel }: CustomLab
           {({ isValid }) => (
             <Form>
               <DialogBody>
-                <Field name="label">
+                <FormikField name="label">
                   {({ field, form, meta }: FieldProps) => (
-                    <Field isInvalid={form.errors.label !== undefined && !!form.touched.label} errorText={meta.error}>
+                    <Field.Root>
                       <Input {...field} id="label" type="text" color={color} bg={bg} />
-                    </Field>
+                      <Field.ErrorText>{meta.error}</Field.ErrorText>
+                      <Field.HelperText>
+                        <strong>Note:</strong> this label will override the issuer when the card is displayed.
+                      </Field.HelperText>
+                    </Field.Root>
                   )}
-                </Field>
-                <Text textStyle="xs" color="gray.500">
-                  <strong>Note:</strong> this label will override the issuer when the card is displayed.
-                </Text>
+                </FormikField>
               </DialogBody>
 
               <DialogFooter>
-                <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
+                <Button type="submit" colorPalette="blue" mr={3} disabled={!isValid}>
                   {label === undefined ? "Add" : "Update"}
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>

@@ -1,12 +1,4 @@
-import {
-  Box,
-  Collapsible,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  useControllableState,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Collapsible, Input, InputGroup, useControllableState, useDisclosure } from "@chakra-ui/react";
 import { type ChangeEvent, type JSX } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useKeyPressEvent } from "react-use";
@@ -48,10 +40,7 @@ export default function Search({ onChange }: SearchProps): JSX.Element {
     <Collapsible.Root open={open}>
       <Collapsible.Content>
         <Box p="4px">
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
-              <FiSearch />
-            </InputLeftElement>
+          <InputGroup startElement={<FiSearch />} startElementProps={{ pointerEvents: "none" }}>
             <Input ref={inputRef} placeholder="Search" bgColor={bg} value={value} onChange={handleSearch} />
           </InputGroup>
         </Box>

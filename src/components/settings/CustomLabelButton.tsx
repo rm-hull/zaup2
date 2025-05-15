@@ -2,7 +2,7 @@ import { IconButton, useDisclosure } from "@chakra-ui/react";
 import { useCallback, type JSX } from "react";
 import { FiEdit } from "react-icons/fi";
 import { type OTP } from "../../types";
-import { CustomLabelModal } from "./CustomLabelModal";
+import { CustomLabelDialog } from "./CustomLabelDialog";
 import { Tooltip } from "@/components/ui/tooltip";
 
 interface CustomLabelButtonProps {
@@ -25,7 +25,7 @@ export default function CustomLabelButton({ otp, onUpdateRequested }: CustomLabe
   return (
     <>
       {open && (
-        <CustomLabelModal open={open} onUpdate={handleConfirmCustomLabel} onCancel={onClose} label={otp.label} />
+        <CustomLabelDialog open={open} onUpdate={handleConfirmCustomLabel} onCancel={onClose} label={otp.label} />
       )}
 
       <Tooltip showArrow content={label}>

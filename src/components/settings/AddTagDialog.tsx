@@ -10,9 +10,10 @@ import {
   DialogFooter,
   DialogHeader,
   DialogRoot,
+  Field,
   Text,
 } from "@chakra-ui/react";
-import { Field, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
+import { Field as FormikField, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import * as R from "ramda";
 import { type JSX } from "react";
 import useOtpParameters from "../../hooks/useOtpParameters";
@@ -86,17 +87,18 @@ export function AddTagDialog({ open, onAdd, onCancel }: AddTagDialogProps): JSX.
                 ) : (
                   <Text py={2}>Create a new tag:</Text>
                 )}
-                <Field name="tag" validate={validateTag}>
-                  {({ field, form, meta }: FieldProps) => (
-                    <Field isInvalid={form.errors.tag !== undefined && !!form.touched.tag} errorText={meta.error}>
+                <FormikField name="tag" validate={validateTag}>
+                  {({ field, meta }: FieldProps) => (
+                    <Field.Root>
                       <Input {...field} id="tag" type="text" color={color} bg={bg} />
-                    </Field>
+                      <Field.ErrorText>{meta.error}</Field.ErrorText>
+                    </Field.Root>
                   )}
-                </Field>
+                </FormikField>
               </DialogBody>
 
               <DialogFooter>
-                <Button type="submit" colorScheme="blue" mr={3} disabled={!isValid}>
+                <Button type="submit" colorPalette="blue" mr={3} disabled={!isValid}>
                   Add
                 </Button>
                 <Button variant="ghost" onClick={onCancel}>

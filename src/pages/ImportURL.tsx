@@ -206,7 +206,13 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                   <VStack alignItems="flex-start">
                     <QrScannerButton onScanResult={addScannedQrCode(setFieldValue)} />
 
-                    <Button loading={isSubmitting} type="submit" colorScheme="blue" flex="1 0 auto" disabled={!isValid}>
+                    <Button
+                      loading={isSubmitting}
+                      type="submit"
+                      colorPalette="blue"
+                      flex="1 0 auto"
+                      disabled={!isValid}
+                    >
                       Import
                     </Button>
                   </VStack>

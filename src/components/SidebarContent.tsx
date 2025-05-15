@@ -5,10 +5,10 @@ import { FiCompass, FiHome, FiLogIn, FiMessageSquare, FiSettings, FiTag } from "
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { getSystemTags } from "../otp";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
+// import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import CountdownTimer from "./CountdownTimer";
 import NavItem from "./NavItem";
-import { useColorModeValue } from "@/components/ui/color-mode";
+import { ColorModeButton, useColorModeValue } from "@/components/ui/color-mode";
 import { CloseButton } from "@/components/ui/close-button";
 
 interface SidebarProps extends BoxProps {
@@ -45,7 +45,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
               ZAUP2
             </Text>
             <HStack gap={1}>
-              <ColorModeSwitcher />
+              <ColorModeButton />
               <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
             </HStack>
           </Flex>
