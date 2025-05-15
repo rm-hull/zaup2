@@ -1,28 +1,37 @@
-import { Button, DialogBackdrop, DialogContent, DialogFooter, DialogHeader, DialogRoot } from "@chakra-ui/react";
-import { type JSX } from "react";
+import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react";
+import { PropsWithChildren, type JSX } from "react";
 
 interface DeleteDialogProps {
-  open: boolean;
   onDelete: () => void;
-  onCancel: () => void;
 }
 
-export function DeleteDialog({ open, onDelete, onCancel }: DeleteDialogProps): JSX.Element {
+export function DeleteDialog({ children, onDelete }: PropsWithChildren<DeleteDialogProps>): JSX.Element {
   return (
-    <DialogRoot open={open} onOpenChange={onCancel}>
-      <DialogBackdrop />
-      <DialogContent>
-        <DialogHeader>Confirm delete?</DialogHeader>
+    <Dialog.Root size="xs">
+      <Dialog.Trigger>{children}</Dialog.Trigger>
+      <Dialog.Backdrop />
+      <Portal>
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>
+              <Dialog.Title>Confirm delete?</Dialog.Title>
+            </Dialog.Header>
 
-        <DialogFooter>
-          <Button type="submit" onClick={onDelete} colorPalette="red" mr={3}>
-            Delete
-          </Button>
-          <Button variant="ghost" onClick={onCancel}>
-            Cancel
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </DialogRoot>
+            <Dialog.Footer>
+              <Dialog.ActionTrigger asChild>
+                <Button variant="ghost">Cancel</Button>
+              </Dialog.ActionTrigger>
+              <Button type="submit" onClick={onDelete} colorPalette="red">
+                Delete
+              </Button>
+            </Dialog.Footer>
+
+            <Dialog.CloseTrigger asChild>
+              <CloseButton size="sm" />
+            </Dialog.CloseTrigger>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   );
 }

@@ -1,4 +1,4 @@
-import { Collapsible, Flex, Icon, Link, Spacer, Text, useDisclosure, type FlexProps } from "@chakra-ui/react";
+import { Box, Collapsible, Flex, Icon, Link, Spacer, Text, useDisclosure, type FlexProps } from "@chakra-ui/react";
 import { type JSX, type PropsWithChildren } from "react";
 import { type IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
@@ -16,38 +16,39 @@ export default function NavItem({ label, icon, path, count, children, color, ...
   const { open, onToggle } = useDisclosure();
 
   return (
-    <div>
+    <Box>
       <Link
-        as={RouterLink}
-        href={path ?? "#"}
+        asChild
         style={{ textDecoration: "none" }}
         _focus={{ outline: "none" }}
         onClick={path === undefined ? onToggle : undefined}
         color={color}
       >
-        <Flex
-          align="center"
-          p={3}
-          mx={3}
-          borderRadius="lg"
-          role="group"
-          cursor="pointer"
-          _hover={{ bg: "cyan.400", color: "white" }}
-          {...rest}
-        >
-          {icon !== undefined && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
-          <Text lineClamp={1}>{label}</Text>
-          <Spacer />
-          {count !== undefined && (
-            <Tag size="sm" variant="solid" colorPalette="blue">
-              {count}
-            </Tag>
-          )}
-        </Flex>
+        <RouterLink to={path ?? "#"}>
+          <Flex
+            align="center"
+            p={3}
+            mx={3}
+            borderRadius="lg"
+            role="group"
+            cursor="pointer"
+            _hover={{ bg: "cyan.400", color: "white" }}
+            {...rest}
+          >
+            {icon !== undefined && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
+            <Text lineClamp={1}>{label}</Text>
+            <Spacer />
+            {count !== undefined && (
+              <Tag size="sm" variant="solid" colorPalette="blue">
+                {count}
+              </Tag>
+            )}
+          </Flex>
+        </RouterLink>
       </Link>
       <Collapsible.Root open={open}>
         <Collapsible.Content>{children}</Collapsible.Content>
       </Collapsible.Root>
-    </div>
+    </Box>
   );
 }

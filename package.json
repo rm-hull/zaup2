@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^3.19.0",
-    "@chakra-ui/styled-system": "^2.12.1",
     "@emotion/react": "^11.14.0",
     "@formkit/auto-animate": "^0.8.2",
     "@react-oauth/google": "^0.12.2",
@@ -43,7 +42,7 @@
     "web-vitals": "^5.0.1"
   },
   "devDependencies": {
-    "@chakra-ui/cli": "^3.2.3",
+    "@chakra-ui/cli": "^3.19.0",
     "@eslint/compat": "^1.2.9",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.26.0",

@@ -3,6 +3,7 @@ import {
   chakra,
   Collapsible,
   Flex,
+  Field,
   Heading,
   Link,
   Stack,
@@ -11,7 +12,7 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import { Field, Form, Formik, type FieldProps, type FormikErrors, type FormikHelpers } from "formik";
+import { Field as FormikField, Form, Formik, type FieldProps, type FormikErrors, type FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
 import { type JSX } from "react";
@@ -187,9 +188,9 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
             <>
               <Form>
                 <Stack gap={4} direction={{ base: "column", md: "row" }} w="500px" alignItems="start">
-                  <Field name="url" validate={validateURL}>
-                    {({ field, form, meta }: FieldProps) => (
-                      <Field isInvalid={form.errors.url !== undefined && !!form.touched.url} errorText={meta.error}>
+                  <FormikField name="url" validate={validateURL}>
+                    {({ field, meta }: FieldProps) => (
+                      <Field.Root>
                         <Textarea
                           {...field}
                           id="url"
@@ -199,9 +200,10 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                           bg={bg}
                           minHeight={200}
                         />
-                      </Field>
+                        <Field.ErrorText>{meta.error}</Field.ErrorText>
+                      </Field.Root>
                     )}
-                  </Field>
+                  </FormikField>
 
                   <VStack alignItems="flex-start">
                     <QrScannerButton onScanResult={addScannedQrCode(setFieldValue)} />

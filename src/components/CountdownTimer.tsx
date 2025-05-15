@@ -26,7 +26,7 @@ export default function CountdownTimer({ duration }: CountdownTimerProps): JSX.E
   }, 500);
 
   return (
-    <ProgressCircleRoot value={timeLeft} size="md" css={{ "--thickness": "12px" }}>
+    <ProgressCircleRoot value={(timeLeft / 30) * 100} size="xl" css={{ "--thickness": "12px" }}>
       <ProgressCircleRing
         trackColor={useColorModeValue("gray.100", "gray.600")}
         max={duration}
