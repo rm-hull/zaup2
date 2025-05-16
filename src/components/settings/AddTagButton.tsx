@@ -18,7 +18,6 @@ export default function AddTagButton({ otp, onAddRequested }: AddTagButtonProps)
         ...otp,
         tags: R.sortBy(R.toLower, R.uniq([...(otp.tags ?? []), tag])),
       });
-      // onClose();
     },
     [otp, onAddRequested]
   );

@@ -9,7 +9,6 @@ export default function PasswordInput(inputProps: InputProps): JSX.Element {
 
   return (
     <InputGroup
-      // size="md"
       endElement={
         <Button h="1.5rem" size="xs" onClick={handleClick} tabIndex={-1} variant="subtle" colorPalette="blue">
           {show ? "hide" : "show"}
