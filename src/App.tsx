@@ -29,7 +29,7 @@ export const App = (): JSX.Element => {
       description: `We've added the codes into local storage for you.`,
       type: "success",
       duration: 9000,
-      // closable: true,
+      closable: true,
     });
     navigate("/");
   };
