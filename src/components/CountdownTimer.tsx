@@ -1,7 +1,8 @@
-import { CircularProgress, CircularProgressLabel, useColorModeValue } from "@chakra-ui/react";
 import format from "format-duration";
 import { useState, type JSX } from "react";
 import { useHarmonicIntervalFn } from "react-use";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import { ProgressCircleRing, ProgressCircleRoot, ProgressCircleValueText } from "@/components/ui/progress-circle";
 
 interface CountdownTimerProps {
   duration: number;
@@ -25,15 +26,13 @@ export default function CountdownTimer({ duration }: CountdownTimerProps): JSX.E
   }, 500);
 
   return (
-    <CircularProgress
-      value={timeLeft}
-      trackColor={useColorModeValue("gray.100", "gray.600")}
-      max={duration}
-      color={getColor(timeLeft)}
-      size="70px"
-      thickness="12px"
-    >
-      <CircularProgressLabel>{format(timeLeft * 1000)}</CircularProgressLabel>
-    </CircularProgress>
+    <ProgressCircleRoot value={(timeLeft / 30) * 100} size="xl" css={{ "--thickness": "12px" }}>
+      <ProgressCircleRing
+        trackColor={useColorModeValue("gray.100", "gray.600")}
+        max={duration}
+        color={getColor(timeLeft)}
+      />
+      <ProgressCircleValueText>{format(timeLeft * 1000)}</ProgressCircleValueText>
+    </ProgressCircleRoot>
   );
 }

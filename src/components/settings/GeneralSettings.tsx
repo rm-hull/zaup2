@@ -1,8 +1,10 @@
-import { FormControl, FormLabel, HStack, Heading, Radio, RadioGroup, Switch, VStack } from "@chakra-ui/react";
+import { Field, HStack, Heading, VStack } from "@chakra-ui/react";
 import { type JSX } from "react";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import { type sortBy } from "../../otp";
 import SyncInfoPanel from "./SyncInfoPanel";
+import { Switch } from "@/components/ui/switch";
+import { Radio, RadioGroup } from "@/components/ui/radio";
 
 export default function GeneralSettings(): JSX.Element {
   const [settings, updateSettings] = useGeneralSettings();
@@ -31,56 +33,73 @@ export default function GeneralSettings(): JSX.Element {
     <>
       <Heading size="md">General Settings</Heading>
 
-      <FormControl display="flex" alignItems="center">
-        <FormLabel htmlFor="sort-order" mb={0}>
+      <Field.Root display="flex" flexDirection="row" gap={4}>
+        <Field.Label htmlFor="sort-order" mb={0}>
           Sort grid by:
-        </FormLabel>
-        <RadioGroup id="sort-order" onChange={handleUpdateSortOrder} value={settings?.sortOrder}>
+        </Field.Label>
+        <RadioGroup
+          id="sort-order"
+          onValueChange={(e) => handleUpdateSortOrder(e.value as keyof typeof sortBy)} // yuk
+          value={settings?.sortOrder}
+          colorPalette="blue"
+        >
           <HStack gap={4}>
             <Radio value="name">name</Radio>
             <Radio value="lastUsed">last used</Radio>
             <Radio value="mostUsed">most used</Radio>
           </HStack>
         </RadioGroup>
-      </FormControl>
+      </Field.Root>
 
       <HStack alignItems="flex-start">
         <VStack gap={4} minWidth={250}>
-          <FormControl display="flex" alignItems="center">
+          <Field.Root display="flex" flexDirection="row">
             <Switch
               id="sync-to-google-drive"
-              isChecked={settings?.syncToGoogleDrive}
+              checked={settings?.syncToGoogleDrive}
               onChange={handleToggleSyncToGoogleDrive}
+              colorPalette="blue"
             />
-            <FormLabel htmlFor="sync-to-google-drive" mb={0} ml={2}>
+            <Field.Label htmlFor="sync-to-google-drive" mb={0} ml={2}>
               Sync to Google Drive
-            </FormLabel>
-          </FormControl>
+            </Field.Label>
+          </Field.Root>
 
-          <FormControl display="flex" alignItems="center">
-            <Switch id="show-qr-codes" isChecked={settings?.showQRCode} onChange={handleToggleShowQRCode} />
-            <FormLabel htmlFor="show-qr-codes" mb={0} ml={2}>
+          <Field.Root display="flex" flexDirection="row">
+            <Switch
+              id="show-qr-codes"
+              checked={settings?.showQRCode}
+              onChange={handleToggleShowQRCode}
+              colorPalette="blue"
+            />
+            <Field.Label htmlFor="show-qr-codes" mb={0} ml={2}>
               Show QR codes
-            </FormLabel>
-          </FormControl>
+            </Field.Label>
+          </Field.Root>
 
-          <FormControl display="flex" alignItems="center">
+          <Field.Root display="flex" flexDirection="row">
             <Switch
               id="show-countdown-timer"
-              isChecked={settings?.showCountdownTimer}
+              checked={settings?.showCountdownTimer}
               onChange={handleToggleShowCountdownTimer}
+              colorPalette="blue"
             />
-            <FormLabel htmlFor="show-countdown-timer" mb={0} ml={2}>
+            <Field.Label htmlFor="show-countdown-timer" mb={0} ml={2}>
               Show countdown timer
-            </FormLabel>
-          </FormControl>
+            </Field.Label>
+          </Field.Root>
 
-          <FormControl display="flex" alignItems="center">
-            <Switch id="show-counts" isChecked={settings?.showCounts} onChange={handleToggleShowCounts} />
-            <FormLabel htmlFor="show-counts" mb={0} ml={2}>
+          <Field.Root display="flex" flexDirection="row">
+            <Switch
+              id="show-counts"
+              checked={settings?.showCounts}
+              onChange={handleToggleShowCounts}
+              colorPalette="blue"
+            />
+            <Field.Label htmlFor="show-counts" mb={0} ml={2}>
               Show counts in menu
-            </FormLabel>
-          </FormControl>
+            </Field.Label>
+          </Field.Root>
         </VStack>
 
         {(settings?.syncToGoogleDrive ?? false) && <SyncInfoPanel />}

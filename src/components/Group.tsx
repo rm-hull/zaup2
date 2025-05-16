@@ -58,7 +58,7 @@ export default function Group({ filter = () => true, noData }: GroupProps): JSX.
   return (
     <Box textAlign="center" fontSize="xl">
       <Search onChange={setSearch} />
-      <SimpleGrid minChildWidth="320px" spacing="10px" alignItems="start" ref={parent}>
+      <SimpleGrid minChildWidth="320px" gap="10px" alignItems="start" ref={parent}>
         {filtered.map((otp: OTP) => (
           <Card key={hash(otp)} otp={otp} refresh={refresh} showQRCode={settings?.showQRCode} highlight={search} />
         ))}

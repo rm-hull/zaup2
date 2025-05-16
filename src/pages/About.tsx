@@ -1,5 +1,7 @@
-import { Code, Heading, Link, Stack, Text, VStack, useColorModeValue } from "@chakra-ui/react";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import { Code, Heading, Link, Stack, Text, VStack } from "@chakra-ui/react";
 import { type JSX } from "react";
+import { FiExternalLink } from "react-icons/fi";
 
 export function About(): JSX.Element | null {
   return (
@@ -8,23 +10,22 @@ export function About(): JSX.Element | null {
       bg={useColorModeValue("white", "gray.800")}
       rounded="xl"
       p={10}
-      spacing={4}
+      gap={4}
       align="left"
       minWidth={950}
     >
       <Heading size="md">About</Heading>
       <Text>
         ZAUP 2 is a{" "}
-        <Link isExternal color="blue.400" href="https://en.wikipedia.org/wiki/Time-based_one-time_password">
-          TOTP
+        <Link color="blue.400" href="https://en.wikipedia.org/wiki/Time-based_one-time_password">
+          TOTP <FiExternalLink />
         </Link>{" "}
         authenticator app for the web: It acts much like{" "}
         <Link
-          isExternal
           color="blue.400"
           href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US"
         >
-          Google Authenticator
+          Google Authenticator <FiExternalLink />
         </Link>{" "}
         but stores TOTP secrets in your browser&apos;s local storage, and thus they never leave your machine. Data in
         storage is encrypted using AES using a master password.
@@ -32,8 +33,8 @@ export function About(): JSX.Element | null {
 
       <VStack gap={0} align="left">
         <Text>
-          <Link isExternal color="blue.400" href="https://github.com/rm-hull/zaup2">
-            https://github.com/rm-hull/zaup2
+          <Link color="blue.400" href="https://github.com/rm-hull/zaup2">
+            https://github.com/rm-hull/zaup2 <FiExternalLink />
           </Link>
         </Text>
         <Text>

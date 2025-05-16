@@ -1,7 +1,7 @@
 import { type JSX, type PropsWithChildren } from "react";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import usePassword from "../hooks/usePassword";
-import { PasswordModal } from "./PasswordModal";
+import { PasswordDialog } from "./PasswordDialog";
 
 type PasswordProtectionProps = object;
 
@@ -18,5 +18,5 @@ export default function PasswordProtection({ children }: PropsWithChildren<Passw
     return <>{children}</>;
   }
 
-  return <PasswordModal isOpen onSubmit={handleSubmit} confirm={!(settings?.encrypted ?? false)} />;
+  return <PasswordDialog onSubmit={handleSubmit} confirm={!(settings?.encrypted ?? false)} />;
 }

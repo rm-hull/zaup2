@@ -1,23 +1,13 @@
-import {
-  Box,
-  CloseButton,
-  Divider,
-  Flex,
-  HStack,
-  Text,
-  VStack,
-  useColorModeValue,
-  type BoxProps,
-} from "@chakra-ui/react";
+import { Box, CloseButton, Flex, HStack, Separator, Text, VStack, type BoxProps } from "@chakra-ui/react";
 import * as R from "ramda";
 import { useMemo, type JSX } from "react";
 import { FiCompass, FiHome, FiLogIn, FiMessageSquare, FiSettings, FiTag } from "react-icons/fi";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { getSystemTags } from "../otp";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import CountdownTimer from "./CountdownTimer";
 import NavItem from "./NavItem";
+import { ColorModeButton, useColorModeValue } from "@/components/ui/color-mode";
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
@@ -46,14 +36,14 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
       h="full"
       {...rest}
     >
-      <VStack spacing={0} h="full" justifyContent="space-between">
+      <VStack gap={0} h="full" justifyContent="space-between">
         <Box w="full">
           <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
             <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
               ZAUP2
             </Text>
-            <HStack spacing={1}>
-              <ColorModeSwitcher />
+            <HStack gap={1}>
+              <ColorModeButton />
               <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
             </HStack>
           </Flex>
@@ -82,7 +72,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
                     py={1}
                   />
                 ))}
-                {systemTags.length > 0 && tags.length > 0 && <Divider m={2} />}
+                {systemTags.length > 0 && tags.length > 0 && <Separator m={2} />}
                 {tags.map((tag) => (
                   <NavItem
                     key={tag}

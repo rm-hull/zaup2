@@ -1,4 +1,3 @@
-import { useToast } from "@chakra-ui/react";
 import { type JSX } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
@@ -7,6 +6,7 @@ import { normalize } from "./otp";
 import { type MigrationPayload } from "./proto/migration_payload";
 import { lazily } from "react-lazily";
 import { Loader } from "./components/Loader";
+import { toaster } from "@/components/ui/toaster";
 
 const { Home } = lazily(async () => await import("./pages/Home"));
 const { About } = lazily(async () => await import("./pages/About"));
@@ -17,20 +17,19 @@ const { Tag } = lazily(async () => await import("./pages/Tag"));
 const { NotFound } = lazily(async () => await import("./pages/NotFound"));
 
 export const App = (): JSX.Element => {
-  const toast = useToast();
   const navigate = useNavigate();
   const { update } = useOtpParameters();
 
   const storeOTPParameters = (imported: MigrationPayload.OtpParameters[]): void => {
     update(...imported.map((param) => ({ ...normalize(param.toObject()), archived: false })));
 
-    toast.closeAll();
-    toast({
+    toaster.dismiss();
+    toaster.create({
       title: "OTP Codes Imported.",
       description: `We've added the codes into local storage for you.`,
-      status: "success",
+      type: "success",
       duration: 9000,
-      isClosable: true,
+      closable: true,
     });
     navigate("/");
   };

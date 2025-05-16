@@ -1,17 +1,8 @@
-import {
-  Collapse,
-  Flex,
-  Icon,
-  Link,
-  Spacer,
-  Tag,
-  Text,
-  useDisclosure,
-  type FlexProps,
-} from "@chakra-ui/react";
+import { Box, Collapsible, Flex, Icon, Link, Spacer, Text, useDisclosure, type FlexProps } from "@chakra-ui/react";
 import { type JSX, type PropsWithChildren } from "react";
 import { type IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
+import { Tag } from "@/components/ui/tag";
 
 interface NavItemProps extends PropsWithChildren<FlexProps> {
   label: string;
@@ -22,41 +13,43 @@ interface NavItemProps extends PropsWithChildren<FlexProps> {
 }
 
 export default function NavItem({ label, icon, path, count, children, color, ...rest }: NavItemProps): JSX.Element {
-  const { isOpen, onToggle } = useDisclosure();
+  const { open, onToggle } = useDisclosure();
 
   return (
-    <div>
+    <Box>
       <Link
-        as={RouterLink}
-        to={path ?? "#"}
+        asChild
         style={{ textDecoration: "none" }}
         _focus={{ outline: "none" }}
         onClick={path === undefined ? onToggle : undefined}
         color={color}
       >
-        <Flex
-          align="center"
-          p={3}
-          mx={3}
-          borderRadius="lg"
-          role="group"
-          cursor="pointer"
-          _hover={{ bg: "cyan.400", color: "white" }}
-          {...rest}
-        >
-          {icon !== undefined && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
-          <Text noOfLines={1}>{label}</Text>
-          <Spacer />
-          {count !== undefined && (
-            <Tag size="sm" variant="solid" colorScheme="blue">
-              {count}
-            </Tag>
-          )}
-        </Flex>
+        <RouterLink to={path ?? "#"}>
+          <Flex
+            width={children ? 220 : undefined}
+            align="center"
+            p={3}
+            mx={3}
+            borderRadius="lg"
+            role="group"
+            cursor="pointer"
+            _hover={{ bg: "cyan.400", color: "white" }}
+            {...rest}
+          >
+            {icon !== undefined && <Icon mr={3} fontSize="16" _groupHover={{ color: "white" }} as={icon} />}
+            <Text lineClamp={1}>{label}</Text>
+            <Spacer />
+            {count !== undefined && (
+              <Tag size="sm" variant="solid" colorPalette="blue">
+                {count}
+              </Tag>
+            )}
+          </Flex>
+        </RouterLink>
       </Link>
-      <Collapse in={isOpen} animateOpacity>
-        {children}
-      </Collapse>
-    </div>
+      <Collapsible.Root open={open}>
+        <Collapsible.Content>{children}</Collapsible.Content>
+      </Collapsible.Root>
+    </Box>
   );
 }

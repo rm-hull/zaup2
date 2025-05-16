@@ -1,4 +1,4 @@
-import { ChakraProvider, ColorModeScript, createLocalStorageManager, theme } from "@chakra-ui/react";
+import { Provider } from "@/components/ui/provider";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
@@ -17,20 +17,18 @@ if (container === null) {
 }
 
 const root = createRoot(container);
-const manager = createLocalStorageManager("zaup2.color-mode");
 
 root.render(
   <React.StrictMode>
-    <ColorModeScript storageKey="zaup2.color-mode" />
-    <ChakraProvider theme={theme} colorModeManager={manager}>
+    <Provider>
       <Router basename="/zaup2">
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <PasswordProtection>
-            <App />
+          <App />
           </PasswordProtection>
         </ErrorBoundary>
       </Router>
-    </ChakraProvider>
+    </Provider>
   </React.StrictMode>
 );
 

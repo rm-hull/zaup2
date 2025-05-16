@@ -1,27 +1,13 @@
 import { useEffect, useState, type JSX, useCallback } from "react";
 import { type Payload } from "../../api/googleDrive";
 // import { ipAddress } from "../../api/ipify";
-import {
-  Box,
-  Button,
-  HStack,
-  Heading,
-  Step,
-  StepDescription,
-  StepIcon,
-  StepIndicator,
-  StepNumber,
-  StepSeparator,
-  StepStatus,
-  StepTitle,
-  Stepper,
-  useSteps,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, HStack, Heading, Steps, useSteps } from "@chakra-ui/react";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import useGoogleDrive from "../../hooks/useGoogleDrive";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import { merge } from "../../otp";
+import { toaster } from "@/components/ui/toaster";
+import { Button } from "@/components/ui/button";
 
 const steps = [
   { title: "Authenticate", description: "to Google Drive" },
@@ -40,21 +26,20 @@ export default function SyncSettings(): JSX.Element {
   const [settings, updateSettings] = useGeneralSettings();
   const { data = [], update } = useOtpParameters({ includeArchived: true });
   const { drive, login, error } = useGoogleDrive("zaup2_sync.json");
-  const toast = useToast();
-  const { activeStep, setActiveStep } = useSteps({ index: -1, count: steps.length });
+  const { value: activeStep, setStep } = useSteps({ count: steps.length });
 
   const handleError = useCallback(() => {
     console.log({ error });
     setProcessing(false);
-    setActiveStep(-1);
-    toast({
+    setStep(-1);
+    toaster.create({
       title: "Unable to sync with Google Drive",
       description: (error as Error).message,
-      status: "error",
+      type: "error",
       duration: 9000,
-      isClosable: true,
+      closable: true,
     });
-  }, [error, setActiveStep, toast]);
+  }, [error, setStep, toaster]);
 
   const process = useCallback(async (): Promise<void> => {
     if (!processing) {
@@ -67,19 +52,19 @@ export default function SyncSettings(): JSX.Element {
 
     if (drive !== undefined) {
       if (activeStep <= 0) {
-        setActiveStep(1);
+        setStep(1);
         return;
       }
 
       if (activeStep === 1) {
         setPayload(await drive.download());
-        setActiveStep(2);
+        setStep(2);
         return;
       }
 
       if (activeStep === 2) {
         await timeout(2000);
-        setActiveStep(3);
+        setStep(3);
         return;
       }
 
@@ -96,13 +81,13 @@ export default function SyncSettings(): JSX.Element {
           },
         });
         setProcessing(false);
-        setActiveStep(4);
-        toast({
+        setStep(4);
+        toaster.create({
           title: "Sync with Google Drive complete",
           description: `There were ${newOTPs.length - (payload?.otp ?? []).length} new OTPs added.`,
-          status: "success",
+          type: "success",
           duration: 9000,
-          isClosable: true,
+          closable: true,
         });
         update(...newOTPs);
         updateSettings(newSettings);
@@ -116,9 +101,9 @@ export default function SyncSettings(): JSX.Element {
     payload?.otp,
     payload?.settings,
     processing,
-    setActiveStep,
+    setStep,
     settings,
-    toast,
+    toaster,
     update,
     updateSettings,
   ]);
@@ -132,7 +117,7 @@ export default function SyncSettings(): JSX.Element {
   }
 
   const handleSync = (): void => {
-    setActiveStep(0);
+    setStep(0);
     setProcessing(true);
     if (drive === undefined) {
       login();
@@ -141,13 +126,13 @@ export default function SyncSettings(): JSX.Element {
     //   console.log("Timeout occurred, processing = " + processing);
     //   if (processing) {
     //     setProcessing(false);
-    //     setActiveStep(-1);
+    //     setStep(-1);
     //     toast({
     //       title: "Unable to sync with Google Drive",
     //       description: "Timeout occurred",
     //       status: "error",
     //       duration: 9000,
-    //       isClosable: true,
+    //       closable: true,
     //     });
     //   }
     // }, 20000);
@@ -158,23 +143,25 @@ export default function SyncSettings(): JSX.Element {
       <Heading size="md">Sync Settings</Heading>
 
       <HStack alignItems="flex-start" gap={50}>
-        <Stepper index={activeStep}>
-          {steps.map((step, index) => (
-            <Step key={index}>
-              <StepIndicator>
-                <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
-              </StepIndicator>
+        <Steps.Root count={steps.length} colorPalette="blue">
+          <Steps.List>
+            {steps.map((step, index) => (
+              <Steps.Item key={index} index={index} title={step.title}>
+                <Steps.Indicator />
+                {/* <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
+                </Steps.Indicator> */}
 
-              <Box flexShrink="0">
-                <StepTitle>{step.title}</StepTitle>
-                <StepDescription>{step.description}</StepDescription>
-              </Box>
+                <Box flexShrink="0">
+                  <Steps.Title>{step.title}</Steps.Title>
+                  <Steps.Description>{step.description}</Steps.Description>
+                </Box>
 
-              <StepSeparator />
-            </Step>
-          ))}
-        </Stepper>
-        <Button isLoading={processing} loadingText="Syncing..." onClick={handleSync}>
+                <Steps.Separator />
+              </Steps.Item>
+            ))}
+          </Steps.List>
+        </Steps.Root>
+        <Button loading={processing} loadingText="Syncing..." onClick={handleSync} variant="subtle">
           Sync Data
         </Button>
       </HStack>

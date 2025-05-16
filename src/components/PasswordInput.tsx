@@ -1,4 +1,4 @@
-import { Button, Input, InputGroup, InputRightElement, type InputProps } from "@chakra-ui/react";
+import { Button, Input, InputGroup, type InputProps } from "@chakra-ui/react";
 import { useState, type JSX } from "react";
 
 export default function PasswordInput(inputProps: InputProps): JSX.Element {
@@ -8,13 +8,15 @@ export default function PasswordInput(inputProps: InputProps): JSX.Element {
   };
 
   return (
-    <InputGroup size="md">
-      <Input {...inputProps} pr="4.5rem" type={show ? "text" : "password"} />
-      <InputRightElement width="4.5rem">
-        <Button h="1.75rem" size="sm" onClick={handleClick} tabIndex={-1}>
-          {show ? "Hide" : "Show"}
+    <InputGroup
+      // size="md"
+      endElement={
+        <Button h="1.5rem" size="xs" onClick={handleClick} tabIndex={-1} variant="subtle" colorPalette="blue">
+          {show ? "hide" : "show"}
         </Button>
-      </InputRightElement>
+      }
+    >
+      <Input {...inputProps} pr="4.5rem" type={show ? "text" : "password"} />
     </InputGroup>
   );
 }

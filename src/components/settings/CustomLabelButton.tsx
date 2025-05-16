@@ -1,8 +1,9 @@
-import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
 import { useCallback, type JSX } from "react";
 import { FiEdit } from "react-icons/fi";
 import { type OTP } from "../../types";
-import { CustomLabelModal } from "./CustomLabelModal";
+import { CustomLabelDialog } from "./CustomLabelDialog";
+import { Tooltip } from "@/components/ui/tooltip";
 
 interface CustomLabelButtonProps {
   otp: OTP;
@@ -10,26 +11,21 @@ interface CustomLabelButtonProps {
 }
 
 export default function CustomLabelButton({ otp, onUpdateRequested }: CustomLabelButtonProps): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   const handleConfirmCustomLabel = useCallback(
     (label?: string) => {
       onUpdateRequested({ ...otp, label });
-      onClose();
     },
-    [otp, onClose, onUpdateRequested]
+    [otp, onUpdateRequested]
   );
 
   const label = otp.label ? "Update custom label" : "Add custom label";
   return (
-    <>
-      {isOpen && (
-        <CustomLabelModal isOpen={isOpen} onUpdate={handleConfirmCustomLabel} onCancel={onClose} label={otp.label} />
-      )}
-
-      <Tooltip label={label}>
-        <IconButton aria-label={label} size="sm" onClick={onOpen} icon={<FiEdit />} />
+    <CustomLabelDialog onUpdate={handleConfirmCustomLabel} label={otp.label}>
+      <Tooltip showArrow content={label}>
+        <IconButton aria-label={label} size="sm" variant="subtle">
+          <FiEdit />
+        </IconButton>
       </Tooltip>
-    </>
+    </CustomLabelDialog>
   );
 }

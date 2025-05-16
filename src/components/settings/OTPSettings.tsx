@@ -1,20 +1,5 @@
-import {
-  HStack,
-  Heading,
-  Image,
-  Switch,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-  VStack,
-  Wrap,
-  WrapItem,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Flex, HStack, Heading, Image, Table, Text, VStack } from "@chakra-ui/react";
+
 import hash from "object-hash";
 import { type JSX } from "react";
 import { getCachedFavicon } from "../../favicons";
@@ -29,6 +14,8 @@ import CopyEncodedSecretButton from "./CopyEncodedSecretButton";
 import CustomLabelButton from "./CustomLabelButton";
 import DeleteButton from "./DeleteButton";
 import FaviconButton from "./FaviconButton";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import { Switch } from "@/components/ui/switch";
 
 export default function OTPSettings(): JSX.Element | null {
   const { data, update, remove } = useOtpParameters({ includeArchived: true });
@@ -58,67 +45,70 @@ export default function OTPSettings(): JSX.Element | null {
     <>
       <Heading size="md">OTP Settings</Heading>
 
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Issuer / Name</Th>
-            <Th p={2}>Tags</Th>
-            <Th textAlign="center" p={2}>
+      <Table.Root>
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader>Issuer / Name</Table.ColumnHeader>
+            <Table.ColumnHeader p={2}>Tags</Table.ColumnHeader>
+            <Table.ColumnHeader textAlign="center" p={2}>
               Copy Count
-            </Th>
-            <Th textAlign="center" p={2}>
+            </Table.ColumnHeader>
+            <Table.ColumnHeader textAlign="center" p={2}>
               Archived
-            </Th>
-            <Th p={2}>Actions</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
+            </Table.ColumnHeader>
+            <Table.ColumnHeader p={2}>Actions</Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
           {sortBy.name(data).map((otp: OTP) => (
-            <Tr key={hash(otp)}>
-              <Td valign="top">
+            <Table.Row key={hash(otp)}>
+              <Table.Cell valign="top">
                 <HStack alignItems="flex-start">
                   <Image src={getCachedFavicon(otp)} h={5} />
                   <VStack align="left">
-                    <Text fontWeight={600} style={{ textDecoration: otp.archived ? "line-through" : undefined }}>
+                    <Text
+                      fontWeight={600}
+                      style={{ textDecoration: otp.archived ? "line-Table.Headerrough" : undefined }}
+                    >
                       {otp.label ?? otp.issuer ?? "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}
                     </Text>
-                    <Text fontWeight={400} color="gray.500" noOfLines={1} maxWidth="dw">
+                    <Text fontWeight={400} color="gray.500" lineClamp={1} maxWidth="dw">
                       {otp.name}
                     </Text>
                   </VStack>
                 </HStack>
-              </Td>
-              <Td p={2}>
+              </Table.Cell>
+              <Table.Cell p={2}>
                 <HStack alignItems="start">
                   <AddTagButton otp={otp} onAddRequested={update} />
-                  <Wrap>
+                  <HStack wrap="wrap">
                     {otp.tags?.map((tag) => (
-                      <WrapItem key={tag}>
+                      <Flex key={tag} align="flex-start">
                         <HashTag label={tag} bg={tagBg} onClose={handleDeleteTag(otp, tag)} />
-                      </WrapItem>
+                      </Flex>
                     ))}
                     <SystemTags otp={otp} />
-                  </Wrap>
+                  </HStack>
                 </HStack>
-              </Td>
-              <Td textAlign="center" p={2}>
+              </Table.Cell>
+              <Table.Cell textAlign="center" p={2}>
                 {otp.copyCount ?? 0}
-              </Td>
-              <Td textAlign="center" p={2}>
-                <Switch isChecked={otp.archived} onChange={handleToggleArchived(otp)} />
-              </Td>
-              <Td p={2}>
+              </Table.Cell>
+              <Table.Cell textAlign="center" p={2}>
+                <Switch checked={otp.archived} onChange={handleToggleArchived(otp)} colorPalette="blue" />
+              </Table.Cell>
+              <Table.Cell p={2}>
                 <HStack>
                   <DeleteButton otp={otp} onDeleteRequested={remove} />
                   <CustomLabelButton otp={otp} onUpdateRequested={update} />
                   <FaviconButton otp={otp} onUpdateRequested={update} />
                   <CopyEncodedSecretButton otp={otp} />
                 </HStack>
-              </Td>
-            </Tr>
+              </Table.Cell>
+            </Table.Row>
           ))}
-        </Tbody>
-      </Table>
+        </Table.Body>
+      </Table.Root>
     </>
   );
 }

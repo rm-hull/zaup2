@@ -1,26 +1,18 @@
 import {
   Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Button,
   chakra,
-  Collapse,
+  Collapsible,
   Flex,
-  FormControl,
-  FormErrorIcon,
-  FormErrorMessage,
+  Field,
   Heading,
   Link,
   Stack,
   Text,
   Textarea,
-  useColorModeValue,
   useDisclosure,
-  useToast,
   VStack,
 } from "@chakra-ui/react";
-import { ErrorMessage, Field, Form, Formik, type FieldProps, type FormikErrors, type FormikHelpers } from "formik";
+import { Field as FormikField, Form, Formik, type FieldProps, type FormikErrors, type FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
 import { type JSX } from "react";
@@ -28,6 +20,9 @@ import google_authenticator from "../assets/google_authenticator.svg";
 import QrScannerButton from "../components/import/QrScannerButton";
 import { algorithmFrom } from "../otp";
 import { MigrationPayload } from "../proto/migration_payload";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import { toaster } from "@/components/ui/toaster";
+import { Button } from "@/components/ui/button";
 
 function validateURL(value: string | undefined): string | undefined {
   if (value === undefined || value === null) {
@@ -64,8 +59,7 @@ type SetFieldValueType<Values> = (
 ) => Promise<FormikErrors<Values> | void>;
 
 export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
-  const toast = useToast();
-  const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
+  const { open, onClose } = useDisclosure({ defaultOpen: true });
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 
@@ -154,34 +148,34 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
     await setFieldValue("url", "otpauth-migration://offline?data=" + b64);
 
     onClose();
-    toast.closeAll();
-    toast({
+    toaster.dismiss();
+    toaster.create({
       title: "Ok, I just created some dummy OTP Codes.",
       description: `Now just hit the Import button...`,
-      status: "success",
+      type: "success",
       duration: 9000,
-      isClosable: true,
+      closable: true,
     });
   };
 
   const addScannedQrCode = (setFieldValue: SetFieldValueType<ImportForm>) => async (url: string) => {
     await setFieldValue("url", url);
 
-    toast.closeAll();
-    toast({
+    toaster.dismiss();
+    toaster.create({
       title: "Ok, your QR code was successfully scanned.",
       description: `Now just hit the Import button...`,
-      status: "success",
+      type: "success",
       duration: 9000,
-      isClosable: true,
+      closable: true,
     });
   };
 
   return (
     <Flex minH="100vh" align="center" justify="center" py={12}>
-      <Stack boxShadow="2xl" bg={useColorModeValue("white", "gray.800")} rounded="xl" p={10} spacing={8} align="center">
+      <Stack boxShadow="2xl" bg={useColorModeValue("white", "gray.800")} rounded="xl" p={10} gap={8} align="center">
         <chakra.img src={google_authenticator} h={24} w={24} />
-        <Stack align="center" spacing={2}>
+        <Stack align="center" gap={2}>
           <Heading textTransform="uppercase" fontSize="3xl" color={useColorModeValue("gray.800", "gray.200")}>
             Import
           </Heading>
@@ -193,10 +187,10 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
           {({ isSubmitting, values, setFieldValue, isValid }) => (
             <>
               <Form>
-                <Stack spacing={4} direction={{ base: "column", md: "row" }} w="500px" alignItems="start">
-                  <Field name="url" validate={validateURL}>
-                    {({ field, form }: FieldProps) => (
-                      <FormControl isInvalid={form.errors.url !== undefined && !!form.touched.url}>
+                <Stack gap={4} direction={{ base: "column", md: "row" }} w="500px" alignItems="start">
+                  <FormikField name="url" validate={validateURL}>
+                    {({ field, meta }: FieldProps) => (
+                      <Field.Root>
                         <Textarea
                           {...field}
                           id="url"
@@ -206,21 +200,18 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                           bg={bg}
                           minHeight={200}
                         />
-                        <FormErrorMessage>
-                          <FormErrorIcon />
-                          <ErrorMessage name="url" />
-                        </FormErrorMessage>
-                      </FormControl>
+                        <Field.ErrorText>{meta.error}</Field.ErrorText>
+                      </Field.Root>
                     )}
-                  </Field>
+                  </FormikField>
 
                   <VStack alignItems="flex-start">
                     <QrScannerButton onScanResult={addScannedQrCode(setFieldValue)} />
 
                     <Button
-                      isLoading={isSubmitting}
+                      loading={isSubmitting}
                       type="submit"
-                      colorScheme="blue"
+                      colorPalette="blue"
                       flex="1 0 auto"
                       disabled={!isValid}
                     >
@@ -229,19 +220,21 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                   </VStack>
                 </Stack>
               </Form>
-              <Collapse in={isOpen || values.url.trim().length === 0} animateOpacity>
-                <Alert status="info">
-                  <AlertIcon />
-                  <AlertTitle>Just want to try it out?</AlertTitle>
-                  <AlertDescription>
-                    Add some dummy{" "}
-                    <Link onClick={addDummyOtpCodes(setFieldValue)} color="blue.400">
-                      test OTP codes
-                    </Link>
-                    .
-                  </AlertDescription>
-                </Alert>
-              </Collapse>
+              <Collapsible.Root open={open || values.url.trim().length === 0}>
+                <Collapsible.Content>
+                  <Alert.Root status="info">
+                    <Alert.Indicator />
+                    <Alert.Title>Just want to try it out?</Alert.Title>
+                    <Alert.Description>
+                      Add some dummy{" "}
+                      <Link onClick={addDummyOtpCodes(setFieldValue)} color="blue.400">
+                        test OTP codes
+                      </Link>
+                      .
+                    </Alert.Description>
+                  </Alert.Root>
+                </Collapsible.Content>
+              </Collapsible.Root>
             </>
           )}
         </Formik>

@@ -1,21 +1,7 @@
-import {
-  Box,
-  Center,
-  HStack,
-  Heading,
-  Highlight,
-  IconButton,
-  Image,
-  Text,
-  Tooltip,
-  Wrap,
-  WrapItem,
-  useClipboard,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Center, Flex, HStack, Heading, Highlight, IconButton, Image, Text, useClipboard } from "@chakra-ui/react";
 import { type TOTP } from "otpauth";
 import { QRCodeSVG } from "qrcode.react";
-import { memo, useEffect, useMemo, type JSX } from "react";
+import { memo, useMemo, type JSX } from "react";
 import { FiAlertTriangle, FiCheck, FiClipboard } from "react-icons/fi";
 import { getCachedFavicon } from "../favicons";
 import useOtpParameters from "../hooks/useOtpParameters";
@@ -24,6 +10,8 @@ import { type OTP } from "../types";
 import HashTag from "./HashTag";
 import SystemTags from "./SystemTags";
 import * as R from "ramda";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import { Tooltip } from "./ui/tooltip";
 
 interface CardProps {
   otp: OTP;
@@ -46,16 +34,13 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
   const { update } = useOtpParameters();
 
   const { code, error } = generateCode(totp);
-  const { hasCopied, onCopy, setValue } = useClipboard("");
-  useEffect(() => {
-    setValue(code ?? "");
-  }, [setValue, code]);
+  const { copied, copy } = useClipboard({ value: code });
 
   const onCopyClicked = (): void => {
     setTimeout(() => {
       update({ ...otp, copyCount: (otp.copyCount ?? 0) + 1 });
     }, 2000);
-    onCopy();
+    copy();
   };
 
   const bg = useColorModeValue("white", "var(--chakra-colors-gray-900)");
@@ -76,7 +61,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
       >
         <HStack align="center" justify="center" mt={4}>
           <Image src={getCachedFavicon(otp)} h={5} />
-          <Text fontWeight={600} color="gray.500" noOfLines={1} wordBreak="break-all">
+          <Text fontWeight={600} color="gray.500" lineClamp={1} wordBreak="break-all">
             <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
               {otp.label ?? otp.issuer ?? "«Unknown»"}
             </Highlight>
@@ -99,23 +84,23 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
             {code ?? "╰(°□°)╯"}
           </Heading>
           {code === undefined ? (
-            <Tooltip label={`Error: ${error?.message}`}>
-              <IconButton disabled aria-label="Could not generate code" icon={<FiAlertTriangle color="red" />} />
+            <Tooltip showArrow content={`Error: ${error?.message}`}>
+              <IconButton disabled aria-label="Could not generate code" variant="subtle">
+                <FiAlertTriangle color="red" />
+              </IconButton>
             </Tooltip>
           ) : (
-            <Tooltip label="Copy to Clipboard">
-              <IconButton
-                aria-label="Copy to clipboard"
-                onClick={onCopyClicked}
-                icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
-              />
+            <Tooltip showArrow content="Copy to Clipboard">
+              <IconButton aria-label="Copy to clipboard" onClick={onCopyClicked} variant="subtle">
+                {copied ? <FiCheck color="green" /> : <FiClipboard />}
+              </IconButton>
             </Tooltip>
           )}
         </HStack>
 
         {!R.isEmpty(otp.name) && (
-          <Tooltip label={otp.name}>
-            <Text fontWeight={600} color="gray.500" mb={4} noOfLines={1} wordBreak="break-all">
+          <Tooltip showArrow content={otp.name}>
+            <Text fontWeight={600} color="gray.500" mb={4} lineClamp={1} wordBreak="break-all">
               <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }}>
                 {otp.name ?? ""}
               </Highlight>
@@ -124,14 +109,14 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
         )}
 
         <HStack align="center" justify="center" mt={4}>
-          <Wrap justify="center">
+          <HStack wrap="wrap" justify="center">
             {otp.tags?.map((tag) => (
-              <WrapItem key={tag}>
+              <Flex key={tag} align="flex-start">
                 <HashTag label={tag} bg={tagBg} />
-              </WrapItem>
+              </Flex>
             ))}
             <SystemTags otp={otp} />
-          </Wrap>
+          </HStack>
         </HStack>
       </Box>
     </Center>

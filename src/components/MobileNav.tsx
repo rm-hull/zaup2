@@ -1,6 +1,7 @@
-import { Flex, IconButton, Text, useColorModeValue, type FlexProps } from "@chakra-ui/react";
+import { Flex, IconButton, Text, type FlexProps } from "@chakra-ui/react";
 import { type JSX } from "react";
 import { FiMenu } from "react-icons/fi";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;
@@ -19,7 +20,9 @@ export default function MobileNav({ onOpen, ...rest }: MobileProps): JSX.Element
       justifyContent="flex-start"
       {...rest}
     >
-      <IconButton variant="outline" onClick={onOpen} aria-label="open menu" icon={<FiMenu />} />
+      <IconButton variant="outline" onClick={onOpen} aria-label="open menu">
+        <FiMenu />
+      </IconButton>
 
       <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
         ZAUP2

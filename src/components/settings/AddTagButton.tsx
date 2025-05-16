@@ -1,9 +1,10 @@
-import { IconButton, Tooltip, useDisclosure } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
 import * as R from "ramda";
 import { useCallback, type JSX } from "react";
 import { FiPlus } from "react-icons/fi";
 import { type OTP } from "../../types";
-import { AddTagModal } from "./AddTagModal";
+import { AddTagDialog } from "./AddTagDialog";
+import { Tooltip } from "@/components/ui/tooltip";
 
 interface AddTagButtonProps {
   otp: OTP;
@@ -11,32 +12,24 @@ interface AddTagButtonProps {
 }
 
 export default function AddTagButton({ otp, onAddRequested }: AddTagButtonProps): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   const handleConfirmAddTag = useCallback(
     (tag: string) => {
       onAddRequested({
         ...otp,
         tags: R.sortBy(R.toLower, R.uniq([...(otp.tags ?? []), tag])),
       });
-      onClose();
+      // onClose();
     },
-    [otp, onClose, onAddRequested]
+    [otp, onAddRequested]
   );
 
   return (
-    <>
-      {isOpen && <AddTagModal isOpen={isOpen} onAdd={handleConfirmAddTag} onCancel={onClose} />}
-
-      <Tooltip label="Add tag">
-        <IconButton
-          aria-label="Add tag"
-          disabled={(otp.tags ?? []).length >= 3}
-          size="sm"
-          onClick={onOpen}
-          icon={<FiPlus />}
-        />
+    <AddTagDialog onAdd={handleConfirmAddTag}>
+      <Tooltip showArrow content="Add tag">
+        <IconButton aria-label="Add tag" disabled={(otp.tags ?? []).length >= 3} size="sm" variant="subtle">
+          <FiPlus />
+        </IconButton>
       </Tooltip>
-    </>
+    </AddTagDialog>
   );
 }
