@@ -41,7 +41,7 @@ export default function Search({ onChange }: SearchProps): JSX.Element {
       <Collapsible.Content>
         <Box p="4px">
           <InputGroup startElement={<FiSearch />} startElementProps={{ pointerEvents: "none" }}>
-            <Input ref={inputRef} placeholder="Search" bgColor={bg} value={value} onChange={handleSearch} />
+            <Input id="search" ref={inputRef} placeholder="Search" bgColor={bg} value={value} onChange={handleSearch} />
           </InputGroup>
         </Box>
       </Collapsible.Content>
