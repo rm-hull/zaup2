@@ -183,14 +183,14 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
             Import OTP codes from Google Authenticator
           </Text>
         </Stack>
-        <Formik initialValues={{ url: "" }} onSubmit={handleImport}>
+        <Formik initialValues={{ url: "" }} onSubmit={handleImport} validateOnChange>
           {({ isSubmitting, values, setFieldValue, isValid }) => (
             <>
               <Form>
                 <Stack gap={4} direction={{ base: "column", md: "row" }} w="500px" alignItems="start">
                   <FormikField name="url" validate={validateURL}>
-                    {({ field, meta }: FieldProps) => (
-                      <Field.Root>
+                    {({ field, form, meta }: FieldProps) => (
+                      <Field.Root invalid={form.errors.url !== undefined && !!form.touched.url}>
                         <Textarea
                           {...field}
                           id="url"
@@ -200,7 +200,9 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
                           bg={bg}
                           minHeight={200}
                         />
-                        <Field.ErrorText>{meta.error}</Field.ErrorText>
+                        <Field.ErrorText>
+                          <Field.ErrorIcon size="xs" /> {meta.error}
+                        </Field.ErrorText>
                       </Field.Root>
                     )}
                   </FormikField>

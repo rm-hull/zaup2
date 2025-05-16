@@ -42,10 +42,12 @@ export function CustomLabelDialog({
                 <Form>
                   <Dialog.Body>
                     <FormikField name="label">
-                      {({ field, meta }: FieldProps) => (
-                        <Field.Root>
+                      {({ field, form, meta }: FieldProps) => (
+                        <Field.Root invalid={form.errors.label !== undefined && !!form.touched.label}>
                           <Input {...field} id="label" type="text" color={color} bg={bg} />
-                          <Field.ErrorText>{meta.error}</Field.ErrorText>
+                          <Field.ErrorText>
+                            <Field.ErrorIcon size="xs" /> {meta.error}
+                          </Field.ErrorText>
                           <Field.HelperText>
                             <strong>Note:</strong> this label will override the issuer when the card is displayed.
                           </Field.HelperText>

@@ -38,16 +38,18 @@ export function FaviconDialog({ children, url, onUpdate }: PropsWithChildren<Fav
                 <Form>
                   <Dialog.Body>
                     <FormikField name="favicon">
-                      {({ field, meta }: FieldProps) => (
-                        <Field.Root>
+                      {({ field, form, meta }: FieldProps) => (
+                        <Field.Root invalid={form.errors.favicon !== undefined && !!form.touched.favicon}>
                           <Input {...field} id="favicon" type="text" color={color} bg={bg} />
                           <Field.HelperText>
                             <HStack mt={1}>
                               Preview:
-                              <Image src={field.value} h={5} />
+                              <Image src={field.value == "" ? null : field.value} h={5} />
                             </HStack>
                           </Field.HelperText>
-                          <Field.ErrorText>{meta.error}</Field.ErrorText>
+                          <Field.ErrorText>
+                            <Field.ErrorIcon size="xs" /> {meta.error}
+                          </Field.ErrorText>
                         </Field.Root>
                       )}
                     </FormikField>

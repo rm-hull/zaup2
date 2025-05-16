@@ -1,15 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  HStack,
-  Input,
-  Dialog,
-  Field,
-  Text,
-  Portal,
-  CloseButton,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, HStack, Input, Dialog, Field, Text, Portal, CloseButton } from "@chakra-ui/react";
 import { Field as FormikField, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import * as R from "ramda";
 import { PropsWithChildren, type JSX } from "react";
@@ -89,10 +78,12 @@ export function AddTagDialog({ children, onAdd }: PropsWithChildren<AddTagDialog
                       <Text py={2}>Create a new tag:</Text>
                     )}
                     <FormikField name="tag" validate={validateTag}>
-                      {({ field, meta }: FieldProps) => (
-                        <Field.Root>
+                      {({ field, form, meta }: FieldProps) => (
+                        <Field.Root invalid={form.errors.tag !== undefined && !!form.touched.tag}>
                           <Input {...field} id="tag" type="text" color={color} bg={bg} />
-                          <Field.ErrorText>{meta.error}</Field.ErrorText>
+                          <Field.ErrorText>
+                            <Field.ErrorIcon size="xs" /> {meta.error}
+                          </Field.ErrorText>
                         </Field.Root>
                       )}
                     </FormikField>

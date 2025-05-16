@@ -61,7 +61,7 @@ export function PasswordDialog({ confirm, onSubmit }: PasswordDialogProps): JSX.
                   <Dialog.Body>
                     <FormikField name="password" validate={requiredValidator}>
                       {({ field, form, meta }: FieldProps) => (
-                        <Field.Root>
+                        <Field.Root invalid={form.errors.password !== undefined && !!form.touched.password}>
                           <PasswordInput
                             {...field}
                             placeholder="Password"
@@ -70,16 +70,19 @@ export function PasswordDialog({ confirm, onSubmit }: PasswordDialogProps): JSX.
                             color={color}
                             bg={bg}
                           />
-                          {form.errors.password !== undefined && !!form.touched.password && (
-                            <Field.ErrorText>{meta.error}</Field.ErrorText>
-                          )}
+                          <Field.ErrorText>
+                            <Field.ErrorIcon size="xs" /> {meta.error}
+                          </Field.ErrorText>
                         </Field.Root>
                       )}
                     </FormikField>
                     {confirm && (
                       <FormikField name="confirmedPassword">
                         {({ field, form, meta }: FieldProps) => (
-                          <Field.Root mt={3}>
+                          <Field.Root
+                            mt={3}
+                            invalid={form.errors.confirmedPassword !== undefined && !!form.touched.confirmedPassword}
+                          >
                             <PasswordInput
                               {...field}
                               placeholder="Re-enter password to confirm"
@@ -88,9 +91,10 @@ export function PasswordDialog({ confirm, onSubmit }: PasswordDialogProps): JSX.
                               color={color}
                               bg={bg}
                             />
-                            {form.errors.confirmedPassword !== undefined && !!form.touched.confirmedPassword && (
-                              <Field.ErrorText>{meta.error}</Field.ErrorText>
-                            )}
+
+                            <Field.ErrorText>
+                              <Field.ErrorIcon size="xs" /> {meta.error}
+                            </Field.ErrorText>
                           </Field.Root>
                         )}
                       </FormikField>
