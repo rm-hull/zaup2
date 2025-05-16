@@ -26,7 +26,7 @@ export default function AddTagButton({ otp, onAddRequested }: AddTagButtonProps)
   return (
     <AddTagDialog onAdd={handleConfirmAddTag}>
       <Tooltip showArrow content="Add tag">
-        <IconButton aria-label="Add tag" disabled={(otp.tags ?? []).length >= 3} size="sm">
+        <IconButton aria-label="Add tag" disabled={(otp.tags ?? []).length >= 3} size="sm" variant="subtle">
           <FiPlus />
         </IconButton>
       </Tooltip>

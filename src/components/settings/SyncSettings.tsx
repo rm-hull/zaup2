@@ -143,7 +143,7 @@ export default function SyncSettings(): JSX.Element {
       <Heading size="md">Sync Settings</Heading>
 
       <HStack alignItems="flex-start" gap={50}>
-        <Steps.Root count={steps.length}>
+        <Steps.Root count={steps.length} colorPalette="blue">
           <Steps.List>
             {steps.map((step, index) => (
               <Steps.Item key={index} index={index} title={step.title}>
@@ -161,7 +161,7 @@ export default function SyncSettings(): JSX.Element {
             ))}
           </Steps.List>
         </Steps.Root>
-        <Button loading={processing} loadingText="Syncing..." onClick={handleSync}>
+        <Button loading={processing} loadingText="Syncing..." onClick={handleSync} variant="subtle">
           Sync Data
         </Button>
       </HStack>

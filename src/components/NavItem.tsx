@@ -26,6 +26,7 @@ export default function NavItem({ label, icon, path, count, children, color, ...
       >
         <RouterLink to={path ?? "#"}>
           <Flex
+            width={children ? 220 : undefined}
             align="center"
             p={3}
             mx={3}

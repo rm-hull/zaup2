@@ -14,7 +14,7 @@ export default function CopyEncodedSecretButton({ otp }: CopyEncodedSecretButton
   const { copied, copy } = useClipboard({ value: encodedSecret ?? "" });
   return (
     <Tooltip showArrow content="Copy secret to Clipboard">
-      <IconButton aria-label="copy secret to clipboard" size="sm" onClick={copy}>
+      <IconButton aria-label="copy secret to clipboard" size="sm" onClick={copy} variant="subtle">
         {copied ? <FiCheck color="green" /> : <FiClipboard />}
       </IconButton>
     </Tooltip>

@@ -14,7 +14,7 @@ export default function DeleteButton({ otp, onDeleteRequested }: DeleteButtonPro
   return (
     <DeleteDialog onDelete={() => onDeleteRequested(otp)}>
       <Tooltip showArrow content="Delete OTP">
-        <IconButton aria-label="Delete" size="sm">
+        <IconButton aria-label="Delete" size="sm" variant="subtle">
           <FiTrash2 />
         </IconButton>
       </Tooltip>

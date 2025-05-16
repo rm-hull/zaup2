@@ -22,7 +22,7 @@ export default function FaviconButton({ otp, onUpdateRequested }: FaviconButtonP
   return (
     <FaviconDialog onUpdate={handleConfirmFavicon} url={otp.favicon}>
       <Tooltip showArrow content={label}>
-        <IconButton aria-label={label} size="sm">
+        <IconButton aria-label={label} size="sm" variant="subtle">
           <FiImage />
         </IconButton>
       </Tooltip>

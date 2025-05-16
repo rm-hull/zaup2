@@ -1,4 +1,4 @@
-import { Alert, Box, Code, Text, VStack } from "@chakra-ui/react";
+import { Alert, Box, Code, Text } from "@chakra-ui/react";
 import { type JSX } from "react";
 
 export default function SyncInfoPanel(): JSX.Element | null {
@@ -6,7 +6,7 @@ export default function SyncInfoPanel(): JSX.Element | null {
     <Box>
       <Alert.Root status="info" alignItems="flex-start">
         <Alert.Indicator />
-        <VStack alignItems="flex-start">
+        <Alert.Content>
           <Alert.Title>Sync with Google Drive</Alert.Title>
           <Alert.Description>
             <Text>
@@ -15,7 +15,7 @@ export default function SyncInfoPanel(): JSX.Element | null {
               <Code>zaup2_sync.json</Code>. If you manually delete this file, then you may loose the ability to sync.
             </Text>
           </Alert.Description>
-        </VStack>
+        </Alert.Content>
       </Alert.Root>
     </Box>
   );

@@ -85,13 +85,13 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
           </Heading>
           {code === undefined ? (
             <Tooltip showArrow content={`Error: ${error?.message}`}>
-              <IconButton disabled aria-label="Could not generate code">
+              <IconButton disabled aria-label="Could not generate code" variant="subtle">
                 <FiAlertTriangle color="red" />
               </IconButton>
             </Tooltip>
           ) : (
             <Tooltip showArrow content="Copy to Clipboard">
-              <IconButton aria-label="Copy to clipboard" onClick={onCopyClicked}>
+              <IconButton aria-label="Copy to clipboard" onClick={onCopyClicked} variant="subtle">
                 {copied ? <FiCheck color="green" /> : <FiClipboard />}
               </IconButton>
             </Tooltip>
