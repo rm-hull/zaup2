@@ -72,7 +72,7 @@ export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.
                     py={1}
                   />
                 ))}
-                {systemTags.length > 0 && tags.length > 0 && <Separator m={2} />}
+                {systemTags.length > 0 && tags.length > 0 && <Separator w={200} m={2} />}
                 {tags.map((tag) => (
                   <NavItem
                     key={tag}
