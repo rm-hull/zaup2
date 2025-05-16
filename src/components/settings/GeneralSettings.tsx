@@ -55,48 +55,36 @@ export default function GeneralSettings(): JSX.Element {
         <VStack gap={4} minWidth={250}>
           <Field.Root display="flex" flexDirection="row">
             <Switch
-              id="sync-to-google-drive"
               checked={settings?.syncToGoogleDrive}
               onChange={handleToggleSyncToGoogleDrive}
               colorPalette="blue"
             />
-            <Field.Label htmlFor="sync-to-google-drive" mb={0} ml={2}>
+            <Field.Label mb={0} ml={2}>
               Sync to Google Drive
             </Field.Label>
           </Field.Root>
 
           <Field.Root display="flex" flexDirection="row">
-            <Switch
-              id="show-qr-codes"
-              checked={settings?.showQRCode}
-              onChange={handleToggleShowQRCode}
-              colorPalette="blue"
-            />
-            <Field.Label htmlFor="show-qr-codes" mb={0} ml={2}>
+            <Switch checked={settings?.showQRCode} onChange={handleToggleShowQRCode} colorPalette="blue" />
+            <Field.Label mb={0} ml={2}>
               Show QR codes
             </Field.Label>
           </Field.Root>
 
           <Field.Root display="flex" flexDirection="row">
             <Switch
-              id="show-countdown-timer"
               checked={settings?.showCountdownTimer}
               onChange={handleToggleShowCountdownTimer}
               colorPalette="blue"
             />
-            <Field.Label htmlFor="show-countdown-timer" mb={0} ml={2}>
+            <Field.Label mb={0} ml={2}>
               Show countdown timer
             </Field.Label>
           </Field.Root>
 
           <Field.Root display="flex" flexDirection="row">
-            <Switch
-              id="show-counts"
-              checked={settings?.showCounts}
-              onChange={handleToggleShowCounts}
-              colorPalette="blue"
-            />
-            <Field.Label htmlFor="show-counts" mb={0} ml={2}>
+            <Switch checked={settings?.showCounts} onChange={handleToggleShowCounts} colorPalette="blue" />
+            <Field.Label mb={0} ml={2}>
               Show counts in menu
             </Field.Label>
           </Field.Root>
