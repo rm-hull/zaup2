@@ -18,5 +18,5 @@ export default function PasswordProtection({ children }: PropsWithChildren<Passw
     return <>{children}</>;
   }
 
-  return <PasswordDialog open onSubmit={handleSubmit} confirm={!(settings?.encrypted ?? false)} />;
+  return <PasswordDialog onSubmit={handleSubmit} confirm={!(settings?.encrypted ?? false)} />;
 }
