@@ -154,7 +154,7 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
       description: `Now just hit the Import button...`,
       type: "success",
       duration: 9000,
-      // isClosable: true,
+      closable: true,
     });
   };
 
@@ -167,7 +167,7 @@ export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
       description: `Now just hit the Import button...`,
       type: "success",
       duration: 9000,
-      // isClosable: true,
+      closable: true,
     });
   };
 

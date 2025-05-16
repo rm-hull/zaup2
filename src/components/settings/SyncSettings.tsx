@@ -37,7 +37,7 @@ export default function SyncSettings(): JSX.Element {
       description: (error as Error).message,
       type: "error",
       duration: 9000,
-      // isClosable: true,
+      closable: true,
     });
   }, [error, setStep, toaster]);
 
@@ -87,7 +87,7 @@ export default function SyncSettings(): JSX.Element {
           description: `There were ${newOTPs.length - (payload?.otp ?? []).length} new OTPs added.`,
           type: "success",
           duration: 9000,
-          // isClosable: true,
+          closable: true,
         });
         update(...newOTPs);
         updateSettings(newSettings);
@@ -132,7 +132,7 @@ export default function SyncSettings(): JSX.Element {
     //       description: "Timeout occurred",
     //       status: "error",
     //       duration: 9000,
-    //       isClosable: true,
+    //       closable: true,
     //     });
     //   }
     // }, 20000);

@@ -15,7 +15,7 @@ export default function QrScannerButton({ onScanResult }: DeleteButtonProps): JS
       description: `Error occurred: ${error.message}`,
       type: "error",
       duration: 9000,
-      // isClosable: true,
+      closable: true
     });
   };
 
