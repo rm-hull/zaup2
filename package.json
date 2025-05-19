@@ -13,7 +13,7 @@
     "download": "node ./tools/favicon_downloader.js"
   },
   "dependencies": {
-    "@chakra-ui/react": "^3.19.0",
+    "@chakra-ui/react": "^3.19.1",
     "@emotion/react": "^11.14.0",
     "@formkit/auto-animate": "^0.8.2",
     "@react-oauth/google": "^0.12.2",
