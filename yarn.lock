@@ -2404,18 +2404,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stylistic/eslint-plugin@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "@stylistic/eslint-plugin@npm:4.2.0"
+"@stylistic/eslint-plugin@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "@stylistic/eslint-plugin@npm:4.4.0"
   dependencies:
-    "@typescript-eslint/utils": "npm:^8.23.0"
+    "@typescript-eslint/utils": "npm:^8.32.1"
     eslint-visitor-keys: "npm:^4.2.0"
     espree: "npm:^10.3.0"
     estraverse: "npm:^5.3.0"
     picomatch: "npm:^4.0.2"
   peerDependencies:
     eslint: ">=9.0.0"
-  checksum: 10/e7913327038f3eac31f10859d3c407b06949bc9660d6a9ee4c132536587af93aca1ddfde5ee152ce5ef75690ecca515c0abf07a1192d62bc14b7d8d8d6430b83
+  checksum: 10/d6e90d59e88e666623f5203b65dd072dec092e93478f2216f8b6206b644ccba20fb2bf9fd8ba996f87b55976a55daf2d56d70179f1211d0ad45d89a2ab6237ca
   languageName: node
   linkType: hard
 
@@ -2950,7 +2950,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:8.32.1, @typescript-eslint/utils@npm:^8.15.0, @typescript-eslint/utils@npm:^8.23.0":
+"@typescript-eslint/utils@npm:8.32.1, @typescript-eslint/utils@npm:^8.15.0, @typescript-eslint/utils@npm:^8.32.1":
   version: 8.32.1
   resolution: "@typescript-eslint/utils@npm:8.32.1"
   dependencies:
@@ -9582,7 +9582,7 @@ __metadata:
     "@eslint/js": "npm:^9.27.0"
     "@formkit/auto-animate": "npm:^0.8.2"
     "@react-oauth/google": "npm:^0.12.2"
-    "@stylistic/eslint-plugin": "npm:^4.2.0"
+    "@stylistic/eslint-plugin": "npm:^4.4.0"
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/react": "npm:^16.3.0"
     "@testing-library/user-event": "npm:^14.6.1"
