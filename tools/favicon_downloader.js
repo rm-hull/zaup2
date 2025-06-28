@@ -9,7 +9,11 @@ async function download(urlString, name) {
   const url = new URL(urlString);
   console.log(`${chalk.grey("Fetching:")} ${chalk.blue.underline.bold(urlString)}`);
 
-  const response = await axios.get(urlString, { responseType: "arraybuffer" });
+  const response = await axios.get(urlString, { responseType: "arraybuffer" }).catch((error) => {
+    console.error(`${chalk.red("Failed:  ")} ${chalk.blue.underline.bold(urlString)} ${chalk.red(error.message)}`);
+    return null;
+  });
+  if (!response) return;
 
   await fsp.mkdir(`./public/favicons/${url.hostname}/${path.dirname(url.pathname)}`, { recursive: true });
   await fsp.writeFile(`./public/favicons/${url.hostname}/${url.pathname}`, Buffer.from(response.data));
@@ -19,7 +23,7 @@ async function process() {
   const contents = await fsp.readFile("./src/assets/favicons.json", "utf-8");
   const favicons = JSON.parse(contents);
 
-  await Promise.all(Object.entries(favicons).map(([ name, url]) => download(url, name)));
+  await Promise.all(Object.entries(favicons).map(([name, url]) => download(url, name)));
 }
 
-process().catch(console.error)
+process().catch(console.error);
