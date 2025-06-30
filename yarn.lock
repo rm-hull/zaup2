@@ -2500,9 +2500,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stylistic/eslint-plugin@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "@stylistic/eslint-plugin@npm:5.0.0"
+"@stylistic/eslint-plugin@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "@stylistic/eslint-plugin@npm:5.1.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.7.0"
     "@typescript-eslint/types": "npm:^8.34.1"
@@ -2512,7 +2512,7 @@ __metadata:
     picomatch: "npm:^4.0.2"
   peerDependencies:
     eslint: ">=9.0.0"
-  checksum: 10/658fdcbc64a2215e43bad23d697a8447f81bc14af997d2b47a348fc52c28d71c16bcc900eaa7b86f6a2d87da405d8eb983602a7d0da9ba0c7b0e02d6480399b2
+  checksum: 10/d113da854ee7bcb0e5f920da5034527aceb0cec9af1a4e37bbd3d6ec426f98ef5781e46b3fe5412695007930cb594e0c3af0c2a405a1723a65ca2fed23d85179
   languageName: node
   linkType: hard
 
@@ -10178,7 +10178,7 @@ __metadata:
     "@eslint/js": "npm:^9.30.0"
     "@formkit/auto-animate": "npm:^0.8.2"
     "@react-oauth/google": "npm:^0.12.2"
-    "@stylistic/eslint-plugin": "npm:^5.0.0"
+    "@stylistic/eslint-plugin": "npm:^5.1.0"
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/react": "npm:^16.3.0"
     "@testing-library/user-event": "npm:^14.6.1"
