@@ -1,12 +1,13 @@
-import { Provider } from "@/components/ui/provider";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
 import ReactGA from "react-ga4";
 import { BrowserRouter as Router } from "react-router-dom";
+
 import { App } from "./App";
 import ErrorFallback from "./components/ErrorFallback";
 import PasswordProtection from "./components/PasswordProtection";
+import { Provider } from "./components/ui/provider";
 import { reportWebVitals } from "./reportWebVitals";
 
 ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
@@ -24,7 +25,7 @@ root.render(
       <Router basename="/zaup2">
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <PasswordProtection>
-          <App />
+            <App />
           </PasswordProtection>
         </ErrorBoundary>
       </Router>

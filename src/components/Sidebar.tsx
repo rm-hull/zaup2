@@ -1,8 +1,10 @@
 import { Box, useDisclosure } from "@chakra-ui/react";
 import { type ReactNode } from "react";
+
+
 import MobileNav from "./MobileNav";
 import SidebarContent from "./SidebarContent";
-import { useColorModeValue } from "@/components/ui/color-mode";
+import { useColorModeValue } from "./ui/color-mode";
 import { DrawerContent, DrawerRoot } from "./ui/drawer";
 
 export default function Sidebar({ children }: { children: ReactNode }) {

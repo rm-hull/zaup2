@@ -1,4 +1,5 @@
 import { expect, test } from "vitest";
+
 import isJson from "./isJson";
 
 test("should parse JSON string", () => {

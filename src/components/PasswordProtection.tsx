@@ -1,6 +1,8 @@
 import { type PropsWithChildren } from "react";
+
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import usePassword from "../hooks/usePassword";
+
 import { PasswordDialog } from "./PasswordDialog";
 
 type PasswordProtectionProps = object;

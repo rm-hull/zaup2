@@ -1,12 +1,14 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import autoAnimate from "@formkit/auto-animate";
 import hash from "object-hash";
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
+
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sortBy } from "../otp";
 import { type OTP } from "../types";
+
 import Card from "./Card";
 import Search from "./Search";
 
@@ -40,7 +42,11 @@ export default function Group({ filter = () => true, noData }: GroupProps) {
   useEffect(() => {
     if (parent.current !== null) {
       const { enable, disable } = autoAnimate(parent.current);
-      sortOrder === "name" ? disable() : enable();
+      if (sortOrder === "name") {
+        disable();
+      } else {
+        enable();
+      }
     }
   }, [parent, sortOrder]);
 

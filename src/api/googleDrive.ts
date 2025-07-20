@@ -1,6 +1,7 @@
 import axios from "axios";
-import { type OTP } from "../types";
+
 import { type GeneralSettings } from "../hooks/useGeneralSettings";
+import { type OTP } from "../types";
 
 interface File {
   id: string;

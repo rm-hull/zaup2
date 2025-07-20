@@ -1,10 +1,11 @@
 import { Stack } from "@chakra-ui/react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
+import DangerZoneSettings from "../components/settings/DangerZoneSettings";
 import GeneralSettings from "../components/settings/GeneralSettings";
 import OTPSettings from "../components/settings/OTPSettings";
 import SyncSettings from "../components/settings/SyncSettings";
-import DangerZoneSettings from "../components/settings/DangerZoneSettings";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { useColorModeValue } from "@/components/ui/color-mode";
+import { useColorModeValue } from "../components/ui/color-mode";
 
 export function Settings() {
   const stackBg = useColorModeValue("white", "gray.800");

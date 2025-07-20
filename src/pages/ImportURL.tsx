@@ -1,28 +1,28 @@
 import {
   Alert,
-  chakra,
   Collapsible,
-  Flex,
   Field,
+  Flex,
   Heading,
   Link,
   Stack,
   Text,
   Textarea,
-  useDisclosure,
   VStack,
+  chakra,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { Field as FormikField, Form, Formik, type FieldProps, type FormikErrors, type FormikHelpers } from "formik";
+import { type FieldProps, Form, Formik, type FormikErrors, Field as FormikField, type FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
 
 import google_authenticator from "../assets/google_authenticator.svg";
 import QrScannerButton from "../components/import/QrScannerButton";
+import { Button } from "../components/ui/button";
+import { useColorModeValue } from "../components/ui/color-mode";
+import { toaster } from "../components/ui/toaster";
 import { algorithmFrom } from "../otp";
 import { MigrationPayload } from "../proto/migration_payload";
-import { useColorModeValue } from "@/components/ui/color-mode";
-import { toaster } from "@/components/ui/toaster";
-import { Button } from "@/components/ui/button";
 
 function validateURL(value: string | undefined): string | undefined {
   if (value === undefined || value === null) {

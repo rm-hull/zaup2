@@ -1,7 +1,8 @@
-import { Button, Dialog, HStack, Field, Image, Input, Portal, CloseButton } from "@chakra-ui/react";
-import { Field as FormikField, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
+import { Button, CloseButton, Dialog, Field, HStack, Image, Input, Portal } from "@chakra-ui/react";
+import { type FieldProps, Form, Formik, Field as FormikField, type FormikHelpers } from "formik";
 import { PropsWithChildren } from "react";
-import { useColorModeValue } from "@/components/ui/color-mode";
+
+import { useColorModeValue } from "../ui/color-mode";
 
 interface FaviconDialogProps {
   url?: string;

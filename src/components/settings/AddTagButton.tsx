@@ -2,9 +2,11 @@ import { IconButton } from "@chakra-ui/react";
 import * as R from "ramda";
 import { useCallback } from "react";
 import { FiPlus } from "react-icons/fi";
+
 import { type OTP } from "../../types";
+import { Tooltip } from "../ui/tooltip";
+
 import { AddTagDialog } from "./AddTagDialog";
-import { Tooltip } from "@/components/ui/tooltip";
 
 interface AddTagButtonProps {
   otp: OTP;

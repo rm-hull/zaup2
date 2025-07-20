@@ -1,8 +1,9 @@
 import { Alert, Button, Dialog, Field, Portal } from "@chakra-ui/react";
-import { Field as FormikField, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
+import { type FieldProps, Form, Formik, Field as FormikField, type FormikHelpers } from "formik";
 
 import PasswordInput from "./PasswordInput";
-import { useColorModeValue } from "@/components/ui/color-mode";
+import { useColorModeValue } from "./ui/color-mode";
+
 
 interface PasswordDialogProps {
   confirm: boolean;
