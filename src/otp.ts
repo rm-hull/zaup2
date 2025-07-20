@@ -1,7 +1,6 @@
 import base32Encode from "base32-encode";
 import * as OTPAuth from "otpauth";
 import * as R from "ramda";
-
 import { MigrationPayload } from "./proto/migration_payload";
 import { type OTP } from "./types";
 

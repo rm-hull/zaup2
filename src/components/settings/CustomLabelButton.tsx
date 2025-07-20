@@ -1,10 +1,8 @@
 import { IconButton } from "@chakra-ui/react";
 import { useCallback } from "react";
 import { FiEdit } from "react-icons/fi";
-
 import { Tooltip } from "../../components/ui/tooltip";
 import { type OTP } from "../../types";
-
 import { CustomLabelDialog } from "./CustomLabelDialog";
 
 interface CustomLabelButtonProps {

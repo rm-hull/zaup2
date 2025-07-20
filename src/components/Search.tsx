@@ -2,9 +2,7 @@ import { Box, Collapsible, Input, InputGroup, useControllableState, useDisclosur
 import { type ChangeEvent } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useKeyPressEvent } from "react-use";
-
 import useFocus from "../hooks/useFocus";
-
 import { useColorModeValue } from "./ui/color-mode";
 
 interface SearchProps {

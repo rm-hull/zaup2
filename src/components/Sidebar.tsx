@@ -1,7 +1,5 @@
 import { Box, useDisclosure } from "@chakra-ui/react";
 import { type ReactNode } from "react";
-
-
 import MobileNav from "./MobileNav";
 import SidebarContent from "./SidebarContent";
 import { useColorModeValue } from "./ui/color-mode";

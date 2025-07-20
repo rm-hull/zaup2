@@ -1,7 +1,5 @@
 import { Button } from "@chakra-ui/react";
-
 import { Tooltip } from "../../components/ui/tooltip";
-
 import { ResetDataDialog } from "./ResetDataDialog";
 
 interface ResetDataButtonProps {

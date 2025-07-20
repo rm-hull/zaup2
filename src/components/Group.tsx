@@ -3,12 +3,10 @@ import autoAnimate from "@formkit/auto-animate";
 import hash from "object-hash";
 import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
-
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { sortBy } from "../otp";
 import { type OTP } from "../types";
-
 import Card from "./Card";
 import Search from "./Search";
 

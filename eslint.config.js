@@ -20,6 +20,8 @@ export default tseslint.config(
         languageOptions: {
           ecmaVersion: "latest",
           sourceType: "module",
+          globals: globals.browser,
+          parser: tseslint.parser,
           parserOptions: {
             projectService: true,
             tsconfigRootDir: import.meta.dirname,
@@ -30,11 +32,6 @@ export default tseslint.config(
       eslintConfigPrettier,
     ],
     files: ["**/*.{ts,tsx}"],
-    languageOptions: {
-      ecmaVersion: "latest",
-      // sourceType: "module",
-      globals: globals.browser,
-    },
     plugins: {
       react: react,
       "react-hooks": reactHooks,
@@ -47,7 +44,7 @@ export default tseslint.config(
         "error",
         {
           groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
-          "newlines-between": "always",
+          "newlines-between": "never",
           alphabetize: {
             order: "asc",
             caseInsensitive: true,

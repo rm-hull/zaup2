@@ -1,6 +1,5 @@
 import { Link } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-
 import { useColorModeValue } from "./ui/color-mode";
 import { Tag } from "./ui/tag";
 

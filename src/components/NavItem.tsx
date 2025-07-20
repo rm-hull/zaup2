@@ -2,7 +2,6 @@ import { Box, Collapsible, Flex, type FlexProps, Icon, Link, Spacer, Text, useDi
 import { type PropsWithChildren } from "react";
 import { type IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
-
 import { Tag } from "./ui/tag";
 
 interface NavItemProps extends PropsWithChildren<FlexProps> {

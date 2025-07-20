@@ -4,12 +4,10 @@ import { QRCodeSVG } from "qrcode.react";
 import * as R from "ramda";
 import { memo, useMemo } from "react";
 import { FiAlertTriangle, FiCheck, FiClipboard } from "react-icons/fi";
-
 import { getCachedFavicon } from "../favicons";
 import useOtpParameters from "../hooks/useOtpParameters";
 import { getEncodedSecret, getTotp } from "../otp";
 import { type OTP } from "../types";
-
 import HashTag from "./HashTag";
 import SystemTags from "./SystemTags";
 import { useColorModeValue } from "./ui/color-mode";

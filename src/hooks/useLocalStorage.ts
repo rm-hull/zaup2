@@ -1,7 +1,6 @@
 import CryptoJS from "crypto-js";
 import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
-
 import isJson from "../utils/isJson";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

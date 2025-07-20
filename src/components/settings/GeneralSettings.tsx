@@ -1,11 +1,8 @@
 import { Field, HStack, Heading, VStack } from "@chakra-ui/react";
-
 import { Radio, RadioGroup } from "../../components/ui/radio";
 import { Switch } from "../../components/ui/switch";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import { type sortBy } from "../../otp";
-
-
 import SyncInfoPanel from "./SyncInfoPanel";
 
 export default function GeneralSettings() {

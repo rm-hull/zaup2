@@ -1,6 +1,5 @@
 import { lazily } from "react-lazily";
 import { Route, Routes, useNavigate } from "react-router-dom";
-
 import { Loader } from "./components/Loader";
 import Sidebar from "./components/Sidebar";
 import { toaster } from "./components/ui/toaster";

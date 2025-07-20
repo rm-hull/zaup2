@@ -15,7 +15,6 @@ import {
 import { type FieldProps, Form, Formik, type FormikErrors, Field as FormikField, type FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
-
 import google_authenticator from "../assets/google_authenticator.svg";
 import QrScannerButton from "../components/import/QrScannerButton";
 import { Button } from "../components/ui/button";

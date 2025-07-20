@@ -1,6 +1,5 @@
 import { Stack } from "@chakra-ui/react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-
 import DangerZoneSettings from "../components/settings/DangerZoneSettings";
 import GeneralSettings from "../components/settings/GeneralSettings";
 import OTPSettings from "../components/settings/OTPSettings";

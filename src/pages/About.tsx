@@ -1,6 +1,5 @@
 import { Code, Heading, Link, Stack, Text, VStack } from "@chakra-ui/react";
 import { FiExternalLink } from "react-icons/fi";
-
 import { useColorModeValue } from "../components/ui/color-mode";
 
 export function About() {

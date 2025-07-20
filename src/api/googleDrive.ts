@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import { type GeneralSettings } from "../hooks/useGeneralSettings";
 import { type OTP } from "../types";
 

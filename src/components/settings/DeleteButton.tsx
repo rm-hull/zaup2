@@ -1,9 +1,7 @@
 import { IconButton } from "@chakra-ui/react";
 import { FiTrash2 } from "react-icons/fi";
-
 import { Tooltip } from "../../components/ui/tooltip";
 import { type OTP } from "../../types";
-
 import { DeleteDialog } from "./DeleteDialog";
 
 interface DeleteButtonProps {
