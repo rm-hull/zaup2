@@ -18,6 +18,8 @@ export default tseslint.config(
       ...tseslint.configs.recommendedTypeChecked,
       {
         languageOptions: {
+          ecmaVersion: "latest",
+          sourceType: "module",
           parserOptions: {
             projectService: true,
             tsconfigRootDir: import.meta.dirname,
