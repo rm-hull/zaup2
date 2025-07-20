@@ -7,6 +7,8 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import globals from "globals";
 import tseslint from "typescript-eslint";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import testingLibrary from "eslint-plugin-testing-library";
 
 export default tseslint.config(
   { ignores: ["dist", "coverage", ".yarn", ".pnp*", "src/proto/*.ts"] },
@@ -23,6 +25,10 @@ export default tseslint.config(
           globals: globals.browser,
           parser: tseslint.parser,
           parserOptions: {
+            ecmaFeatures: {
+              jsx: true,
+              modules: true,
+            },
             projectService: true,
             tsconfigRootDir: import.meta.dirname,
           },
@@ -30,14 +36,17 @@ export default tseslint.config(
       },
       pluginPromise.configs["flat/recommended"],
       eslintConfigPrettier,
+      jsxA11y.flatConfigs.recommended,
     ],
     files: ["**/*.{ts,tsx}"],
     plugins: {
-      react: react,
+      react,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
     },
     rules: {
+      ...react.configs.recommended.rules,
+      ...react.configs["jsx-runtime"].rules,
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
       "import/order": [
@@ -53,12 +62,19 @@ export default tseslint.config(
       ],
     },
     settings: {
+      react: {
+        version: "detect",
+      },
       "import/resolver": {
-        // You will also need to install and configure the TypeScript resolver
-        // See also https://github.com/import-js/eslint-import-resolver-typescript#configuration
         typescript: true,
         node: true,
       },
     },
+  },
+  {
+    // Apply testing-library rules only to test files
+    files: ["**/?(*.)+(spec|test).[jt]s?(x)"],
+    plugins: { "testing-library": testingLibrary },
+    rules: testingLibrary.configs.react.rules,
   }
 );
