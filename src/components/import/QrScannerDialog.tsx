@@ -1,6 +1,6 @@
 import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react";
 import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
-import { PropsWithChildren, type JSX } from "react";
+import { PropsWithChildren, useState, type JSX } from "react";
 
 interface QrScannerDialogProps {
   onScanResult: (uri: string) => void;
@@ -12,15 +12,16 @@ export function QrScannerDialog({
   onScanResult,
   onError,
 }: PropsWithChildren<QrScannerDialogProps>): JSX.Element {
+  const [open, setOpen] = useState(false);
   const handleResult = (detectedCodes: IDetectedBarcode[]): void => {
     for (const result of detectedCodes) {
       if (
         result.rawValue?.startsWith("otpauth-migration://offline?data=") ||
         result.rawValue?.startsWith("otpauth://totp/")
       ) {
-        setTimeout(() => {
-          onScanResult(result.rawValue);
-        }, 0);
+        onScanResult(result.rawValue);
+        setOpen(false);
+        return;
       }
     }
   };
@@ -30,7 +31,7 @@ export function QrScannerDialog({
   };
 
   return (
-    <Dialog.Root>
+    <Dialog.Root lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
       <Dialog.Trigger>{children}</Dialog.Trigger>
       <Dialog.Backdrop />
       <Portal>
