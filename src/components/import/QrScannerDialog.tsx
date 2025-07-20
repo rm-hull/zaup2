@@ -19,10 +19,9 @@ export function QrScannerDialog({
         result.rawValue?.startsWith("otpauth-migration://offline?data=") ||
         result.rawValue?.startsWith("otpauth://totp/")
       ) {
-        setTimeout(() => {
-          onScanResult(result.rawValue);
-          setOpen(false);
-        }, 0);
+        onScanResult(result.rawValue);
+        setOpen(false);
+        return;
       }
     }
   };
