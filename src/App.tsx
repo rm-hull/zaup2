@@ -31,7 +31,7 @@ export const App = () => {
       duration: 9000,
       closable: true,
     });
-    navigate("/");
+    void navigate("/");
   };
 
   return (
