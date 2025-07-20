@@ -17,8 +17,9 @@
   "123 Reg": "https://img1.wsimg.com/cdn/Image/All/Website/1/en-GB/6867881e-07de-4669-8fc1-d7a8bbf2d8cf/favicon-194x194.png",
   "Clojars.org": "https://clojars.org/images/clojars-logo-tiny@2x.png",
   "Coursera": "https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-72x72.png",
-  "ImprovMX": "https://app.improvmx.com/img/favicon.ico",
+  "ImprovMX": "https://cdn.prod.website-files.com/67ea96f9cdde898f000bb46b/67ea990358b4c214f79c7bf6_fi0.png",
   "AWS SSO": "https://aws.amazon.com/favicon.ico",
   "Cloudflare": "https://cloudflare.com/favicon.ico",
-  "Auth0": "https://cdn.auth0.com/quantum-assets/dist/latest/favicons/auth0-favicon-onlight.png"
+  "Auth0": "https://cdn.auth0.com/quantum-assets/dist/latest/favicons/auth0-favicon-onlight.png",
+  "GOV.UK": "https://www.gov.uk/assets/static/favicon-d962d21b5bb443f546c097ea21b567cde639adef7370da45be5e349ba8d62d33.svg"
 }
