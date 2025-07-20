@@ -1,6 +1,6 @@
 import { IconButton } from "@chakra-ui/react";
 import * as R from "ramda";
-import { useCallback, type JSX } from "react";
+import { useCallback } from "react";
 import { FiPlus } from "react-icons/fi";
 import { type OTP } from "../../types";
 import { AddTagDialog } from "./AddTagDialog";
@@ -11,7 +11,7 @@ interface AddTagButtonProps {
   onAddRequested: (otp: OTP) => void;
 }
 
-export default function AddTagButton({ otp, onAddRequested }: AddTagButtonProps): JSX.Element {
+export default function AddTagButton({ otp, onAddRequested }: AddTagButtonProps) {
   const handleConfirmAddTag = useCallback(
     (tag: string) => {
       onAddRequested({

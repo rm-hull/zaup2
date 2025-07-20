@@ -1,5 +1,5 @@
 import { IconButton } from "@chakra-ui/react";
-import { useCallback, type JSX } from "react";
+import { useCallback } from "react";
 import { FiEdit } from "react-icons/fi";
 import { type OTP } from "../../types";
 import { CustomLabelDialog } from "./CustomLabelDialog";
@@ -10,7 +10,7 @@ interface CustomLabelButtonProps {
   onUpdateRequested: (otp: OTP) => void;
 }
 
-export default function CustomLabelButton({ otp, onUpdateRequested }: CustomLabelButtonProps): JSX.Element {
+export default function CustomLabelButton({ otp, onUpdateRequested }: CustomLabelButtonProps) {
   const handleConfirmCustomLabel = useCallback(
     (label?: string) => {
       onUpdateRequested({ ...otp, label });

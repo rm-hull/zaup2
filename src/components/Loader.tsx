@@ -1,7 +1,7 @@
 import { ProgressBar, ProgressRoot } from "@/components/ui/progress";
-import { type JSX, Suspense, type PropsWithChildren } from "react";
+import { Suspense, type PropsWithChildren } from "react";
 
-export function Loader({ children }: PropsWithChildren): JSX.Element {
+export function Loader({ children }: PropsWithChildren) {
   return (
     <Suspense
       fallback={

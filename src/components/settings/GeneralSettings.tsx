@@ -1,12 +1,12 @@
 import { Field, HStack, Heading, VStack } from "@chakra-ui/react";
-import { type JSX } from "react";
+
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import { type sortBy } from "../../otp";
 import SyncInfoPanel from "./SyncInfoPanel";
 import { Switch } from "@/components/ui/switch";
 import { Radio, RadioGroup } from "@/components/ui/radio";
 
-export default function GeneralSettings(): JSX.Element {
+export default function GeneralSettings() {
   const [settings, updateSettings] = useGeneralSettings();
 
   const handleToggleSyncToGoogleDrive = (): void => {

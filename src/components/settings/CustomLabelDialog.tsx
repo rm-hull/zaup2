@@ -1,6 +1,6 @@
 import { Button, Input, Field, Dialog, Portal, CloseButton } from "@chakra-ui/react";
 import { Field as FormikField, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
-import { PropsWithChildren, type JSX } from "react";
+import { PropsWithChildren } from "react";
 import { useColorModeValue } from "@/components/ui/color-mode";
 
 interface CustomLabelDialogProps {
@@ -11,11 +11,7 @@ interface CustomLabelForm {
   label: string;
 }
 
-export function CustomLabelDialog({
-  children,
-  label,
-  onUpdate,
-}: PropsWithChildren<CustomLabelDialogProps>): JSX.Element {
+export function CustomLabelDialog({ children, label, onUpdate }: PropsWithChildren<CustomLabelDialogProps>) {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 

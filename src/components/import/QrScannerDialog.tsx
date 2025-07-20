@@ -1,17 +1,13 @@
 import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react";
 import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
-import { PropsWithChildren, useState, type JSX } from "react";
+import { PropsWithChildren, useState } from "react";
 
 interface QrScannerDialogProps {
   onScanResult: (uri: string) => void;
   onError: (err: Error) => void;
 }
 
-export function QrScannerDialog({
-  children,
-  onScanResult,
-  onError,
-}: PropsWithChildren<QrScannerDialogProps>): JSX.Element {
+export function QrScannerDialog({ children, onScanResult, onError }: PropsWithChildren<QrScannerDialogProps>) {
   const [open, setOpen] = useState(false);
   const handleResult = (detectedCodes: IDetectedBarcode[]): void => {
     for (const result of detectedCodes) {

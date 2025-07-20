@@ -1,7 +1,7 @@
 import { Box, Button, Flex, HStack, Input, Dialog, Field, Text, Portal, CloseButton } from "@chakra-ui/react";
 import { Field as FormikField, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
 import * as R from "ramda";
-import { PropsWithChildren, type JSX } from "react";
+import { PropsWithChildren } from "react";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import HashTag from "../HashTag";
 import { useColorModeValue } from "@/components/ui/color-mode";
@@ -24,7 +24,7 @@ function validateTag(value: string): string | undefined {
   return undefined;
 }
 
-export function AddTagDialog({ children, onAdd }: PropsWithChildren<AddTagDialogProps>): JSX.Element {
+export function AddTagDialog({ children, onAdd }: PropsWithChildren<AddTagDialogProps>) {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
   const tagBg = useColorModeValue("gray.50", "gray.800");

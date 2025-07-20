@@ -1,11 +1,11 @@
 import { Alert } from "@chakra-ui/react";
-import { type JSX } from "react";
+
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import usePassword from "../../hooks/usePassword";
 import ResetDataButton from "./ResetDataButton";
 
-export default function GeneralSettings(): JSX.Element {
+export default function GeneralSettings() {
   const { removeAll } = useOtpParameters({ includeArchived: true });
   const [, updateSettings] = useGeneralSettings();
   const [, setPassword] = usePassword();

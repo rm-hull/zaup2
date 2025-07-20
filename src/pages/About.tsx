@@ -1,9 +1,8 @@
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { Code, Heading, Link, Stack, Text, VStack } from "@chakra-ui/react";
-import { type JSX } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
-export function About(): JSX.Element | null {
+export function About() {
   return (
     <Stack
       boxShadow="2xl"

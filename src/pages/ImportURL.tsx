@@ -15,7 +15,7 @@ import {
 import { Field as FormikField, Form, Formik, type FieldProps, type FormikErrors, type FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
-import { type JSX } from "react";
+
 import google_authenticator from "../assets/google_authenticator.svg";
 import QrScannerButton from "../components/import/QrScannerButton";
 import { algorithmFrom } from "../otp";
@@ -58,7 +58,7 @@ type SetFieldValueType<Values> = (
   shouldValidate?: boolean
 ) => Promise<FormikErrors<Values> | void>;
 
-export function ImportURL({ onSubmit }: ImportURLProps): JSX.Element {
+export function ImportURL({ onSubmit }: ImportURLProps) {
   const { open, onClose } = useDisclosure({ defaultOpen: true });
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");

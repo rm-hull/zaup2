@@ -1,4 +1,3 @@
-import { type JSX } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import useOtpParameters from "./hooks/useOtpParameters";
@@ -16,7 +15,7 @@ const { Issuer } = lazily(async () => await import("./pages/Issuer"));
 const { Tag } = lazily(async () => await import("./pages/Tag"));
 const { NotFound } = lazily(async () => await import("./pages/NotFound"));
 
-export const App = (): JSX.Element => {
+export const App = () => {
   const navigate = useNavigate();
   const { update } = useOtpParameters();
 

@@ -1,5 +1,5 @@
 import format from "format-duration";
-import { useState, type JSX } from "react";
+import { useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { ProgressCircleRing, ProgressCircleRoot, ProgressCircleValueText } from "@/components/ui/progress-circle";
@@ -19,7 +19,7 @@ const calcTimeLeft = (duration: number): number => {
   return duration - 1 - (seconds % duration);
 };
 
-export default function CountdownTimer({ duration }: CountdownTimerProps): JSX.Element {
+export default function CountdownTimer({ duration }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = useState<number>(calcTimeLeft(duration));
   useHarmonicIntervalFn(() => {
     setTimeLeft(calcTimeLeft(duration));
