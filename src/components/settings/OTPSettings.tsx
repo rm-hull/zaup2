@@ -64,7 +64,7 @@ export default function OTPSettings(): JSX.Element | null {
             <Table.Row key={hash(otp)}>
               <Table.Cell valign="top">
                 <HStack alignItems="flex-start">
-                  <Image src={getCachedFavicon(otp)} h={5} filter={otp.archived ? "grayscale(1)" : undefined} />
+                  <Image src={getCachedFavicon(otp)} h={5} filter={otp.archived ? "grayscale(100%)" : "none"} />
                   <VStack align="left">
                     <Text fontWeight={600} textDecoration={otp.archived ? "line-through" : undefined}>
                       {otp.label ?? otp.issuer ?? "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}
