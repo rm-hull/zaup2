@@ -1,7 +1,7 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import autoAnimate from "@formkit/auto-animate";
 import hash from "object-hash";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useHarmonicIntervalFn } from "react-use";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
@@ -12,7 +12,7 @@ import Search from "./Search";
 
 interface GroupProps {
   filter?: (otp: OTP) => boolean;
-  noData?: React.ReactNode;
+  noData?: ReactNode;
 }
 
 function matches(otp: OTP, searchTerm?: string): boolean {
