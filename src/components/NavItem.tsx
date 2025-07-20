@@ -1,5 +1,5 @@
 import { Box, Collapsible, Flex, Icon, Link, Spacer, Text, useDisclosure, type FlexProps } from "@chakra-ui/react";
-import { type JSX, type PropsWithChildren } from "react";
+import { type PropsWithChildren } from "react";
 import { type IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
 import { Tag } from "@/components/ui/tag";
@@ -12,7 +12,7 @@ interface NavItemProps extends PropsWithChildren<FlexProps> {
   color?: string;
 }
 
-export default function NavItem({ label, icon, path, count, children, color, ...rest }: NavItemProps): JSX.Element {
+export default function NavItem({ label, icon, path, count, children, color, ...rest }: NavItemProps) {
   const { open, onToggle } = useDisclosure();
 
   return (

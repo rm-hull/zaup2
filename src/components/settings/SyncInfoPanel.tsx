@@ -1,7 +1,6 @@
 import { Alert, Box, Code, Text } from "@chakra-ui/react";
-import { type JSX } from "react";
 
-export default function SyncInfoPanel(): JSX.Element | null {
+export default function SyncInfoPanel() {
   return (
     <Box>
       <Alert.Root status="info" alignItems="flex-start">

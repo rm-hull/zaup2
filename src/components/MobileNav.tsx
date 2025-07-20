@@ -1,5 +1,5 @@
 import { Flex, IconButton, Text, type FlexProps } from "@chakra-ui/react";
-import { type JSX } from "react";
+
 import { FiMenu } from "react-icons/fi";
 import { useColorModeValue } from "@/components/ui/color-mode";
 
@@ -7,7 +7,7 @@ interface MobileProps extends FlexProps {
   onOpen: () => void;
 }
 
-export default function MobileNav({ onOpen, ...rest }: MobileProps): JSX.Element {
+export default function MobileNav({ onOpen, ...rest }: MobileProps) {
   return (
     <Flex
       ml={{ base: 0, md: 60 }}

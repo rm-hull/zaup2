@@ -1,5 +1,5 @@
 import { Box, Collapsible, Input, InputGroup, useControllableState, useDisclosure } from "@chakra-ui/react";
-import { type ChangeEvent, type JSX } from "react";
+import { type ChangeEvent } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useKeyPressEvent } from "react-use";
 import useFocus from "../hooks/useFocus";
@@ -9,7 +9,7 @@ interface SearchProps {
   onChange?: (value: string) => void;
 }
 
-export default function Search({ onChange }: SearchProps): JSX.Element {
+export default function Search({ onChange }: SearchProps) {
   const { open, onOpen, onClose } = useDisclosure();
   const bg = useColorModeValue("white", "var(--chakra-colors-gray-900)");
   const [value, setValue] = useControllableState({ defaultValue: "", onChange });

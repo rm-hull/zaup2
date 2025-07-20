@@ -1,5 +1,5 @@
 import { Link } from "@chakra-ui/react";
-import { type JSX } from "react";
+
 import { Link as RouterLink } from "react-router-dom";
 import { Tag } from "@/components/ui/tag";
 import { useColorModeValue } from "@/components/ui/color-mode";
@@ -12,7 +12,7 @@ interface HashTagProps {
   system?: boolean;
 }
 
-export default function HashTag({ bg, label, onClick, onClose, system = false }: HashTagProps): JSX.Element {
+export default function HashTag({ bg, label, onClick, onClose, system = false }: HashTagProps) {
   const systemBg = useColorModeValue("purple.50", "purple.900");
   return (
     <Tag

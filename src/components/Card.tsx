@@ -1,7 +1,7 @@
 import { Box, Center, Flex, HStack, Heading, Highlight, IconButton, Image, Text, useClipboard } from "@chakra-ui/react";
 import { type TOTP } from "otpauth";
 import { QRCodeSVG } from "qrcode.react";
-import { memo, useMemo, type JSX } from "react";
+import { memo, useMemo } from "react";
 import { FiAlertTriangle, FiCheck, FiClipboard } from "react-icons/fi";
 import { getCachedFavicon } from "../favicons";
 import useOtpParameters from "../hooks/useOtpParameters";
@@ -28,7 +28,7 @@ function generateCode(totp?: TOTP): Partial<{ code: string; error: Error }> {
   }
 }
 
-const Card = memo(({ otp, showQRCode, highlight }: CardProps): JSX.Element => {
+const Card = memo(({ otp, showQRCode, highlight }: CardProps) => {
   const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
   const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
   const { update } = useOtpParameters();

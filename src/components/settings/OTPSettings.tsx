@@ -1,7 +1,6 @@
 import { Flex, HStack, Heading, Image, Table, Text, VStack } from "@chakra-ui/react";
 
 import hash from "object-hash";
-import { type JSX } from "react";
 import { getCachedFavicon } from "../../favicons";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import { sortBy } from "../../otp";
@@ -17,7 +16,7 @@ import FaviconButton from "./FaviconButton";
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { Switch } from "@/components/ui/switch";
 
-export default function OTPSettings(): JSX.Element | null {
+export default function OTPSettings() {
   const { data, update, remove } = useOtpParameters({ includeArchived: true });
   const tagBg = useColorModeValue("gray.50", "gray.800");
 

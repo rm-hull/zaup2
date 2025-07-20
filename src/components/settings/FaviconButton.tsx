@@ -1,5 +1,5 @@
 import { IconButton } from "@chakra-ui/react";
-import { useCallback, type JSX } from "react";
+import { useCallback } from "react";
 import { FiImage } from "react-icons/fi";
 import { type OTP } from "../../types";
 import { FaviconDialog } from "./FaviconDialog";
@@ -10,7 +10,7 @@ interface FaviconButtonProps {
   onUpdateRequested: (otp: OTP) => void;
 }
 
-export default function FaviconButton({ otp, onUpdateRequested }: FaviconButtonProps): JSX.Element {
+export default function FaviconButton({ otp, onUpdateRequested }: FaviconButtonProps) {
   const handleConfirmFavicon = useCallback(
     (favicon?: string) => {
       onUpdateRequested({ ...otp, favicon });

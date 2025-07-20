@@ -1,6 +1,6 @@
 import { Box, CloseButton, Flex, HStack, Separator, Text, VStack, type BoxProps } from "@chakra-ui/react";
 import * as R from "ramda";
-import { useMemo, type JSX } from "react";
+import { useMemo } from "react";
 import { FiCompass, FiHome, FiLogIn, FiMessageSquare, FiSettings, FiTag } from "react-icons/fi";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import useOtpParameters from "../hooks/useOtpParameters";
@@ -13,7 +13,7 @@ interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
 
-export default function SidebarContent({ onClose, ...rest }: SidebarProps): JSX.Element {
+export default function SidebarContent({ onClose, ...rest }: SidebarProps) {
   const { data = [] } = useOtpParameters();
   const [settings] = useGeneralSettings();
 

@@ -1,11 +1,11 @@
 import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react";
-import { PropsWithChildren, type JSX } from "react";
+import { PropsWithChildren } from "react";
 
 interface ResetDataDialogProps {
   onResetData: () => void;
 }
 
-export function ResetDataDialog({ children, onResetData }: PropsWithChildren<ResetDataDialogProps>): JSX.Element {
+export function ResetDataDialog({ children, onResetData }: PropsWithChildren<ResetDataDialogProps>) {
   return (
     <Dialog.Root>
       <Dialog.Trigger>{children}</Dialog.Trigger>

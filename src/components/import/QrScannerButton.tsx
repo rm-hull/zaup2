@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/react";
-import { type JSX } from "react";
+
 import { QrScannerDialog } from "./QrScannerDialog";
 import { toaster } from "@/components/ui/toaster";
 
@@ -7,7 +7,7 @@ interface DeleteButtonProps {
   onScanResult: (uri: string) => void;
 }
 
-export default function QrScannerButton({ onScanResult }: DeleteButtonProps): JSX.Element {
+export default function QrScannerButton({ onScanResult }: DeleteButtonProps) {
   const handleError = (error: Error): void => {
     toaster.dismiss();
     toaster.create({
@@ -15,7 +15,7 @@ export default function QrScannerButton({ onScanResult }: DeleteButtonProps): JS
       description: `Error occurred: ${error.message}`,
       type: "error",
       duration: 9000,
-      closable: true
+      closable: true,
     });
   };
 

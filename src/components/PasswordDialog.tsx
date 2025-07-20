@@ -1,6 +1,6 @@
 import { Alert, Button, Dialog, Field, Portal } from "@chakra-ui/react";
 import { Field as FormikField, Form, Formik, type FieldProps, type FormikHelpers } from "formik";
-import { type JSX } from "react";
+
 import PasswordInput from "./PasswordInput";
 import { useColorModeValue } from "@/components/ui/color-mode";
 
@@ -22,7 +22,7 @@ const requiredValidator = (value: string): string | undefined => {
   return error;
 };
 
-export function PasswordDialog({ confirm, onSubmit }: PasswordDialogProps): JSX.Element {
+export function PasswordDialog({ confirm, onSubmit }: PasswordDialogProps) {
   const color = useColorModeValue("gray.800", "gray.200");
   const bg = useColorModeValue("gray.100", "gray.600");
 

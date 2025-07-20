@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/react";
-import { type JSX } from "react";
+
 import { ResetDataDialog } from "./ResetDataDialog";
 import { Tooltip } from "@/components/ui/tooltip";
 
@@ -7,7 +7,7 @@ interface ResetDataButtonProps {
   onResetRequested: () => void;
 }
 
-export default function ResetDataButton({ onResetRequested }: ResetDataButtonProps): JSX.Element {
+export default function ResetDataButton({ onResetRequested }: ResetDataButtonProps) {
   const handleConfirmReset = (): void => {
     onResetRequested();
   };

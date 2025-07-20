@@ -1,4 +1,4 @@
-import { useEffect, useState, type JSX, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { type Payload } from "../../api/googleDrive";
 // import { ipAddress } from "../../api/ipify";
 import { Box, HStack, Heading, Steps, useSteps } from "@chakra-ui/react";
@@ -20,7 +20,7 @@ async function timeout(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export default function SyncSettings(): JSX.Element {
+export default function SyncSettings() {
   const [processing, setProcessing] = useState(false);
   const [payload, setPayload] = useState<Payload>();
   const [settings, updateSettings] = useGeneralSettings();

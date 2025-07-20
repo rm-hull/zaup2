@@ -1,11 +1,11 @@
 import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react";
-import { PropsWithChildren, type JSX } from "react";
+import { PropsWithChildren } from "react";
 
 interface DeleteDialogProps {
   onDelete: () => void;
 }
 
-export function DeleteDialog({ children, onDelete }: PropsWithChildren<DeleteDialogProps>): JSX.Element {
+export function DeleteDialog({ children, onDelete }: PropsWithChildren<DeleteDialogProps>) {
   return (
     <Dialog.Root size="xs">
       <Dialog.Trigger>{children}</Dialog.Trigger>

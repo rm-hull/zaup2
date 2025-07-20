@@ -1,8 +1,8 @@
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
-import { type JSX } from "react";
+
 import { Link } from "react-router-dom";
 
-export function NotFound(): JSX.Element {
+export function NotFound() {
   return (
     <Box textAlign="center" py={10} px={6}>
       <Heading

@@ -1,11 +1,11 @@
-import { useEffect, type JSX } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface RedirectProps {
   to: string;
 }
 
-export default function Redirect({ to }: RedirectProps): JSX.Element {
+export default function Redirect({ to }: RedirectProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
