@@ -3,7 +3,7 @@ import { type ChangeEvent } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useKeyPressEvent } from "react-use";
 import useFocus from "../hooks/useFocus";
-import { useColorModeValue } from "@/components/ui/color-mode";
+import { useColorModeValue } from "./ui/color-mode";
 
 interface SearchProps {
   onChange?: (value: string) => void;

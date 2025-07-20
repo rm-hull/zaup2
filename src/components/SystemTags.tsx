@@ -1,5 +1,4 @@
 import { HStack } from "@chakra-ui/react";
-
 import { getSystemTags } from "../otp";
 import { type OTP } from "../types";
 import HashTag from "./HashTag";

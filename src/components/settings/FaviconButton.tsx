@@ -1,9 +1,9 @@
 import { IconButton } from "@chakra-ui/react";
 import { useCallback } from "react";
 import { FiImage } from "react-icons/fi";
+import { Tooltip } from "../../components/ui/tooltip";
 import { type OTP } from "../../types";
 import { FaviconDialog } from "./FaviconDialog";
-import { Tooltip } from "@/components/ui/tooltip";
 
 interface FaviconButtonProps {
   otp: OTP;

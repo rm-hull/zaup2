@@ -1,8 +1,8 @@
 import { useCallback } from "react";
+import { merge } from "../otp";
 import { type OTP } from "../types";
 import useLocalStorage from "./useLocalStorage";
 import usePassword from "./usePassword";
-import { merge } from "../otp";
 
 interface Options {
   includeArchived?: boolean;

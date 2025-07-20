@@ -1,8 +1,8 @@
-import { Box, Collapsible, Flex, Icon, Link, Spacer, Text, useDisclosure, type FlexProps } from "@chakra-ui/react";
+import { Box, Collapsible, Flex, type FlexProps, Icon, Link, Spacer, Text, useDisclosure } from "@chakra-ui/react";
 import { type PropsWithChildren } from "react";
 import { type IconType } from "react-icons";
 import { Link as RouterLink } from "react-router-dom";
-import { Tag } from "@/components/ui/tag";
+import { Tag } from "./ui/tag";
 
 interface NavItemProps extends PropsWithChildren<FlexProps> {
   label: string;

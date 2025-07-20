@@ -1,7 +1,6 @@
 import { Button } from "@chakra-ui/react";
-
+import { toaster } from "../../components/ui/toaster";
 import { QrScannerDialog } from "./QrScannerDialog";
-import { toaster } from "@/components/ui/toaster";
 
 interface DeleteButtonProps {
   onScanResult: (uri: string) => void;

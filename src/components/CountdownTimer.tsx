@@ -1,8 +1,8 @@
 import format from "format-duration";
 import { useState } from "react";
 import { useHarmonicIntervalFn } from "react-use";
-import { useColorModeValue } from "@/components/ui/color-mode";
-import { ProgressCircleRing, ProgressCircleRoot, ProgressCircleValueText } from "@/components/ui/progress-circle";
+import { useColorModeValue } from "../components/ui/color-mode";
+import { ProgressCircleRing, ProgressCircleRoot, ProgressCircleValueText } from "./ui/progress-circle";
 
 interface CountdownTimerProps {
   duration: number;

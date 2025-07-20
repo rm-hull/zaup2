@@ -1,6 +1,6 @@
+import CryptoJS from "crypto-js";
 import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
-import CryptoJS from "crypto-js";
 import isJson from "../utils/isJson";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -30,6 +30,7 @@ const useLocalStorage = <T>(key: string, initialValue: T, secretKey?: string): U
       const decrypted = CryptoJS.AES.decrypt(data, secretKey).toString(CryptoJS.enc.Utf8);
       return JSON.parse(decrypted) as T;
     } catch (ex) {
+      console.error(`Error decrypting localStorage key “${key}”:`, ex);
       throw Error("Unable to decrypt: Bad secret key?");
     }
   };

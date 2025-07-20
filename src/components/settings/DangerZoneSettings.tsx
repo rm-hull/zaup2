@@ -1,5 +1,4 @@
 import { Alert } from "@chakra-ui/react";
-
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import usePassword from "../../hooks/usePassword";

@@ -1,5 +1,5 @@
-import useLocalStorage from "./useLocalStorage";
 import { type sortBy } from "../otp";
+import useLocalStorage from "./useLocalStorage";
 
 export interface GeneralSettings {
   syncToGoogleDrive?: boolean;

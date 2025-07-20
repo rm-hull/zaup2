@@ -1,5 +1,5 @@
-import { ProgressBar, ProgressRoot } from "@/components/ui/progress";
-import { Suspense, type PropsWithChildren } from "react";
+import { type PropsWithChildren, Suspense } from "react";
+import { ProgressBar, ProgressRoot } from "./ui/progress";
 
 export function Loader({ children }: PropsWithChildren) {
   return (

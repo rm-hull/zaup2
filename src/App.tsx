@@ -1,11 +1,11 @@
+import { lazily } from "react-lazily";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import { Loader } from "./components/Loader";
 import Sidebar from "./components/Sidebar";
+import { toaster } from "./components/ui/toaster";
 import useOtpParameters from "./hooks/useOtpParameters";
 import { normalize } from "./otp";
 import { type MigrationPayload } from "./proto/migration_payload";
-import { lazily } from "react-lazily";
-import { Loader } from "./components/Loader";
-import { toaster } from "@/components/ui/toaster";
 
 const { Home } = lazily(async () => await import("./pages/Home"));
 const { About } = lazily(async () => await import("./pages/About"));
@@ -30,7 +30,7 @@ export const App = () => {
       duration: 9000,
       closable: true,
     });
-    navigate("/");
+    void navigate("/");
   };
 
   return (

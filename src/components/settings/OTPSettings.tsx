@@ -1,5 +1,4 @@
 import { Flex, HStack, Heading, Image, Table, Text, VStack } from "@chakra-ui/react";
-
 import hash from "object-hash";
 import { getCachedFavicon } from "../../favicons";
 import useOtpParameters from "../../hooks/useOtpParameters";
@@ -8,13 +7,13 @@ import { type OTP } from "../../types";
 import HashTag from "../HashTag";
 import Redirect from "../Redirect";
 import SystemTags from "../SystemTags";
+import { useColorModeValue } from "../ui/color-mode";
+import { Switch } from "../ui/switch";
 import AddTagButton from "./AddTagButton";
 import CopyEncodedSecretButton from "./CopyEncodedSecretButton";
 import CustomLabelButton from "./CustomLabelButton";
 import DeleteButton from "./DeleteButton";
 import FaviconButton from "./FaviconButton";
-import { useColorModeValue } from "@/components/ui/color-mode";
-import { Switch } from "@/components/ui/switch";
 
 export default function OTPSettings() {
   const { data, update, remove } = useOtpParameters({ includeArchived: true });

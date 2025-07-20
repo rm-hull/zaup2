@@ -1,5 +1,4 @@
 import { Alert } from "@chakra-ui/react";
-
 import { useParams } from "react-router-dom";
 import Group from "../components/Group";
 

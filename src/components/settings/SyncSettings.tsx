@@ -1,13 +1,14 @@
-import { useEffect, useState, useCallback } from "react";
+import { Box, HStack, Heading, Steps, useSteps } from "@chakra-ui/react";
+import { useCallback, useEffect, useState } from "react";
 import { type Payload } from "../../api/googleDrive";
 // import { ipAddress } from "../../api/ipify";
-import { Box, HStack, Heading, Steps, useSteps } from "@chakra-ui/react";
+import { Button } from "../../components/ui/button";
+import { toaster } from "../../components/ui/toaster";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
 import useGoogleDrive from "../../hooks/useGoogleDrive";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import { merge } from "../../otp";
-import { toaster } from "@/components/ui/toaster";
-import { Button } from "@/components/ui/button";
+
 
 const steps = [
   { title: "Authenticate", description: "to Google Drive" },
@@ -39,7 +40,7 @@ export default function SyncSettings() {
       duration: 9000,
       closable: true,
     });
-  }, [error, setStep, toaster]);
+  }, [error, setStep]);
 
   const process = useCallback(async (): Promise<void> => {
     if (!processing) {
@@ -103,7 +104,6 @@ export default function SyncSettings() {
     processing,
     setStep,
     settings,
-    toaster,
     update,
     updateSettings,
   ]);
