@@ -4,6 +4,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "generate": "protoc --ts_out=src/proto --ts_opt=esModuleInterop --ts_opt=forceLong=string -I=./src/proto ./src/proto/migration_payload.proto",
     "dev": "yarn download && vite",
     "build": "yarn download && tsc && vite build",
     "lint": "eslint ./src",
@@ -84,6 +85,7 @@
     "eslint-plugin-testing-library": "^7.6.6",
     "globals": "^16.3.0",
     "prettier": "^3.6.2",
+    "protoc-gen-ts": "^0.8.7",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.41.0",
     "vite": "^7.1.3",

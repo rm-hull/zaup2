@@ -8670,6 +8670,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"protoc-gen-ts@npm:^0.8.7":
+  version: 0.8.7
+  resolution: "protoc-gen-ts@npm:0.8.7"
+  bin:
+    protoc-gen-ts: protoc-gen-ts.js
+  checksum: 10/5f60e0f6e03d26ca91544f629f6f9e1431b16fab64dfd0f6d7e604ba8f07c94361c362ffd9d8772b4546528d2c9397c2a2c5729d0b4a59c0dcdfe1f458c1e2d5
+  languageName: node
+  linkType: hard
+
 "proxy-compare@npm:3.0.1, proxy-compare@npm:^3.0.0":
   version: 3.0.1
   resolution: "proxy-compare@npm:3.0.1"
@@ -10777,6 +10786,7 @@ __metadata:
     object-hash: "npm:^3.0.0"
     otpauth: "npm:^9.4.1"
     prettier: "npm:^3.6.2"
+    protoc-gen-ts: "npm:^0.8.7"
     qrcode.react: "npm:^4.2.0"
     ramda: "npm:^0.31.3"
     react: "npm:^19.1.1"
