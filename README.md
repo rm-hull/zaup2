@@ -39,7 +39,15 @@ text field, and import.
 
 ## Running locally
 
-You must have Node 20 and Yarn installed. To begin:
+You must have Node 22, Yarn and (optionally) [protobuf](https://github.com/protocolbuffers/protobuf/releases) installed.
+
+This is optional, but if you want to regenerate the typescript files from the .proto files, first run:
+
+```console
+yarn generate
+```
+
+To begin proper:
 
 ```console
 export VITE_GOOGLE_API_CLIENT_ID=<your-google-api-client-id>
