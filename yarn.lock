@@ -1614,9 +1614,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/cli@npm:^3.26.0":
-  version: 3.26.0
-  resolution: "@chakra-ui/cli@npm:3.26.0"
+"@chakra-ui/cli@npm:^3.27.0":
+  version: 3.27.0
+  resolution: "@chakra-ui/cli@npm:3.27.0"
   dependencies:
     "@clack/prompts": "npm:0.11.0"
     "@pandacss/is-valid-prop": "npm:0.54.0"
@@ -1628,6 +1628,7 @@ __metadata:
     cli-table: "npm:^0.3.11"
     commander: "npm:12.1.0"
     debug: "npm:^4.4.1"
+    dotenv: "npm:^17.2.2"
     globby: "npm:14.1.0"
     https-proxy-agent: "npm:^7.0.6"
     look-it-up: "npm:2.1.0"
@@ -1641,7 +1642,7 @@ __metadata:
     "@chakra-ui/react": ">=3.0.0-next.0"
   bin:
     chakra: bin/index.js
-  checksum: 10/bbdf6d748e6b5b26235b393c152f033f5e2ed13d4c7721c34c60c50dcb996dd0395481501b7a070251fcaf6b7aaabb4aec8ae952c96c36d17fa608a65b85e03f
+  checksum: 10/9791978da08df45ab671954d542d2c3c63f11bc895710448e03843311e503ca13901f05170d67b19023d3a40a016fbf149442eff96051190165376c0ac1cbb82
   languageName: node
   linkType: hard
 
@@ -5542,6 +5543,13 @@ __metadata:
   version: 0.5.16
   resolution: "dom-accessibility-api@npm:0.5.16"
   checksum: 10/377b4a7f9eae0a5d72e1068c369c99e0e4ca17fdfd5219f3abd32a73a590749a267475a59d7b03a891f9b673c27429133a818c44b2e47e32fec024b34274e2ca
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^17.2.2":
+  version: 17.2.2
+  resolution: "dotenv@npm:17.2.2"
+  checksum: 10/258210c403a426e887f0fb63d1cddb2e7dcc028974a38a4a440411b651b9c588ee4e8605e252d87d15489b3e311d7ba56d588d6cfda1b11bfbf494dd7b3ef2a3
   languageName: node
   linkType: hard
 
@@ -10756,7 +10764,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "zaup2@workspace:."
   dependencies:
-    "@chakra-ui/cli": "npm:^3.26.0"
+    "@chakra-ui/cli": "npm:^3.27.0"
     "@chakra-ui/react": "npm:^3.26.0"
     "@emotion/react": "npm:^11.14.0"
     "@eslint/compat": "npm:^1.3.2"
