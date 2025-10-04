@@ -12,5 +12,8 @@ export default defineConfig(() => {
   return {
     plugins: [react({babel: {plugins: ["babel-plugin-react-compiler"]}}), tsconfigPaths()],
     base: "/zaup2",
+    build: {
+      sourcemap: true
+    }
   };
 });
