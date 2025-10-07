@@ -1649,9 +1649,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/cli@npm:^3.27.0":
-  version: 3.27.0
-  resolution: "@chakra-ui/cli@npm:3.27.0"
+"@chakra-ui/cli@npm:^3.27.1":
+  version: 3.27.1
+  resolution: "@chakra-ui/cli@npm:3.27.1"
   dependencies:
     "@clack/prompts": "npm:0.11.0"
     "@pandacss/is-valid-prop": "npm:0.54.0"
@@ -1677,7 +1677,7 @@ __metadata:
     "@chakra-ui/react": ">=3.0.0-next.0"
   bin:
     chakra: bin/index.js
-  checksum: 10/9791978da08df45ab671954d542d2c3c63f11bc895710448e03843311e503ca13901f05170d67b19023d3a40a016fbf149442eff96051190165376c0ac1cbb82
+  checksum: 10/311017fe89295640e1342e1edd59673777c46c48a2448b871da62f6934e900a4150794a821ad35625cb0e947625295f6a3041b2342a6e39fdb7feeab93a737c5
   languageName: node
   linkType: hard
 
@@ -10762,7 +10762,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "zaup2@workspace:."
   dependencies:
-    "@chakra-ui/cli": "npm:^3.27.0"
+    "@chakra-ui/cli": "npm:^3.27.1"
     "@chakra-ui/react": "npm:^3.27.0"
     "@emotion/react": "npm:^11.14.0"
     "@eslint/compat": "npm:^1.4.0"
