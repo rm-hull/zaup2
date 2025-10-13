@@ -57,7 +57,7 @@
     "@types/qrcode.react": "^3.0.0",
     "@types/ramda": "^0.31.1",
     "@types/react": "^19.2.0",
-    "@types/react-dom": "^19.2.0",
+    "@types/react-dom": "^19.2.1",
     "@types/react-icons": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^8.46.0",
     "@typescript-eslint/parser": "^8.46.0",
