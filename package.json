@@ -31,7 +31,7 @@
     "object-hash": "^3.0.0",
     "otpauth": "^9.4.1",
     "qrcode.react": "^4.2.0",
-    "ramda": "^0.31.3",
+    "ramda": "^0.32.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-error-boundary": "^6.0.0",
