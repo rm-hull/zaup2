@@ -2937,10 +2937,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/emscripten@npm:^1.40.1":
-  version: 1.40.1
-  resolution: "@types/emscripten@npm:1.40.1"
-  checksum: 10/d1aa8b91416c0d8ea7d2f3b99c8c40327350dff632ad98cb67f9df9afa13efd4d755c273b49a37797390a94180c7cc98397bbbe1d8def4ea1d5d3bff9c816ac9
+"@types/emscripten@npm:^1.41.2":
+  version: 1.41.4
+  resolution: "@types/emscripten@npm:1.41.4"
+  checksum: 10/35b7cbd09795065ebd44aff1be52ebeb5617a39898f05d33dc9a29b6ff3638839ed8df13751a815cb38396c4a5cea70d3188e8032e91904ea78ce415c9000b1d
   languageName: node
   linkType: hard
 
@@ -3877,16 +3877,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yudiel/react-qr-scanner@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "@yudiel/react-qr-scanner@npm:2.3.1"
+"@yudiel/react-qr-scanner@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "@yudiel/react-qr-scanner@npm:2.4.0"
   dependencies:
-    barcode-detector: "npm:3.0.3"
+    barcode-detector: "npm:3.0.6"
     webrtc-adapter: "npm:9.0.3"
   peerDependencies:
     react: ^17 || ^18 || ^19
     react-dom: ^17 || ^18 || ^19
-  checksum: 10/8ee7a6ca4a172048421414b05d6f32aab41c6609b8e990f70e27e2bcc7bd47d78049d4047ae940d8b60da01ac9d4a9060213fc22caacdbd84172ed3bcd18de08
+  checksum: 10/e936c273ad4c8649cf6e2b54542fc4d115ef8128cefe2608eee10d214f789bcbeb681040617e7cbbff8f5c8fa0382336824e3fdccff989ccbc4357937fb6bdaa
   languageName: node
   linkType: hard
 
@@ -5183,12 +5183,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"barcode-detector@npm:3.0.3":
-  version: 3.0.3
-  resolution: "barcode-detector@npm:3.0.3"
+"barcode-detector@npm:3.0.6":
+  version: 3.0.6
+  resolution: "barcode-detector@npm:3.0.6"
   dependencies:
-    zxing-wasm: "npm:^2.1.2"
-  checksum: 10/4de5171db98913b0bccb05d52aa2fa853096c3061da86e355a6105db830ba9ae746be32ae6a5ab65411604b401e517beffa1632b92fb226c1652b6f30cc24192
+    zxing-wasm: "npm:2.2.2"
+  checksum: 10/c1d4fbeecbb0be8f91e15c2bfdaaf3b27e3fd6fe224e60c4c25793a3bf90bab844702956de2f596a8e3229d2b4e0d88b42fb629472efc0b36a3751c3b01b7151
   languageName: node
   linkType: hard
 
@@ -9975,6 +9975,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tagged-tag@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "tagged-tag@npm:1.0.0"
+  checksum: 10/e37653df3e495daa7ea7790cb161b810b00075bba2e4d6c93fb06a709e747e3ae9da11a120d0489833203926511b39e038a2affbd9d279cfb7a2f3fcccd30b5d
+  languageName: node
+  linkType: hard
+
 "tapable@npm:^2.2.0":
   version: 2.2.1
   resolution: "tapable@npm:2.2.1"
@@ -10237,10 +10244,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^4.41.0":
-  version: 4.41.0
-  resolution: "type-fest@npm:4.41.0"
-  checksum: 10/617ace794ac0893c2986912d28b3065ad1afb484cad59297835a0807dc63286c39e8675d65f7de08fafa339afcb8fe06a36e9a188b9857756ae1e92ee8bda212
+"type-fest@npm:^5.0.1":
+  version: 5.1.0
+  resolution: "type-fest@npm:5.1.0"
+  dependencies:
+    tagged-tag: "npm:^1.0.0"
+  checksum: 10/c54997b38f274e795970fed1da0791979909726d6edb6e07b92a128af2be97682523076643ded0f3bc9266999ab48a4dcbacd533199f8829c381464a636de849
   languageName: node
   linkType: hard
 
@@ -10922,7 +10931,7 @@ __metadata:
     "@typescript-eslint/types": "npm:^8.46.2"
     "@vitejs/plugin-react": "npm:^5.0.4"
     "@vitest/coverage-v8": "npm:^3.2.4"
-    "@yudiel/react-qr-scanner": "npm:^2.3.1"
+    "@yudiel/react-qr-scanner": "npm:^2.4.0"
     axios: "npm:^1.12.2"
     babel-plugin-react-compiler: "npm:19.1.0-rc.3"
     base32-encode: "npm:^2.0.0"
@@ -11012,14 +11021,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zxing-wasm@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "zxing-wasm@npm:2.1.2"
+"zxing-wasm@npm:2.2.2":
+  version: 2.2.2
+  resolution: "zxing-wasm@npm:2.2.2"
   dependencies:
-    "@types/emscripten": "npm:^1.40.1"
-    type-fest: "npm:^4.41.0"
+    "@types/emscripten": "npm:^1.41.2"
+    type-fest: "npm:^5.0.1"
   peerDependencies:
     "@types/emscripten": ">=1.39.6"
-  checksum: 10/3b0476b4779fdb22de599022f6a8c51c77834422863d7412af35b3a7c682a48ac414ee6a3aafa264707b9beeb95fc20d933331f1d33b19d70c762509d5d1d5e6
+  checksum: 10/c542a3a56d30961cd221535fa82fef7fe49abff896339e23236b6a13297e0eba2dc9d51fb0808544321950b51a8f554d57a7859ddb7f8c236cdf66e2509a8b02
   languageName: node
   linkType: hard
