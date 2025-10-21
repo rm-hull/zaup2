@@ -1649,12 +1649,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/cli@npm:^3.27.1":
-  version: 3.27.1
-  resolution: "@chakra-ui/cli@npm:3.27.1"
+"@chakra-ui/cli@npm:^3.28.0":
+  version: 3.28.0
+  resolution: "@chakra-ui/cli@npm:3.28.0"
   dependencies:
     "@clack/prompts": "npm:0.11.0"
-    "@pandacss/is-valid-prop": "npm:0.54.0"
+    "@pandacss/is-valid-prop": "npm:1.4.3"
     "@types/cli-table": "npm:^0.3.4"
     "@types/debug": "npm:^4.1.12"
     "@visulima/boxen": "npm:^2.0.2"
@@ -1672,12 +1672,12 @@ __metadata:
     prettier: "npm:3.6.2"
     scule: "npm:1.3.0"
     sucrase: "npm:^3.35.0"
-    zod: "npm:^3.25.67"
+    zod: "npm:^4.1.12"
   peerDependencies:
     "@chakra-ui/react": ">=3.0.0-next.0"
   bin:
     chakra: bin/index.js
-  checksum: 10/311017fe89295640e1342e1edd59673777c46c48a2448b871da62f6934e900a4150794a821ad35625cb0e947625295f6a3041b2342a6e39fdb7feeab93a737c5
+  checksum: 10/c51785ecc419055daa77b718d0f3c6fd906dfbba65335ca02a3248bf6cf00b19720611f20fed4f1135c8f88d0b1a25cd48f0a1eb66601bc9dfaa7147d8e63580
   languageName: node
   linkType: hard
 
@@ -2431,7 +2431,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pandacss/is-valid-prop@npm:0.54.0, @pandacss/is-valid-prop@npm:^0.54.0":
+"@pandacss/is-valid-prop@npm:1.4.3":
+  version: 1.4.3
+  resolution: "@pandacss/is-valid-prop@npm:1.4.3"
+  checksum: 10/d418f42c7e1da3e1e3f481441eb656658da90deae5abd1c62f4433e6475d203cb4802aa0fbd90b854b4bc3059f2885e43bbf623d077e38b908b669c33dc4062d
+  languageName: node
+  linkType: hard
+
+"@pandacss/is-valid-prop@npm:^0.54.0":
   version: 0.54.0
   resolution: "@pandacss/is-valid-prop@npm:0.54.0"
   checksum: 10/1e73743e9e6b959cab3bd5dcea0a0bfa14a48e094bca36ea0bce41c9336503eb2a16aa9944d39063b08b0fef0daa3b2019e70844132a7b7807d95f5f755d81e4
@@ -10892,7 +10899,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "zaup2@workspace:."
   dependencies:
-    "@chakra-ui/cli": "npm:^3.27.1"
+    "@chakra-ui/cli": "npm:^3.28.0"
     "@chakra-ui/react": "npm:^3.27.1"
     "@emotion/react": "npm:^11.14.0"
     "@eslint/compat": "npm:^1.4.0"
@@ -11001,10 +11008,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.25.67":
-  version: 3.25.67
-  resolution: "zod@npm:3.25.67"
-  checksum: 10/0e35432dcca7f053e63f5dd491a87c78abe0d981817547252c3b6d05f0f58788695d1a69724759c6501dff3fd62929be24c9f314a3625179bee889150f7a61fa
+"zod@npm:^4.1.12":
+  version: 4.1.12
+  resolution: "zod@npm:4.1.12"
+  checksum: 10/c5f04e6ac306515c4db6ef73cf7705f521c7a2107c8c8912416a0658d689f361db9bee829b0bf01ef4a22492f1065c5cbcdb523ce532606ac6792fd714f3c326
   languageName: node
   linkType: hard
 
