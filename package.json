@@ -59,7 +59,7 @@
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@types/react-icons": "^3.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.46.1",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
     "@typescript-eslint/types": "^8.46.2",
     "@vitejs/plugin-react": "^5.0.4",
