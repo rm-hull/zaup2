@@ -3548,25 +3548,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/expect@npm:4.0.1":
-  version: 4.0.1
-  resolution: "@vitest/expect@npm:4.0.1"
+"@vitest/expect@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@vitest/expect@npm:4.0.2"
   dependencies:
     "@standard-schema/spec": "npm:^1.0.0"
     "@types/chai": "npm:^5.2.2"
-    "@vitest/spy": "npm:4.0.1"
-    "@vitest/utils": "npm:4.0.1"
+    "@vitest/spy": "npm:4.0.2"
+    "@vitest/utils": "npm:4.0.2"
     chai: "npm:^6.0.1"
     tinyrainbow: "npm:^3.0.3"
-  checksum: 10/32b11776b15c044399c6d14f75efe3773d09f9af2f5f4df1a8c32cef6d4929ccb663183f800b79404a2b36b282ae54066641daf7fa84effb51dc0e6e7d922818
+  checksum: 10/6661bf2154a5eda81385e93774546aca545a7b34fe1d20e2e9ffe3fddbde73f27ff3fc8e24e362a8ed43d8772f4dbcde389b0e951a917196709d874f197d17e4
   languageName: node
   linkType: hard
 
-"@vitest/mocker@npm:4.0.1":
-  version: 4.0.1
-  resolution: "@vitest/mocker@npm:4.0.1"
+"@vitest/mocker@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@vitest/mocker@npm:4.0.2"
   dependencies:
-    "@vitest/spy": "npm:4.0.1"
+    "@vitest/spy": "npm:4.0.2"
     estree-walker: "npm:^3.0.3"
     magic-string: "npm:^0.30.19"
   peerDependencies:
@@ -3577,7 +3577,7 @@ __metadata:
       optional: true
     vite:
       optional: true
-  checksum: 10/519e3f66f9823ba024926fa818308fae091b0974e51e4b20026fa7b853dd8f6db9b50f78846f59cdca8141913425946e1dbf3ffc78ede5e021365a809ea49093
+  checksum: 10/b5b98b996896b2bf8af858ee34fb32d5e3d690e51071983e4b4e4a988d706c969dbeb0e0fc90e68bb52c759558e1417561348e7bfa1ee4de61f4e4fd5f38d2d6
   languageName: node
   linkType: hard
 
@@ -3590,31 +3590,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/runner@npm:4.0.1":
-  version: 4.0.1
-  resolution: "@vitest/runner@npm:4.0.1"
+"@vitest/pretty-format@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@vitest/pretty-format@npm:4.0.2"
   dependencies:
-    "@vitest/utils": "npm:4.0.1"
-    pathe: "npm:^2.0.3"
-  checksum: 10/a3a91897a283a3a1dd39bfb81ef356eb3a6f6b5d712e6da9e49d31bee46092884aaf8832a135f7f13d6350dc4238a38ddfea18da1d628efda73132fc4d01d6cd
+    tinyrainbow: "npm:^3.0.3"
+  checksum: 10/73ccc8cf4d8edca0e3261a4ebb22ab0b29600efc9c13fe98e3d9ed54516bb130bde1a39463066bb25093d37c9b4eacb619b56560ff0ef29ee304b054a9613836
   languageName: node
   linkType: hard
 
-"@vitest/snapshot@npm:4.0.1":
-  version: 4.0.1
-  resolution: "@vitest/snapshot@npm:4.0.1"
+"@vitest/runner@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@vitest/runner@npm:4.0.2"
   dependencies:
-    "@vitest/pretty-format": "npm:4.0.1"
+    "@vitest/utils": "npm:4.0.2"
+    pathe: "npm:^2.0.3"
+  checksum: 10/9533f9c71fbe352076454822139719d31188e4b01baee14c524f079af0230498ecc898398057a4e40848bfc88ab0192ad034e92c520bd7bb5f736e7ccfaed247
+  languageName: node
+  linkType: hard
+
+"@vitest/snapshot@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@vitest/snapshot@npm:4.0.2"
+  dependencies:
+    "@vitest/pretty-format": "npm:4.0.2"
     magic-string: "npm:^0.30.19"
     pathe: "npm:^2.0.3"
-  checksum: 10/f90db2bbd0b20d53cded64464809ea9abdc6bb7abe2e1d12bf81e13895b14b15b9a052d964f0ba4b7312cc8af25c8e943a70dcb3ad9b5e8b27d88adacdde15d2
+  checksum: 10/040c993bd1e1bb97315d226e1926f5143f4324fea5fed21cd17131ea901d910e8931e8c3f25103707b26ba76307cc085ec75de179a6a88dfe7ddc20cce74d50f
   languageName: node
   linkType: hard
 
-"@vitest/spy@npm:4.0.1":
-  version: 4.0.1
-  resolution: "@vitest/spy@npm:4.0.1"
-  checksum: 10/9efda95edb29b2c06859af98ef1b1497cbf7ee43fd95649a835139e61e77a3f6bdad9dec48b53b954a311f824656978fb2eafb4dd8b416b354e15ad430a60772
+"@vitest/spy@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@vitest/spy@npm:4.0.2"
+  checksum: 10/abc986536e1e5ef0dc098b349c2a8f8d4d74fdb0147bb8db534bcc9f35519da79ba6382e0a9f9efc3131da61e4a8a1efbfd6ee97cc4eaf32cad9269bc0c8cbfd
   languageName: node
   linkType: hard
 
@@ -3625,6 +3634,16 @@ __metadata:
     "@vitest/pretty-format": "npm:4.0.1"
     tinyrainbow: "npm:^3.0.3"
   checksum: 10/21d7460135327abcc827de640cfa1f049321ad28f59b69538251cf9c50f7731734ded5e55fed36dd95db840c6a4275308b3e2f08c3cbd02289b0268abf4c441b
+  languageName: node
+  linkType: hard
+
+"@vitest/utils@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@vitest/utils@npm:4.0.2"
+  dependencies:
+    "@vitest/pretty-format": "npm:4.0.2"
+    tinyrainbow: "npm:^3.0.3"
+  checksum: 10/8b452cf9d981cdc635d3e43cecb6b8de3453865634f7b49b0958d6c08c63cff7a82f369ffd7813264d8d48515a42972094394b87b4fb6d7ad131b5387c600664
   languageName: node
   linkType: hard
 
@@ -10188,17 +10207,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "vitest@npm:4.0.1"
+"vitest@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "vitest@npm:4.0.2"
   dependencies:
-    "@vitest/expect": "npm:4.0.1"
-    "@vitest/mocker": "npm:4.0.1"
-    "@vitest/pretty-format": "npm:4.0.1"
-    "@vitest/runner": "npm:4.0.1"
-    "@vitest/snapshot": "npm:4.0.1"
-    "@vitest/spy": "npm:4.0.1"
-    "@vitest/utils": "npm:4.0.1"
+    "@vitest/expect": "npm:4.0.2"
+    "@vitest/mocker": "npm:4.0.2"
+    "@vitest/pretty-format": "npm:4.0.2"
+    "@vitest/runner": "npm:4.0.2"
+    "@vitest/snapshot": "npm:4.0.2"
+    "@vitest/spy": "npm:4.0.2"
+    "@vitest/utils": "npm:4.0.2"
     debug: "npm:^4.4.3"
     es-module-lexer: "npm:^1.7.0"
     expect-type: "npm:^1.2.2"
@@ -10216,10 +10235,10 @@ __metadata:
     "@edge-runtime/vm": "*"
     "@types/debug": ^4.1.12
     "@types/node": ^20.0.0 || ^22.0.0 || >=24.0.0
-    "@vitest/browser-playwright": 4.0.1
-    "@vitest/browser-preview": 4.0.1
-    "@vitest/browser-webdriverio": 4.0.1
-    "@vitest/ui": 4.0.1
+    "@vitest/browser-playwright": 4.0.2
+    "@vitest/browser-preview": 4.0.2
+    "@vitest/browser-webdriverio": 4.0.2
+    "@vitest/ui": 4.0.2
     happy-dom: "*"
     jsdom: "*"
   peerDependenciesMeta:
@@ -10243,7 +10262,7 @@ __metadata:
       optional: true
   bin:
     vitest: vitest.mjs
-  checksum: 10/5f9aecae9c3d8446b581d26a1dc228e7bbf8af0b4fa760ed32ad9ebe7220b815ba6f04cc4e3177e0ead5059a8fecac94455e23852cf601f75ae952fc444f7e1f
+  checksum: 10/523ea3ff5b14a6fe886b530f66b6a450af885c2e9688740f6143d2885d7572518e78a0c3d7d1de972674856748ccd821c8ca677dfb96c9c773903ab783cb26d4
   languageName: node
   linkType: hard
 
@@ -10505,7 +10524,7 @@ __metadata:
     typescript-eslint: "npm:^8.46.2"
     vite: "npm:^7.1.12"
     vite-tsconfig-paths: "npm:^5.1.4"
-    vitest: "npm:^4.0.1"
+    vitest: "npm:^4.0.2"
     web-vitals: "npm:^5.1.0"
   languageName: unknown
   linkType: soft
