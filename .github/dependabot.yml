@@ -20,6 +20,9 @@ updates:
       testing-library:
         patterns:
           - "@testing-library*"
+      chakra-ui:
+        patterns:
+          - "@chakra-ui/*"
       react:
         patterns:
           - "react"
