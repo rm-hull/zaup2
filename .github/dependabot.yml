@@ -17,6 +17,19 @@ updates:
       vite:
         patterns:
           - "*vite*"
+      testing-library:
+        patterns:
+          - "@testing-library*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      jsdom:
+        patterns:
+          - "jsdom"
+          - "@types/jsdom"
   - package-ecosystem: github-actions
     directory: /
     schedule:
