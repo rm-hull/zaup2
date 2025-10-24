@@ -3635,16 +3635,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yudiel/react-qr-scanner@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@yudiel/react-qr-scanner@npm:2.4.0"
+"@yudiel/react-qr-scanner@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "@yudiel/react-qr-scanner@npm:2.4.1"
   dependencies:
     barcode-detector: "npm:3.0.6"
     webrtc-adapter: "npm:9.0.3"
   peerDependencies:
     react: ^17 || ^18 || ^19
     react-dom: ^17 || ^18 || ^19
-  checksum: 10/e936c273ad4c8649cf6e2b54542fc4d115ef8128cefe2608eee10d214f789bcbeb681040617e7cbbff8f5c8fa0382336824e3fdccff989ccbc4357937fb6bdaa
+  checksum: 10/21743cd80bbdfcab3b645d68223c5db14dbee5ad152dfa9fbbc13c6dbd0c2b5ee4ada52c16373ee8870413c06c24913c616b1dc1b8ea3bbbb793595eafeb2171
   languageName: node
   linkType: hard
 
@@ -10459,7 +10459,7 @@ __metadata:
     "@typescript-eslint/types": "npm:^8.46.2"
     "@vitejs/plugin-react": "npm:^5.0.4"
     "@vitest/coverage-v8": "npm:^4.0.1"
-    "@yudiel/react-qr-scanner": "npm:^2.4.0"
+    "@yudiel/react-qr-scanner": "npm:^2.4.1"
     axios: "npm:^1.12.2"
     babel-plugin-react-compiler: "npm:19.1.0-rc.3"
     base32-encode: "npm:^2.0.0"
