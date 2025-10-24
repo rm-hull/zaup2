@@ -3523,12 +3523,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/coverage-v8@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@vitest/coverage-v8@npm:4.0.1"
+"@vitest/coverage-v8@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@vitest/coverage-v8@npm:4.0.2"
   dependencies:
     "@bcoe/v8-coverage": "npm:^1.0.2"
-    "@vitest/utils": "npm:4.0.1"
+    "@vitest/utils": "npm:4.0.2"
     ast-v8-to-istanbul: "npm:^0.3.5"
     debug: "npm:^4.4.3"
     istanbul-lib-coverage: "npm:^3.2.2"
@@ -3539,12 +3539,12 @@ __metadata:
     std-env: "npm:^3.9.0"
     tinyrainbow: "npm:^3.0.3"
   peerDependencies:
-    "@vitest/browser": 4.0.1
-    vitest: 4.0.1
+    "@vitest/browser": 4.0.2
+    vitest: 4.0.2
   peerDependenciesMeta:
     "@vitest/browser":
       optional: true
-  checksum: 10/6052deb51ba5be8bb1ad471f8678e7763823abd143cb8178503b5fefb260dd29b537c1ca44f6dfcb387b46e1e8c9613b4011d6604b010e29d5f229431244833a
+  checksum: 10/467279d5e2113ca8d9a47ff8576b24bfc890110451ece29fe1c539a1ca8e789e113ff6ac5a282bdfbc1d98f19f409f328c9ed38e5b8b1afd8dada1e97c235a30
   languageName: node
   linkType: hard
 
@@ -3590,6 +3590,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vitest/pretty-format@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@vitest/pretty-format@npm:4.0.2"
+  dependencies:
+    tinyrainbow: "npm:^3.0.3"
+  checksum: 10/73ccc8cf4d8edca0e3261a4ebb22ab0b29600efc9c13fe98e3d9ed54516bb130bde1a39463066bb25093d37c9b4eacb619b56560ff0ef29ee304b054a9613836
+  languageName: node
+  linkType: hard
+
 "@vitest/runner@npm:4.0.1":
   version: 4.0.1
   resolution: "@vitest/runner@npm:4.0.1"
@@ -3625,6 +3634,16 @@ __metadata:
     "@vitest/pretty-format": "npm:4.0.1"
     tinyrainbow: "npm:^3.0.3"
   checksum: 10/21d7460135327abcc827de640cfa1f049321ad28f59b69538251cf9c50f7731734ded5e55fed36dd95db840c6a4275308b3e2f08c3cbd02289b0268abf4c441b
+  languageName: node
+  linkType: hard
+
+"@vitest/utils@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@vitest/utils@npm:4.0.2"
+  dependencies:
+    "@vitest/pretty-format": "npm:4.0.2"
+    tinyrainbow: "npm:^3.0.3"
+  checksum: 10/8b452cf9d981cdc635d3e43cecb6b8de3453865634f7b49b0958d6c08c63cff7a82f369ffd7813264d8d48515a42972094394b87b4fb6d7ad131b5387c600664
   languageName: node
   linkType: hard
 
@@ -10458,7 +10477,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.46.2"
     "@typescript-eslint/types": "npm:^8.46.2"
     "@vitejs/plugin-react": "npm:^5.0.4"
-    "@vitest/coverage-v8": "npm:^4.0.1"
+    "@vitest/coverage-v8": "npm:^4.0.2"
     "@yudiel/react-qr-scanner": "npm:^2.4.0"
     axios: "npm:^1.12.2"
     babel-plugin-react-compiler: "npm:19.1.0-rc.3"
