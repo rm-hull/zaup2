@@ -9,8 +9,9 @@ import {
   Text,
   Textarea,
   VStack,
-  chakra,
+  Image,
   useDisclosure,
+  HStack,
 } from "@chakra-ui/react";
 import { type FieldProps, Form, Formik, type FormikErrors, Field as FormikField, type FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";
@@ -172,16 +173,18 @@ export function ImportURL({ onSubmit }: ImportURLProps) {
 
   return (
     <Flex minH="100vh" align="center" justify="center" py={12}>
-      <Stack boxShadow="2xl" bg={useColorModeValue("white", "gray.800")} rounded="xl" p={10} gap={8} align="center">
-        <chakra.img src={google_authenticator} h={24} w={24} />
-        <Stack align="center" gap={2}>
-          <Heading textTransform="uppercase" fontSize="3xl" color={useColorModeValue("gray.800", "gray.200")}>
-            Import
-          </Heading>
-          <Text fontSize="lg" color="gray.500">
-            Import OTP codes from Google Authenticator
-          </Text>
-        </Stack>
+      <Stack boxShadow="2xl" bg="bg.panel" rounded="xl" p={10} gap={8} align="center">
+        <HStack>
+          <Image src={google_authenticator} h={16} w={16} />
+          <Stack align="start" gap={2}>
+            <Heading textTransform="uppercase" fontSize="3xl">
+              Import
+            </Heading>
+            <Text fontSize="lg" color="gray.500">
+              Import OTP codes from Google Authenticator
+            </Text>
+          </Stack>
+        </HStack>
         <Formik initialValues={{ url: "" }} onSubmit={handleImport} validateOnChange>
           {({ isSubmitting, values, setFieldValue, isValid }) => (
             <>
