@@ -83,7 +83,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps) => {
           <HStack align="center" justify="center" mt={2}>
             <QrCode.Root
               size="full"
-              value={`otpauth://totp/${otp.name}?secret=${encodedSecret}&issuer=${otp.issuer}`}
+              value={totp?.toString() ?? ""}
               color={color}
               bg={bg}
               px={2}
