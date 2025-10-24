@@ -2903,15 +2903,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/qrcode.react@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@types/qrcode.react@npm:3.0.0"
-  dependencies:
-    qrcode.react: "npm:*"
-  checksum: 10/8ce11d0455fca9a898f6e9d499529526671c5e398f44cf2bc507ad84e1e4982ff0f384261e52b16b933bdd1d6db6bef27b437f90bb804a039ddfe21112d19da5
-  languageName: node
-  linkType: hard
-
 "@types/ramda@npm:^0.31.1":
   version: 0.31.1
   resolution: "@types/ramda@npm:0.31.1"
@@ -8571,15 +8562,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qrcode.react@npm:*, qrcode.react@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "qrcode.react@npm:4.2.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10/665036d88b160e6d5de4e24d101bc63bd2b76712802e874bbffe56c6b6e5fe50c63f02c3cba2975b2e2b555c1f1e112cbb42987f8cb3a626ce2d17023cfde6ac
-  languageName: node
-  linkType: hard
-
 "queue-microtask@npm:^1.2.2":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
@@ -10449,7 +10431,6 @@ __metadata:
     "@types/google-protobuf": "npm:^3.15.12"
     "@types/node": "npm:^24.9.1"
     "@types/object-hash": "npm:^3.0.6"
-    "@types/qrcode.react": "npm:^3.0.0"
     "@types/ramda": "npm:^0.31.1"
     "@types/react": "npm:^19.2.2"
     "@types/react-dom": "npm:^19.2.2"
@@ -10491,7 +10472,6 @@ __metadata:
     otpauth: "npm:^9.4.1"
     prettier: "npm:^3.6.2"
     protoc-gen-ts: "npm:^0.8.7"
-    qrcode.react: "npm:^4.2.0"
     ramda: "npm:^0.32.0"
     react: "npm:^19.2.0"
     react-dom: "npm:^19.2.0"

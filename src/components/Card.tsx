@@ -1,6 +1,17 @@
-import { Box, Center, Flex, HStack, Heading, Highlight, IconButton, Image, Text, useClipboard } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  HStack,
+  Heading,
+  Highlight,
+  IconButton,
+  Image,
+  QrCode,
+  Text,
+  useClipboard,
+} from "@chakra-ui/react";
 import { type TOTP } from "otpauth";
-import { QRCodeSVG } from "qrcode.react";
 import * as R from "ramda";
 import { memo, useMemo } from "react";
 import { FiAlertTriangle, FiCheck, FiClipboard } from "react-icons/fi";
@@ -69,17 +80,22 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps) => {
         </HStack>
 
         {showQRCode === true && (
-          <HStack align="center" justify="center" mt={4}>
-            <QRCodeSVG
-              size={256}
+          <HStack align="center" justify="center" mt={2}>
+            <QrCode.Root
+              size="full"
               value={`otpauth://totp/${otp.name}?secret=${encodedSecret}&issuer=${otp.issuer}`}
-              fgColor={color}
-              bgColor={bg}
-            />
+              color={color}
+              bg={bg}
+              px={2}
+            >
+              <QrCode.Frame>
+                <QrCode.Pattern />
+              </QrCode.Frame>
+            </QrCode.Root>
           </HStack>
         )}
 
-        <HStack align="center" justify="center" mt={showQRCode === true ? 4 : 0}>
+        <HStack align="center" justify="center" mt={showQRCode === true ? 2 : 0}>
           <Heading fontSize="5xl" fontFamily="body">
             {code ?? "╰(°□°)╯"}
           </Heading>
