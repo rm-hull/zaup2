@@ -2880,12 +2880,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^24.9.1":
-  version: 24.9.1
-  resolution: "@types/node@npm:24.9.1"
+"@types/node@npm:^24.9.2":
+  version: 24.9.2
+  resolution: "@types/node@npm:24.9.2"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10/eacbd06621616825042428dd6105d0c2f86d67b5f05f99db9fa89fe1cc173d5e65e604a9a61f1ce52ad915d09f2119e7468816ca1a22bb7a3cf5f3c131413c86
+  checksum: 10/3e76ad89cca317c0886deedab0245b6b2a04ef6c47362bd3918020296f3e9630334795af9cee8c6633eae774c85d848ff2e6bed5a7c3133fc94968364fc3ee36
   languageName: node
   linkType: hard
 
@@ -10429,7 +10429,7 @@ __metadata:
     "@testing-library/user-event": "npm:^14.6.1"
     "@types/crypto-js": "npm:^4.2.2"
     "@types/google-protobuf": "npm:^3.15.12"
-    "@types/node": "npm:^24.9.1"
+    "@types/node": "npm:^24.9.2"
     "@types/object-hash": "npm:^3.0.6"
     "@types/ramda": "npm:^0.31.1"
     "@types/react": "npm:^19.2.2"
