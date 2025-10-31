@@ -26,6 +26,9 @@ class Encrypter implements Serializer<OTP[]> {
 
   public deserialize(value: string): OTP[] {
     const decrypted = CryptoJS.AES.decrypt(value, this.password).toString(CryptoJS.enc.Utf8);
+    if (!decrypted) {
+      throw new Error("Failed to decrypt OTP data. Bad password?");
+    }
     return JSON.parse(decrypted) as OTP[];
   }
 }
