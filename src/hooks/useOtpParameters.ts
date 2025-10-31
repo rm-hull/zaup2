@@ -15,6 +15,7 @@ interface UseOTPParametersReturnType {
   remove: (toRemove: OTP) => void;
   removeAll: () => void;
   error?: Error;
+  isLoading: boolean;
 }
 
 class Encrypter implements Serializer<OTP[]> {
@@ -39,6 +40,7 @@ export default function useOtpParameters(options?: Options): UseOTPParametersRet
     value: otpParams,
     setValue: setOtpParams,
     error,
+    isLoading,
   } = useLocalStorage<OTP[]>("zaup2.otp-parameters", { serializer: new Encrypter(password!), initialValue: [] });
 
   const update = useCallback(
@@ -62,5 +64,6 @@ export default function useOtpParameters(options?: Options): UseOTPParametersRet
     remove,
     removeAll,
     error,
+    isLoading,
   };
 }
