@@ -1,7 +1,7 @@
 import { useLocalStorage } from "@rm-hull/use-local-storage";
 import { type sortBy } from "../otp";
 
-export interface GeneralSettings extends Record<string, unknown> {
+export interface GeneralSettings {
   syncToGoogleDrive?: boolean;
   showQRCode?: boolean;
   showCountdownTimer?: boolean;

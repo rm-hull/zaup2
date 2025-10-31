@@ -91,7 +91,7 @@ export default function SyncSettings() {
           closable: true,
         });
         update(...newOTPs);
-        updateSettings(newSettings);
+        void updateSettings(newSettings);
       }
     }
   }, [

@@ -8,9 +8,7 @@ interface RedirectProps {
 export default function Redirect({ to }: RedirectProps) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    navigate(to);
-  }, [navigate, to]);
+  useEffect(() => void navigate(to), [navigate, to]);
 
   return <></>;
 }

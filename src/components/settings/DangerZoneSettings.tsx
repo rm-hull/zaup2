@@ -11,7 +11,7 @@ export default function GeneralSettings() {
 
   const handleResetData = (): void => {
     removeAll();
-    updateSettings(undefined);
+    void updateSettings(undefined);
     setPassword(undefined);
   };
 

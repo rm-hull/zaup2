@@ -10,7 +10,7 @@ export default function PasswordProtection({ children }: PropsWithChildren<Passw
   const [password, setPassword] = usePassword();
 
   const handleSubmit = (enteredPassword: string): void => {
-    updateSettings({ ...settings, encrypted: true });
+    void updateSettings({ ...settings, encrypted: true });
     setPassword(enteredPassword);
   };
 

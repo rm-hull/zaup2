@@ -1,3 +1,4 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
 import ReactGA from "react-ga4";
@@ -7,7 +8,6 @@ import ErrorFallback from "./components/ErrorFallback";
 import PasswordProtection from "./components/PasswordProtection";
 import { Provider } from "./components/ui/provider";
 import { reportWebVitals } from "./reportWebVitals";
-import { StrictMode } from "react";
 
 if (import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID) {
   ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);

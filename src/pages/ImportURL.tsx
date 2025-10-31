@@ -228,14 +228,16 @@ export function ImportURL({ onSubmit }: ImportURLProps) {
                 <Collapsible.Content>
                   <Alert.Root status="info">
                     <Alert.Indicator />
-                    <Alert.Title>Just want to try it out?</Alert.Title>
-                    <Alert.Description>
-                      Add some dummy{" "}
-                      <Link onClick={addDummyOtpCodes(setFieldValue)} color="blue.400">
-                        test OTP codes
-                      </Link>
-                      .
-                    </Alert.Description>
+                    <Alert.Content>
+                      <Alert.Title>Just want to try it out?</Alert.Title>
+                      <Alert.Description>
+                        Add some dummy{" "}
+                        <Link onClick={addDummyOtpCodes(setFieldValue)} color="blue.400">
+                          test OTP codes
+                        </Link>
+                        .
+                      </Alert.Description>
+                    </Alert.Content>
                   </Alert.Root>
                 </Collapsible.Content>
               </Collapsible.Root>
