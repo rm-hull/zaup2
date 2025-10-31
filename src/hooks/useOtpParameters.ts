@@ -1,5 +1,6 @@
-import { useLocalStorage, Serializer } from "@rm-hull/use-local-storage";
-import CryptoJS from "crypto-js";
+import { CryptoJsSerializer } from "@/utils/serializer/cryptojs-serializer";
+import { WebCryptoSerializer } from "@/utils/serializer/webcrypto-serializer";
+import { useLocalStorage } from "@rm-hull/use-local-storage";
 import { useCallback } from "react";
 import { merge } from "../otp";
 import { type OTP } from "../types";
@@ -18,22 +19,6 @@ interface UseOTPParametersReturnType {
   isLoading: boolean;
 }
 
-class Encrypter implements Serializer<OTP[]> {
-  constructor(private readonly password: string) {}
-
-  public serialize(value: OTP[]): string {
-    return CryptoJS.AES.encrypt(JSON.stringify(value), this.password).toString();
-  }
-
-  public deserialize(value: string): OTP[] {
-    const decrypted = CryptoJS.AES.decrypt(value, this.password).toString(CryptoJS.enc.Utf8);
-    if (!decrypted) {
-      throw new Error("Failed to decrypt OTP data. Bad password?");
-    }
-    return JSON.parse(decrypted) as OTP[];
-  }
-}
-
 export default function useOtpParameters(options?: Options): UseOTPParametersReturnType {
   const [password] = usePassword();
   const {
@@ -41,7 +26,11 @@ export default function useOtpParameters(options?: Options): UseOTPParametersRet
     setValue: setOtpParams,
     error,
     isLoading,
-  } = useLocalStorage<OTP[]>("zaup2.otp-parameters", { serializer: new Encrypter(password!), initialValue: [] });
+  } = useLocalStorage<OTP[]>("zaup2.otp-parameters", {
+    serializer: new CryptoJsSerializer(password!),
+    // serializer: new NativeSerializer(password!),
+    initialValue: [],
+  });
 
   const update = useCallback(
     (...updates: OTP[]) => void setOtpParams(merge(updates, otpParams)),
