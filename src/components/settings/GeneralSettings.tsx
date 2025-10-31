@@ -6,7 +6,7 @@ import { type sortBy } from "../../otp";
 import SyncInfoPanel from "./SyncInfoPanel";
 
 export default function GeneralSettings() {
-  const [settings, updateSettings] = useGeneralSettings();
+  const { settings, updateSettings } = useGeneralSettings();
 
   const handleToggleSyncToGoogleDrive = (): void => {
     updateSettings({ ...settings, syncToGoogleDrive: !(settings?.syncToGoogleDrive ?? false) });

@@ -27,7 +27,7 @@ function matches(otp: OTP, searchTerm?: string): boolean {
 
 export default function Group({ filter = () => true, noData }: GroupProps) {
   const { data = [] } = useOtpParameters();
-  const [settings] = useGeneralSettings();
+  const { settings } = useGeneralSettings();
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
   const parent = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState<string | undefined>();

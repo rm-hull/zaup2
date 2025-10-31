@@ -24,7 +24,7 @@ async function timeout(ms: number): Promise<void> {
 export default function SyncSettings() {
   const [processing, setProcessing] = useState(false);
   const [payload, setPayload] = useState<Payload>();
-  const [settings, updateSettings] = useGeneralSettings();
+  const { settings, updateSettings } = useGeneralSettings();
   const { data = [], update } = useOtpParameters({ includeArchived: true });
   const { drive, login, error } = useGoogleDrive("zaup2_sync.json");
   const { value: activeStep, setStep } = useSteps({ count: steps.length });
