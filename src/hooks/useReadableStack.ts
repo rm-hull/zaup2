@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import type { RawSourceMap } from "source-map-js";
 
 const STACK_LINE_RE = /\((https?:\/\/.*?):(\d+):(\d+)\)/;
 
 // Simple in-memory cache for source maps so we don't fetch repeatedly
-const sourceMapCache = new Map<string, unknown>();
+const sourceMapCache = new Map<string, RawSourceMap>();
 
 async function decodeStackTrace(stack: string): Promise<string> {
   const lines = stack.split("\n");
@@ -28,11 +29,11 @@ async function decodeStackTrace(stack: string): Promise<string> {
       if (!rawMap) {
         const res = await fetch(mapUrl);
         if (!res.ok) throw new Error("Map not found");
-        rawMap = await res.json();
+        rawMap = (await res.json()) as RawSourceMap;
         sourceMapCache.set(mapUrl, rawMap);
       }
 
-      const consumer = new SourceMapConsumer(rawMap as never);
+      const consumer = new SourceMapConsumer(rawMap);
       const pos = consumer.originalPositionFor({
         line: Number(lineNum),
         column: Number(colNum),
