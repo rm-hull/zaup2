@@ -10,10 +10,11 @@ export class CryptoJsSerializer implements Serializer<OTP[]> {
   }
 
   public deserialize(value: string): OTP[] {
-    const decrypted = CryptoJS.AES.decrypt(value, this.password).toString(CryptoJS.enc.Utf8);
-    if (!decrypted) {
-      throw new Error("Failed to decrypt OTP data. Bad password?");
+    try {
+      const decrypted = CryptoJS.AES.decrypt(value, this.password).toString(CryptoJS.enc.Utf8);
+      return JSON.parse(decrypted) as OTP[];
+    } catch (error: unknown) {
+      throw new Error("Failed to decrypt OTP data. Bad password?", { cause: error });
     }
-    return JSON.parse(decrypted) as OTP[];
   }
 }

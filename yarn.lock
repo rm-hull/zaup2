@@ -7538,7 +7538,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.15.1":
+"jotai@npm:^2.15.0, jotai@npm:^2.15.1":
   version: 2.15.1
   resolution: "jotai@npm:2.15.1"
   peerDependencies:
