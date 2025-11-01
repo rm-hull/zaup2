@@ -1,10 +1,10 @@
+import { ErrorFallback } from "@rm-hull/chakra-error-fallback";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
 import ReactGA from "react-ga4";
 import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
-import ErrorFallback from "./components/ErrorFallback";
 import PasswordProtection from "./components/PasswordProtection";
 import { Provider } from "./components/ui/provider";
 import { Toaster } from "./components/ui/toaster";
