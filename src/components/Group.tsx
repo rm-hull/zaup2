@@ -26,8 +26,8 @@ function matches(otp: OTP, searchTerm?: string): boolean {
 }
 
 export default function Group({ filter = () => true, noData }: GroupProps) {
-  const { data = [] } = useOtpParameters();
-  const [settings] = useGeneralSettings();
+  const { data = [], error, isLoading } = useOtpParameters();
+  const { settings } = useGeneralSettings();
   const [refresh, setRefresh] = useState<number | undefined>(undefined);
   const parent = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState<string | undefined>();
@@ -54,6 +54,14 @@ export default function Group({ filter = () => true, noData }: GroupProps) {
     const timeLeft = 29 - (seconds % 30);
     setRefresh(timeLeft === 0 ? now : undefined);
   }, 1000);
+
+  if (isLoading) {
+    return null;
+  }
+
+  if (error) {
+    throw error;
+  }
 
   if (filtered.length === 0 && noData !== undefined) {
     return noData;

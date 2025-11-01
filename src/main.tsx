@@ -10,7 +10,9 @@ import { Provider } from "./components/ui/provider";
 import { Toaster } from "./components/ui/toaster";
 import { reportWebVitals } from "./reportWebVitals";
 
-ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
+if (import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID) {
+  ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
+}
 
 const container = document.getElementById("root");
 if (container === null) {

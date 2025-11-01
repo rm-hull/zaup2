@@ -6,26 +6,26 @@ import { type sortBy } from "../../otp";
 import SyncInfoPanel from "./SyncInfoPanel";
 
 export default function GeneralSettings() {
-  const [settings, updateSettings] = useGeneralSettings();
+  const { settings, updateSettings } = useGeneralSettings();
 
   const handleToggleSyncToGoogleDrive = (): void => {
-    updateSettings({ ...settings, syncToGoogleDrive: !(settings?.syncToGoogleDrive ?? false) });
+    void updateSettings({ ...settings, syncToGoogleDrive: !(settings?.syncToGoogleDrive ?? false) });
   };
 
   const handleToggleShowQRCode = (): void => {
-    updateSettings({ ...settings, showQRCode: !(settings?.showQRCode ?? false) });
+    void updateSettings({ ...settings, showQRCode: !(settings?.showQRCode ?? false) });
   };
 
   const handleToggleShowCountdownTimer = (): void => {
-    updateSettings({ ...settings, showCountdownTimer: !(settings?.showCountdownTimer ?? false) });
+    void updateSettings({ ...settings, showCountdownTimer: !(settings?.showCountdownTimer ?? false) });
   };
 
   const handleToggleShowCounts = (): void => {
-    updateSettings({ ...settings, showCounts: !(settings?.showCounts ?? false) });
+    void updateSettings({ ...settings, showCounts: !(settings?.showCounts ?? false) });
   };
 
   const handleUpdateSortOrder = (sortOrder: keyof typeof sortBy): void => {
-    updateSettings({ ...settings, sortOrder });
+    void updateSettings({ ...settings, sortOrder });
   };
 
   return (

@@ -6,12 +6,12 @@ import ResetDataButton from "./ResetDataButton";
 
 export default function GeneralSettings() {
   const { removeAll } = useOtpParameters({ includeArchived: true });
-  const [, updateSettings] = useGeneralSettings();
+  const { updateSettings } = useGeneralSettings();
   const [, setPassword] = usePassword();
 
   const handleResetData = (): void => {
     removeAll();
-    updateSettings(undefined);
+    void updateSettings(undefined);
     setPassword(undefined);
   };
 

@@ -6,11 +6,11 @@ import { PasswordDialog } from "./PasswordDialog";
 type PasswordProtectionProps = object;
 
 export default function PasswordProtection({ children }: PropsWithChildren<PasswordProtectionProps>) {
-  const [settings, updateSettings] = useGeneralSettings();
+  const { settings, updateSettings } = useGeneralSettings();
   const [password, setPassword] = usePassword();
 
   const handleSubmit = (enteredPassword: string): void => {
-    updateSettings({ ...settings, encrypted: true });
+    void updateSettings({ ...settings, encrypted: true });
     setPassword(enteredPassword);
   };
 

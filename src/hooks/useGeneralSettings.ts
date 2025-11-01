@@ -1,5 +1,5 @@
+import { useLocalStorage } from "@rm-hull/use-local-storage";
 import { type sortBy } from "../otp";
-import useLocalStorage from "./useLocalStorage";
 
 export interface GeneralSettings {
   syncToGoogleDrive?: boolean;
@@ -10,16 +10,19 @@ export interface GeneralSettings {
   encrypted?: boolean;
 }
 
-export default function useGeneralSettings(): [
-  GeneralSettings | undefined,
-  (value: GeneralSettings | undefined) => void,
-] {
-  return useLocalStorage<GeneralSettings>("zaup2.general-settings", {
-    syncToGoogleDrive: false,
-    showQRCode: true,
-    showCountdownTimer: true,
-    showCounts: true,
-    sortOrder: "name",
-    encrypted: false,
+const initialValue: GeneralSettings = {
+  syncToGoogleDrive: false,
+  showQRCode: true,
+  showCountdownTimer: true,
+  showCounts: true,
+  sortOrder: "name",
+  encrypted: false,
+};
+
+export default function useGeneralSettings() {
+  const { value: settings, setValue: updateSettings } = useLocalStorage<GeneralSettings>("zaup2.general-settings", {
+    initialValue,
   });
+
+  return { settings, updateSettings };
 }
