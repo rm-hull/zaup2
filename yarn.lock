@@ -5075,9 +5075,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001716":
-  version: 1.0.30001718
-  resolution: "caniuse-lite@npm:1.0.30001718"
-  checksum: 10/e172a4c156f743cc947e659f353ad9edb045725cc109a02cc792dcbf98569356ebfa4bb4356e3febf87427aab0951c34c1ee5630629334f25ae6f76de7d86fd0
+  version: 1.0.30001752
+  resolution: "caniuse-lite@npm:1.0.30001752"
+  checksum: 10/2efe0ad22fdb1b8a810238b6dc589aa1ecfb3d2f404ec7079040c94d83963402afd76c0fc514a54719d6f613c847d237ed0f8f48260d7bcda0e9014b874ad08a
   languageName: node
   linkType: hard
 
@@ -6914,10 +6914,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^16.4.0":
-  version: 16.4.0
-  resolution: "globals@npm:16.4.0"
-  checksum: 10/1627a9f42fb4c82d7af6a0c8b6cd616e00110908304d5f1ddcdf325998f3aed45a4b29d8a1e47870f328817805263e31e4f1673f00022b9c2b210552767921cf
+"globals@npm:^16.5.0":
+  version: 16.5.0
+  resolution: "globals@npm:16.5.0"
+  checksum: 10/f9e8a2a13f50222c127030a619e283e7bbfe32966316bdde0715af1d15a7e40cb9c24ff52cad59671f97762ed8b515353c2f8674f560c63d9385f19ee26735a6
   languageName: node
   linkType: hard
 
@@ -7538,9 +7538,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.15.0":
-  version: 2.15.0
-  resolution: "jotai@npm:2.15.0"
+"jotai@npm:^2.15.1":
+  version: 2.15.1
+  resolution: "jotai@npm:2.15.1"
   peerDependencies:
     "@babel/core": ">=7.0.0"
     "@babel/template": ">=7.0.0"
@@ -7555,7 +7555,7 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: 10/d05469caf6b8e67110c835c1a4cade2e5b36c3b2baa7cbcbbff1fbdb6949c1a819d1d8bd77d47cf3d806ef3576324dc979bbd2589eee70a9f0d7c01145dcd0a1
+  checksum: 10/d346ded947768ba36ca70e8a55262281802bdb7ef2b14bc783a14c6a80c5a7e1bfcda6bf3ba4a747953c73dad8a8d205b2e0f57fa73e436a6188ecade5c6191b
   languageName: node
   linkType: hard
 
@@ -10478,9 +10478,9 @@ __metadata:
     eslint-plugin-testing-library: "npm:^7.13.3"
     format-duration: "npm:^3.0.2"
     formik: "npm:^2.4.6"
-    globals: "npm:^16.4.0"
+    globals: "npm:^16.5.0"
     google-protobuf: "npm:^4.0.0"
-    jotai: "npm:^2.15.0"
+    jotai: "npm:^2.15.1"
     next-themes: "npm:^0.4.6"
     object-hash: "npm:^3.0.0"
     otpauth: "npm:^9.4.1"
