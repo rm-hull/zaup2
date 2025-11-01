@@ -14,12 +14,12 @@ function Cause({ error }: CauseProps) {
   return (
     <VStack alignItems="start" gap={0.5}>
       {error.message}
-      {!!error.cause && (
+      {error.cause instanceof Error && (
         <HStack alignItems="start">
           <Box mt={0.5} ml={4}>
             <BsArrowReturnRight />
           </Box>
-          <Cause error={error.cause as Error} />
+          <Cause error={error.cause} />
         </HStack>
       )}
     </VStack>
