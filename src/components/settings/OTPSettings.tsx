@@ -5,7 +5,6 @@ import useOtpParameters from "../../hooks/useOtpParameters";
 import { sortBy } from "../../otp";
 import { type OTP } from "../../types";
 import HashTag from "../HashTag";
-import Redirect from "../Redirect";
 import SystemTags from "../SystemTags";
 import { useColorModeValue } from "../ui/color-mode";
 import { Switch } from "../ui/switch";
@@ -19,10 +18,8 @@ export default function OTPSettings() {
   const { data, update, remove } = useOtpParameters({ includeArchived: true });
   const tagBg = useColorModeValue("gray.50", "gray.800");
 
-  if (data === undefined) {
+  if (data === undefined || data?.length === 0) {
     return null;
-  } else if (data.length === 0) {
-    return <Redirect to="/import" />;
   }
 
   const handleDeleteTag = (otp: OTP, tag: string) => () => {

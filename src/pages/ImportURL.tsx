@@ -187,7 +187,7 @@ export function ImportURL({ onSubmit }: ImportURLProps) {
         </HStack>
         <Formik initialValues={{ url: "" }} onSubmit={handleImport} validateOnChange>
           {({ isSubmitting, values, setFieldValue, isValid }) => (
-            <>
+            <VStack width="500px" gap={4}>
               <Form>
                 <Stack gap={4} direction={{ base: "column", md: "row" }} w="500px" alignItems="start">
                   <FormikField name="url" validate={validateURL}>
@@ -234,14 +234,18 @@ export function ImportURL({ onSubmit }: ImportURLProps) {
                         Add some dummy{" "}
                         <Link onClick={addDummyOtpCodes(setFieldValue)} color="blue.400">
                           test OTP codes
-                        </Link>
+                        </Link>{" "}
+                        to checkout the features and capabilities of{" "}
+                        <Text as="span" fontSize="xs" fontFamily="monospace">
+                          ZAUP2
+                        </Text>
                         .
                       </Alert.Description>
                     </Alert.Content>
                   </Alert.Root>
                 </Collapsible.Content>
               </Collapsible.Root>
-            </>
+            </VStack>
           )}
         </Formik>
       </Stack>

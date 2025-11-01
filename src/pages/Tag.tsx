@@ -1,4 +1,4 @@
-import { Alert } from "@chakra-ui/react";
+import { Alert, Em } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import Group from "../components/Group";
 import { getSystemTags } from "../otp";
@@ -15,10 +15,12 @@ export function Tag() {
       noData={
         <Alert.Root status="warning">
           <Alert.Indicator />
-          <Alert.Title>Unknown Tag</Alert.Title>
-          <Alert.Description>
-            There are no 2FA configurations for <em>{tag}</em>.
-          </Alert.Description>
+          <Alert.Content>
+            <Alert.Title>Unknown Tag</Alert.Title>
+            <Alert.Description>
+              There are no 2FA configurations for <Em>&quot;{tag}&quot;</Em>.
+            </Alert.Description>
+          </Alert.Content>
         </Alert.Root>
       }
     />
