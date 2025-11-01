@@ -1,4 +1,4 @@
-import { Alert } from "@chakra-ui/react";
+import { Alert, Em } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import Group from "../components/Group";
 
@@ -10,10 +10,12 @@ export function Issuer() {
       noData={
         <Alert.Root status="warning">
           <Alert.Indicator />
-          <Alert.Title>Unknown Issuer</Alert.Title>
-          <Alert.Description>
-            There are no 2FA configurations for <em>{issuer}</em>.
-          </Alert.Description>
+          <Alert.Content>
+            <Alert.Title>Unknown Issuer</Alert.Title>
+            <Alert.Description>
+              There are no 2FA configurations for <Em>&quot;{issuer}&quot;</Em>.
+            </Alert.Description>
+          </Alert.Content>
         </Alert.Root>
       }
     />

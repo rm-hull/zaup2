@@ -9,8 +9,10 @@ export default function ErrorFallback({ error }: ErrorFallbackProps) {
     <Container maxWidth="container.lg">
       <Alert.Root status="error">
         <Alert.Indicator />
-        <Alert.Title>Something went wrong:</Alert.Title>
-        <Alert.Description>{error.message}</Alert.Description>
+        <Alert.Content>
+          <Alert.Title>Something went wrong:</Alert.Title>
+          <Alert.Description>{error.message}</Alert.Description>
+        </Alert.Content>
       </Alert.Root>
 
       <Container m={5}>
