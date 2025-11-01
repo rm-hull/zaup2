@@ -12,7 +12,6 @@ import {
   Image,
   useDisclosure,
   HStack,
-  Box,
 } from "@chakra-ui/react";
 import { type FieldProps, Form, Formik, type FormikErrors, Field as FormikField, type FormikHelpers } from "formik";
 import { BinaryReader } from "google-protobuf";

@@ -18,7 +18,7 @@ export default function OTPSettings() {
   const { data, update, remove } = useOtpParameters({ includeArchived: true });
   const tagBg = useColorModeValue("gray.50", "gray.800");
 
-  if (data?.length ?? 0 === 0) {
+  if (data === undefined || data?.length === 0) {
     return null;
   }
 
