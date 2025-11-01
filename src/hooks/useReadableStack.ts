@@ -69,13 +69,14 @@ export function useReadableStack(error: Error | null) {
       }
     });
 
-    // eslint-disable-next-line promise/catch-or-return, promise/no-promise-in-callback
-    decodeStackTrace(error.stack)
+    // eslint-disable-next-line promise/no-promise-in-callback
+    void decodeStackTrace(error.stack)
       .then((decoded) => {
         if (!cancelled) setStack(decoded);
         return;
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error("Failed to decode stack trace:", err);
         if (!cancelled) setStack(error.stack);
       })
       .finally(() => {
