@@ -79,17 +79,26 @@ export async function decryptCryptoJS(ciphertextBase64: string, password: string
 }
 
 export class WebCryptoSerializer implements Serializer<OTP[]> {
+  #isPasswordBad: boolean = true;
+
   constructor(private readonly password: string) {}
 
   public serialize(value: OTP[]): string {
+    if (this.#isPasswordBad) {
+      throw new Error("Unable to encrypt data: Password is incorrect or unverified");
+    }
     return CryptoJS.AES.encrypt(JSON.stringify(value), this.password).toString();
   }
 
   public async deserialize(value: string): Promise<OTP[]> {
-    const decrypted = await decryptCryptoJS(value, this.password);
-    if (!decrypted) {
-      throw new Error("Failed to decrypt OTP data. Bad password?");
+    try {
+      const decrypted = await decryptCryptoJS(value, this.password);
+      const data = JSON.parse(decrypted) as OTP[];
+      this.#isPasswordBad = false;
+      return data;
+    } catch (err) {
+      this.#isPasswordBad = true;
+      throw new Error("Failed to decrypt OTP data. Bad password?", { cause: err });
     }
-    return JSON.parse(decrypted) as OTP[];
   }
 }

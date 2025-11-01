@@ -2473,16 +2473,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rm-hull/use-local-storage@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "@rm-hull/use-local-storage@npm:0.3.1"
+"@rm-hull/use-local-storage@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "@rm-hull/use-local-storage@npm:0.3.2"
   dependencies:
     jotai: "npm:^2.15.0"
     react: "npm:^19.2.0"
     react-dom: "npm:^19.2.0"
   peerDependencies:
     react: ">=19.0.0"
-  checksum: 10/914173bf6f69b08412bed0c06770b88b8421f544a334ce02e20e8dc6d246ca81cf10d93e7ff49d02873a266e3f124336dc923786bd8df6ac42ccc1e27897ba5f
+  checksum: 10/d7d16eb3480af1e86c672e110de6726bda27c6d5ccbd746180accfeab5f0eaedca5f32e50fbcbda33ee9b78e8ec636a66dbe0e9ca5dfdb13cf7621c1d82dfaa3
   languageName: node
   linkType: hard
 
@@ -10436,7 +10436,7 @@ __metadata:
     "@eslint/js": "npm:^9.39.0"
     "@formkit/auto-animate": "npm:^0.9.0"
     "@react-oauth/google": "npm:^0.12.2"
-    "@rm-hull/use-local-storage": "npm:^0.3.1"
+    "@rm-hull/use-local-storage": "npm:^0.3.2"
     "@stylistic/eslint-plugin": "npm:^5.5.0"
     "@testing-library/dom": "npm:^10.4.1"
     "@testing-library/react": "npm:^16.3.0"

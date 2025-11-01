@@ -9,7 +9,6 @@ import { sortBy } from "../otp";
 import { type OTP } from "../types";
 import Card from "./Card";
 import Search from "./Search";
-import { toaster } from "./ui/toaster";
 
 interface GroupProps {
   filter?: (otp: OTP) => boolean;
@@ -61,16 +60,7 @@ export default function Group({ filter = () => true, noData }: GroupProps) {
   }
 
   if (error) {
-    queueMicrotask(() =>
-      toaster.create({
-        id: "otp-error",
-        type: "error",
-        title: "Failed to load data",
-        description: error.message,
-        duration: 9000,
-      })
-    );
-    return null;
+    throw error;
   }
 
   if (filtered.length === 0 && noData !== undefined) {
