@@ -1,8 +1,7 @@
-import { Alert, Button, Dialog, Field, Portal } from "@chakra-ui/react";
+import { Alert, Button, Dialog, Field, Portal, Text, VStack } from "@chakra-ui/react";
 import { type FieldProps, Form, Formik, Field as FormikField, type FormikHelpers } from "formik";
 import PasswordInput from "./PasswordInput";
 import { useColorModeValue } from "./ui/color-mode";
-
 
 interface PasswordDialogProps {
   confirm: boolean;
@@ -100,16 +99,26 @@ export function PasswordDialog({ confirm, onSubmit }: PasswordDialogProps) {
                       </FormikField>
                     )}
                     {confirm && (
-                      <Alert.Root mt={5} status="info" flexDirection="column" alignItems="start">
-                        <Alert.Title mb={1} fontSize="lg">
-                          Data Safety
-                        </Alert.Title>
-                        <Alert.Description>
-                          The password you choose above will be used to store data securely using AES encryption. If you
-                          loose or forget the password, any saved data will <strong>not</strong> be recoverable. Data is
-                          never uploaded and stays on your machine in local storage only; note also that the password is
-                          never stored.
-                        </Alert.Description>
+                      <Alert.Root mt={5} status="info">
+                        <Alert.Indicator />
+                        <Alert.Content>
+                          <Alert.Title mb={1} fontSize="lg">
+                            Data Safety
+                          </Alert.Title>
+                          <Alert.Description>
+                            <VStack>
+                              <Text>
+                                The password you choose above will be used to store data securely using AES encryption.
+                                If you loose or forget the password, any saved data will <strong>not</strong> be
+                                recoverable.
+                              </Text>
+                              <Text>
+                                Data is never uploaded and stays on your machine in local storage only; note also that
+                                the password is never stored either, it is only used to encrypt the OTP data.
+                              </Text>
+                            </VStack>
+                          </Alert.Description>
+                        </Alert.Content>
                       </Alert.Root>
                     )}
                   </Dialog.Body>

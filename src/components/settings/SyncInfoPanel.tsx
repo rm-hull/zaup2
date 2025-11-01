@@ -1,4 +1,4 @@
-import { Alert, Box, Code, Text } from "@chakra-ui/react";
+import { Alert, Box, Code, Strong, Text } from "@chakra-ui/react";
 
 export default function SyncInfoPanel() {
   return (
@@ -10,8 +10,11 @@ export default function SyncInfoPanel() {
           <Alert.Description>
             <Text>
               In order to sync the OTP data with your Google Drive, you will be prompted to sign in and consent to this
-              application reading and writing a file to your Google account. Be aware that the file will be created as{" "}
-              <Code>zaup2_sync.json</Code>. If you manually delete this file, then you may loose the ability to sync.
+              application reading and writing a file to your Google account. Be aware that the file will be created as
+              <Strong>
+                <Code>zaup2_sync.json</Code>
+              </Strong>
+              . If you manually delete this file, then you may loose the ability to sync.
             </Text>
           </Alert.Description>
         </Alert.Content>
