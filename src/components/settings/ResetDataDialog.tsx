@@ -8,7 +8,7 @@ interface ResetDataDialogProps {
 export function ResetDataDialog({ children, onResetData }: PropsWithChildren<ResetDataDialogProps>) {
   return (
     <Dialog.Root>
-      <Dialog.Trigger>{children}</Dialog.Trigger>
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Backdrop />
       <Portal>
         <Dialog.Positioner>

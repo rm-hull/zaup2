@@ -13,9 +13,7 @@ export default function ResetDataButton({ onResetRequested }: ResetDataButtonPro
 
   return (
     <ResetDataDialog onResetData={handleConfirmReset}>
-      <Tooltip showArrow content="Reset back to initial factory settings">
-        <Button colorPalette="red">Reset Data</Button>
-      </Tooltip>
+      <Button colorPalette="red">Reset Data</Button>
     </ResetDataDialog>
   );
 }

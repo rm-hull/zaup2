@@ -21,11 +21,11 @@ export default function CustomLabelButton({ otp, onUpdateRequested }: CustomLabe
   const label = otp.label ? "Update custom label" : "Add custom label";
   return (
     <CustomLabelDialog onUpdate={handleConfirmCustomLabel} label={otp.label}>
-      <Tooltip showArrow content={label}>
-        <IconButton aria-label={label} size="sm" variant="subtle">
+      <IconButton aria-label={label} size="sm" variant="subtle">
+        <Tooltip showArrow content={label}>
           <FiEdit />
-        </IconButton>
-      </Tooltip>
+        </Tooltip>
+      </IconButton>
     </CustomLabelDialog>
   );
 }

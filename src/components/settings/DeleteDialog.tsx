@@ -8,7 +8,7 @@ interface DeleteDialogProps {
 export function DeleteDialog({ children, onDelete }: PropsWithChildren<DeleteDialogProps>) {
   return (
     <Dialog.Root size="xs">
-      <Dialog.Trigger>{children}</Dialog.Trigger>
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Backdrop />
       <Portal>
         <Dialog.Positioner>
