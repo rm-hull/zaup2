@@ -5,7 +5,7 @@ export function Loader({ children }: PropsWithChildren) {
   return (
     <Suspense
       fallback={
-        <ProgressRoot size="xs" value={null}>
+        <ProgressRoot size="xs" value={null} colorPalette="blue" variant="subtle">
           <ProgressBar />
         </ProgressRoot>
       }
