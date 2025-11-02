@@ -1,4 +1,4 @@
-import { Alert, Button, Dialog, Field, Portal, Text, VStack } from "@chakra-ui/react";
+import { Alert, Button, Dialog, Field, Input, Portal, Text, VStack } from "@chakra-ui/react";
 import { type FieldProps, Form, Formik, Field as FormikField, type FormikHelpers } from "formik";
 import PasswordInput from "./PasswordInput";
 import { useColorModeValue } from "./ui/color-mode";
@@ -57,6 +57,7 @@ export function PasswordDialog({ confirm, onSubmit }: PasswordDialogProps) {
             >
               {({ isValid }) => (
                 <Form>
+                  <Input id="username" name="username" type="hidden" value="zaup2" autoComplete="username" />
                   <Dialog.Body>
                     <FormikField name="password" validate={requiredValidator}>
                       {({ field, form, meta }: FieldProps) => (
@@ -66,6 +67,7 @@ export function PasswordDialog({ confirm, onSubmit }: PasswordDialogProps) {
                             placeholder="Password"
                             id="password"
                             type="password"
+                            autoComplete={confirm ? "new-password" : "current-password"}
                             color={color}
                             bg={bg}
                           />
@@ -87,6 +89,7 @@ export function PasswordDialog({ confirm, onSubmit }: PasswordDialogProps) {
                               placeholder="Re-enter password to confirm"
                               id="confirmedPassword"
                               type="password"
+                              autoComplete="new-password"
                               color={color}
                               bg={bg}
                             />
