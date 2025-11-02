@@ -25,7 +25,7 @@ export function CustomLabelDialog({ children, label, onUpdate }: PropsWithChildr
 
   return (
     <Dialog.Root>
-      <Dialog.Trigger>{children}</Dialog.Trigger>
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Backdrop />
       <Portal>
         <Dialog.Positioner>

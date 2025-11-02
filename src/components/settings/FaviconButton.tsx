@@ -21,11 +21,11 @@ export default function FaviconButton({ otp, onUpdateRequested }: FaviconButtonP
   const label = otp.favicon === undefined ? "Add favicon" : "Update favicon";
   return (
     <FaviconDialog onUpdate={handleConfirmFavicon} url={otp.favicon}>
-      <Tooltip showArrow content={label}>
-        <IconButton aria-label={label} size="sm" variant="subtle">
+      <IconButton aria-label={label} size="sm" variant="subtle">
+        <Tooltip showArrow content={label}>
           <FiImage />
-        </IconButton>
-      </Tooltip>
+        </Tooltip>
+      </IconButton>
     </FaviconDialog>
   );
 }

@@ -25,7 +25,7 @@ export function FaviconDialog({ children, url, onUpdate }: PropsWithChildren<Fav
 
   return (
     <Dialog.Root size="md">
-      <Dialog.Trigger>{children}</Dialog.Trigger>
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Backdrop />
       <Portal>
         <Dialog.Positioner>

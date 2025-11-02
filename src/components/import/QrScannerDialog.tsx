@@ -28,7 +28,7 @@ export function QrScannerDialog({ children, onScanResult, onError }: PropsWithCh
 
   return (
     <Dialog.Root lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
-      <Dialog.Trigger>{children}</Dialog.Trigger>
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Backdrop />
       <Portal>
         <Dialog.Positioner>

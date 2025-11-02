@@ -6,7 +6,6 @@ import useOtpParameters from "../../hooks/useOtpParameters";
 import HashTag from "../HashTag";
 import { useColorModeValue } from "../ui/color-mode";
 
-
 interface AddTagDialogProps {
   onAdd: (tag: string) => void;
 }
@@ -43,7 +42,7 @@ export function AddTagDialog({ children, onAdd }: PropsWithChildren<AddTagDialog
 
   return (
     <Dialog.Root placement="top">
-      <Dialog.Trigger>{children}</Dialog.Trigger>
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Backdrop />
       <Portal>
         <Dialog.Positioner>
