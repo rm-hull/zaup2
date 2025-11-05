@@ -2291,9 +2291,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rm-hull/chakra-error-fallback@npm:^0.0.4":
-  version: 0.0.4
-  resolution: "@rm-hull/chakra-error-fallback@npm:0.0.4"
+"@rm-hull/chakra-error-fallback@npm:^0.0.5":
+  version: 0.0.5
+  resolution: "@rm-hull/chakra-error-fallback@npm:0.0.5"
   dependencies:
     next-themes: "npm:^0.4.6"
     react-icons: "npm:^5.5.0"
@@ -2303,7 +2303,7 @@ __metadata:
     "@chakra-ui/react": ">=3.28.0"
     react: ">=19.0.0"
     react-dom: ">=19.0.0"
-  checksum: 10/6ab9485f343a05bcf002f3c8c65064632878c080531dfc513bceb7bd6cc5e7bad4b3fdfe14a362ee7a47509c6b1daa92aea52e0491421ebbcf37cfbb82c4c10e
+  checksum: 10/eef0e68aa151a2998b4397f340016bbb93a8fbdcbac7b92bc6818c946c124683faffe672e84d647227adf5c9446a753b8b0a2ef7189b21f4b232c96c57eadb07
   languageName: node
   linkType: hard
 
@@ -10482,7 +10482,7 @@ __metadata:
     "@eslint/js": "npm:^9.39.1"
     "@formkit/auto-animate": "npm:^0.9.0"
     "@react-oauth/google": "npm:^0.12.2"
-    "@rm-hull/chakra-error-fallback": "npm:^0.0.4"
+    "@rm-hull/chakra-error-fallback": "npm:^0.0.5"
     "@rm-hull/use-local-storage": "npm:^0.3.2"
     "@stylistic/eslint-plugin": "npm:^5.5.0"
     "@testing-library/dom": "npm:^10.4.1"
