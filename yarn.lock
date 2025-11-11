@@ -6577,9 +6577,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"formik@npm:^2.4.8":
-  version: 2.4.8
-  resolution: "formik@npm:2.4.8"
+"formik@npm:^2.4.9":
+  version: 2.4.9
+  resolution: "formik@npm:2.4.9"
   dependencies:
     "@types/hoist-non-react-statics": "npm:^3.3.1"
     deepmerge: "npm:^2.1.1"
@@ -6591,7 +6591,7 @@ __metadata:
     tslib: "npm:^2.0.0"
   peerDependencies:
     react: ">=16.8.0"
-  checksum: 10/47fd56f06c98e2d1aeb65d32b154051c0dcea44f71e66a0e7bb2a90956e9a104f76831938861df6af88c64041ff2aca75db4d2fa5a59049e8ae9c7a560c97ba3
+  checksum: 10/c7354bedce92ac13a8e8a59fa9bd05fe1743e0d10becf12a574ab98906a234eeb483ae9cb2a84956bd6b77aed3006e37c85203981e15547889f1a5862c5b06d0
   languageName: node
   linkType: hard
 
@@ -10579,7 +10579,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.24"
     eslint-plugin-testing-library: "npm:^7.13.3"
     format-duration: "npm:^3.0.2"
-    formik: "npm:^2.4.8"
+    formik: "npm:^2.4.9"
     globals: "npm:^16.5.0"
     google-protobuf: "npm:^4.0.0"
     jotai: "npm:^2.15.1"
