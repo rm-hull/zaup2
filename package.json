@@ -8,7 +8,8 @@
     "dev": "yarn download && vite",
     "build": "yarn download && tsc && vite build",
     "lint": "eslint ./src",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "test:ci": "vitest run --coverage",
     "preview": "vite preview",
     "download": "node ./tools/favicon_downloader.js"
