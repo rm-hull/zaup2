@@ -2345,16 +2345,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rm-hull/use-local-storage@npm:^0.3.2":
-  version: 0.3.2
-  resolution: "@rm-hull/use-local-storage@npm:0.3.2"
+"@rm-hull/use-local-storage@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "@rm-hull/use-local-storage@npm:0.3.3"
   dependencies:
-    jotai: "npm:^2.15.0"
+    jotai: "npm:^2.15.2"
     react: "npm:^19.2.0"
     react-dom: "npm:^19.2.0"
   peerDependencies:
     react: ">=19.0.0"
-  checksum: 10/d7d16eb3480af1e86c672e110de6726bda27c6d5ccbd746180accfeab5f0eaedca5f32e50fbcbda33ee9b78e8ec636a66dbe0e9ca5dfdb13cf7621c1d82dfaa3
+  checksum: 10/1caab6bc62c267c734dff377a678573b647ee7116ba16adc0645bcec453e6be5b56193ae71748bd20cbd272b10f8257b6b7ef331b7420092233c57cc2d83e497
   languageName: node
   linkType: hard
 
@@ -7490,7 +7490,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.15.0, jotai@npm:^2.15.1":
+"jotai@npm:^2.15.1":
   version: 2.15.1
   resolution: "jotai@npm:2.15.1"
   peerDependencies:
@@ -7508,6 +7508,27 @@ __metadata:
     react:
       optional: true
   checksum: 10/d346ded947768ba36ca70e8a55262281802bdb7ef2b14bc783a14c6a80c5a7e1bfcda6bf3ba4a747953c73dad8a8d205b2e0f57fa73e436a6188ecade5c6191b
+  languageName: node
+  linkType: hard
+
+"jotai@npm:^2.15.2":
+  version: 2.15.2
+  resolution: "jotai@npm:2.15.2"
+  peerDependencies:
+    "@babel/core": ">=7.0.0"
+    "@babel/template": ">=7.0.0"
+    "@types/react": ">=17.0.0"
+    react: ">=17.0.0"
+  peerDependenciesMeta:
+    "@babel/core":
+      optional: true
+    "@babel/template":
+      optional: true
+    "@types/react":
+      optional: true
+    react:
+      optional: true
+  checksum: 10/5da99d9d43a7b4fd0ab5517ec12bfc384b819b94a4b9fba7085b79821d6a8d68ca786896e475866dbd30201fb30effa208cf319b93b29d1dbe7be8f8111f00b9
   languageName: node
   linkType: hard
 
@@ -10582,7 +10603,7 @@ __metadata:
     "@formkit/auto-animate": "npm:^0.9.0"
     "@react-oauth/google": "npm:^0.12.2"
     "@rm-hull/chakra-error-fallback": "npm:^0.0.5"
-    "@rm-hull/use-local-storage": "npm:^0.3.2"
+    "@rm-hull/use-local-storage": "npm:^0.3.3"
     "@stylistic/eslint-plugin": "npm:^5.6.1"
     "@testing-library/dom": "npm:^10.4.1"
     "@testing-library/react": "npm:^16.3.0"
