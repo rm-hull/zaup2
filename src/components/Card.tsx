@@ -41,7 +41,7 @@ function generateCode(totp?: TOTP): Partial<{ code: string; error: Error }> {
 
 const Card = memo(({ otp, showQRCode, highlight }: CardProps) => {
   const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
-  const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
+  const totp = getTotp(otp, encodedSecret);
   const { update } = useOtpParameters();
 
   const { code, error } = generateCode(totp);
