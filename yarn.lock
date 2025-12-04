@@ -8427,6 +8427,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-dom@npm:^19.2.1":
+  version: 19.2.1
+  resolution: "react-dom@npm:19.2.1"
+  dependencies:
+    scheduler: "npm:^0.27.0"
+  peerDependencies:
+    react: ^19.2.1
+  checksum: 10/cceea7104bd3ad52e2f6377f47c4b346244c1263917fd95745e31647ff8ab23b16f719c2bfc8bcf2a6c802ecb9c9e81f08b09e3447e1f49bc27368283ed299ba
+  languageName: node
+  linkType: hard
+
 "react-error-boundary@npm:^6.0.0":
   version: 6.0.0
   resolution: "react-error-boundary@npm:6.0.0"
@@ -8565,6 +8576,13 @@ __metadata:
   version: 19.2.0
   resolution: "react@npm:19.2.0"
   checksum: 10/e13bcdb8e994c3cfa922743cb75ca8deb60531bf02f584d2d8dab940a8132ce8a2e6ef16f8ed7f372b4072e7a7eeff589b2812dabbedfa73e6e46201dac8a9d0
+  languageName: node
+  linkType: hard
+
+"react@npm:^19.2.1":
+  version: 19.2.1
+  resolution: "react@npm:19.2.1"
+  checksum: 10/7c7ab0f40b98e87e1466bea8c28564c5f3c384506cbda93d24788d32b40bf6059c991687c7e90a396b11f09223a779a81b1188af9acd839aaa0a672987c13107
   languageName: node
   linkType: hard
 
@@ -10334,8 +10352,8 @@ __metadata:
     prettier: "npm:^3.7.4"
     protoc-gen-ts: "npm:^0.8.7"
     ramda: "npm:^0.32.0"
-    react: "npm:^19.2.0"
-    react-dom: "npm:^19.2.0"
+    react: "npm:^19.2.1"
+    react-dom: "npm:^19.2.1"
     react-error-boundary: "npm:^6.0.0"
     react-ga4: "npm:^2.1.0"
     react-icons: "npm:^5.5.0"
