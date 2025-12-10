@@ -7416,6 +7416,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jotai@npm:^2.16.0":
+  version: 2.16.0
+  resolution: "jotai@npm:2.16.0"
+  peerDependencies:
+    "@babel/core": ">=7.0.0"
+    "@babel/template": ">=7.0.0"
+    "@types/react": ">=17.0.0"
+    react: ">=17.0.0"
+  peerDependenciesMeta:
+    "@babel/core":
+      optional: true
+    "@babel/template":
+      optional: true
+    "@types/react":
+      optional: true
+    react:
+      optional: true
+  checksum: 10/aa80bc3f5cdeb4d662f97be14b89a5e142ceb51b732f973a4ca95bb38c2ecc0467b2f8dd15efa9dd02101cc69bb182e4b43a6c4fc0b5bdb38d364cdcec24dea4
+  languageName: node
+  linkType: hard
+
 "js-cookie@npm:^2.2.1":
   version: 2.2.1
   resolution: "js-cookie@npm:2.2.1"
@@ -10482,7 +10503,7 @@ __metadata:
     formik: "npm:^2.4.9"
     globals: "npm:^16.5.0"
     google-protobuf: "npm:^4.0.1"
-    jotai: "npm:^2.15.2"
+    jotai: "npm:^2.16.0"
     next-themes: "npm:^0.4.6"
     object-hash: "npm:^3.0.0"
     otpauth: "npm:^9.4.1"
