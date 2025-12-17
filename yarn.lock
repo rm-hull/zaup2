@@ -2942,7 +2942,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/emscripten@npm:^1.41.2":
+"@types/emscripten@npm:^1.41.5":
   version: 1.41.5
   resolution: "@types/emscripten@npm:1.41.5"
   checksum: 10/60dfcced39b2d0c94f31907c5cf5d97fe06ed35ed6cb134650a1a96bae861302722d4a6f459b484ea09588cde70cbcc034974454a746be3ce9688b52398d2953
@@ -3785,16 +3785,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yudiel/react-qr-scanner@npm:^2.4.1":
-  version: 2.4.1
-  resolution: "@yudiel/react-qr-scanner@npm:2.4.1"
+"@yudiel/react-qr-scanner@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "@yudiel/react-qr-scanner@npm:2.5.0"
   dependencies:
-    barcode-detector: "npm:3.0.6"
+    barcode-detector: "npm:3.0.8"
     webrtc-adapter: "npm:9.0.3"
   peerDependencies:
     react: ^17 || ^18 || ^19
     react-dom: ^17 || ^18 || ^19
-  checksum: 10/21743cd80bbdfcab3b645d68223c5db14dbee5ad152dfa9fbbc13c6dbd0c2b5ee4ada52c16373ee8870413c06c24913c616b1dc1b8ea3bbbb793595eafeb2171
+  checksum: 10/38a9fa35b3f4b0aaa23f3b48e32d68f9c2761759a8af45295fd8ab0c9205dbebe50ebdb5a96a73f37eb188674bb461bd8929963b92da3be3ab2393de95c295e6
   languageName: node
   linkType: hard
 
@@ -5089,12 +5089,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"barcode-detector@npm:3.0.6":
-  version: 3.0.6
-  resolution: "barcode-detector@npm:3.0.6"
+"barcode-detector@npm:3.0.8":
+  version: 3.0.8
+  resolution: "barcode-detector@npm:3.0.8"
   dependencies:
-    zxing-wasm: "npm:2.2.2"
-  checksum: 10/c1d4fbeecbb0be8f91e15c2bfdaaf3b27e3fd6fe224e60c4c25793a3bf90bab844702956de2f596a8e3229d2b4e0d88b42fb629472efc0b36a3751c3b01b7151
+    zxing-wasm: "npm:2.2.4"
+  checksum: 10/7de6225f659c69a0f4101d080a9e0812f2404c485fa2406424b8b13eaff274f6e7405c94de24827a09def52c32a63b19b9c9fba61c5274b074d558f696ec1684
   languageName: node
   linkType: hard
 
@@ -10026,12 +10026,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^5.0.1":
-  version: 5.3.0
-  resolution: "type-fest@npm:5.3.0"
+"type-fest@npm:^5.2.0":
+  version: 5.3.1
+  resolution: "type-fest@npm:5.3.1"
   dependencies:
     tagged-tag: "npm:^1.0.0"
-  checksum: 10/2881a94f7a9a350d49fffd20d09e4e6e42e54b614a2492378299ab5cf4a233f335d7943acf975084293881001877851a58b03a65de46147c82050482da51cffc
+  checksum: 10/1015eeae6ba0961b6d7c010f2ca9ad142891e1d1f5e1ff898ee73ec8c82529100bce63ce57ae657b1dc788f7a5f209e600ebc33241b0de433a8c5e7f2018b331
   languageName: node
   linkType: hard
 
@@ -10748,7 +10748,7 @@ __metadata:
     "@typescript-eslint/types": "npm:^8.50.0"
     "@vitejs/plugin-react": "npm:^5.1.2"
     "@vitest/coverage-v8": "npm:^4.0.16"
-    "@yudiel/react-qr-scanner": "npm:^2.4.1"
+    "@yudiel/react-qr-scanner": "npm:^2.5.0"
     axios: "npm:^1.13.2"
     babel-plugin-react-compiler: "npm:1.0.0"
     base32-encode: "npm:^2.0.0"
@@ -10837,14 +10837,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zxing-wasm@npm:2.2.2":
-  version: 2.2.2
-  resolution: "zxing-wasm@npm:2.2.2"
+"zxing-wasm@npm:2.2.4":
+  version: 2.2.4
+  resolution: "zxing-wasm@npm:2.2.4"
   dependencies:
-    "@types/emscripten": "npm:^1.41.2"
-    type-fest: "npm:^5.0.1"
+    "@types/emscripten": "npm:^1.41.5"
+    type-fest: "npm:^5.2.0"
   peerDependencies:
     "@types/emscripten": ">=1.39.6"
-  checksum: 10/c542a3a56d30961cd221535fa82fef7fe49abff896339e23236b6a13297e0eba2dc9d51fb0808544321950b51a8f554d57a7859ddb7f8c236cdf66e2509a8b02
+  checksum: 10/e5928cbb066c854c970cbf724e978e502c3469d69de2469bd37d1f6ab8f5d2a2acdbaa9dea32d35cfc058e2b482e29a9c4f12161d9df3e1e952c30dda3a96d8c
   languageName: node
   linkType: hard
