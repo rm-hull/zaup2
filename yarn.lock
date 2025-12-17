@@ -6412,12 +6412,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:^0.4.25":
-  version: 0.4.25
-  resolution: "eslint-plugin-react-refresh@npm:0.4.25"
+"eslint-plugin-react-refresh@npm:^0.4.26":
+  version: 0.4.26
+  resolution: "eslint-plugin-react-refresh@npm:0.4.26"
   peerDependencies:
     eslint: ">=8.40"
-  checksum: 10/07e5c7152b852db9e54667a9874300a483f2390f8a5e9d9b0de80a4161112fc4c00d88fc71c6040a736db8f8ac0911d6121510fa996a282b5a98c878858b288e
+  checksum: 10/068da7edcd39d802dda4c03b7ea8923891145eb95f4dfd4cfce82a53a5eb55f5cbe66b33cf8e57b71f1525a684517bda4bfca1bc5c6b12c82ba03c9e8197764d
   languageName: node
   linkType: hard
 
@@ -6460,15 +6460,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-testing-library@npm:^7.14.0":
-  version: 7.14.0
-  resolution: "eslint-plugin-testing-library@npm:7.14.0"
+"eslint-plugin-testing-library@npm:^7.15.1":
+  version: 7.15.1
+  resolution: "eslint-plugin-testing-library@npm:7.15.1"
   dependencies:
     "@typescript-eslint/scope-manager": "npm:^8.15.0"
     "@typescript-eslint/utils": "npm:^8.15.0"
   peerDependencies:
     eslint: ^8.57.0 || ^9.0.0
-  checksum: 10/22ffe016762552680146dabd3590206ea255358b083749d6b3291fbdd37499ee9262677ee223a9265171e387b3e397a93a265f4acb327594cdeb26d9b7c897fe
+  checksum: 10/6e83c8265b3aa8b68127e88de31c9ae00862ffd5f4b632ad30d40933368cd6d86c1eff88216360a873c57fdc01745442a4f419ca8baa93e1c3085a4c98c3a616
   languageName: node
   linkType: hard
 
@@ -10768,8 +10768,8 @@ __metadata:
     eslint-plugin-react: "npm:^7.37.5"
     eslint-plugin-react-compiler: "npm:19.1.0-rc.2"
     eslint-plugin-react-hooks: "npm:^7.0.1"
-    eslint-plugin-react-refresh: "npm:^0.4.25"
-    eslint-plugin-testing-library: "npm:^7.14.0"
+    eslint-plugin-react-refresh: "npm:^0.4.26"
+    eslint-plugin-testing-library: "npm:^7.15.1"
     format-duration: "npm:^3.0.2"
     formik: "npm:^2.4.9"
     globals: "npm:^16.5.0"
