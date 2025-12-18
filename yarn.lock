@@ -8830,13 +8830,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-ga4@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "react-ga4@npm:2.1.0"
-  checksum: 10/e47edd040b7a272d35df732e08c4a8b6b14add659db04fb81a3a2cbde59bf34dc6eae9e0b8b4abd8937d11c837954773a6ba86feb2c605e5eb916f4c99e420c7
-  languageName: node
-  linkType: hard
-
 "react-icons@npm:*, react-icons@npm:^5.5.0":
   version: 5.5.0
   resolution: "react-icons@npm:5.5.0"
@@ -10784,7 +10777,6 @@ __metadata:
     react: "npm:^19.2.3"
     react-dom: "npm:^19.2.3"
     react-error-boundary: "npm:^6.0.0"
-    react-ga4: "npm:^2.1.0"
     react-icons: "npm:^5.5.0"
     react-lazily: "npm:^0.9.2"
     react-router-dom: "npm:^7.11.0"
