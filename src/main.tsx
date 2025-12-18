@@ -2,17 +2,12 @@ import { ErrorFallback } from "@rm-hull/chakra-error-fallback";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
-import ReactGA from "react-ga4";
 import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
 import PasswordProtection from "./components/PasswordProtection";
 import { Provider } from "./components/ui/provider";
 import { Toaster } from "./components/ui/toaster";
 import { reportWebVitals } from "./reportWebVitals";
-
-if (import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID) {
-  ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
-}
 
 const container = document.getElementById("root");
 if (container === null) {
