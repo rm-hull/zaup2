@@ -59,7 +59,13 @@ export default function OTPSettings() {
             <Table.Row key={hash(otp)}>
               <Table.Cell valign="top">
                 <HStack alignItems="flex-start">
-                  <Image src={getCachedFavicon(otp)} h={5} filter={otp.archived ? "grayscale(100%)" : "none"} />
+                  <Image
+                    src={getCachedFavicon(otp)}
+                    width={5}
+                    height={5}
+                    objectFit="contain"
+                    filter={otp.archived ? "grayscale(100%)" : "none"}
+                  />
                   <VStack align="left">
                     <Text fontWeight={600} textDecoration={otp.archived ? "line-through" : undefined}>
                       {otp.label ?? otp.issuer ?? "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}
