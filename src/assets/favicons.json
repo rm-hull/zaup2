@@ -22,5 +22,6 @@
   "Cloudflare": "https://cloudflare.com/favicon.ico",
   "Auth0": "https://cdn.auth0.com/quantum-assets/dist/latest/favicons/auth0-favicon-onlight.png",
   "GOV.UK": "https://www.gov.uk/assets/static/favicon-d962d21b5bb443f546c097ea21b567cde639adef7370da45be5e349ba8d62d33.svg",
-  "Atlassian": "https://confluence.atlassian.com/favicon.ico"
+  "Atlassian": "https://confluence.atlassian.com/favicon.ico",
+  "Hetzner": "https://console.hetzner.com/favicon-32x32.png"
 }
