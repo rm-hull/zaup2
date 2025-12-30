@@ -57,7 +57,18 @@ export default function Search({ onChange }: SearchProps) {
             startElementProps={{ pointerEvents: "none" }}
             endElement={<CloseButton size="xs" aria-label="Clear search" disabled={!value} onClick={handleClearSearch} />}
           >
-            <Input id="search" ref={inputRef} placeholder="Search" bgColor={bg} value={value} onChange={handleSearch} />
+            <Input
+              id="search"
+              ref={inputRef}
+              placeholder="Search"
+              bgColor={bg}
+              value={value}
+              onChange={handleSearch}
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck="false"
+            />
           </InputGroup>
         </Box>
       </Collapsible.Content>
