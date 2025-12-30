@@ -1,4 +1,12 @@
-import { Box, Collapsible, Input, InputGroup, useControllableState, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  CloseButton,
+  Collapsible,
+  Input,
+  InputGroup,
+  useControllableState,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { type ChangeEvent } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useKeyPressEvent } from "react-use";
@@ -15,11 +23,15 @@ export default function Search({ onChange }: SearchProps) {
   const [value, setValue] = useControllableState({ defaultValue: "", onChange });
   const [inputRef, setInputFocus] = useFocus();
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>): void => {
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
-  const handleCancel = (e: { preventDefault: () => void }): void => {
+  const handleClearSearch = () => {
+    setValue("");
+  };
+
+  const handleCancel = (e: { preventDefault: () => void }) => {
     if (open) {
       e.preventDefault();
       setValue("");
@@ -27,7 +39,7 @@ export default function Search({ onChange }: SearchProps) {
     }
   };
 
-  const handleOpen = (): void => {
+  const handleOpen = () => {
     onOpen();
     setTimeout(setInputFocus, 25);
   };
@@ -40,7 +52,11 @@ export default function Search({ onChange }: SearchProps) {
     <Collapsible.Root open={open}>
       <Collapsible.Content>
         <Box p="4px">
-          <InputGroup startElement={<FiSearch />} startElementProps={{ pointerEvents: "none" }}>
+          <InputGroup
+            startElement={<FiSearch />}
+            startElementProps={{ pointerEvents: "none" }}
+            endElement={<CloseButton size="xs" aria-label="Clear search" disabled={!value} onClick={handleClearSearch} />}
+          >
             <Input id="search" ref={inputRef} placeholder="Search" bgColor={bg} value={value} onChange={handleSearch} />
           </InputGroup>
         </Box>
