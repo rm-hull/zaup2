@@ -7235,10 +7235,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"google-protobuf@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "google-protobuf@npm:4.0.1"
-  checksum: 10/8e8d052b9bd44294f8da966bb9bba66a8ea837107b8c1a226c6e59ff1faaad91fe8b9a5356e8ea9415d98effeec0c715df12d75f5991b1f4a94de637e8ad4f97
+"google-protobuf@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "google-protobuf@npm:4.0.2"
+  checksum: 10/8aec2b004b5865de7baaa5cd8b6aaefc39a1b39b57fc51d3b4d0ee501d09171712aa1cd26559382f6453f36665279313fa0b0087121fe66d66d659dc4b4e5f48
   languageName: node
   linkType: hard
 
@@ -10888,7 +10888,7 @@ __metadata:
     format-duration: "npm:^3.0.2"
     formik: "npm:^2.4.9"
     globals: "npm:^17.3.0"
-    google-protobuf: "npm:^4.0.1"
+    google-protobuf: "npm:^4.0.2"
     jotai: "npm:^2.18.0"
     next-themes: "npm:^0.4.6"
     object-hash: "npm:^3.0.0"
