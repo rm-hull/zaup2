@@ -8953,6 +8953,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-icons@npm:^5.6.0":
+  version: 5.6.0
+  resolution: "react-icons@npm:5.6.0"
+  peerDependencies:
+    react: "*"
+  checksum: 10/571ac91977003695934c7e02bcfebec692f3f97191f7a9e77004bf4d44b859dc4265fed0200ddb45365c00e4c7b414d69eccb5707508b9beb5ef2df2093318eb
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.13.1, react-is@npm:^16.7.0":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -10895,7 +10904,7 @@ __metadata:
     react: "npm:^19.2.4"
     react-dom: "npm:^19.2.4"
     react-error-boundary: "npm:^6.1.1"
-    react-icons: "npm:^5.5.0"
+    react-icons: "npm:^5.6.0"
     react-lazily: "npm:^0.9.2"
     react-router-dom: "npm:^7.13.1"
     react-use: "npm:^17.6.0"
