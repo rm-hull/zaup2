@@ -63,7 +63,7 @@ jobs:
       cancel-in-progress: true
     steps:
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - uses: actions/download-artifact@v8
         with:
