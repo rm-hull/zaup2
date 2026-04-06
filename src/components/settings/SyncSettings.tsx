@@ -77,7 +77,7 @@ export default function SyncSettings() {
           otp: newOTPs,
           lastSync: {
             on: new Date().toUTCString(),
-            from: await ipAddress(),
+            from: await ipAddress().catch(() => "Unknown"),
             url: window.location.href,
           },
         });
