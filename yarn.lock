@@ -10377,9 +10377,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^8.0.3":
-  version: 8.0.3
-  resolution: "vite@npm:8.0.3"
+"vite@npm:^8.0.4":
+  version: 8.0.4
+  resolution: "vite@npm:8.0.4"
   dependencies:
     fsevents: "npm:~2.3.3"
     lightningcss: "npm:^1.32.0"
@@ -10390,7 +10390,7 @@ __metadata:
   peerDependencies:
     "@types/node": ^20.19.0 || >=22.12.0
     "@vitejs/devtools": ^0.1.0
-    esbuild: ^0.27.0
+    esbuild: ^0.27.0 || ^0.28.0
     jiti: ">=1.21.0"
     less: ^4.0.0
     sass: ^1.70.0
@@ -10430,7 +10430,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/745b791cb71297ac3877af061da44751d93f198413426bbb76a1f8384d76d4162a6ad739b2bcdf5fb966cd1295db59412614aee60738e40e1c99cee561e682f0
+  checksum: 10/7cad503de4c1954a2c01be7cec943389833311e149898e809f4362bfba000fd0a9b75ea5d763b91199b36ca7f3876558b78f27d2a625d1e6f1ac4df39f8ad977
   languageName: node
   linkType: hard
 
@@ -10729,7 +10729,7 @@ __metadata:
     react-use: "npm:^17.6.0"
     typescript: "npm:^6.0.2"
     typescript-eslint: "npm:^8.58.0"
-    vite: "npm:^8.0.3"
+    vite: "npm:^8.0.4"
     vitest: "npm:^4.1.2"
     web-vitals: "npm:^5.2.0"
   languageName: unknown
