@@ -1,7 +1,7 @@
 import { Box, HStack, Heading, Steps, useSteps } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import { type Payload } from "../../api/googleDrive";
-// import { ipAddress } from "../../api/ipify";
+import { ipAddress } from "../../api/ipify";
 import { Button } from "../../components/ui/button";
 import { toaster } from "../../components/ui/toaster";
 import useGeneralSettings from "../../hooks/useGeneralSettings";
@@ -30,10 +30,10 @@ export default function SyncSettings() {
   const { value: activeStep, setStep } = useSteps({ count: steps.length });
 
   const handleError = useCallback(() => {
-    console.log({ error });
     setProcessing(false);
     setStep(-1);
     toaster.create({
+      id: "sync-error",
       title: "Unable to sync with Google Drive",
       description: (error as Error).message,
       type: "error",
@@ -77,13 +77,14 @@ export default function SyncSettings() {
           otp: newOTPs,
           lastSync: {
             on: new Date().toUTCString(),
-            from: "TBC", // await ipAddress(),
+            from: await ipAddress(),
             url: window.location.href,
           },
         });
         setProcessing(false);
         setStep(4);
         toaster.create({
+          id: "sync-success",
           title: "Sync with Google Drive complete",
           description: `There were ${newOTPs.length - (payload?.otp ?? []).length} new OTPs added.`,
           type: "success",
@@ -143,13 +144,11 @@ export default function SyncSettings() {
       <Heading size="md">Sync Settings</Heading>
 
       <HStack alignItems="flex-start" gap={50}>
-        <Steps.Root count={steps.length} colorPalette="blue">
+        <Steps.Root step={activeStep} count={steps.length} colorPalette="blue">
           <Steps.List>
             {steps.map((step, index) => (
               <Steps.Item key={index} index={index} title={step.title}>
                 <Steps.Indicator />
-                {/* <StepStatus complete={<StepIcon />} incomplete={<StepNumber />} active={<StepNumber />} />
-                </Steps.Indicator> */}
 
                 <Box flexShrink="0">
                   <Steps.Title>{step.title}</Steps.Title>
