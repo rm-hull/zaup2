@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@chakra-ui/cli": "^3.34.0",
-    "@eslint/compat": "^2.0.4",
+    "@eslint/compat": "^2.0.5",
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
