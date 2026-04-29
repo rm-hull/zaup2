@@ -1,13 +1,21 @@
 import { ErrorFallback } from "@rm-hull/chakra-error-fallback";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { ErrorBoundary } from "react-error-boundary";
 import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
 import PasswordProtection from "./components/PasswordProtection";
 import { Provider } from "./components/ui/provider";
 import { Toaster } from "./components/ui/toaster";
 import { reportWebVitals } from "./reportWebVitals";
+import * as Sentry from "@sentry/react";
+
+if (import.meta.env.VITE_SENTRY_DSN !== undefined) {
+  Sentry.init({
+    dsn: import.meta.env.VITE_SENTRY_DSN as string,
+    release: import.meta.env.VITE_GIT_COMMIT_HASH as string,
+    environment: import.meta.env.MODE,
+  });
+}
 
 const container = document.getElementById("root");
 if (container === null) {
@@ -20,12 +28,12 @@ root.render(
   <StrictMode>
     <Provider>
       <Router basename="/zaup2">
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Sentry.ErrorBoundary fallback={ErrorFallback}>
           <PasswordProtection>
             <Toaster />
             <App />
           </PasswordProtection>
-        </ErrorBoundary>
+        </Sentry.ErrorBoundary>
       </Router>
     </Provider>
   </StrictMode>
