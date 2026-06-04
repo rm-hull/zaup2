@@ -72,7 +72,7 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps) => {
       >
         <HStack align="center" justify="center" mt={4}>
           <Image src={getCachedFavicon(otp)} width={5} height={5} objectFit="contain" />
-          <Text fontWeight={600} color="gray.500" lineClamp={1} wordBreak="break-all">
+          <Text fontWeight={600} color="gray.500" lineClamp={1}>
             <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }} ignoreCase>
               {otp.label ?? otp.issuer ?? "«Unknown»"}
             </Highlight>

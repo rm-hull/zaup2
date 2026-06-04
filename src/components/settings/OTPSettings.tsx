@@ -70,7 +70,7 @@ export default function OTPSettings() {
                     <Text fontWeight={600} textDecoration={otp.archived ? "line-through" : undefined}>
                       {otp.label ?? otp.issuer ?? "«Unknown»"} {otp.label && otp.issuer && `(${otp.issuer})`}
                     </Text>
-                    <Text fontWeight={400} color="gray.500" lineClamp={1} maxWidth="dw">
+                    <Text fontWeight={400} color="gray.500" lineClamp={1}>
                       {otp.name}
                     </Text>
                   </VStack>
