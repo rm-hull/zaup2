@@ -55,7 +55,7 @@
     "@types/node": "^25.9.1",
     "@types/object-hash": "^3.0.6",
     "@types/ramda": "^0.31.1",
-    "@types/react": "^19.2.16",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@types/react-icons": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^8.60.1",
