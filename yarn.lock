@@ -6705,10 +6705,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"format-duration@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "format-duration@npm:3.0.2"
-  checksum: 10/b86f65907fbb4fc1104f83b7988c92c18aacfcbef6c2be01b45ab897c8669a313d51ee03a32471fcfe57c14fbed998f6e7de958e76400290e12d6484baf0a626
+"format-duration@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "format-duration@npm:4.0.0"
+  checksum: 10/903b66c900ac50210edd389378da17ae74441a0e32e14e67faec81a51a8ccfdb1ddc528cc58d4bf56f154d0a3fcfe9b450c63443b36b96829d8d911b05487d58
   languageName: node
   linkType: hard
 
@@ -10518,7 +10518,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^7.1.1"
     eslint-plugin-react-refresh: "npm:^0.5.2"
     eslint-plugin-testing-library: "npm:^7.16.2"
-    format-duration: "npm:^3.0.2"
+    format-duration: "npm:^4.0.0"
     formik: "npm:^2.4.9"
     globals: "npm:^17.6.0"
     google-protobuf: "npm:^4.0.2"
