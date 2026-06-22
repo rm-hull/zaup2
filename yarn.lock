@@ -3140,12 +3140,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ramda@npm:^0.31.1":
-  version: 0.31.1
-  resolution: "@types/ramda@npm:0.31.1"
+"@types/ramda@npm:^0.32.0":
+  version: 0.32.0
+  resolution: "@types/ramda@npm:0.32.0"
   dependencies:
-    types-ramda: "npm:^0.31.0"
-  checksum: 10/a16b41a30f33e1ef521d4d57ce4949887906fae0a333d2845ee34ff39b21eee9a0b8db963338a5e9343ed9b23878fac1c362114bb4366d81abfc66d01e0066c2
+    types-ramda: "npm:^0.32.0"
+  checksum: 10/8752d68243fdc92ac284fea5877dca55867b01c859691651fe8526838c24148419218097a011bfd93a3743b420cd192661db3ef7a8bbbf82b8f7218a0e1cadda
   languageName: node
   linkType: hard
 
@@ -10007,12 +10007,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"types-ramda@npm:^0.31.0":
-  version: 0.31.0
-  resolution: "types-ramda@npm:0.31.0"
+"types-ramda@npm:^0.32.0":
+  version: 0.32.0
+  resolution: "types-ramda@npm:0.32.0"
   dependencies:
     ts-toolbelt: "npm:^9.6.0"
-  checksum: 10/bc1dcd7306da6449418640b4105db0dd682d9bcc50987caafb9fb99bd9a62801522ee59e9de5de6f136b817d01f2d7baa408acaa6ef3991aa28bd197f975fb85
+  checksum: 10/1e3122103db8557b258169fd9e714d504e74da5d7a78374aab6890f4a2e169bb47ffdc27e63ddaa1ec41e449f6dafecfc8a446e93ba7b1d22169a4c2980b53ff
   languageName: node
   linkType: hard
 
@@ -10638,7 +10638,7 @@ __metadata:
     "@types/google-protobuf": "npm:^3.15.12"
     "@types/node": "npm:^26.0.0"
     "@types/object-hash": "npm:^3.0.6"
-    "@types/ramda": "npm:^0.31.1"
+    "@types/ramda": "npm:^0.32.0"
     "@types/react": "npm:^19.2.17"
     "@types/react-dom": "npm:^19.2.3"
     "@types/react-icons": "npm:^3.0.0"
