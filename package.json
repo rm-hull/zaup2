@@ -23,7 +23,7 @@
     "@sentry/react": "^10.59.0",
     "@types/crypto-js": "^4.2.2",
     "@yudiel/react-qr-scanner": "^2.6.0",
-    "axios": "^1.18.0",
+    "axios": "^1.18.1",
     "base32-encode": "^2.0.0",
     "crypto-js": "^4.2.0",
     "format-duration": "^4.0.0",
