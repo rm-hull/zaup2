@@ -24,5 +24,6 @@
   "GOV.UK": "https://www.gov.uk/assets/static/favicon-d962d21b5bb443f546c097ea21b567cde639adef7370da45be5e349ba8d62d33.svg",
   "Atlassian": "https://confluence.atlassian.com/favicon.ico",
   "Hetzner": "https://console.hetzner.com/favicon-32x32.png",
-  "OpenRouter": "https://openrouter.ai/favicon.ico"
+  "OpenRouter": "https://openrouter.ai/favicon.ico",
+  "ubuntu.com": "https://login.ubuntu.com/assets/identityprovider/img/favicon.196d05df98a85cb985b31281cf3828a1.ico"
 }
