@@ -10575,10 +10575,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web-vitals@npm:^6.1.1":
-  version: 6.1.1
-  resolution: "web-vitals@npm:6.1.1"
-  checksum: 10/8b64ce661175c171183ca2fef616fb774d42f6ab7d9a480a02beca9edd7058c5978b95c7096d953ecf737b36af5409e3cf648e58e97be3806dd5ce02f10037ae
+"web-vitals@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "web-vitals@npm:6.2.0"
+  checksum: 10/04c38a70724009a2cde19699b3d5e92b37fdae7366e10d242c84b7fa8815626bc7ff126d510df55a7af71ff31a3fd3efe72a413ddbcf1e7724b76c1e3bc7f434
   languageName: node
   linkType: hard
 
@@ -10796,7 +10796,7 @@ __metadata:
     typescript-eslint: "npm:^8.67.0"
     vite: "npm:^8.2.2"
     vitest: "npm:^4.1.11"
-    web-vitals: "npm:^6.1.1"
+    web-vitals: "npm:^6.2.0"
   languageName: unknown
   linkType: soft
 
