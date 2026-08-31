@@ -6418,12 +6418,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:^0.5.4":
-  version: 0.5.4
-  resolution: "eslint-plugin-react-refresh@npm:0.5.4"
+"eslint-plugin-react-refresh@npm:^0.5.5":
+  version: 0.5.5
+  resolution: "eslint-plugin-react-refresh@npm:0.5.5"
   peerDependencies:
     eslint: ^9 || ^10
-  checksum: 10/490b432b07d3658873a6c6569c313ee6e72aefa0229d50f41f08ca7e4f90e58a1aa12c5a1fc23147735ffbfb21ad506ae6d4893fd715cc4d5820a3c07b589e2b
+  checksum: 10/482e215cc870db38e9c8a015df04f06ae108f6200fc181763d12c28a20515b5f167dc2e4ed1f5359fe94d8d19ae6465bba040bdfbc0b301cab7f9c677949beb9
   languageName: node
   linkType: hard
 
@@ -10773,7 +10773,7 @@ __metadata:
     eslint-plugin-react: "npm:^7.37.5"
     eslint-plugin-react-compiler: "npm:19.1.0-rc.2"
     eslint-plugin-react-hooks: "npm:^7.1.1"
-    eslint-plugin-react-refresh: "npm:^0.5.4"
+    eslint-plugin-react-refresh: "npm:^0.5.5"
     eslint-plugin-testing-library: "npm:^7.16.2"
     format-duration: "npm:^4.0.0"
     formik: "npm:^2.4.9"
