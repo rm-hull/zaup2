@@ -2349,10 +2349,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/hashes@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@noble/hashes@npm:2.2.0"
-  checksum: 10/b1b78bedc2a01394be047429f3d888905015fe8a09f1b7e43e0b5736b54133df62f73dcc73ede43af38e96e86156afb45b86973fdeaa95d9f0880333c3fc0907
+"@noble/hashes@npm:2.4.0":
+  version: 2.4.0
+  resolution: "@noble/hashes@npm:2.4.0"
+  checksum: 10/88d4cdd6cef00f412a39f65bda1d24cba2264c6cacdd1c6c48d7ed66fd9be865ffb7231024fb81177975c684b8a463879b89c5ae6960370b05a546c0fd8afa2c
   languageName: node
   linkType: hard
 
@@ -8590,12 +8590,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"otpauth@npm:^9.5.1":
-  version: 9.5.1
-  resolution: "otpauth@npm:9.5.1"
+"otpauth@npm:^9.5.2":
+  version: 9.5.2
+  resolution: "otpauth@npm:9.5.2"
   dependencies:
-    "@noble/hashes": "npm:2.2.0"
-  checksum: 10/6e5cfa7b4b90f6125da7d23977a4395d230dc8c5d0d9853cad0ec933bb0286ee5721ba42f89b8b3d7a325ea1c48308fbd7c2d9e7fa5adc471aae7f7400a2803d
+    "@noble/hashes": "npm:2.4.0"
+  checksum: 10/4a1e189619a7e4e601f29a4e50ee3ff6949135091bcb998086e9be9865a1760c4eef7ba1bea77b0f4bd258a9ff2502ac8a8607af97cd5f82f092eb839c65ce32
   languageName: node
   linkType: hard
 
@@ -10804,7 +10804,7 @@ __metadata:
     jotai: "npm:^2.20.3"
     next-themes: "npm:^0.4.6"
     object-hash: "npm:^3.0.0"
-    otpauth: "npm:^9.5.1"
+    otpauth: "npm:^9.5.2"
     prettier: "npm:^3.9.6"
     protoc-gen-ts: "npm:^0.8.7"
     ramda: "npm:^0.32.0"
