@@ -150,8 +150,8 @@ export function ImportURL({ onSubmit }: ImportURLProps) {
         },
       ],
     });
-    const decoder = new TextDecoder("utf8");
-    const b64 = btoa(decoder.decode(toBinary(MigrationPayloadSchema, payload)));
+    const bytes = toBinary(MigrationPayloadSchema, payload);
+    const b64 = btoa(Array.from(bytes, (b) => String.fromCharCode(b)).join(""));
     await setFieldValue("url", "otpauth-migration://offline?data=" + b64);
 
     onClose();
