@@ -1,6 +1,7 @@
 import { OTP } from "@/types";
 import { Serializer } from "@rm-hull/use-local-storage";
-import CryptoJS, { type WordArray } from "crypto-js";
+import CryptoJS from "crypto-js";
+type WordArray = CryptoJS.lib.WordArray;
 
 // Utility: Convert string to Uint8Array
 function str2ab(str: string): Uint8Array {
@@ -77,8 +78,8 @@ function evpBytesToKey(password: string, salt: Uint8Array, keyLen = 32, ivLen = 
     }
   }
   return {
-    key: keyiv.slice(0, keyLen),
-    iv: keyiv.slice(keyLen, keyLen + ivLen),
+    key: new Uint8Array(keyiv.slice(0, keyLen).buffer) as Uint8Array<ArrayBuffer>,
+    iv: new Uint8Array(keyiv.slice(keyLen, keyLen + ivLen).buffer) as Uint8Array<ArrayBuffer>,
   };
 }
 
@@ -99,15 +100,13 @@ export async function decryptCryptoJS(ciphertextBase64: string, password: string
 
   const { key, iv } = evpBytesToKey(password, salt);
 
-  // @ts-expect-error
-  const cryptoKey = await crypto.subtle.importKey("raw", new Uint8Array(key.buffer), { name: "AES-CBC" }, false, [
+  const cryptoKey = await crypto.subtle.importKey("raw", key.buffer as ArrayBuffer, { name: "AES-CBC" }, false, [
     "decrypt",
   ]);
-  // @ts-expect-error
   const decrypted = await crypto.subtle.decrypt(
-    { name: "AES-CBC", iv: new Uint8Array(iv.buffer) },
+    { name: "AES-CBC", iv: iv.buffer as ArrayBuffer },
     cryptoKey,
-    new Uint8Array(ciphertext.buffer)
+    ciphertext.buffer as ArrayBuffer
   );
 
   return ab2str(decrypted);
