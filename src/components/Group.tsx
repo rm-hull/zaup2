@@ -9,10 +9,11 @@ import { sortBy } from "../otp";
 import { type OTP } from "../types";
 import Card from "./Card";
 import Search from "./Search";
+import { toaster } from "./ui/toaster";
 
 interface GroupProps {
   filter?: (otp: OTP) => boolean;
-  noData?: ReactNode;
+  noData: ReactNode;
 }
 
 function matches(otp: OTP, searchTerm?: string): boolean {
@@ -48,6 +49,18 @@ export default function Group({ filter = () => true, noData }: GroupProps) {
     }
   }, [parent, sortOrder]);
 
+  useEffect(() => {
+    if (!!search && data.length > 0 && filtered.length === 0) {
+      toaster.warning({
+        id: "no-search-results",
+        title: "No OTPs matched your search criteria.",
+        description: "Try adjusting your search text or clearing it using the close button.",
+      });
+    } else {
+      toaster.dismiss("no-search-results");
+    }
+  }, [filtered.length, data.length, search]);
+
   useHarmonicIntervalFn(() => {
     const now = Date.now();
     const seconds = Math.floor(now / 1000) % 60;
@@ -63,7 +76,7 @@ export default function Group({ filter = () => true, noData }: GroupProps) {
     throw error;
   }
 
-  if (filtered.length === 0 && noData !== undefined) {
+  if (!search && filtered.length === 0) {
     return noData;
   }
 

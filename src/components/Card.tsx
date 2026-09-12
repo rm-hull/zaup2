@@ -41,7 +41,7 @@ function generateCode(totp?: TOTP): Partial<{ code: string; error: Error }> {
 
 const Card = memo(({ otp, showQRCode, highlight }: CardProps) => {
   const encodedSecret = useMemo(() => getEncodedSecret(otp), [otp]);
-  const totp = useMemo(() => getTotp(otp, encodedSecret), [otp, encodedSecret]);
+  const totp = getTotp(otp, encodedSecret);
   const { update } = useOtpParameters();
 
   const { code, error } = generateCode(totp);
@@ -71,8 +71,8 @@ const Card = memo(({ otp, showQRCode, highlight }: CardProps) => {
         textAlign="center"
       >
         <HStack align="center" justify="center" mt={4}>
-          <Image src={getCachedFavicon(otp)} h={5} />
-          <Text fontWeight={600} color="gray.500" lineClamp={1} wordBreak="break-all">
+          <Image src={getCachedFavicon(otp)} width={5} height={5} objectFit="contain" />
+          <Text fontWeight={600} color="gray.500" lineClamp={1}>
             <Highlight query={highlight ?? ""} styles={{ bg: highlightBg }} ignoreCase>
               {otp.label ?? otp.issuer ?? "«Unknown»"}
             </Highlight>

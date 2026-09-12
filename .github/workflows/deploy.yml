@@ -17,23 +17,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
-      - name: Setup Yarn
-        uses: actions/setup-node@v6
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6.1.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
         with:
           node-version: "24"
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Lint
         continue-on-error: true
-        run: yarn lint
+        run: pnpm lint
 
       - name: Test
-        run: yarn test:ci
+        run: pnpm test:ci
 
       - name: Coveralls
         uses: coverallsapp/github-action@v2
@@ -43,10 +46,10 @@ jobs:
         env:
           VITE_GOOGLE_API_CLIENT_ID: ${{ secrets.VITE_GOOGLE_API_CLIENT_ID }}
           VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID: ${{ secrets.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID }}
-        run: yarn build && cp ./dist/index.html ./dist/404.html
+        run: pnpm build && cp ./dist/index.html ./dist/404.html
 
       - name: Store dist files
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: dist-files
           path: ./dist/
@@ -63,18 +66,18 @@ jobs:
       cancel-in-progress: true
     steps:
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v8
         with:
           name: dist-files
           path: ./dist/
 
       - name: Upload to Github Pages
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
