@@ -9,7 +9,6 @@ import useGoogleDrive from "../../hooks/useGoogleDrive";
 import useOtpParameters from "../../hooks/useOtpParameters";
 import { merge } from "../../otp";
 
-
 const steps = [
   { title: "Authenticate", description: "to Google Drive" },
   { title: "Download", description: "file" },
