@@ -5,7 +5,7 @@ import Sidebar from "./components/Sidebar";
 import { toaster } from "./components/ui/toaster";
 import useOtpParameters from "./hooks/useOtpParameters";
 import { normalize } from "./otp";
-import { type MigrationPayload } from "./proto/migration_payload";
+import { type MigrationPayload_OtpParameters } from "./gen/migration_payload_pb";
 
 const { Home } = lazily(async () => await import("./pages/Home"));
 const { About } = lazily(async () => await import("./pages/About"));
@@ -19,8 +19,8 @@ export const App = () => {
   const navigate = useNavigate();
   const { update } = useOtpParameters();
 
-  const storeOTPParameters = (imported: MigrationPayload.OtpParameters[]): void => {
-    update(...imported.map((param) => ({ ...normalize(param.toObject()), archived: false })));
+  const storeOTPParameters = (imported: MigrationPayload_OtpParameters[]): void => {
+    update(...imported.map((param) => ({ ...normalize(param), archived: false })));
 
     toaster.dismiss();
     toaster.create({

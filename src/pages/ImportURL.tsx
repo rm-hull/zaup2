@@ -14,7 +14,6 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { type FieldProps, Form, Formik, type FormikErrors, Field as FormikField, type FormikHelpers } from "formik";
-import { BinaryReader } from "google-protobuf";
 import * as OTPAuth from "otpauth";
 import google_authenticator from "../assets/google_authenticator.svg";
 import QrScannerButton from "../components/import/QrScannerButton";
@@ -22,7 +21,15 @@ import { Button } from "../components/ui/button";
 import { useColorModeValue } from "../components/ui/color-mode";
 import { toaster } from "../components/ui/toaster";
 import { algorithmFrom } from "../otp";
-import { MigrationPayload } from "../proto/migration_payload";
+import { create, fromBinary, toBinary } from "@bufbuild/protobuf";
+import {
+  MigrationPayloadSchema,
+  MigrationPayload_OtpParametersSchema,
+  type MigrationPayload_OtpParameters,
+  MigrationPayload_Algorithm,
+  MigrationPayload_DigitCount,
+  MigrationPayload_OtpType,
+} from "../gen/migration_payload_pb";
 
 function validateURL(value: string | undefined): string | undefined {
   if (value === undefined || value === null) {
@@ -49,7 +56,7 @@ interface ImportForm {
 }
 
 interface ImportURLProps {
-  onSubmit: (otp_parameters: MigrationPayload.OtpParameters[]) => void;
+  onSubmit: (otp_parameters: MigrationPayload_OtpParameters[]) => void;
 }
 
 type SetFieldValueType<Values> = (
@@ -67,27 +74,27 @@ export function ImportURL({ onSubmit }: ImportURLProps) {
     try {
       const parsed = OTPAuth.URI.parse(decodeURIComponent(values.url));
       onSubmit([
-        new MigrationPayload.OtpParameters({
+        create(MigrationPayload_OtpParametersSchema, {
           name: parsed.label,
           issuer: parsed.issuer,
           secret: new Uint8Array(parsed.secret.buffer),
           algorithm: algorithmFrom(parsed.algorithm),
           digits:
             parsed.digits === 6
-              ? MigrationPayload.DigitCount.DIGIT_COUNT_SIX
-              : MigrationPayload.DigitCount.DIGIT_COUNT_EIGHT,
+              ? MigrationPayload_DigitCount.SIX
+              : MigrationPayload_DigitCount.EIGHT,
           type:
             parsed instanceof OTPAuth.TOTP
-              ? MigrationPayload.OtpType.OTP_TYPE_TOTP
-              : MigrationPayload.OtpType.OTP_TYPE_HOTP,
+              ? MigrationPayload_OtpType.TOTP
+              : MigrationPayload_OtpType.HOTP,
         }),
       ]);
     } catch (err) {
       if (err instanceof URIError) {
         try {
           const data = decodeURIComponent(values.url).slice(33);
-          const payload = MigrationPayload.deserialize(new BinaryReader(data));
-          onSubmit(payload.otp_parameters);
+          const payload = fromBinary(MigrationPayloadSchema, Uint8Array.from(atob(data), c => c.charCodeAt(0)));
+          onSubmit(payload.otpParameters);
           return;
         } catch (err) {
           if (err instanceof Error) {
@@ -115,36 +122,36 @@ export function ImportURL({ onSubmit }: ImportURLProps) {
   };
 
   const addDummyOtpCodes = (setFieldValue: SetFieldValueType<ImportForm>) => async () => {
-    const payload = MigrationPayload.fromObject({
-      otp_parameters: [
+    const payload = create(MigrationPayloadSchema, {
+      otpParameters: [
         {
           name: "github.com/dummy1",
           issuer: "GitHub",
-          type: MigrationPayload.OtpType.OTP_TYPE_TOTP,
-          digits: MigrationPayload.DigitCount.DIGIT_COUNT_SIX,
-          algorithm: MigrationPayload.Algorithm.ALGORITHM_SHA1,
+          type: MigrationPayload_OtpType.TOTP,
+                                  digits: MigrationPayload_DigitCount.SIX,
+          algorithm: MigrationPayload_Algorithm.SHA1,
           secret: randomSecret(20),
         },
         {
           name: "dummy2@example.com",
           issuer: "Google",
-          type: MigrationPayload.OtpType.OTP_TYPE_TOTP,
-          digits: MigrationPayload.DigitCount.DIGIT_COUNT_SIX,
-          algorithm: MigrationPayload.Algorithm.ALGORITHM_SHA1,
+          type: MigrationPayload_OtpType.TOTP,
+          digits: MigrationPayload_DigitCount.SIX,
+          algorithm: MigrationPayload_Algorithm.SHA1,
           secret: randomSecret(20),
         },
         {
           name: "dummy3@example.com",
           issuer: "microsoft.com",
-          type: MigrationPayload.OtpType.OTP_TYPE_TOTP,
-          digits: MigrationPayload.DigitCount.DIGIT_COUNT_SIX,
-          algorithm: MigrationPayload.Algorithm.ALGORITHM_SHA1,
+          type: MigrationPayload_OtpType.TOTP,
+          digits: MigrationPayload_DigitCount.SIX,
+          algorithm: MigrationPayload_Algorithm.SHA1,
           secret: randomSecret(20),
         },
       ],
-    }).serialize();
+    });
     const decoder = new TextDecoder("utf8");
-    const b64 = btoa(decoder.decode(payload));
+    const b64 = btoa(decoder.decode(toBinary(MigrationPayloadSchema, payload)));
     await setFieldValue("url", "otpauth-migration://offline?data=" + b64);
 
     onClose();

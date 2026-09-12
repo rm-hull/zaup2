@@ -1,4 +1,4 @@
-import { type MigrationPayload } from "./proto/migration_payload";
+import { type MigrationPayload_OtpParameters } from "./gen/migration_payload_pb";
 
 interface CustomAttributes {
   label: string;
@@ -10,4 +10,4 @@ interface CustomAttributes {
   copyCount: number;
 }
 
-export type OTP = ReturnType<typeof MigrationPayload.OtpParameters.prototype.toObject> & Partial<CustomAttributes>;
+export type OTP = MigrationPayload_OtpParameters & Partial<CustomAttributes>;
