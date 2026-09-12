@@ -21,11 +21,15 @@ export const App = () => {
   const { update } = useOtpParameters();
 
   const storeOTPParameters = (imported: MigrationPayload_OtpParameters[]): void => {
-    const converted = imported.map((param): OTP => ({
-      ...param,
-      counter: param.counter ? Number(param.counter) : undefined,
-    }));
-    update(...converted.map((param) => ({ ...normalize(param), archived: false })));
+    update(
+      ...imported.map((param) => {
+        const otp: OTP = {
+          ...param,
+          counter: param.counter ? Number(param.counter) : 0,
+        };
+        return { ...normalize(otp), archived: false };
+      })
+    );
 
     toaster.dismiss();
     toaster.create({
@@ -71,7 +75,7 @@ export const App = () => {
             <Loader>
               <Tag />
             </Loader>
-        }
+          }
         />
         <Route
           path="/issuers/:issuer"
