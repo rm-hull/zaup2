@@ -104,6 +104,10 @@ dist
 # TernJS port file
 .tern-port
 
+# pnpm non-zero installs
+.pnpm-store
+.pnpm/*
+
 # Yarn non-zero installs
 .pnp.*
 .yarn/*

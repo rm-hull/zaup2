@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "generate": "protoc --ts_out=src/proto --ts_opt=esModuleInterop --ts_opt=forceLong=string -I=./src/proto ./src/proto/migration_payload.proto",
-    "dev": "yarn download && vite",
-    "build": "yarn download && tsc && vite build",
+    "dev": "pnpm download && vite",
+    "build": "pnpm download && tsc && vite build",
     "lint": "eslint ./src",
     "test": "vitest",
     "test:ci": "vitest run --coverage",
@@ -101,5 +101,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@4.15.0"
+  "packageManager": "pnpm@10.5.2"
 }
