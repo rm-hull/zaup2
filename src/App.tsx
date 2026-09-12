@@ -6,6 +6,7 @@ import { toaster } from "./components/ui/toaster";
 import useOtpParameters from "./hooks/useOtpParameters";
 import { normalize } from "./otp";
 import { type MigrationPayload_OtpParameters } from "./gen/migration_payload_pb";
+import { type OTP } from "./types";
 
 const { Home } = lazily(async () => await import("./pages/Home"));
 const { About } = lazily(async () => await import("./pages/About"));
@@ -20,7 +21,11 @@ export const App = () => {
   const { update } = useOtpParameters();
 
   const storeOTPParameters = (imported: MigrationPayload_OtpParameters[]): void => {
-    update(...imported.map((param) => ({ ...normalize(param), archived: false })));
+    const converted = imported.map((param): OTP => ({
+      ...param,
+      counter: param.counter ? Number(param.counter) : undefined,
+    }));
+    update(...converted.map((param) => ({ ...normalize(param), archived: false })));
 
     toaster.dismiss();
     toaster.create({
@@ -66,7 +71,7 @@ export const App = () => {
             <Loader>
               <Tag />
             </Loader>
-          }
+        }
         />
         <Route
           path="/issuers/:issuer"

@@ -10,4 +10,8 @@ interface CustomAttributes {
   copyCount: number;
 }
 
-export type OTP = MigrationPayload_OtpParameters & Partial<CustomAttributes>;
+// We convert the protobuf int64 counter (bigint) to number to prevent issues
+// with JSON serialization in use-local-storage
+export type OTP = Omit<MigrationPayload_OtpParameters, "counter"> & {
+  counter?: number;
+} & Partial<CustomAttributes>;
