@@ -1,4 +1,4 @@
-import { type MigrationPayload } from "./proto/migration_payload";
+import { type MigrationPayload_OtpParameters } from "./gen/migration_payload_pb";
 
 interface CustomAttributes {
   label: string;
@@ -10,4 +10,7 @@ interface CustomAttributes {
   copyCount: number;
 }
 
-export type OTP = ReturnType<typeof MigrationPayload.OtpParameters.prototype.toObject> & Partial<CustomAttributes>;
+// Convert counter from bigint to number for JSON compatibility
+export type OTP = Omit<MigrationPayload_OtpParameters, "counter"> & {
+  counter?: number;
+} & Partial<CustomAttributes>;
