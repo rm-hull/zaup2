@@ -1,7 +1,11 @@
 import { expect, test, describe } from "vitest";
 import { WebCryptoSerializer } from "./webcrypto-serializer";
 import { type OTP } from "@/types";
-import { MigrationPayload_Algorithm, MigrationPayload_DigitCount, MigrationPayload_OtpType } from "@/gen/migration_payload_pb";
+import {
+  MigrationPayload_Algorithm,
+  MigrationPayload_DigitCount,
+  MigrationPayload_OtpType,
+} from "@/gen/migration_payload_pb";
 
 const password = "my-super-secret-password";
 const testData: OTP[] = [

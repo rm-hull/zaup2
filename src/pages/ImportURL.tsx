@@ -79,21 +79,18 @@ export function ImportURL({ onSubmit }: ImportURLProps) {
           issuer: parsed.issuer,
           secret: new Uint8Array(parsed.secret.buffer),
           algorithm: algorithmFrom(parsed.algorithm),
-          digits:
-            parsed.digits === 6
-              ? MigrationPayload_DigitCount.SIX
-              : MigrationPayload_DigitCount.EIGHT,
-          type:
-            parsed instanceof OTPAuth.TOTP
-              ? MigrationPayload_OtpType.TOTP
-              : MigrationPayload_OtpType.HOTP,
+          digits: parsed.digits === 6 ? MigrationPayload_DigitCount.SIX : MigrationPayload_DigitCount.EIGHT,
+          type: parsed instanceof OTPAuth.TOTP ? MigrationPayload_OtpType.TOTP : MigrationPayload_OtpType.HOTP,
         }),
       ]);
     } catch (err) {
       if (err instanceof URIError) {
         try {
           const data = decodeURIComponent(values.url).slice(33);
-          const payload = fromBinary(MigrationPayloadSchema, Uint8Array.from(atob(data), c => c.charCodeAt(0)));
+          const payload = fromBinary(
+            MigrationPayloadSchema,
+            Uint8Array.from(atob(data), (c) => c.charCodeAt(0))
+          );
           onSubmit(payload.otpParameters);
           return;
         } catch (err) {
@@ -128,7 +125,7 @@ export function ImportURL({ onSubmit }: ImportURLProps) {
           name: "github.com/dummy1",
           issuer: "GitHub",
           type: MigrationPayload_OtpType.TOTP,
-                                  digits: MigrationPayload_DigitCount.SIX,
+          digits: MigrationPayload_DigitCount.SIX,
           algorithm: MigrationPayload_Algorithm.SHA1,
           secret: randomSecret(20),
         },

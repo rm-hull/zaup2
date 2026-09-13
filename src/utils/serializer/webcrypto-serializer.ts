@@ -83,7 +83,9 @@ export async function decryptCryptoJS(ciphertextBase64: string, password: string
 
   const { key, iv } = evpBytesToKey(password, salt);
 
-  const cryptoKey = await crypto.subtle.importKey("raw", key.buffer as ArrayBuffer, { name: "AES-CBC" }, false, ["decrypt"]);
+  const cryptoKey = await crypto.subtle.importKey("raw", key.buffer as ArrayBuffer, { name: "AES-CBC" }, false, [
+    "decrypt",
+  ]);
   const decrypted = await crypto.subtle.decrypt(
     { name: "AES-CBC", iv: iv.buffer as ArrayBuffer },
     cryptoKey,
@@ -98,7 +100,9 @@ export async function encryptCryptoJS(plaintext: string, password: string): Prom
   const salt = crypto.getRandomValues(new Uint8Array(8));
   const { key, iv } = evpBytesToKey(password, salt);
 
-  const cryptoKey = await crypto.subtle.importKey("raw", key.buffer as ArrayBuffer, { name: "AES-CBC" }, false, ["encrypt"]);
+  const cryptoKey = await crypto.subtle.importKey("raw", key.buffer as ArrayBuffer, { name: "AES-CBC" }, false, [
+    "encrypt",
+  ]);
   const encrypted = await crypto.subtle.encrypt(
     { name: "AES-CBC", iv: iv.buffer as ArrayBuffer },
     cryptoKey,
@@ -120,8 +124,8 @@ export class WebCryptoSerializer implements Serializer<OTP[]> {
 
   public async serialize(value: OTP[]): Promise<string> {
     if (this.#isPasswordBad && value.length > 0) {
-      // In a real app we might want to check this better, but assuming 
-      // if we have data we can serialize it. 
+      // In a real app we might want to check this better, but assuming
+      // if we have data we can serialize it.
       // If the password was bad, this might fail or produce bad data.
     }
     return await encryptCryptoJS(JSON.stringify(value), this.password);
