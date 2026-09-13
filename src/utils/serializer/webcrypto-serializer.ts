@@ -135,11 +135,9 @@ export class WebCryptoSerializer implements Serializer<OTP[]> {
 
   constructor(private readonly password: string) {}
 
-  public async serialize(value: OTP[]): Promise<string> {
-    if (this.#isPasswordBad && value.length > 0) {
-      // In a real app we might want to check this better, but assuming
-      // if we have data we can serialize it.
-      // If the password was bad, this might fail or produce bad data.
+  public async serialize(value: OTP[], checkPassword = true): Promise<string> {
+    if (checkPassword && this.#isPasswordBad && value.length > 0) {
+      throw new Error("Cannot save: Password not verified. Please unlock data successfully before saving.");
     }
     return await encrypt(JSON.stringify(value), this.password);
   }

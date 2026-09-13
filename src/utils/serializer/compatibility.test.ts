@@ -34,7 +34,7 @@ const fixSecretType = (data: OTP[]): OTP[] => {
 describe("WebCryptoSerializer", () => {
   test("should serialize and deserialize data correctly", async () => {
     const serializer = new WebCryptoSerializer(password);
-    const encryptedData = await serializer.serialize(testData);
+    const encryptedData = await serializer.serialize(testData, false);
 
     const newSerializer = new WebCryptoSerializer(password);
     let decryptedData = await newSerializer.deserialize(encryptedData);
@@ -45,7 +45,7 @@ describe("WebCryptoSerializer", () => {
 
   test("should throw an error when deserializing with a wrong password", async () => {
     const serializer = new WebCryptoSerializer(password);
-    const encryptedData = await serializer.serialize(testData);
+    const encryptedData = await serializer.serialize(testData, false);
 
     const badSerializer = new WebCryptoSerializer("wrong-password");
     await expect(badSerializer.deserialize(encryptedData)).rejects.toThrow(
