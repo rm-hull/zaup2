@@ -70,7 +70,7 @@ function evpBytesToKey(password: string, salt: Uint8Array, keyLen = 32, ivLen = 
 }
 
 // Decrypts AES-CBC data compatible with CryptoJS.AES.encrypt
-export async function decryptCryptoJS(ciphertextBase64: string, password: string): Promise<string> {
+export async function decrypt(ciphertextBase64: string, password: string): Promise<string> {
   if (!password) {
     throw new Error("Password is required");
   }
@@ -109,7 +109,7 @@ export async function decryptCryptoJS(ciphertextBase64: string, password: string
 }
 
 // Encrypts AES-CBC data compatible with CryptoJS.AES.decrypt
-export async function encryptCryptoJS(plaintext: string, password: string): Promise<string> {
+export async function encrypt(plaintext: string, password: string): Promise<string> {
   const salt = crypto.getRandomValues(new Uint8Array(8));
   const { key, iv } = evpBytesToKey(password, salt);
 
@@ -141,18 +141,18 @@ export class WebCryptoSerializer implements Serializer<OTP[]> {
       // if we have data we can serialize it.
       // If the password was bad, this might fail or produce bad data.
     }
-    return await encryptCryptoJS(JSON.stringify(value), this.password);
+    return await encrypt(JSON.stringify(value), this.password);
   }
 
   public async deserialize(value: string): Promise<OTP[]> {
     try {
-      const decrypted = await decryptCryptoJS(value, this.password);
+      const decrypted = await decrypt(value, this.password);
       const data = JSON.parse(decrypted) as OTP[];
       this.#isPasswordBad = false;
       return data;
     } catch (err) {
       this.#isPasswordBad = true;
-      throw new Error("Failed to decrypt OTP data. Bad password?", { cause: err });
+      throw new Error("Failed to decrypt or parse OTP data. Bad password?", { cause: err });
     }
   }
 }
