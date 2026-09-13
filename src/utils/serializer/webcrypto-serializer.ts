@@ -2,17 +2,14 @@ import { OTP } from "@/types";
 import { Serializer } from "@rm-hull/use-local-storage";
 import { md5 } from "@noble/hashes/legacy.js";
 
-// Utility: Convert string to Uint8Array
 function str2ab(str: string): Uint8Array {
   return new TextEncoder().encode(str);
 }
 
-// Utility: Convert ArrayBuffer to string
 function ab2str(buf: ArrayBuffer): string {
   return new TextDecoder().decode(buf);
 }
 
-// Utility: Base64 encode/decode
 function base64ToBytes(b64: string): Uint8Array {
   const binary = atob(b64);
   const bytes = new Uint8Array(binary.length);
@@ -30,15 +27,12 @@ function bytesToBase64(bytes: Uint8Array): string {
   return btoa(binary);
 }
 
-// Type for derived key and IV
 interface KeyIV {
   key: Uint8Array;
   iv: Uint8Array;
 }
 
-/**
- * Replicates OpenSSL's EVP_BytesToKey derivation (MD5-based)
- */
+// Replicates OpenSSL's EVP_BytesToKey derivation (MD5-based)
 function evpBytesToKey(password: string, salt: Uint8Array, keyLen = 32, ivLen = 16): KeyIV {
   const pwBytes = str2ab(password);
   let prev: Uint8Array = new Uint8Array(0);
@@ -75,9 +69,7 @@ function evpBytesToKey(password: string, salt: Uint8Array, keyLen = 32, ivLen = 
   };
 }
 
-/**
- * Decrypts AES-CBC data compatible with CryptoJS.AES.encrypt
- */
+// Decrypts AES-CBC data compatible with CryptoJS.AES.encrypt
 export async function decryptCryptoJS(ciphertextBase64: string, password: string): Promise<string> {
   const data = base64ToBytes(ciphertextBase64);
 
@@ -101,9 +93,7 @@ export async function decryptCryptoJS(ciphertextBase64: string, password: string
   return ab2str(decrypted);
 }
 
-/**
- * Encrypts AES-CBC data compatible with CryptoJS.AES.decrypt
- */
+// Encrypts AES-CBC data compatible with CryptoJS.AES.decrypt
 export async function encryptCryptoJS(plaintext: string, password: string): Promise<string> {
   const salt = crypto.getRandomValues(new Uint8Array(8));
   const { key, iv } = evpBytesToKey(password, salt);
