@@ -1,6 +1,6 @@
-import { CryptoJsSerializer } from "@/utils/serializer/cryptojs-serializer";
+import { WebCryptoSerializer } from "@/utils/serializer/webcrypto-serializer";
 import { useLocalStorage } from "@rm-hull/use-local-storage";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { merge } from "../otp";
 import { type OTP } from "../types";
 import usePassword from "./usePassword";
@@ -26,7 +26,7 @@ export default function useOtpParameters(options?: Options): UseOTPParametersRet
     error,
     isLoading,
   } = useLocalStorage<OTP[]>("zaup2.otp-parameters", {
-    serializer: new CryptoJsSerializer(password!),
+    serializer: useMemo(() => new WebCryptoSerializer(password!), [password]),
     initialValue: [],
   });
 

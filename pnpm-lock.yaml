@@ -181,6 +181,9 @@ importers:
       '@formkit/auto-animate':
         specifier: ^0.10.0
         version: 0.10.0
+      '@noble/hashes':
+        specifier: ^2.4.0
+        version: 2.4.0
       '@react-oauth/google':
         specifier: ^0.13.5
         version: 0.13.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -193,9 +196,6 @@ importers:
       '@sentry/react':
         specifier: ^10.74.0
         version: 10.74.0(react@19.3.0)
-      '@types/crypto-js':
-        specifier: ^4.2.2
-        version: 4.2.2
       '@yudiel/react-qr-scanner':
         specifier: ^2.6.0
         version: 2.6.0(@types/emscripten@1.41.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -205,9 +205,6 @@ importers:
       base32-encode:
         specifier: ^2.0.0
         version: 2.0.0
-      crypto-js:
-        specifier: ^4.2.0
-        version: 4.2.0
       eslint-config-love:
         specifier: ^157.0.0
         version: 157.0.0(eslint@10.10.0)(typescript@7.0.2)
@@ -1211,9 +1208,6 @@ packages:
   '@types/cli-table@0.3.4':
     resolution: {integrity: sha512-GsALrTL69mlwbAw/MHF1IPTadSLZQnsxe7a80G8l4inN/iEXCOcVeT/S7aRc6hbhqzL9qZ314kHPDQnQ3ev+HA==}
 
-  '@types/crypto-js@4.2.2':
-    resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==}
-
   '@types/debug@4.1.13':
     resolution: {integrity: sha512-KSVgmQmzMwPlmtljOomayoR89W4FynCAi3E8PPs7vmDVPe84hT+vGPKkJfThkmXs0x0jAaa9U8uW8bbfyS2fWw==}
 
@@ -2072,10 +2066,6 @@ packages:
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
-
-  crypto-js@4.2.0:
-    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
-    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   css-in-js-utils@3.1.0:
     resolution: {integrity: sha512-fJAcud6B3rRu+KHYk+Bwf+WFL2MDCJJ1XG9x137tJQ0xYxor7XziQtuGFbWNdqrvF4Tk26O3H73nfVqXt/fW1A==}
@@ -4647,8 +4637,6 @@ snapshots:
 
   '@types/cli-table@0.3.4': {}
 
-  '@types/crypto-js@4.2.2': {}
-
   '@types/debug@4.1.13':
     dependencies:
       '@types/ms': 2.1.0
@@ -5772,8 +5760,6 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
-
-  crypto-js@4.2.0: {}
 
   css-in-js-utils@3.1.0:
     dependencies:
