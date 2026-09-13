@@ -23,7 +23,7 @@
     "@formkit/auto-animate": "^0.10.0",
     "@noble/hashes": "^2.4.0",
     "@react-oauth/google": "^0.13.5",
-    "@rm-hull/chakra-error-fallback": "^0.1.4",
+    "@rm-hull/chakra-error-fallback": "^0.1.5",
     "@rm-hull/use-local-storage": "^0.3.4",
     "@sentry/react": "^10.74.0",
     "@yudiel/react-qr-scanner": "^2.6.0",
