@@ -185,8 +185,8 @@ importers:
         specifier: ^0.13.5
         version: 0.13.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@rm-hull/chakra-error-fallback':
-        specifier: ^0.1.4
-        version: 0.1.4(@chakra-ui/react@3.37.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: ^0.1.5
+        version: 0.1.5(@chakra-ui/react@3.37.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@rm-hull/use-local-storage':
         specifier: ^0.3.4
         version: 0.3.4(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.3.0)(react@19.3.0)
@@ -973,8 +973,8 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@rm-hull/chakra-error-fallback@0.1.4':
-    resolution: {integrity: sha512-VP0S13QCxuzoHaV17O0aBL1vIfk1jvjzbheZzw5GVSBPR3D+zZmGDCttP4fmuXgPyT4C4lhSd/9LWgSL124mQg==}
+  '@rm-hull/chakra-error-fallback@0.1.5':
+    resolution: {integrity: sha512-XwdTWWsTTn8TeDB2cVzYtsRTjFjqHa1/fWgSse0RIuwXHoUMU8f2Tm5n/Gg4MNUYPUzCObMVQDh9ptb3PQZAbw==}
     peerDependencies:
       '@chakra-ui/react': '>=3.28.0'
       react: '>=19.0.0'
@@ -4423,7 +4423,7 @@ snapshots:
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
 
-  '@rm-hull/chakra-error-fallback@0.1.4(@chakra-ui/react@3.37.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@rm-hull/chakra-error-fallback@0.1.5(@chakra-ui/react@3.37.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@chakra-ui/react': 3.37.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       next-themes: 0.4.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
