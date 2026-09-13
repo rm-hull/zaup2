@@ -93,7 +93,11 @@ export default function OTPSettings() {
                 {otp.copyCount ?? 0}
               </Table.Cell>
               <Table.Cell textAlign="center" p={2}>
-                <Switch checked={otp.archived} onChange={handleToggleArchived(otp)} colorPalette="blue" />
+                <Switch
+                  checked={otp.archived ?? false}
+                  onCheckedChange={handleToggleArchived(otp)}
+                  colorPalette="blue"
+                />
               </Table.Cell>
               <Table.Cell p={2}>
                 <HStack>

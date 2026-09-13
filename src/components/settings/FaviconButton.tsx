@@ -21,7 +21,7 @@ export default function FaviconButton({ otp, onUpdateRequested }: FaviconButtonP
   const label = otp.favicon === undefined ? "Add favicon" : "Update favicon";
   return (
     <FaviconDialog onUpdate={handleConfirmFavicon} url={otp.favicon}>
-      <IconButton aria-label={label} size="sm" variant="subtle">
+      <IconButton aria-label={label} size="2xs" variant="subtle">
         <Tooltip showArrow content={label}>
           <FiImage />
         </Tooltip>

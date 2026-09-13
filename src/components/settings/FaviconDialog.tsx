@@ -16,11 +16,8 @@ export function FaviconDialog({ children, url, onUpdate }: PropsWithChildren<Fav
   const bg = useColorModeValue("gray.100", "gray.600");
 
   const handleSubmit = (values: FaviconForm, actions: FormikHelpers<FaviconForm>): void => {
-    try {
-      onUpdate(values.favicon.trim().length === 0 ? undefined : values.favicon.trim());
-    } finally {
-      actions.setSubmitting(false);
-    }
+    onUpdate(values.favicon.trim().length === 0 ? undefined : values.favicon.trim());
+    actions.setSubmitting(false);
   };
 
   return (
@@ -59,9 +56,11 @@ export function FaviconDialog({ children, url, onUpdate }: PropsWithChildren<Fav
                     <Dialog.ActionTrigger asChild>
                       <Button variant="ghost">Cancel</Button>
                     </Dialog.ActionTrigger>
-                    <Button type="submit" colorPalette="blue" disabled={!isValid}>
-                      {url === undefined ? "Add" : "Update"}
-                    </Button>
+                    <Dialog.ActionTrigger asChild>
+                      <Button type="submit" colorPalette="blue" disabled={!isValid}>
+                        {url === undefined ? "Add" : "Update"}
+                      </Button>
+                    </Dialog.ActionTrigger>
                   </Dialog.Footer>
 
                   <Dialog.CloseTrigger asChild>

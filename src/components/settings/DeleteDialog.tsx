@@ -21,9 +21,11 @@ export function DeleteDialog({ children, onDelete }: PropsWithChildren<DeleteDia
               <Dialog.ActionTrigger asChild>
                 <Button variant="ghost">Cancel</Button>
               </Dialog.ActionTrigger>
-              <Button type="submit" onClick={onDelete} colorPalette="red">
-                Delete
-              </Button>
+              <Dialog.ActionTrigger asChild>
+                <Button onClick={onDelete} colorPalette="red">
+                  Delete
+                </Button>
+              </Dialog.ActionTrigger>
             </Dialog.Footer>
 
             <Dialog.CloseTrigger asChild>

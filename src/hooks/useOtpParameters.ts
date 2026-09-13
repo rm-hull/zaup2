@@ -31,7 +31,7 @@ export default function useOtpParameters(options?: Options): UseOTPParametersRet
   });
 
   const update = useCallback(
-    (...updates: OTP[]) => void setOtpParams(merge(updates, otpParams)),
+    (...updates: OTP[]) => void setOtpParams(merge(updates, otpParams ?? [])),
     [otpParams, setOtpParams]
   );
 

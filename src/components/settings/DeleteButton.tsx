@@ -12,7 +12,7 @@ interface DeleteButtonProps {
 export default function DeleteButton({ otp, onDeleteRequested }: DeleteButtonProps) {
   return (
     <DeleteDialog onDelete={() => onDeleteRequested(otp)}>
-      <IconButton aria-label="Delete" size="sm" variant="subtle">
+      <IconButton aria-label="Delete" size="2xs" variant="subtle">
         <Tooltip showArrow content="Delete OTP">
           <FiTrash2 />
         </Tooltip>

@@ -11,7 +11,7 @@ import jsxA11y from "eslint-plugin-jsx-a11y";
 import testingLibrary from "eslint-plugin-testing-library";
 
 export default tseslint.config(
-  { ignores: ["dist", "coverage", ".yarn", ".pnp*", "src/proto/*.ts"] },
+  { ignores: ["dist", "coverage", ".yarn", ".pnp*", "src/proto/*.ts", "src/gen"] },
   {
     extends: [
       js.configs.recommended,

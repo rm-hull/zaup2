@@ -100,12 +100,16 @@ const isTimestampWithinLastNDays = (timestamp: number, days: number): boolean =>
 };
 
 export const merge = (updates: OTP[] = [], list: OTP[] = []): OTP[] => {
-  return updates.reduce((acc: OTP[], curr: OTP) => {
-    const found = acc?.findIndex((otp) => otp.issuer === curr.issuer && otp.name === curr.name);
-    if (found >= 0) {
-      acc[found] = { ...acc[found], ...curr, lastUpdated: Date.now() };
-      return acc;
-    }
-    return [...acc, { ...curr, created: Date.now() }];
-  }, list);
+  return updates.reduce(
+    (acc: OTP[], curr: OTP) => {
+      const found = acc?.findIndex((otp) => otp.issuer === curr.issuer && otp.name === curr.name);
+      if (found >= 0) {
+        const newAcc = [...acc];
+        newAcc[found] = { ...newAcc[found], ...curr, lastUpdated: Date.now() };
+        return newAcc;
+      }
+      return [...acc, { ...curr, created: Date.now() }];
+    },
+    [...list]
+  );
 };
