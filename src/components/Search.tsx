@@ -55,7 +55,9 @@ export default function Search({ onChange }: SearchProps) {
           <InputGroup
             startElement={<FiSearch />}
             startElementProps={{ pointerEvents: "none" }}
-            endElement={<CloseButton size="xs" aria-label="Clear search" disabled={!value} onClick={handleClearSearch} />}
+            endElement={
+              <CloseButton size="xs" aria-label="Clear search" disabled={!value} onClick={handleClearSearch} />
+            }
           >
             <Input
               id="search"

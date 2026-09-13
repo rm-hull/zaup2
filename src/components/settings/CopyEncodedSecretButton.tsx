@@ -5,7 +5,6 @@ import { Tooltip } from "../../components/ui/tooltip";
 import { getEncodedSecret } from "../../otp";
 import { type OTP } from "../../types";
 
-
 interface CopyEncodedSecretButtonProps {
   otp: OTP;
 }
