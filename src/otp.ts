@@ -1,7 +1,7 @@
 import base32Encode from "base32-encode";
 import * as OTPAuth from "otpauth";
 import * as R from "ramda";
-import { MigrationPayload } from "./proto/migration_payload";
+import { MigrationPayload_Algorithm, MigrationPayload_DigitCount } from "./gen/migration_payload_pb";
 import { type OTP } from "./types";
 
 export const normalize = (otp: OTP): OTP => {
@@ -20,41 +20,41 @@ export const sortBy = {
   mostUsed: R.sort<OTP>(R.descend((otp) => otp.copyCount ?? 0)),
 };
 
-export const getAlgorithm = (alg?: MigrationPayload.Algorithm): string => {
+export const getAlgorithm = (alg?: MigrationPayload_Algorithm): string => {
   switch (alg) {
-    case MigrationPayload.Algorithm.ALGORITHM_MD5:
+    case MigrationPayload_Algorithm.MD5:
       return "MD5";
-    case MigrationPayload.Algorithm.ALGORITHM_SHA1:
+    case MigrationPayload_Algorithm.SHA1:
       return "SHA1";
-    case MigrationPayload.Algorithm.ALGORITHM_SHA256:
+    case MigrationPayload_Algorithm.SHA256:
       return "SHA256";
-    case MigrationPayload.Algorithm.ALGORITHM_SHA512:
+    case MigrationPayload_Algorithm.SHA512:
       return "SHA512";
     default:
       return "UNSPECIFIED";
   }
 };
 
-export const algorithmFrom = (alg?: string): MigrationPayload.Algorithm => {
+export const algorithmFrom = (alg?: string): MigrationPayload_Algorithm => {
   switch (alg) {
     case "MD5":
-      return MigrationPayload.Algorithm.ALGORITHM_MD5;
+      return MigrationPayload_Algorithm.MD5;
     case "SHA1":
-      return MigrationPayload.Algorithm.ALGORITHM_SHA1;
+      return MigrationPayload_Algorithm.SHA1;
     case "SHA256":
-      return MigrationPayload.Algorithm.ALGORITHM_SHA256;
+      return MigrationPayload_Algorithm.SHA256;
     case "SHA512":
-      return MigrationPayload.Algorithm.ALGORITHM_SHA512;
+      return MigrationPayload_Algorithm.SHA512;
     default:
-      return MigrationPayload.Algorithm.ALGORITHM_UNSPECIFIED;
+      return MigrationPayload_Algorithm.UNSPECIFIED;
   }
 };
 
-export const getDigits = (digits?: MigrationPayload.DigitCount): number | undefined => {
+export const getDigits = (digits?: MigrationPayload_DigitCount): number | undefined => {
   switch (digits) {
-    case MigrationPayload.DigitCount.DIGIT_COUNT_SIX:
+    case MigrationPayload_DigitCount.SIX:
       return 6;
-    case MigrationPayload.DigitCount.DIGIT_COUNT_EIGHT:
+    case MigrationPayload_DigitCount.EIGHT:
       return 8;
     default:
       return undefined;
