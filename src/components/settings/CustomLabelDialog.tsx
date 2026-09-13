@@ -16,11 +16,8 @@ export function CustomLabelDialog({ children, label, onUpdate }: PropsWithChildr
   const bg = useColorModeValue("gray.100", "gray.600");
 
   const handleAdd = (values: CustomLabelForm, actions: FormikHelpers<CustomLabelForm>): void => {
-    try {
-      onUpdate(values.label.trim().length === 0 ? undefined : values.label.trim());
-    } finally {
-      actions.setSubmitting(false);
-    }
+    onUpdate(values.label.trim().length === 0 ? undefined : values.label.trim());
+    actions.setSubmitting(false);
   };
 
   return (
@@ -56,9 +53,11 @@ export function CustomLabelDialog({ children, label, onUpdate }: PropsWithChildr
                     <Dialog.ActionTrigger asChild>
                       <Button variant="ghost">Cancel</Button>
                     </Dialog.ActionTrigger>
-                    <Button type="submit" colorPalette="blue" disabled={!isValid}>
-                      {label === undefined ? "Add" : "Update"}
-                    </Button>
+                    <Dialog.ActionTrigger asChild>
+                      <Button type="submit" colorPalette="blue" disabled={!isValid}>
+                        {label === undefined ? "Add" : "Update"}
+                      </Button>
+                    </Dialog.ActionTrigger>
                   </Dialog.Footer>
 
                   <Dialog.CloseTrigger asChild>

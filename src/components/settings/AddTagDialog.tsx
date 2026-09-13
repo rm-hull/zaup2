@@ -33,11 +33,9 @@ export function AddTagDialog({ children, onAdd }: PropsWithChildren<AddTagDialog
   const tags = R.sortBy(R.toLower, R.uniq(data.flatMap((otp) => otp.tags ?? [])));
 
   const handleAdd = (values: AddTagForm, actions: FormikHelpers<AddTagForm>): void => {
-    try {
-      onAdd(values.tag);
-    } finally {
-      actions.setSubmitting(false);
-    }
+    onAdd(values.tag);
+    actions.resetForm();
+    actions.setSubmitting(false);
   };
 
   return (
@@ -61,13 +59,15 @@ export function AddTagDialog({ children, onAdd }: PropsWithChildren<AddTagDialog
                           <HStack wrap="wrap">
                             {tags.map((tag) => (
                               <Flex key={tag} align="flex-start">
-                                <HashTag
-                                  label={tag}
-                                  bg={tagBg}
-                                  onClick={() => {
-                                    onAdd(tag);
-                                  }}
-                                />
+                                <Dialog.ActionTrigger asChild>
+                                  <HashTag
+                                    label={tag}
+                                    bg={tagBg}
+                                    onClick={() => {
+                                      onAdd(tag);
+                                    }}
+                                  />
+                                </Dialog.ActionTrigger>
                               </Flex>
                             ))}
                           </HStack>
@@ -93,9 +93,11 @@ export function AddTagDialog({ children, onAdd }: PropsWithChildren<AddTagDialog
                     <Dialog.ActionTrigger asChild>
                       <Button variant="ghost">Cancel</Button>
                     </Dialog.ActionTrigger>
-                    <Button type="submit" colorPalette="blue" disabled={!isValid}>
-                      Add
-                    </Button>
+                    <Dialog.ActionTrigger asChild>
+                      <Button type="submit" colorPalette="blue" disabled={!isValid}>
+                        Add
+                      </Button>
+                    </Dialog.ActionTrigger>
                   </Dialog.Footer>
 
                   <Dialog.CloseTrigger asChild>
