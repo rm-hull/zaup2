@@ -2,17 +2,18 @@ import { expect, test, describe } from "vitest";
 import { CryptoJsSerializer } from "./cryptojs-serializer";
 import { WebCryptoSerializer } from "./webcrypto-serializer";
 import { type OTP } from "@/types";
-import { MigrationPayload } from "@/proto/migration_payload";
+import { MigrationPayload_Algorithm, MigrationPayload_DigitCount, MigrationPayload_OtpType } from "@/gen/migration_payload_pb";
 
 const password = "my-super-secret-password";
 const testData: OTP[] = [
   {
+    $typeName: "MigrationPayload.OtpParameters",
     name: "Test OTP",
     issuer: "Tester",
     secret: new Uint8Array([1, 2, 3, 4, 5]),
-    type: MigrationPayload.OtpType.OTP_TYPE_TOTP,
-    digits: MigrationPayload.DigitCount.DIGIT_COUNT_SIX,
-    algorithm: MigrationPayload.Algorithm.ALGORITHM_SHA1,
+    type: MigrationPayload_OtpType.TOTP,
+    digits: MigrationPayload_DigitCount.SIX,
+    algorithm: MigrationPayload_Algorithm.SHA1,
     counter: 0,
   },
 ];

@@ -48,7 +48,7 @@ interface KeyIV {
  */
 function evpBytesToKey(password: string, salt: Uint8Array, keyLen = 32, ivLen = 16): KeyIV {
   const pwBytes = str2ab(password);
-  let prev = new Uint8Array(0);
+  let prev: Uint8Array = new Uint8Array(0);
   const buffers: Uint8Array[] = [];
   let currentLength = 0;
 
@@ -78,8 +78,8 @@ function evpBytesToKey(password: string, salt: Uint8Array, keyLen = 32, ivLen = 
     }
   }
   return {
-    key: new Uint8Array(keyiv.slice(0, keyLen).buffer) as Uint8Array<ArrayBuffer>,
-    iv: new Uint8Array(keyiv.slice(keyLen, keyLen + ivLen).buffer) as Uint8Array<ArrayBuffer>,
+    key: keyiv.slice(0, keyLen),
+    iv: keyiv.slice(keyLen, keyLen + ivLen),
   };
 }
 
