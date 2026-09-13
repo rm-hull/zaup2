@@ -71,7 +71,20 @@ function evpBytesToKey(password: string, salt: Uint8Array, keyLen = 32, ivLen = 
 
 // Decrypts AES-CBC data compatible with CryptoJS.AES.encrypt
 export async function decryptCryptoJS(ciphertextBase64: string, password: string): Promise<string> {
-  const data = base64ToBytes(ciphertextBase64);
+  if (!password) {
+    throw new Error("Password is required");
+  }
+
+  let data: Uint8Array;
+  try {
+    data = base64ToBytes(ciphertextBase64);
+  } catch (err) {
+    throw new Error("Invalid base64 encoding", { cause: err });
+  }
+
+  if (data.length < 16) {
+    throw new Error("Ciphertext is too short to be valid");
+  }
 
   const prefix = String.fromCharCode(...data.slice(0, 8));
   if (prefix !== "Salted__") {

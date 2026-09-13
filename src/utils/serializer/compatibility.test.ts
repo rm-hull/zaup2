@@ -42,4 +42,14 @@ describe("WebCryptoSerializer", () => {
 
     expect(decryptedData).toEqual(testData);
   });
+
+  test("should throw an error when deserializing with a wrong password", async () => {
+    const serializer = new WebCryptoSerializer(password);
+    const encryptedData = await serializer.serialize(testData);
+
+    const badSerializer = new WebCryptoSerializer("wrong-password");
+    await expect(badSerializer.deserialize(encryptedData)).rejects.toThrow(
+      /Failed to decrypt OTP data|bad padding|operation failed/i
+    );
+  });
 });
