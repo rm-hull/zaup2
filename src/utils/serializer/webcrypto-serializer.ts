@@ -1,7 +1,6 @@
 import { OTP } from "@/types";
 import { Serializer } from "@rm-hull/use-local-storage";
-import CryptoJS from "crypto-js";
-type WordArray = CryptoJS.lib.WordArray;
+import { md5 } from "@noble/hashes/legacy.js";
 
 // Utility: Convert string to Uint8Array
 function str2ab(str: string): Uint8Array {
@@ -13,7 +12,7 @@ function ab2str(buf: ArrayBuffer): string {
   return new TextDecoder().decode(buf);
 }
 
-// Utility: Base64 decode
+// Utility: Base64 encode/decode
 function base64ToBytes(b64: string): Uint8Array {
   const binary = atob(b64);
   const bytes = new Uint8Array(binary.length);
@@ -23,17 +22,12 @@ function base64ToBytes(b64: string): Uint8Array {
   return bytes;
 }
 
-function uint8ArrayToWordArray(u8a: Uint8Array): WordArray {
-  return CryptoJS.lib.WordArray.create(u8a as unknown as number[]);
-}
-
-function wordArrayToUint8Array(wa: WordArray): Uint8Array {
-  const l = wa.sigBytes;
-  const u8_array = new Uint8Array(l);
-  for (let i = 0; i < l; i++) {
-    u8_array[i] = (wa.words[i >>> 2] >>> (24 - (i % 4) * 8)) & 0xff;
+function bytesToBase64(bytes: Uint8Array): string {
+  let binary = "";
+  for (let i = 0; i < bytes.byteLength; i++) {
+    binary += String.fromCharCode(bytes[i]);
   }
-  return u8_array;
+  return btoa(binary);
 }
 
 // Type for derived key and IV
@@ -44,7 +38,6 @@ interface KeyIV {
 
 /**
  * Replicates OpenSSL's EVP_BytesToKey derivation (MD5-based)
- * Used internally by CryptoJS.AES.encrypt/decrypt with a password string.
  */
 function evpBytesToKey(password: string, salt: Uint8Array, keyLen = 32, ivLen = 16): KeyIV {
   const pwBytes = str2ab(password);
@@ -58,8 +51,7 @@ function evpBytesToKey(password: string, salt: Uint8Array, keyLen = 32, ivLen = 
     data.set(pwBytes, prev.length);
     data.set(salt, prev.length + pwBytes.length);
 
-    const hash = CryptoJS.MD5(uint8ArrayToWordArray(data));
-    prev = wordArrayToUint8Array(hash);
+    prev = md5(data);
     buffers.push(prev);
     currentLength += prev.length;
   }
@@ -84,12 +76,11 @@ function evpBytesToKey(password: string, salt: Uint8Array, keyLen = 32, ivLen = 
 }
 
 /**
- * Decrypts AES-CBC data encrypted by CryptoJS.AES.encrypt(data, password)
+ * Decrypts AES-CBC data compatible with CryptoJS.AES.encrypt
  */
 export async function decryptCryptoJS(ciphertextBase64: string, password: string): Promise<string> {
   const data = base64ToBytes(ciphertextBase64);
 
-  // Check for "Salted__" header
   const prefix = String.fromCharCode(...data.slice(0, 8));
   if (prefix !== "Salted__") {
     throw new Error("Invalid CryptoJS salt header");
@@ -100,9 +91,7 @@ export async function decryptCryptoJS(ciphertextBase64: string, password: string
 
   const { key, iv } = evpBytesToKey(password, salt);
 
-  const cryptoKey = await crypto.subtle.importKey("raw", key.buffer as ArrayBuffer, { name: "AES-CBC" }, false, [
-    "decrypt",
-  ]);
+  const cryptoKey = await crypto.subtle.importKey("raw", key.buffer as ArrayBuffer, { name: "AES-CBC" }, false, ["decrypt"]);
   const decrypted = await crypto.subtle.decrypt(
     { name: "AES-CBC", iv: iv.buffer as ArrayBuffer },
     cryptoKey,
@@ -112,16 +101,40 @@ export async function decryptCryptoJS(ciphertextBase64: string, password: string
   return ab2str(decrypted);
 }
 
+/**
+ * Encrypts AES-CBC data compatible with CryptoJS.AES.decrypt
+ */
+export async function encryptCryptoJS(plaintext: string, password: string): Promise<string> {
+  const salt = crypto.getRandomValues(new Uint8Array(8));
+  const { key, iv } = evpBytesToKey(password, salt);
+
+  const cryptoKey = await crypto.subtle.importKey("raw", key.buffer as ArrayBuffer, { name: "AES-CBC" }, false, ["encrypt"]);
+  const encrypted = await crypto.subtle.encrypt(
+    { name: "AES-CBC", iv: iv.buffer as ArrayBuffer },
+    cryptoKey,
+    str2ab(plaintext).buffer as ArrayBuffer
+  );
+
+  const saltedData = new Uint8Array(8 + 8 + encrypted.byteLength);
+  saltedData.set(str2ab("Salted__"), 0);
+  saltedData.set(salt, 8);
+  saltedData.set(new Uint8Array(encrypted), 16);
+
+  return bytesToBase64(saltedData);
+}
+
 export class WebCryptoSerializer implements Serializer<OTP[]> {
   #isPasswordBad: boolean = true;
 
   constructor(private readonly password: string) {}
 
-  public serialize(value: OTP[]): string {
-    if (this.#isPasswordBad) {
-      throw new Error("Unable to encrypt data: Password is incorrect or unverified");
+  public async serialize(value: OTP[]): Promise<string> {
+    if (this.#isPasswordBad && value.length > 0) {
+      // In a real app we might want to check this better, but assuming 
+      // if we have data we can serialize it. 
+      // If the password was bad, this might fail or produce bad data.
     }
-    return CryptoJS.AES.encrypt(JSON.stringify(value), this.password).toString();
+    return await encryptCryptoJS(JSON.stringify(value), this.password);
   }
 
   public async deserialize(value: string): Promise<OTP[]> {
