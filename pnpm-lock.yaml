@@ -315,8 +315,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       chalk:
-        specifier: ^6.0.0
-        version: 6.0.0
+        specifier: ^6.0.1
+        version: 6.0.1
       eslint:
         specifier: ^10.11.0
         version: 10.11.0
@@ -2050,8 +2050,8 @@ packages:
     resolution: {integrity: sha512-NUPRluOfOiTKBKvWPtSD4PhFvWCqOi0BGStNWs57X9js7XGTprSmFoz5F0tWhR4WPjNeR9jXqdC7/UpSJTnlRg==}
     engines: {node: '>=18'}
 
-  chalk@6.0.0:
-    resolution: {integrity: sha512-2uNTXIuTTxk7ciZgAU1BQcgnchcG0xXnrs6jzkQfj9SsRa9M2s5zE8WT96hS6KmG4MzWHSrvH43DF1m4XRkrFg==}
+  chalk@6.0.1:
+    resolution: {integrity: sha512-/Ce6KNm3vIbWdMlNna6RVIZ/ICQxnJxCicet5LBKK9ZffBkqzDw0xh9EiKSljdRtiIQ1S1z4YgcscUUGzNCWrA==}
     engines: {node: '>=22'}
 
   character-entities-html4@2.1.0:
@@ -5812,7 +5812,7 @@ snapshots:
 
   chai@6.2.2: {}
 
-  chalk@6.0.0: {}
+  chalk@6.0.1: {}
 
   character-entities-html4@2.1.0: {}
 
