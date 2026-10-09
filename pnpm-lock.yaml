@@ -248,8 +248,8 @@ importers:
         specifier: ^17.6.1
         version: 17.6.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       web-vitals:
-        specifier: ^6.2.2
-        version: 6.2.2
+        specifier: ^6.2.3
+        version: 6.2.3
     devDependencies:
       '@bufbuild/buf':
         specifier: ^1.73.0
@@ -3717,8 +3717,8 @@ packages:
       jsdom:
         optional: true
 
-  web-vitals@6.2.2:
-    resolution: {integrity: sha512-oto5x6dLEgrRqfcWed+pZEUb2q6ikbFmqF54CRDhI/QGbn+qxC49b4C4OkbH+kb9C3a8shpFD3SgR9kRcs80ZQ==}
+  web-vitals@6.2.3:
+    resolution: {integrity: sha512-Dmy+vdO1UPMqXiAtZSNayhl4f794Bxfd94W4HIj2HlYtczEQfEOon969memlcpcHrTuOKLa5baFjX7WbgmOq+A==}
 
   webrtc-adapter@9.0.6:
     resolution: {integrity: sha512-CHbl2ZQbxx164IgWRgzJno4hWtM4tFbRam1QfI3Yxhs3w/DvqluVxVWeXs3oL5/fbGkSNLKo0Ty5MgUWceNhog==}
@@ -4538,7 +4538,7 @@ snapshots:
     dependencies:
       '@sentry/conventions': 0.25.0
       '@sentry/core': 11.4.0
-      web-vitals: 6.2.2
+      web-vitals: 6.2.3
 
   '@sentry/browser@11.4.0':
     dependencies:
@@ -7672,7 +7672,7 @@ snapshots:
     transitivePeerDependencies:
       - msw
 
-  web-vitals@6.2.2: {}
+  web-vitals@6.2.3: {}
 
   webrtc-adapter@9.0.6:
     dependencies:
