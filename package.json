@@ -46,7 +46,7 @@
     "web-vitals": "^6.2.3"
   },
   "devDependencies": {
-    "@bufbuild/buf": "^1.74.0",
+    "@bufbuild/buf": "^1.75.0",
     "@bufbuild/protoc-gen-es": "^2.16.0",
     "@chakra-ui/cli": "^3.37.0",
     "@eslint/compat": "^2.1.1",
