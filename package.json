@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@bufbuild/protobuf": "^2.16.0",
-    "@chakra-ui/react": "^3.37.0",
+    "@chakra-ui/react": "^3.38.0",
     "@connectrpc/connect": "^2.2.0",
     "@emotion/react": "^11.14.0",
     "@formkit/auto-animate": "^0.10.0",
@@ -48,7 +48,7 @@
   "devDependencies": {
     "@bufbuild/buf": "^1.75.0",
     "@bufbuild/protoc-gen-es": "^2.16.0",
-    "@chakra-ui/cli": "^3.37.0",
+    "@chakra-ui/cli": "^3.38.0",
     "@eslint/compat": "^2.1.1",
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
